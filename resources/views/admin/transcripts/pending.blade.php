@@ -19,7 +19,7 @@
                             <button type="submit" class="btn btn-lg btn-info p-3">Search &nbsp; </button>
                         </div>
                         </form>    
-                    </div>   {{   "new changes"  }}
+                    </div>  
                     </div>
                    <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
