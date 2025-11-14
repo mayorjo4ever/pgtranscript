@@ -1,0 +1,245 @@
+/* CSS Document */
+	table.table-nogap { border:10px thin #00bcd4; border-radius:20px;  } 
+	table.table-nogap tr td,table.table-nogap tr { margin-top:0.1em; margin-bottom:0.1em; padding-top:0.1em; padding-bottom:0.1em; text-align:left; font-size:12px; }
+	table.table-nogap td div.form-group{ margin-top:0em; margin-bottom:0em; padding-top:0em; padding-bottom:0em;} 
+	
+	table.table-nogap td{ padding-left:0.4em; padding-right:0.4em; min-width:16%; } 
+	
+	table.table-nogap select {
+		height:26px;
+		padding-top:0px;
+		margin-top:0px;
+	}
+	
+	table.small-gap tbody td {
+		height:auto;
+		padding-top:0px;  padding-bottom:0px;
+		margin-top:0px; margin-bottom:0px; 
+		font-weight:400; 
+	}
+	
+	{
+		border:1px solid #000;
+	}
+	table.thick-bolder th,
+	table.thick-bolder td,
+	table.thick-bolder,
+	table.thick-bolder tr
+		{
+		border:1px solid #000;
+	}
+	
+	table.thick-bolder thead {
+		background: rgba(52, 73, 94, 0.94);
+		color: #ECF0F1;
+		}
+
+
+	table.jambo_table {
+				border: 1px solid rgba(221, 221, 221, 0.78);
+			}
+
+			table.jambo_table thead {
+				background: rgba(52, 73, 94, 0.94);
+				color: #ECF0F1;
+			}
+
+			table.jambo_table tbody tr:hover td {
+				background: rgba(38, 185, 154, 0.07);
+				border-top: 1px solid rgba(38, 185, 154, 0.11);
+				border-bottom: 1px solid rgba(38, 185, 154, 0.11);
+			}
+
+			table.jambo_table tbody tr.selected {
+				background: rgba(38, 185, 154, 0.16);
+			}
+
+			table.jambo_table tbody tr.selected td {
+				border-top: 1px solid rgba(38, 185, 154, 0.40);
+				border-bottom: 1px solid rgba(38, 185, 154, 0.40);
+			}
+			
+			.bold{font-weight:bolder;}
+			.font-5{font-size:5px;}
+			.font-6{font-size:6px;}
+			.font-7{font-size:7px;}
+			.font-8{font-size:8px;}
+			.font-9{font-size:9px;}
+			.font-10{font-size:10px;}
+			.font-11{font-size:11px;}
+			.font-12{font-size:12px;}
+			.font-13{font-size:13px;}
+			.font-14{font-size:14px;}
+			.font-15{font-size:15px;}
+			.font-16{font-size:16px;}
+			.font-17{font-size:17px;}
+			.font-18{font-size:18px;}
+			.font-19{font-size:19px;}
+			.font-20{font-size:20px;}
+			.font-21{font-size:21px;}
+			.font-22{font-size:22px;}
+			.font-23{font-size:23px;}
+			.font-24{font-size:24px;}
+			.font-25{font-size:25px;}
+			.font-26{font-size:26px;}
+			.font-27{font-size:27px;}
+			.font-28{font-size:28px;}
+			.font-29{font-size:29px;}
+			.font-30{font-size:30px;}
+			.font-31{font-size:32px;}
+			.font-32{font-size:32px;}
+			.font-33{font-size:33px;}
+			
+			.white {color:#FFF;}
+			.black{color:#000;}
+			.green{color:green;}
+			.red{color:red;}
+			.blue{color:blue;}
+			.text-capitalize{text-transform:capitalize;}
+			.text-italic{ font-style:italic;}
+			.text-uppercase{text-transform:uppercase;}
+			.text-lowercase{text-transform:lowercase;}
+			
+			
+			
+	/* Progress Bar */
+		.progress {
+		  position: relative;
+		  height: 4px;
+		  display: block;
+		  width: 100%;
+		  background-color: #acece6;
+		  border-radius: 2px;
+		  background-clip: padding-box;
+		  margin: 0.5rem 0 1rem 0;
+		  overflow: hidden; }
+		  .progress .determinate {
+			position: absolute;
+			background-color: inherit;
+			top: 0;
+			bottom: 0;
+			background-color: #26a69a;
+			transition: width .3s linear; }
+		  .progress .indeterminate {
+			background-color: #26a69a; }
+			.progress .indeterminate:before {
+			  content: '';
+			  position: absolute;
+			  background-color: inherit;
+			  top: 0;
+			  left: 0;
+			  bottom: 0;
+			  will-change: left, right;
+			  -webkit-animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+					  animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite; }
+			.progress .indeterminate:after {
+			  content: '';
+			  position: absolute;
+			  background-color: inherit;
+			  top: 0;
+			  left: 0;
+			  bottom: 0;
+			  will-change: left, right;
+			  -webkit-animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+					  animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+			  -webkit-animation-delay: 1.15s;
+					  animation-delay: 1.15s; }
+
+		@-webkit-keyframes indeterminate {
+		  0% {
+			left: -35%;
+			right: 100%; }
+		  60% {
+			left: 100%;
+			right: -90%; }
+		  100% {
+			left: 100%;
+			right: -90%; } }
+		@keyframes indeterminate {
+		  0% {
+			left: -35%;
+			right: 100%; }
+		  60% {
+			left: 100%;
+			right: -90%; }
+		  100% {
+			left: 100%;
+			right: -90%; } }
+		@-webkit-keyframes indeterminate-short {
+		  0% {
+			left: -200%;
+			right: 100%; }
+		  60% {
+			left: 107%;
+			right: -8%; }
+		  100% {
+			left: 107%;
+			right: -8%; } }
+		@keyframes indeterminate-short {
+		  0% {
+			left: -200%;
+			right: 100%; }
+		  60% {
+			left: 107%;
+			right: -8%; }
+		  100% {
+			left: 107%;
+			right: -8%; } }
+		/** end linear progress-bar **/
+		
+		ul.num_list li:hover{
+			background-color: #afd9ee; 
+			cursor:pointer;
+		}
+		ul.num_list li{
+			padding: 5px;
+			font-size:16px;
+			}
+@font-face {
+  font-family: 'Berlin Sans FB Regular';
+  src: url('../dist/css/berlin-font/Berlin Sans FB Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+	
+.mytable {
+  width: 90%;
+ margin-left:5%; padding-left:5%; 
+
+  max-width: 95%;
+  margin-bottom: 20px; 
+
+}
+	
+.mytable2 {
+  width: 90%;
+ margin-left:5%; padding-left:5%; 
+  max-width: 90%;
+  margin-bottom: 20px; 
+   
+}
+.mytable2 > thead > tr > th,
+.mytable2 > tbody > tr > th,
+.mytable2 > tfoot > tr > th,
+.mytable2 > thead > tr > td,
+.mytable2 > tbody > tr > td,
+.mytable2 > tfoot > tr > td {
+  padding: 5px;
+  line-height: 1.42857143;
+  vertical-align: top; 
+ /* border-top: 1px solid #ddd; */
+} 
+
+
+
+.mytable > thead > tr > th,
+.mytable > tbody > tr > th,
+.mytable > tfoot > tr > th,
+.mytable > thead > tr > td,
+.mytable > tbody > tr > td,
+.mytable > tfoot > tr > td {
+  padding: 5px;
+   
+  vertical-align: top; 
+ /* border-top: 1px solid #ddd; */
+}  
