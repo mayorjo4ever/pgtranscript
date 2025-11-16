@@ -787,8 +787,7 @@ class CertificateController extends Controller
         $student->transcript_printed = TranscriptPrintout::where('regno', $student->regno)
             ->where('purpose', 'Convocation')
             ->where('printed', true)
-            ->exists();
-            
+            ->exists();            
         });        
         // Then sort the collection using our smartSwapName logic
         $students = $students->sortBy(function ($student) {

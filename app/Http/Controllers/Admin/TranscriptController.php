@@ -16,11 +16,16 @@ use App\Models\TranscriptReport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
+use function admin_info;
 use function back;
+use function extractDegreeInfo;
+use function program_available;
 use function redirect;
 use function response;
+use function swapName;
 use function view;
 
 
@@ -294,4 +299,72 @@ class TranscriptController extends Controller
             'message'=>$msg
         ]);
     }
+    
+    public function transcript_search(Request $request){
+       Session::put('page','transcripts');  Session::put('tab','transcript_search');
+       Session::put('page_title','Search Student Transcript');
+       $page_info = ['title'=> "Search Student Transcript",'icon'=>'search','sub-title'=>'Search Transcript Records'];                    
+      // when submitting 
+      if($request->ajax()): $data = $request->regno;
+            $reports = TranscriptReport::with('printouts')->where('regno','LIKE','%'.$data.'%')
+            ->orWhere('name','LIKE','%'.$data.'%')
+            ->get();
+                    
+          $certData = CertificateData::with('app_date')
+            ->leftJoin('transcript_reports', function ($join) {
+                $join->on('transcript_reports.regno', '=', 'certificate_data.regno')
+                     ->whereNotNull('transcript_reports.approve_date');
+            })
+            ->whereNull('transcript_reports.id') // means NOT found in TranscriptReport
+            ->where(function ($q) use ($data) {
+                $q->where('certificate_data.regno', 'LIKE', '%'.$data.'%')
+                  ->orWhere('certificate_data.name', 'LIKE', '%'.$data.'%')
+                  ->orWhere('certificate_data.raw_name', 'LIKE', '%'.$data.'%');
+            })
+            ->select('certificate_data.*') // avoid replacing columns by joined table
+            ->get();
+
+
+           
+           return response()->json(['type'=>'success',
+            'view'=>(String)View::make('admin.transcripts.search_ajax_response')
+                 ->with(compact('certData','reports'))
+            ]);
+
+      endif;
+      
+      return view('admin.transcripts.transcript_search',compact('page_info'));      
+                  
+    }
+    
+    public function reconfigure_transcript($param){
+        $url = base64_decode($param); // joined by | - so split
+        $infos = explode("|",$url); // default = regno | purpos(convocation , request) 
+        $params = array_map('base64_decode',$infos);
+        $app_date = CertificateApprovalDate::find($params[2]);
+       
+        #print "<pre>";
+        #print_r($params);
+        
+        $report = TranscriptReport::where('regno',$params[0])
+             ->where('approve_date',$app_date->app_date)
+             ->first(); 
+        #print_r($report->toArray());
+        
+       $degree = extractDegreeInfo($report->programme);
+       $progid = program_available($degree['id'],$degree['field']);
+       $year = explode('-',$app_date->app_date)[0]; 
+       $fullName = swapName($report->name);
+             
+       $programme = CertificateData::updateOrCreate(
+            ['regno'=>$report->regno,
+                'approve_date_id'=>$app_date->id,
+               'raw_programme'=>$report->programme],[
+              'raw_name'=>$report->name,'name'=>$fullName,             
+              'degree_id'=>$degree['id'],'programme_id'=>$progid['id'],
+              'completed'=>1, 'status'=>1,'year'=>$year]);    
+            
+       return redirect('admin/transcript-processing/'.$param);
+    }
+    
 }

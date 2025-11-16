@@ -36,9 +36,9 @@
                       </td>
 
                       <td class="align-middle">
-                          <button class="btn btn-primary import_transcript_request"> Import <i class="material-icons">download</i> </button>
+                          <button style="display: none" class="btn btn-primary import_transcript_request"> Import <i class="material-icons">download</i> </button>
                           <input type="hidden" class="form-control" name="counts" id="counts" />
-                          <button class="btn btn-success sync_transcript_request ladda-button" data-style="expand-right"> Refresh <i class="material-icons">sync</i> </button>
+                          <button class="btn btn-success sync_transcript_request ladda-button" data-style="expand-right">Import New Ones <i class="material-icons">sync</i> </button>
                       </td>
                     </tr>
 

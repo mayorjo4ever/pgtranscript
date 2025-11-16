@@ -10,6 +10,7 @@ $(function(){
     enableCertBtns();
     initDatePicker();
 });
+
     
     
  function initDatePicker(){
@@ -814,6 +815,31 @@ $(function(){
                 });  
         
      }
+     
+      function search_general_transcript(form){  
+        var elem = $('.search-result'); var process = "<span class='fa fa-spin fa-spinner fa-3x'></span>";
+         var form = form.serialize();   
+            $.ajax({
+               headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')   },
+               type:'post',
+               url:'/admin/transcript-search',
+               data:form,
+               beforeSend:function(){ elem.html(process);  },
+               success:function(resp){                                    
+                   elem.html(resp.view);
+//                   setTimeout(function(){ initDatePicker(); 
+//                   $("select#faculty").trigger('change'); 
+//                   },3000);
+                }, 
+                 error:function(jhx,textStatus,errorThrown){ stopLoader(btn);   
+                     checkStatus(jhx.status); 
+                    }
+                });  
+        
+     }
+     
+     
+     
      
 
      //processing transcript  

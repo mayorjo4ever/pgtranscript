@@ -65,6 +65,14 @@ use Illuminate\Support\Facades\Session;
                     <span class="nav-link-text ms-1">Import New Requests</span>
                   </a>
                 </li>
+                
+                 <li class="nav-item">
+                  <a class="nav-link text-white @if(Session::get('tab')=="transcript_search") active bg-primary @endif" href="{{url('admin/transcript-search')}}">
+                    <span class="nav-link-text ms-1">Search Transcript </span>&nbsp;&nbsp;
+                    <i class="material-icons md-24 opacity-10">search</i>
+                  </a>
+                </li>
+                
                 <li class="nav-item">
                   <a class="nav-link text-white @if(Session::get('tab')=="pending") active bg-primary @endif" href="{{url('admin/pending-transcript-requests')}}">
                     <span class="nav-link-text ms-1">Transcript Requests</span>
@@ -145,14 +153,7 @@ use Illuminate\Support\Facades\Session;
                     <i class="material-icons md-24 opacity-10">cached</i>
                   </a>
                 </li>
-               
-                <li class="nav-item">
-                  <a class="nav-link text-white @if(Session::get('tab')=="cert_search") active bg-primary @endif" href="{{url('admin/cert-data-search')}}">
-                    <span class="nav-link-text ms-1">Search Records </span>&nbsp;&nbsp;
-                    <i class="material-icons md-24 opacity-10">search</i>
-                  </a>
-                </li>
-                
+                 
                 <li class="nav-item">
                     <a target="_blank" class="nav-link text-white @if(Session::get('tab')=="master-graduands") active bg-primary @endif" href="{{url('admin/master-graduands')}}">
                     <span class="nav-link-text ms-1">All Master Graduands </span>&nbsp;&nbsp;

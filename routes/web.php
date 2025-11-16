@@ -45,6 +45,10 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         Route::match(['get','post'],'schedule-transcript-request/{param}','TranscriptRequestController@schedule_request'); // 
         Route::match(['get','post'],'schedule-transcript-memo/{param}','TranscriptRequestController@transcript_request_memo');
         
+        # transcript search 
+        Route::match(['get','post'],'transcript-search','TranscriptController@transcript_search');
+        Route::get('transcript-reconfiguration/{param}','TranscriptController@reconfigure_transcript');        
+        # transcript-
         // phd transcript 
         Route::match(['get','post'],'schedule-phd-transcript/{param}','TranscriptRequestController@schedule_phd_transcript');
         
