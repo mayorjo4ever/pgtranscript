@@ -17,9 +17,13 @@
                         <tbody>
                             <tr>                                
                                 <th class="bg-gray font-bold h3 w-50"> 
-                                    <input type="text" name="regno" id="regno" class="form-control border border-dark p-3 font-24"  placeholder="Search ( Name, Regno, e.t.c ) " style="font-size:1.2rem" />
+                                    <input type="text" name="regno" id="regno" class="form-control border border-dark p-3 " style="font-size:1.1rem"  placeholder="Search ( Name, Regno, e.t.c ) " style="font-size:1.1rem" />
                                 </th>
-                                <th class="bg-gray w-30"> <button type="submit" class="btn btn-primary p-3"> Search &nbsp; <i class="material-icons md-24 opacity-10">search</i> </button> </th>
+                                <th class="bg-gray w-50"> 
+                                    <button type="submit" class="btn btn-primary p-3"> Search &nbsp; <i class="material-icons md-24 opacity-10">search</i> </button> 
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#add_new_graduate"  class="btn btn-info p-3"> Add New Student &nbsp; <i class="material-icons md-24 opacity-10">add</i> </button> 
+                                
+                                </th>
                             </tr>
                         </tbody>
                     </table>                  
@@ -29,9 +33,43 @@
                     
                 </x-admin.card>
            </div> <!--./ col-md-12 --> 
-            
-           
+             
        </div><!-- ./ row --> 
+       
+       <x-admin.modal id="add_new_graduate" title="Add New Student" size="md">       
+
+           <div class="row m-1 p-1">
+               <div class="col-sm-12 mb-3">                   
+                   <input placeholder="RegNO" type="text" class="form-control border border-dark p-3 " style="font-size:1.1rem" name="regno" />
+               </div>
+               
+               <div class="col-sm-12 mb-3">                   
+                   <input placeholder="Surname, Other Names" type="text" class="form-control border border-dark p-3" style="font-size:1.1rem" name="fullname" />
+               </div>
+               
+               <div class="col-sm-12 mb-3">                   
+                   <input placeholder="Approval Date" type="text" class="form-control border border-dark datepicker p-3" style="font-size:1.1rem" name="approve_date" />
+               </div>
+               
+               
+               <div class="col-sm-12 mb-3">                  
+                   <select class="form-control w-90 select2 border border-dark p-3" name="programme">
+                       <option value="">Programme</option>
+                       @foreach($programmes as $programme)
+                       <option value="">{{$programme->name}}</option>
+                       @endforeach
+                   </select>
+               </div>
+               
+           </div> <!-- ./ row -->
+                
+                <x-slot name="footer"> <span class="ajaxLoader"></span> &nbsp;                                     
+                    <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal"> Close </button>
+
+                </x-slot>
+
+        </x-admin.modal>
+
        
 </div> 
 @endsection

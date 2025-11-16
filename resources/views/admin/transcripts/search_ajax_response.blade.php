@@ -3,9 +3,8 @@
     <table class="table">
         <tr>
             <th>S/N</th>
-            <th>Actions</th>
-            <th>Regno</th>
-            <th>Name</th>
+            <th>Actions</th> 
+            <th>Name & Regno </th>
             <th>Programme</th>
            
         </tr>
@@ -18,9 +17,8 @@
            @endphp
         <tr>
             <td>{{$k+1}}</td>
-            <td><a href="{{url('admin/transcript-reconfiguration/'.$url)}}" target="_blank" class="btn btn-success p-3"l>View</a></td>
-            <td>{{$report->regno}}</td>           
-            <td>{{$report->name}}</td>    
+            <td><a href="{{url('admin/transcript-reconfiguration/'.$url)}}" target="_blank" class="btn btn-success p-3"l>View Transcript</a></td>                   
+            <td>{{$report->name}} <br/> {{$report->regno}}</td>    
             <td>{{$report->programme}} <br/> 
             {{$report->approve_date}}
             </td>   
@@ -36,9 +34,8 @@
            @endphp
         <tr>
             <td>{{$k+1}}</td>
-            <td><a href="{{url('admin/transcript-processing/'.$url)}}" target="_blank" class="btn btn-primary p-3"l>Start Process</a></td>
-            <td>{{$report->regno}}</td>           
-            <td>{{$report->name}}</td>    
+            <td><a href="{{url('admin/transcript-processing/'.$url)}}" target="_blank" class="btn btn-primary p-3"l>Start Process</a></td>                    
+            <td>{{$report->name}} <br/> {{$report->regno}}</td>    
             <td>{{$report->raw_programme}} <br/> 
             {{$report->app_date->app_date}}
             </td>   

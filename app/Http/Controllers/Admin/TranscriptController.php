@@ -9,6 +9,7 @@ use App\Models\CertificateData;
 use App\Models\Course;
 use App\Models\Department;
 use App\Models\Faculty;
+use App\Models\Programme;
 use App\Models\Transcript;
 use App\Models\TranscriptOfficial;
 use App\Models\TranscriptPrintout;
@@ -16,7 +17,6 @@ use App\Models\TranscriptReport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use function admin_info;
@@ -304,8 +304,18 @@ class TranscriptController extends Controller
        Session::put('page','transcripts');  Session::put('tab','transcript_search');
        Session::put('page_title','Search Student Transcript');
        $page_info = ['title'=> "Search Student Transcript",'icon'=>'search','sub-title'=>'Search Transcript Records'];                    
+      
+       $programmes = Programme::all();   print "<pre>";
+       print_r($programmes->toArray()); die;
+       
       // when submitting 
       if($request->ajax()): $data = $request->regno;
+            if($data==""):
+                 return response()->json(['type'=>'error',
+                'message'=>"<span class='text-danger font-24 font-weight-bold'>Search Parameter Must Not Be Empty </span>"
+                ]);   
+            endif;
+            
             $reports = TranscriptReport::with('printouts')->where('regno','LIKE','%'.$data.'%')
             ->orWhere('name','LIKE','%'.$data.'%')
             ->get();
@@ -333,7 +343,7 @@ class TranscriptController extends Controller
 
       endif;
       
-      return view('admin.transcripts.transcript_search',compact('page_info'));      
+      return view('admin.transcripts.transcript_search',compact('page_info','programmes'));      
                   
     }
     

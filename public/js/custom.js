@@ -825,11 +825,15 @@ $(function(){
                url:'/admin/transcript-search',
                data:form,
                beforeSend:function(){ elem.html(process);  },
-               success:function(resp){                                    
-                   elem.html(resp.view);
-//                   setTimeout(function(){ initDatePicker(); 
-//                   $("select#faculty").trigger('change'); 
-//                   },3000);
+               success:function(resp){     
+                   if(resp.type==="success") {
+                        elem.html(resp.view);
+                   }
+                  if(resp.type==="error") {
+                        elem.html(resp.message);
+                   }
+                  
+
                 }, 
                  error:function(jhx,textStatus,errorThrown){ stopLoader(btn);   
                      checkStatus(jhx.status); 
