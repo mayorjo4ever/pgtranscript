@@ -28,7 +28,7 @@
                                 <td><input placeholder="REGNO" name="" id="" value="{{$info[0] }}" type="text" class="mt-3 form-control-lg font-weight-bold w-60 text-uppercase" style="font-size: 1rem;" /></td>
                             </tr>                               
                             <tr><td class=""> <label class="font-weight-bold mt-3 "> Student's Name </label>  </td>
-                                <td><input placeholder="Student Name : As appeared on the certificate" name="name" id="stud_name" value="{{$report->name??''}}" type="text" class="mt-3 form-control-lg font-weight-bold w-90 text-cpitalize" style="font-size: 1rem;" /></td>
+                                <td><input placeholder="Surname, And Other Names" name="name" id="stud_name" value="{{$report->name??''}}" type="text" class="mt-3 form-control-lg font-weight-bold w-90 text-cpitalize" style="font-size: 1rem;" /></td>
                             </tr>
                             <tr><td class=""> <label class="font-weight-bold mt-3 "> Faculty </label>  </td>
                                 <td>

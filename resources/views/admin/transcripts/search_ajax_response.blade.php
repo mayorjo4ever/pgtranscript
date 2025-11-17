@@ -4,8 +4,8 @@
         <tr>
             <th>S/N</th>
             <th>Actions</th> 
-            <th>Name & Regno </th>
-            <th>Programme</th>
+            <th>Name & Regno  </th>
+            <th> Printouts </th>
            
         </tr>
         @foreach($reports as $k=>$report)
@@ -18,9 +18,19 @@
         <tr>
             <td>{{$k+1}}</td>
             <td><a href="{{url('admin/transcript-reconfiguration/'.$url)}}" target="_blank" class="btn btn-success p-3"l>View Transcript</a></td>                   
-            <td>{{$report->name}} <br/> {{$report->regno}}</td>    
-            <td>{{$report->programme}} <br/> 
-            {{$report->approve_date}}
+            <td>{{$report->name}} <br/> {{$report->regno}} <br/> 
+                {{$report->programme}} <br/> 
+                {{$report->approve_date}}
+            </td>    
+            <td>            
+             @if(!empty($report->printouts))
+                    @foreach($report->printouts as $printout)
+                    <?php $url = base64_encode($printout->regno."|".$printout->approve_date."|".$printout->id);?>
+                    <a  href="{{url('admin/print-transcript/'.$url)}}" target="_blank" class="btn {{ ($printout->print_count >0)?"btn-light":"btn-primary"}}"> {{ $printout->purpose }} | {{ $printout->type.' Copy ' }}  </a>
+                    <a href="#" title="Total Printouts" class="btn btn-lg {{ ($printout->print_count >0)?"btn-light":"btn-primary"}}"> {{ $printout->print_count }}</a>
+                    <br/>
+                    @endforeach
+                @endif
             </td>   
         </tr>
         @endforeach 

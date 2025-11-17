@@ -33,7 +33,7 @@
                   </thead>
                   <tbody>                     
                   @foreach($pendings as $pending)
-                  <tr class="{{($pending['request_status']=="Treated")?"table-success":""}}">
+                  <tr class="{{($pending['request_status']=="Treated")?"table-success":""}} {{($pending['request_status']=="Duplicate")?"table-warning":""}} {{($pending['request_status']=="No-Payment")?"table-danger":""}} ">
                         <td class="align-middle text-center"> {{ $loop->iteration + ($pendings->currentPage() - 1) * $pendings->perPage() }}</td>
                       <td>
                         <div class="d-flex px-2 py-1">                        
@@ -55,7 +55,7 @@
                       
                       <td class="align-middle text-sm-right text-sm">
                           @php $url = base64_encode($pending->id."|".$pending->regno);  @endphp
-                          <a href="{{url('admin/process-transcript-requests/'.$url)}}" target="_blank" class="btn {{($pending['request_status']=='Treated')?'btn-success':'btn-primary'}} p-3"> {{($pending['request_status']=="Treated")?"Treated":"Process"}} </a>                           
+                          <a href="{{url('admin/process-transcript-requests/'.$url)}}" target="_blank" class="btn {{($pending['request_status']=='Treated')?'btn-success':'btn-primary'}} p-3"> {{($pending['request_status']=="created")?"process":$pending['request_status'] }}  </a>                           
                       </td>                                          
                     </tr>   
                     @endforeach

@@ -305,8 +305,8 @@ class TranscriptController extends Controller
        Session::put('page_title','Search Student Transcript');
        $page_info = ['title'=> "Search Student Transcript",'icon'=>'search','sub-title'=>'Search Transcript Records'];                    
       
-       $programmes = Programme::all();   print "<pre>";
-       print_r($programmes->toArray()); die;
+       $programmes = Programme::all();  //  print "<pre>";
+       # print_r($programmes->toArray()); die;
        
       // when submitting 
       if($request->ajax()): $data = $request->regno;
@@ -319,7 +319,9 @@ class TranscriptController extends Controller
             $reports = TranscriptReport::with('printouts')->where('regno','LIKE','%'.$data.'%')
             ->orWhere('name','LIKE','%'.$data.'%')
             ->get();
-                    
+            
+         #  print_r($reports->toArray()); die;         
+           
           $certData = CertificateData::with('app_date')
             ->leftJoin('transcript_reports', function ($join) {
                 $join->on('transcript_reports.regno', '=', 'certificate_data.regno')
@@ -333,8 +335,6 @@ class TranscriptController extends Controller
             })
             ->select('certificate_data.*') // avoid replacing columns by joined table
             ->get();
-
-
            
            return response()->json(['type'=>'success',
             'view'=>(String)View::make('admin.transcripts.search_ajax_response')
