@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use function admin_info;
 use function back;
@@ -305,8 +306,8 @@ class TranscriptController extends Controller
        Session::put('page_title','Search Student Transcript');
        $page_info = ['title'=> "Search Student Transcript",'icon'=>'search','sub-title'=>'Search Transcript Records'];                    
       
-       $programmes = Programme::all();  //  print "<pre>";
-       # print_r($programmes->toArray()); die;
+       $programmes = Programme::with('degree')->orderBy('name','asc')->get();  // print "<pre>";
+       //print_r($programmes->toArray()); die;
        
       // when submitting 
       if($request->ajax()): $data = $request->regno;
@@ -377,4 +378,52 @@ class TranscriptController extends Controller
        return redirect('admin/transcript-processing/'.$param);
     }
     
+    public function add_new_student(Request $request){
+        // print_r($request->all());
+          $data = $request->all();        // |exists:customer_bills'
+           $rules = [
+                  'regno'=>"required|string|max:15",  
+                  'fullname'=>'required|string|max:100',
+                  'approve_date'=>'required|date',
+                  'programme'=>'required',
+              ];              
+              $messages = [
+                  'regno.required'=>'Registration Number is Required',
+                  'fullname.required'=>'Fullname is Required',
+                  'approve_date.required'=>'Approve Date is Required',
+                  'programme.required'=>'Programme is Required',
+              ];
+              
+            $validator = Validator::make($data, $rules,$messages);
+             if($validator->fails()): // or use $validator->passes()
+                return response()->json(['type'=>'error','errors'=>$validator->messages()]);
+             endif;
+            if($validator->passes()): // or use $validator->fails()
+                # check for approve date 
+                $app_date = CertificateApprovalDate::firstOrCreate(['app_date'=>$request->approve_date]);
+                $programme = Programme::with('degree')->find($request->programme); 
+                $year = explode('-',$app_date->app_date)[0]; 
+                $fullName = swapName($request->fullname);
+             
+                $student = CertificateData::updateOrCreate(
+                 [
+                    'regno'=>$request->regno,
+                    'approve_date_id'=>$app_date->id                    
+                    ],
+                  [
+                  'programme_id'=>$programme->id,
+                  'raw_programme'=>$programme->degree->short_name." ".$programme->name,
+                  'raw_name'=>$request->fullname,'name'=>$fullName,             
+                  'degree_id'=>$programme->degree->id,
+                  'completed'=>1, 'status'=>1,'year'=>$year]);    
+                
+                $report = TranscriptReport::where(['regno'=>$request->regno,'approve_date'=>$app_date->app_date])->get();
+                if(!empty($report->toArray())):
+                    TranscriptReport::where(['regno'=>$request->regno,'approve_date'=>$app_date->app_date])
+                    ->update(['programme'=>$programme->degree->short_name." ".$programme->name,'name'=>$request->fullname]);
+                endif;
+                return response()->json(['type'=>'success','message'=>'Student Added Successfully']); 
+            endif;
+            
+    }
 }

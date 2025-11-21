@@ -397,6 +397,8 @@ function formatProgrammeName($programme)
     function surname($name){
         return $surname = explode(" ",$name)[0];
     }
+    
+    
     function othername($name){
          $names = explode(" ",$name);
          $tot = count($names); 

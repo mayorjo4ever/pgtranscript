@@ -60,7 +60,7 @@
         </p>
     </div>
 
-     <p class="font-18 font-weight-bold">Dear Sir/Madam,</p>
+     <p class="font-18"><strong>Dear Sir/Madam,</strong></p>
 
     <p class="subject font-18">
         RE: POSTGRADUATE ACADEMIC TRANSCRIPT – {{surname($memo->name)}},&nbsp; {{othername($memo->name)}}

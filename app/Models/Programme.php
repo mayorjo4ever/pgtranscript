@@ -13,4 +13,8 @@ class Programme extends Model
         $name = Programme::find($id); 
         return $name->name; 
     }
+    
+    public function degree(){
+        return $this->belongsTo(Degree::class,'degree_id');
+    }
 }

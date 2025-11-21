@@ -838,12 +838,38 @@ $(function(){
                  error:function(jhx,textStatus,errorThrown){ stopLoader(btn);   
                      checkStatus(jhx.status); 
                     }
-                });  
-        
+                });          
      }
      
-     
-     
+     function AddNewStudent(){
+     let form = $('#new_student_form').serialize();
+     let btn = ".new-student-btn";    
+     $.ajax({
+            headers:{
+              'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')  
+            },
+            type:'post',
+            url:'/admin/add-new-student',
+            data:form,
+            beforeSend:function(){  startLoader(btn); },
+            success:function(resp){  
+                stopLoader(btn);
+                 if(resp.type==="success"){ 
+                 showpop(resp.message);  
+             }
+                if(resp.type==="error"){
+                  var msg = "";
+                  $.each(resp.errors,function(prefix,val){
+                       msg+="- <span>"+val[0]+"</span><br/> ";
+                  });
+                 showpop(msg,'error');  
+             }
+            }, 
+                error:function(jhx,textStatus,errorThrown){  
+                  checkStatus(jhx.status); stopLoader(btn);
+                }
+           });
+     }
      
 
      //processing transcript  

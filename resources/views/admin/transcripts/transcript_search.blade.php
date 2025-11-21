@@ -37,10 +37,10 @@
        </div><!-- ./ row --> 
        
        <x-admin.modal id="add_new_graduate" title="Add New Student" size="md">       
-
-           <div class="row m-1 p-1">
+           <form method="post" id="new_student_form">@csrf
+           <div class="row m-1 p-1"> 
                <div class="col-sm-12 mb-3">                   
-                   <input placeholder="RegNO" type="text" class="form-control border border-dark p-3 " style="font-size:1.1rem" name="regno" />
+                   <input placeholder="RegnO" type="text" class="form-control border border-dark p-3 " style="font-size:1.1rem" name="regno" />
                </div>
                
                <div class="col-sm-12 mb-3">                   
@@ -48,15 +48,14 @@
                </div>
                
                <div class="col-sm-12 mb-3">                   
-                   <input placeholder="Approval Date" type="text" class="form-control border border-dark datepicker p-3" style="font-size:1.1rem" name="approve_date" />
+                   <input placeholder="Approval Date" type="text" class="form-control border border-dark datepicker p-3" style="font-size:1.2rem" name="approve_date" />
                </div>
                
-               
-               <div class="col-sm-12 mb-3">                  
-                   <select class="form-control w-90 select2 border border-dark p-3" name="programme">
+                <div class="col-sm-12 mb-3">                  
+                   <select style="width: 100%; font-size:1.2rem" class="form-control border border-dark p-3" name="programme">
                        <option value="">Programme</option>
                        @foreach($programmes as $programme)
-                       <option value="">{{$programme->name}}</option>
+                       <option value="{{$programme->id}}">{{formatProgrammeName($programme->degree->short_name ." ". $programme->name)}}</option>
                        @endforeach
                    </select>
                </div>
@@ -65,9 +64,10 @@
                 
                 <x-slot name="footer"> <span class="ajaxLoader"></span> &nbsp;                                     
                     <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal"> Close </button>
+                    <button type="button" onclick="AddNewStudent()" class="btn btn-primary new-student-btn ladda-button" data-style="expand-right"> Add New Student </button>
 
                 </x-slot>
-
+           </form>
         </x-admin.modal>
 
        
