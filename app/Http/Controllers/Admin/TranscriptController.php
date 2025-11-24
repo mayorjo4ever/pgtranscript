@@ -382,7 +382,7 @@ class TranscriptController extends Controller
         // print_r($request->all());
           $data = $request->all();        // |exists:customer_bills'
            $rules = [
-                  'regno'=>"required|string|max:15",  
+                  'regno'=>"required|string|max:30",  
                   'fullname'=>'required|string|max:100',
                   'approve_date'=>'required|date',
                   'programme'=>'required',
