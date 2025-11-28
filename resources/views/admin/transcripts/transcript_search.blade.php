@@ -40,7 +40,7 @@
            <form method="post" id="new_student_form">@csrf
            <div class="row m-1 p-1"> 
                <div class="col-sm-12 mb-3">                   
-                   <input placeholder="RegnO" type="text" class="form-control border border-dark p-3 " style="font-size:1.1rem" name="regno" />
+                   <input placeholder="Matric / Regno" type="text" class="form-control border border-dark p-3 " style="font-size:1.1rem" name="regno" />
                </div>
                
                <div class="col-sm-12 mb-3">                   

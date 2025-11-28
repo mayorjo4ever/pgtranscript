@@ -62,7 +62,7 @@
 
      <p class="font-18"><strong>Dear Sir/Madam,</strong></p>
 
-    <p class="subject font-18">
+    <p class="subject font-21">
         RE: REQUEST FOR ACADEMIC POSTGRADUATE TRANSCRIPT  – {{surname($memo->name)}},&nbsp; {{othername($memo->name)}}
         <br> (Matriculation Number: {{ $memo->regno }})
     </p>

@@ -12,6 +12,7 @@ use App\Models\TranscriptsImport;
 use App\Models\TranscriptsRequest;
 use App\Services\GoogleSheetService;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 function greetings(){
     $now = Carbon::now(); $message = ""; 
@@ -31,12 +32,17 @@ function greetings(){
 function count_new_transcript_request(){
     $history = TranscriptsImport::latest()->first();            
     $newRow = (empty($history)) ? 2 :  2 + $history['cum_total'];
-
-    # connect to google sheet and get new records           
-    $range = "Sheet1!A{$newRow}:A";
-    $service = new GoogleSheetService($range);           
-    $counts = $service->countRows(); 
-    return $counts;
+    try{
+        # connect to google sheet and get new records           
+        $range = "Sheet1!A{$newRow}:A";
+        $service = new GoogleSheetService($range);           
+        $counts = $service->countRows(); 
+        return $counts;
+     }
+    catch (Exception $e) {
+        Log::error("Google OAuth Token Error: ".$e->getMessage());
+        return '--:--'; // Graceful fail   
+       }
 }
 
 function count_total_transcript_request(){          
