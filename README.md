@@ -64,3 +64,35 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## to do back up 
+## Step 1: Install a backup package
+- composer require spatie/laravel-backup
+
+## Step 2: Publish the config
+- php artisan vendor:publish --provider="Spatie\Backup\BackupServiceProvider"
+
+## Step 3: Configure database and storage
+
+Make sure your .env database is correctly set.
+
+In config/backup.php, set where backups will be stored. 
+For example, you can use local disk:
+
+'destination' => [
+    'disks' => ['local'],
+],
+This will store backups in storage/app/backup.
+
+## Step 4: Test backup manually
+Run:
+php artisan backup:run
+
+
+You should see an output like:
+
+Starting backup...
+Dumping database...
+Backup completed successfully
+

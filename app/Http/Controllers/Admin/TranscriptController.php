@@ -59,9 +59,9 @@ class TranscriptController extends Controller
             $dean = TranscriptOfficial::where(['post'=>'dean','is_current'=>1])->first();
             $secretary = TranscriptOfficial::where(['post'=>'secretary','is_current'=>1])->first();
             
-            if ($approve->lessThan($firstReg->addYear())):
+            if ($approve->lessThan($firstReg->addMonths(11))):
                 return back()->withErrors([
-                    'approve_date' => 'First Registration Date  must be at least one year before the Approval Date .'
+                    'approve_date' => 'First Registration Date  must be at least 11 - 12months before the Approval Date .'
                 ])->withInput();
             ### complete the transcript            
             endif;
