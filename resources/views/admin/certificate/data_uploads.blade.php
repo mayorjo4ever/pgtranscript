@@ -17,7 +17,7 @@
                             <tr>
                                 <th class="bg-gray w-30"> Current Approval Date :  </th>
                                 <th class="bg-gray font-bold h3 text-danger"> 
-                                      {{Carbon::parse( $current_approval->app_date)->format('D, jS F, Y') }}   </th>
+                                     {{Carbon::parse( $current_approval->app_date)->format('D, jS F, Y') }}   </th>
                             </tr>
                         </tbody>
                     </table>
