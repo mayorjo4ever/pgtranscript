@@ -326,6 +326,7 @@ class TranscriptController extends Controller
           $certData = CertificateData::with('app_date')
             ->leftJoin('transcript_reports', function ($join) {
                 $join->on('transcript_reports.regno', '=', 'certificate_data.regno')
+                      ->on('transcript_reports.programme', '=', 'certificate_data.raw_programme')
                      ->whereNotNull('transcript_reports.approve_date');
             })
             ->whereNull('transcript_reports.id') // means NOT found in TranscriptReport
