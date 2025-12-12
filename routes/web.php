@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\DriveDownloadController;
 use App\Services\GoogleSheetService;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
     return view('welcome');
@@ -121,12 +121,17 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
          Route::get('import-users','UsersController@import_users');
          Route::get('date-conversion','GeneralController@uploader');
          Route::post('download-clean-dates','GeneralController@downloadCleanDates');
+         # google-id-card-picturee-download
+         Route::get('/google-id-card', 'DriveDownloadController@index');
+         Route::post('/google-id-card-upload', 'DriveDownloadController@uploadExcel');
+         
          
          Route::post('upload-new-student-data','UsersController@import');
          #upload-new-student-data
     });
   });
 
+  Route::get('/google/callback', [DriveDownloadController::class, 'authCallback'])->name('google.callback');
 
 /**
 Route::get('/dashboard', function () {

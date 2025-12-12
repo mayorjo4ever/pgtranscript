@@ -31,6 +31,7 @@ class GeneralController extends Controller
         $page_info = ['title'=> "Date Conversion",'icon'=>'pe-7s-person_add','sub-title'=>'Convert Date From Words To Normal Date Format'];            
         return view('admin.general.date_conversion',compact('page_info'));
     }
+    
     private function cleanAndParseDate($value)
         {
             try {
