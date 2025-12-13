@@ -6,13 +6,10 @@
 @section('content')
 
 <div class="container-fluid py-4">
-     
-       <x-admin.alert></x-admin.alert>
-        
        <div class="row">
            <div class="col-md-12">  
                 <x-admin.card header="Google ID Card Data Download">
-                    
+                     <x-admin.alert></x-admin.alert>
                      <x-admin.card id="cert-excel" >
                         <p> &nbsp; &nbsp;
                              <img class="img img-thumbnail" src="{{asset('img/data/google-id-card.png')}}" />
@@ -28,8 +25,8 @@
                                 <div class="col-md-4">
                                     <label>Save To Folder:</label><br>
                                     <select class="form-control form-control-lg border border-1 border-dark" name="folder" required>
-                                        <option value="signatures">Signatures</option>
-                                        <option value="passports">Passports</option>
+                                       <option value="passports">Passports</option>
+                                       <option value="signatures">Signatures</option>                                       
                                     </select>
                                 </div>
                                 <div class="col-md-4"><label>&nbsp;</label><br/>
