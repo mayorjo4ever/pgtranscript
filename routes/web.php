@@ -125,8 +125,11 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
          Route::get('/google-id-card', 'DriveDownloadController@index');
          Route::post('/google-id-card-upload', 'DriveDownloadController@uploadExcel');
          
-         
-         Route::post('upload-new-student-data','UsersController@import');
+        # DATABASE BACKUP & RESTORE 
+        Route::get('data-backup-restore','DatabaseController@backup_restore');
+        Route::post('backup-db','DatabaseController@backup_db');
+        
+        Route::post('upload-new-student-data','UsersController@import');
          #upload-new-student-data
     });
   });

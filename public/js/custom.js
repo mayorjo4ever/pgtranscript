@@ -965,6 +965,30 @@ $(function(){
              alert('subitted'); 
          });
          
+         // database backup/restore
+         if($("input.data-operations").length >0 ){
+             var toshow = $("input.data-operations:checked").val(); 
+             showData(toshow);
+         }
+        
+        function showData(toshow){
+            if(toshow==='backup'){
+                 $('.backup-div').show();
+                 $('.restore-div').hide();
+             }
+             else{
+                 $('.backup-div').hide();
+                 $('.restore-div').show();
+             }
+        }
+        
+        $("input.data-operations").on('change',function(){
+             var toshow = $(this).val(); 
+             showData(toshow) 
+         });
+             
+             
+          
      });
      
      

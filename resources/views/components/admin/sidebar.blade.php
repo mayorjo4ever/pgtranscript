@@ -205,6 +205,16 @@ use Illuminate\Support\Facades\Session;
             <span class="nav-link-text ms-1">Google ID Card</span>
           </a>
         </li>
+        
+            <li class="nav-item">
+          <a class="nav-link text-white @if(Session::get('page')=="database") active bg-gradient-primary @endif " href="{{url('admin/data-backup-restore')}}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">storage</i>
+            </div>
+            <span class="nav-link-text ms-1">Database Backup</span>
+          </a>
+        </li>
+        
         <li class="nav-item">
           <a class="nav-link text-white" href="{{url('portal/logout')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
