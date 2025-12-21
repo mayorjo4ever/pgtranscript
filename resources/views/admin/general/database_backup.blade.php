@@ -4,15 +4,15 @@
 @section('page_title') {{ $page_info['title']}} @endsection
 
 @section('content')
-
+ <x-admin.alert></x-admin.alert>
 <div class="container-fluid py-4">
        <div class="row">
            <div class="col-md-12">  
                 <x-admin.card header="Database Backup and Restore">
-                     <x-admin.alert></x-admin.alert>
+                    
                      <x-admin.card id="database" >
                          <div class="row">                             
-                             <div class="col-md-8">
+                             <div class="col-md-6 col-sm-12 col-xl-6">
                                  <p class="text-danger mb-4" style="font-size:1.3rem">Select Operation </p>
                                   <div class="form-group mb-3">
                                         <div class="radio-wrapper-8 float-md-start">
@@ -33,24 +33,27 @@
                                      <form method="post" action="{{url('admin/backup-db')}}">@csrf
                                      <h5 class="bg-light p-2"> Back-Up Database</h5>
                                       <div class="input-group"> 
-                                          <input class="form-control form-control-lg border border-1 border-dark" style="height:55px" type="text" name="" placeholder="Authorized Key" required>
+                                          <input class="form-control form-control-lg border border-1 border-dark" style="height:55px; font-size: 1.5rem;" type="password" name="backup_key" placeholder="Backup Key" >
                                          <button class="btn btn-primary btn-lg p-3" type="submit">Back-Up</button>
                                         </div>
                                      </form>
                                  </div>
                                 
-                                 <div class="restore-div">
+                                 <div class="restore-div" style="display:none"> 
+                                     <form method="post" action="{{url('admin/restore-sql')}}" enctype="multipart/form-data">@csrf
+                                     
                                      <h5 class="bg-light p-2"> Restore Database</h5>
                                        <div class="">
                                            <div class="form-group">
-                                            <label>Restore File (.SQL): </label><br>
-                                            <input class="form-control form-control-lg border border-1 border-dark" type="file" name="" required>
+                                            <label>Restore File (.ZIP): </label><br>
+                                            <input class="form-control form-control-lg border border-1 border-dark" type="file" name="sql_file" required>
                                            </div>
                                            <div class="input-group mt-3">
-                                           <input class="form-control form-control-lg border border-1 border-dark w-50"  style="height:55px" type="text" name="" placeholder="Authorized Key" required>
+                                           <input class="form-control form-control-lg border border-1 border-dark" style="height:55px;  font-size: 1.5rem;" type="password" name="restore_key" placeholder="Restore Key" >
                                            <button class="btn btn-primary btn-lg p-3" type="submit">Restore</button>
                                         </div>
                                        </div>
+                                     </form>
                                  </div>
                              </div><!-- ./ col-md-6  -->
                              

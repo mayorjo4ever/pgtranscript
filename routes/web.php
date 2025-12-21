@@ -128,6 +128,8 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         # DATABASE BACKUP & RESTORE 
         Route::get('data-backup-restore','DatabaseController@backup_restore');
         Route::post('backup-db','DatabaseController@backup_db');
+        #Route::post('restore-db','DatabaseController@restore_db');
+        Route::post('restore-sql','DatabaseController@restoreSql');
         
         Route::post('upload-new-student-data','UsersController@import');
          #upload-new-student-data
