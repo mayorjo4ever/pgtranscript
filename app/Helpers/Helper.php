@@ -46,7 +46,7 @@ function count_new_transcript_request(){
 }
 
 function count_total_transcript_request(){          
-    $counts = TranscriptsRequest::count();
+    $counts = TranscriptsRequest::where('bodies','postgraduate')->count();
     return $counts;
 }
 

@@ -272,6 +272,7 @@ class TranscriptController extends Controller
                 ->where('completed',1)
                 ->orderBy('type')
                 ->orderBy('code')
+                ->orderBy('starred')
                 ->get();
         $title = str_replace("/","",$report->regno)."-".$report->name."-";
         $title .= strtoupper($printout->type)." TRANSCRIPT-";

@@ -51,6 +51,11 @@
                         <span class="text-secondary text-xs font-weight-bold"> {{$pending['degree_awarded']}} </span><br/>
                         <span class="text-secondary text-xs font-weight-bold"> From : &nbsp; {{$pending['year_of_entry']}}   &nbsp;To &nbsp; {{$pending['year_of_graduation']}} </span><br/>                                                
                         <span class="font-weight-bold text-xs">RRR: {{$pending['rrr']}}</span> <br/>
+                        <!-- indicate maybe it's PG or underG-->
+                        <div class="form-check form-switch ps-0">
+                            <input class="form-checsk-input ms-auto " type="checkbox" name="toswap" value="1" checked >
+                               <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="toswap"> PG Transcript  </label>
+                             </div>
                       </td>
                       
                       <td class="align-middle text-sm-right text-sm">
