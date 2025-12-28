@@ -38,6 +38,7 @@ class TranscriptsRequest extends Model
         'applicant_dob',
         'applicant_dob_cert',
         'transcript_cover_letter_id',
+        'bodies'
     ];
     
      public function printout(){

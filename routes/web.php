@@ -68,9 +68,12 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         Route::get('print-transcript/{url}','TranscriptController@printing');        
         Route::get('print-memo/{url}','TranscriptRequestController@memo_printing');
         Route::get('print-phd-transcript/{url}','TranscriptRequestController@memo_printing_phd');
-        Route::post('update-transcript-printout/{id}','TranscriptController@printoutUpdate');
+        Route::post('update-transcript-printout/{id}','TranscriptController@printoutUpdate');        
         Route::post('update-memo-printout/{id}','TranscriptRequestController@memoPrintoutUpdate');
        
+        ## transcript request 
+        Route::post('update-transcript-request-body/{id}','TranscriptRequestController@bodyUpdate');
+        
         ## CERTIFICATES
         Route::get('cert-settings','CertificateController@cert_setting_index');
         Route::get('cert-data-upload','CertificateController@cert_data_upload_view');

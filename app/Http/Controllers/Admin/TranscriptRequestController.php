@@ -441,4 +441,17 @@ class TranscriptRequestController extends Controller
             'message'=>$msg
         ]);
     }
+    
+    ## transcript request body update - postgraduate / undergraduate 
+    public function bodyUpdate(Request $request, $id) {
+        
+        $body = $request->body ; 
+        $transcript = TranscriptsRequest::find($id);
+        $transcript->update(['bodies'=>$body]);
+        $name = $transcript->surname. " ".$transcript->middle_name; 
+        return response()->json([
+            'type'=>'success',
+            'message'=>$name."'s Reequest ".ucwords("Updated To $body")
+        ]);
+    }
 }

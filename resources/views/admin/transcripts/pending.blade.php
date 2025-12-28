@@ -33,7 +33,7 @@
                   </thead>
                   <tbody>                     
                   @foreach($pendings as $pending)
-                  <tr class="{{($pending['request_status']=="Treated")?"table-success":""}} {{($pending['request_status']=="Duplicate")?"table-warning":""}} {{($pending['request_status']=="No-Payment")?"table-danger":""}} ">
+                  <tr data-body="{{$pending['bodies']}}" style="@if($pending['bodies']=='undergraduate') display: none; @endif " class="{{($pending['request_status']=="Treated")?"table-success":""}} {{($pending['request_status']=="Duplicate")?"table-warning":""}} {{($pending['request_status']=="No-Payment")?"table-danger":""}} ">
                         <td class="align-middle text-center"> {{ $loop->iteration + ($pendings->currentPage() - 1) * $pendings->perPage() }}</td>
                       <td>
                         <div class="d-flex px-2 py-1">                        
@@ -52,10 +52,10 @@
                         <span class="text-secondary text-xs font-weight-bold"> From : &nbsp; {{$pending['year_of_entry']}}   &nbsp;To &nbsp; {{$pending['year_of_graduation']}} </span><br/>                                                
                         <span class="font-weight-bold text-xs">RRR: {{$pending['rrr']}}</span> <br/>
                         <!-- indicate maybe it's PG or underG-->
-                        <div class="form-check form-switch ps-0">
-                            <input class="form-checsk-input ms-auto " type="checkbox" name="toswap" value="1" checked >
-                               <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="toswap"> PG Transcript  </label>
-                             </div>
+                         <div class="form-check form-switch d-flex align-items-center mb-3">
+                             <input onchange="update_transcript_request_body($(this))" class="form-check-input" type="checkbox" id="transcript-body-{{$pending['id']}}" @if($pending['bodies']=='postgraduate') checked @endif >
+                            <label class="form-check-label mb-0 ms-3" for="transcript-body-{{$pending['id']}}">PG TRANSCRIPT </label>
+                          </div>
                       </td>
                       
                       <td class="align-middle text-sm-right text-sm">

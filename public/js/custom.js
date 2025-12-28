@@ -992,5 +992,28 @@ $(function(){
      });
      
      
+     function update_transcript_request_body(elem){
+         var info = elem.attr('id').split('-');
+         var body = "undergraduate"; 
+         if(elem.prop('checked')){
+            body = "postgraduate"; 
+         }
+         
+         $.ajax({
+               headers:{
+                 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')  
+               },
+               type:'post',
+               url:'/admin/update-transcript-request-body/'+info[2],
+               data:{  body:body }, 
+               success:function(resp){
+                  showpop(resp.message,resp.type);
+               }, 
+                   error:function(jhx,textStatus,errorThrown){  
+                     checkStatus(jhx.status); 
+                   }
+           });      
+         
+     }
      
      /// 3213-7045-5083 
