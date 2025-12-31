@@ -24,15 +24,15 @@
                   <form role="form" class="text-start" action="{{url('portal/login')}}" method="post">@csrf
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Email</label>
-                    <input type="text" name="username" id="username" class="form-control">
+                    <input type="text" name="username" id="username" class="form-control" style="font-size: 20px">
                   </div>
                   <div class="input-group input-group-outline mb-3">
                     <label class="form-label">Password</label>
-                    <input type="password" name="password" id="user-password"  class="form-control">
+                    <input type="password" name="password" id="user-password"  class="form-control" style="font-size: 20px">
                   </div>
                   <div class="form-check form-switch d-flex align-items-center mb-3">
-                    <input class="form-check-input" type="checkbox" id="rememberMe" checked>
-                    <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
+                    <input class="form-check-input" onclick="toggleShowPassword()" type="checkbox" id="rememberMe" >
+                    <label class="form-check-label mb-0 ms-3" for="rememberMe">Show Password</label>
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2  login-btn ladda-button" data-style="expand-right" >Sign in</button>

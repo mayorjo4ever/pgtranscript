@@ -11,8 +11,8 @@
  <div class="row">
         <div class="col-12">
             <x-admin.card header="Transcript Requests">
-                 <div class="form-row mb-4 mt-0"> 
-                    <div class="col-md-8">
+                 <div class="row mb-4 mt-0"> 
+                    <div class="col-md-7">
                         <form method="post" action="{{url('admin/pending-transcript-requests')}}">@csrf
                         <div class="input-group p-3 pt-0  m-3 mt-0">
                             <input type="text" name="search" class="form-control-lg  p-3 font-weight-bold w-75 col-md-4"  value="{{Session::get('transcript_search')}}" style="font-size:1.2rem" placeholder="Search Student Matric / Name " />
@@ -20,7 +20,16 @@
                         </div>
                         </form>    
                     </div>  
-                    </div>
+                     <div class="col-md-4 ">
+                         <div class="form-check form-switch d-flex align-items-center mb-3 mt-3">
+                             <input onchange="toggle_show_only_pg_apps($(this))" class="form-check-input" type="checkbox" id="show-only-pg-apps" checked >
+                            <label class="form-check-label mb-0 ms-3 font-weight-bold" for="show-only-pg-apps">SHOW ONLY PG APPS</label>
+                          </div>
+                     </div>
+                     
+                   </div>
+                
+                
                    <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                   <thead>
@@ -33,7 +42,7 @@
                   </thead>
                   <tbody>                     
                   @foreach($pendings as $pending)
-                  <tr data-body="{{$pending['bodies']}}" style="@if($pending['bodies']=='undergraduate') display: none; @endif " class="{{($pending['request_status']=="Treated")?"table-success":""}} {{($pending['request_status']=="Duplicate")?"table-warning":""}} {{($pending['request_status']=="No-Payment")?"table-danger":""}} ">
+                  <tr id="{{$pending['id']}}" data-body="{{$pending['bodies']}}" class=" {{($pending['bodies']=="undergraduate")?"table-danger":""}}  {{($pending['request_status']=="Sent")?"table-success":""}} {{($pending['request_status']=="Duplicate")?"table-warning":""}} {{($pending['request_status']=="No-Payment")?"table-danger":""}} m-4 ">
                         <td class="align-middle text-center"> {{ $loop->iteration + ($pendings->currentPage() - 1) * $pendings->perPage() }}</td>
                       <td>
                         <div class="d-flex px-2 py-1">                        
@@ -45,7 +54,17 @@
                             </p>
                           </div>
                         </div>
+                          
+                          <div class="progress-wrapper">
+                                <span class="fa fa-spinner fa-spin"></span>
+                                <div class="progress"  style="height:15px">
+                                    <div class="progress-bar" style="width:{{$pending['progression']}}%;  height:100%;"></div>
+                                </div>
+                                <span class="progress-text font-weight-bold">{{$pending['progression']}}%</span>
+                            </div>
+                          
                       </td>
+                                            
                       <td>
                         <p class="text-md font-weight-bold mb-0">{{$pending['request_purpose']}} - {{$pending['request_type']}}</p>                       
                         <span class="text-secondary text-xs font-weight-bold"> {{$pending['degree_awarded']}} </span><br/>
@@ -60,9 +79,12 @@
                       
                       <td class="align-middle text-sm-right text-sm">
                           @php $url = base64_encode($pending->id."|".$pending->regno);  @endphp
-                          <a href="{{url('admin/process-transcript-requests/'.$url)}}" target="_blank" class="btn {{($pending['request_status']=='Treated')?'btn-success':'btn-primary'}} p-3"> {{($pending['request_status']=="created")?"process":$pending['request_status'] }}  </a>                           
+                          <a href="{{url('admin/process-transcript-requests/'.$url)}}" target="_blank" class="btn {{($pending['request_status']=='Sent')?'btn-success':'btn-primary'}} p-3"> @if($pending['request_status']=="created") Start Process @elseif($pending['request_status']=="Treated") Send e-Mail  @else {{ $pending['request_status']}} @endif </a>    
+                          <br/>
+                          <span class="text-grey">Last View: <strong>{{strtoupper($pending['last_viewer'])}}</strong></span>   @if($pending['last_viewed']!="")  <br/> {{\Carbon\Carbon::parse($pending['last_viewed'])->diffForHumans()}} @else --:-- @endif
                       </td>                                          
-                    </tr>   
+                    </tr> 
+                    
                     @endforeach
                     
                   </tbody>

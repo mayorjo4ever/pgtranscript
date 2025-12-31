@@ -28150,3 +28150,83 @@ pre[class*="language-"] {
     transform: scale(0.4);
   }
   
+  
+  .stepper {
+    display: flex;
+    align-items: center;
+}
+
+.step {
+    text-align: center;
+    color: #9e9e9e;
+}
+
+.step.active {
+    color: #4caf50;
+}
+
+.step span {
+    font-size: 30px;
+}
+
+.line {
+    width: 50px;
+    height: 3px;
+    background: #e0e0e0;
+    margin: 0 10px;
+}
+
+.step.active + .line {
+    background: #4caf50;
+}
+
+.circle-progress {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 5px solid #e0e0e0;
+    border-top-color: #2196f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: spin 1s linear infinite;
+}
+
+.circle-progress span {
+    font-size: 24px;
+    color: #2196f3;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.progress-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+}
+
+.progress {
+    flex: 1;
+    width:100%;   height:2rem;
+    background:#ffc;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%; 
+    font-weight: bolder;
+    background: #3f51b5; /* Material Indigo */
+    transition: width 0.4s ease;
+}
+
+.progress-icon {
+    color: #3f51b5;
+}
+
+.progress-text {
+    font-size: 18px;
+}

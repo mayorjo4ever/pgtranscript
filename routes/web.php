@@ -45,6 +45,10 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         Route::match(['get','post'],'schedule-transcript-request/{param}','TranscriptRequestController@schedule_request'); // 
         Route::match(['get','post'],'schedule-transcript-memo/{param}','TranscriptRequestController@transcript_request_memo');
         
+        ## sending of transcript request mail 
+        Route::post('send-transcript-mail','TranscriptRequestController@send_transcript_mail'); 
+        
+        
         # transcript search 
         Route::match(['get','post'],'transcript-search','TranscriptController@transcript_search');
         Route::get('transcript-reconfiguration/{param}','TranscriptController@reconfigure_transcript');        

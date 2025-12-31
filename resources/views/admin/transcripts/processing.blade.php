@@ -34,8 +34,12 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <x-admin.card >
-                                <h6 class="card-title text-uppercase"> Request Information </h6>
-                                <table class="table text-dark">
+                                <h6 class="card-title text-uppercase"> Request Information &nbsp; &nbsp; 
+                                    <span class="text-mutted">  - Status :  
+                                        {{($request->request_status=="Treated")?"Ready To Send Email" : "" }}  </span> 
+                                        {{($request->request_status=="created")?" To Start Processing" : "" }}  </span> 
+                                </h6>
+                                <table class="table text-dark" style="font-size:14px;">
                                     <tr>
                                         <th style="width:40%;">Name::</th>
                                         <th style="width:60%;">{{$request->surname}}&nbsp;{{$request->middle_name}}</th>
@@ -108,7 +112,7 @@
                                     </tr>
                                      <tr>
                                         <th>Receiving Body Email::</th>
-                                        <td style="">{{$request->receiving_body_email}}  </td>
+                                        <td class="text-lowercase">{{$request->receiving_body_email}}  </td>
                                     </tr>
                                      <tr>
                                         <th>Obtained Transcript Before::</th>
@@ -131,38 +135,44 @@
                         
                            <div class="col-md-6  col-sm-12">
                                <div class="row">
-                                   <div class="col-md-12">
+                                   <div class="col-md-12" style="font-size:14px;">
                                        <x-admin.card >
-                                            <h6 class="text-uppercase">REQUEST :: &nbsp; {{$request->request_purpose}}&nbsp;{{$request->request_type}} </h6>
+                                            <h6 class="text-uppercase">REQUEST ::&nbsp;{{$request->request_purpose}}&nbsp;{{$request->request_type}} </h6>
                                             <?php $preUrl = "https://login.remita.net/remita/exapp/api/v1/send/api/print/billsvc/biller/".$request->rrr."/printrecieptRequest.pdf"; ?>
-                                            <a href="{{ $preUrl }}" target="_blank"  class="btn btn-primary btn-lg" > Download Receipt &nbsp; <i class="fa fa-print"></i> </a>
-                                            <!--<a href="{{empty($request->rrr_receipt_url)?"https://login.remita.net/remita/auto-receipt/receipt.reg":$request->rrr_receipt_url}}" target="_blank"  class="btn btn-primary btn-lg" > Download Receipt &nbsp; <i class="fa fa-print"></i> </a>-->
-                                            <a href="{{"https://login.remita.net/remita/onepage/biller/".$request->rrr."/payment.spa"}}" target="_blank"  class="btn btn-primary btn-lg" > Verify Receipt &nbsp; <i class="fa fa-print"></i> </a>
-                                            <a href="{{$request->certificate_url}}" target="_blank" class="btn btn-primary btn-lg" > Print Certificate  &nbsp; <i class="fa fa-print"></i> </a>
+                                            <a href="{{ $preUrl }}" target="_blank"  class="btn btn-primary btn-md" > Download Receipt &nbsp; <i class="fa fa-print"></i> </a>
+                                            <!--<a href="{{empty($request->rrr_receipt_url)?"https://login.remita.net/remita/auto-receipt/receipt.reg":$request->rrr_receipt_url}}" target="_blank"  class="btn btn-primary btn-md" > Download Receipt &nbsp; <i class="fa fa-print"></i> </a>-->
+                                            <a href="{{"https://login.remita.net/remita/onepage/biller/".$request->rrr."/payment.spa"}}" target="_blank"  class="btn btn-primary btn-md" > Verify Receipt &nbsp; <i class="fa fa-print"></i> </a>
+                                            <a href="{{$request->certificate_url}}" target="_blank" class="btn btn-primary btn-md" > Print Certificate  &nbsp; <i class="fa fa-print"></i> </a>
                                             @if($request->courier_receipt_url !="")
-                                                 <a href="{{$request->courier_receipt_url}}" target="_blank" class="btn btn-primary btn-lg" > Print Courier Waybill  &nbsp; <i class="fa fa-print"></i> </a>
+                                                 <a href="{{$request->courier_receipt_url}}" target="_blank" class="btn btn-primary btn-md" > Print Courier Waybill  &nbsp; <i class="fa fa-print"></i> </a>
                                             @endif
 
                                             @if($request->pgschool_receipt_url !="")
-                                                 <a href="{{$request->pgschool_receipt_url}}" target="_blank" class="btn btn-primary btn-lg" > Print PG Receipt  &nbsp; <i class="fa fa-print"></i> </a>
+                                                 <a href="{{$request->pgschool_receipt_url}}" target="_blank" class="btn btn-primary btn-md" > Print PG Receipt  &nbsp; <i class="fa fa-print"></i> </a>
                                             @endif
                                             @if($request->applicant_dob_cert !="")
-                                                 <a href="{{$request->applicant_dob_cert}}" target="_blank" class="btn btn-primary btn-lg" > DOB Cert  &nbsp; <i class="fa fa-print"></i> </a>
+                                                 <a href="{{$request->applicant_dob_cert}}" target="_blank" class="btn btn-primary btn-md" > DOB Cert  &nbsp; <i class="fa fa-print"></i> </a>
                                             @endif
+                                            <hr class="border border-1 border-dashed border-danger"/>
+                                               <!-- indicate maybe it has any issues -->
+                                                <div class="form-check form-switch d-flex align-items-center mb-3">
+                                                    <input onchange="toggle_transcript_issues()" class="form-check-input" type="checkbox" id="transcript-issue" >
+                                                   <label class="form-check-label mb-0 ms-3" for="transcript-issue">THIS REQUEST HAVE ISSUES </label>
+                                                </div>
                                         </x-admin.card>
                                    </div><!-- col-md-12 -->
                                    
                                    <div class="col-md-12">
                                        <x-admin.card >   <form method="post" onsubmit="search_my_transcript()" action="javascript:void(0)" >@csrf
-                                               <h6 class="text-uppercase">Masters - PGD. Transcript </h6>
+                                               <h6 class="text-uppercase" style="font-size:14px;">Search Masters Or PGD. Transcript </h6>
                                            <div class="input-group"> 
-                                               <input  value="{{strtoupper($request->regno)}}" type="text" class="form-control font-weight-bold border border-1 border-dark form-control-lg" name="regno" id="regno" style="font-size:1rem" />
+                                               <input  value="{{strtoupper($request->regno)}}" type="text" class="form-control form-control-lg font-weight-bold border border-1 border-dark" name="regno" id="regno" style="font-size:1rem; height:45px; " />
                                                <input value="{{$request->id}}" type="hidden" class="form-control font-weight-bold border border-1 border-dark form-control-lg" name="request_id" id="request_id" style="font-size:1rem" />
                                                <input value="{{$request->request_purpose}}" type="hidden" class="form-control font-weight-bold border border-1 border-dark form-control-lg" name="request_type" id="request_type" style="font-size:1rem" />
-                                               <button type="submit" class="btn btn-info btn-lg ladda-button " data-style="expand-right"> Search </button>
-                                        </div>
+                                               <button type="submit" class="btn btn-info btn-md ladda-button " data-style="expand-right"> Search </button>
+                                            </div>
                                              </form>
-                                            <p>&nbsp;</p>
+                                          
                                             <div class="search-result"></div>
                                           
                                     </x-admin.card>
@@ -173,21 +183,82 @@
                                        <x-admin.card >   <form method="post" onsubmit="search_my_phd_transcript()" action="javascript:void(0)" >@csrf
                                                <h6 class="text-uppercase">Ph.D Transcript </h6>
                                            <div class="input-group"> 
-                                               <input  value="{{strtoupper($request->regno)}}" type="text" class="form-control font-weight-bold border border-1 border-dark form-control-lg" name="regno" id="regno" style="font-size:1rem" />
+                                               <input  value="{{strtoupper($request->regno)}}" type="text" class="form-control font-weight-bold border border-1 border-dark form-control-lg" name="regno" id="regno" style="font-size:1rem;  height:45px;" />
                                                <input value="{{$request->id}}" type="hidden" class="form-control font-weight-bold border border-1 border-dark form-control-lg" name="request_id" id="request_id" style="font-size:1rem" />
                                                <input value="{{$request->request_purpose}}" type="hidden" class="form-control font-weight-bold border border-1 border-dark form-control-lg" name="request_type" id="request_type" style="font-size:1rem" />
-                                               <button type="submit" class="btn btn-success btn-lg ladda-button " data-style="expand-right"> Search </button>
+                                               <button type="submit" class="btn btn-success btn-md ladda-button " data-style="expand-right"> Search </button>
                                         </div>
                                              </form>
-                                            <p>&nbsp;</p>
+                                            
                                             <div class="search-phd-result"></div>
                                           
                                     </x-admin.card>
                                    </div><!-- col.md-12 -->
                                    
+                                   @if(in_array($request->request_status,['Treated','Sent']))
+                                  
+                                   <div class="col-md-12">
+                                       <x-admin.card >   <form method="post" action="{{url('admin/send-transcript-mail')}}" enctype="multipart/form-data" >@csrf
+                                               <h6 class="text-uppercase"> 
+                                                   <span class=" text-danger">Sending of Request</span>&nbsp; &nbsp; 
+                                                   <span class="text-mutted">- Status :  {{($request->request_status=="Treated")?"Ready To Send Email" : $request->request_status }}  </span> 
+                                             </h6>    
+                                           
+                                            @if($request->request_status == "Sent")
+                                             <h6 class="text-uppercase"> 
+                                                   <span class="text-danger">sent by: </span> &nbsp;&nbsp; 
+                                                   <span class="text-mutted">{{ $request->sent_by }} </span><br/>
+                                                   <span class="text-danger">Time Sent: </span> &nbsp;&nbsp; 
+                                                   <span class="text-mutted text-capitalize">{{ \Carbon\Carbon::parse($request->date_sent)->diffForHumans()}}</span><br/>
+                                                   <span class="text-danger">Destination Email: </span> &nbsp;&nbsp; 
+                                                   <span class="text-mutted text-lowercase">{{ $request->last_sent_email }} </span><br/>
+                                                   <span class="text-danger">Total Sent: </span> &nbsp;&nbsp; 
+                                                   <span class="text-mutted">{{ $request->sent_count }} </span><br/>
+                                             </h6>    
+                                            @endif
+                                            
+                                            @php $disableReSend = ($request->sent_count > 0 )? "disabled=''" : ""; @endphp 
+                                            
+                                            <input type="hidden" value="{{$request->id}}" name="request_id"/>
+                                            <input type="hidden" value="{{$request->sent_count}}" name="total_sent"/>
+                                            
+                                           <div class="form-group mb-3"> 
+                                               <label>Receiving Body Email : </label>
+                                               <input {{$disableReSend}} value="{{strtolower($request->receiving_body_email)}}" type="text" class="form-control border border-1 border-dark form-control-lg" name="destination_email" id="destination-email" style="font-size:1rem;  height:45px;" />                                              
+                                            </div>
+                                           <div class="form-group mb-3"> 
+                                               <label>Message Title: </label>
+                                               <input {{$disableReSend}} value="POSTGRADUATE ACADEMIC TRANSCRIPT FOR : {{surname($request->name).", ". othername($request->name)}}" type="text" class="form-control border border-1 border-dark form-control-lg" name="message_title" id="message-title" style="font-size:1rem;  height:45px;" /> 
+                                            </div>
+                                           <div class="form-group mb-3"> 
+                                               <label>Message Body: </label>
+                                               <?php $message = "Dear, Kindly find the attached for your Information"; ?>
+                                               @if($request->request_type == "TRANSCRIPT" && str_replace(" ","",$request->request_purpose) == "OFFICIAL")
+                                               <?php $message = "Kindly find attached Signed and Scanned Academic Transcript for ". surname($request->name).", ". othername($request->name).", With Matriculation Number : ".$request->regno.", Awarded The Degree of  ".formatProgrammeName($request->programme). "  To Your Institution / establishment ";  ?>
+                                               @elseif($request->request_type == "TRANSCRIPT" && str_replace(" ","",$request->request_purpose) == "STUDENT")
+                                               <?php $message = "Dear ".surname($request->name).", ". othername($request->name)."!  Attached below is your Academic Transcript for ( ".formatProgrammeName($request->programme). " ) as requested ";  ?>
+                                               @endif
+                                               <textarea {{$disableReSend}} name="message_body" id="message-body" style="font-size:1rem;" class="form-control form-control-lg border border-1 border-dark" rows="5">{{$message}}</textarea>
+                                            </div>
+                                           
+                                           <div class="form-group mb-3"> 
+                                               <label>Attachments  &nbsp; <i class="fa fa-clipboard" style="font-size:20px"></i></label>
+                                               <input {{$disableReSend}} required="" type="file"  name="attachments[]" multiple="" style="font-size:1rem;" class="form-control form-control-lg border border-1 border-dark"  />
+                                            </div>
+                                           
+                                            <div class="form-group mb-3">                                               
+                                                <button {{$disableReSend}} type="submit" class="btn btn-info btn-lg"> Send &nbsp; <i class="fa fa-envelope-circle-check fa-2x"></i></button>
+                                            </div>
+                                           
+                                           </form>
+                                            <div class="mail-response"></div>
+                                    </x-admin.card>
+                                   </div><!-- col.md-12 -->
+                                   
+                                   @endif 
+                                   
                                </div><!-- row -->
-                            </div><!-- col-md-5 -->
-                           
+                            </div><!-- col-md-5 -->                           
                         
                     </div>
                     

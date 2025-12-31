@@ -140,7 +140,49 @@
           </div>
         </div>
       </div>
-	  
+    
+    <div class="row mb-4">
+        <div class="col-lg-4">
+            <div class="stepper">
+                <div class="step active">
+                    <span class="material-icons">check_circle</span>
+                    <p>Start</p>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="step active">
+                    <span class="material-icons">build</span>
+                    <p>Process</p>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="step">
+                    <span class="material-icons">done</span>
+                    <p>Finish</p>
+                </div>
+            </div>
+        </div><!-- ./ col-lg-4 -->
+        
+        <div class="col-lg-4">
+            <div class="circle-progress">
+                <span class="material-icons">sync</span>
+            </div>
+        </div><!-- ./ col-lg-4 -->
+     
+        <div class="col-lg-4">
+           <div class="progress-wrapper">
+                <span class="material-icons progress-icon">cloud_upload</span>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 60%"></div>
+                </div>
+                <span class="progress-text">60%</span>
+            </div>
+
+        </div><!-- ./ col-lg-4 -->
+        
+    </div>
 	  
 <!--      <div class="row mb-4">
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4">

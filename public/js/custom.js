@@ -9,6 +9,11 @@ $(function(){
     // showpop("how are you");
     enableCertBtns();
     initDatePicker();
+    
+    // display/hide undergraduate student request
+    var toshow = $('#show-only-pg-apps') ;
+    if(toshow.length > 0)
+    toggle_show_only_pg_apps(toshow); 
 });
 
     
@@ -37,6 +42,12 @@ $(function(){
              });
         }
     }
+    
+     function toggleShowPassword(){
+        var elem = $("#user-password");   var state = elem.prop('type'); 
+        if(state === 'password'){  elem.prop('type','text'); }
+         else{  elem.prop('type','password');  }
+        }
     
     function checkAll(){
         // $('.checkbox').prop('checked', true);
@@ -991,13 +1002,24 @@ $(function(){
           
      });
      
+     function paint_row(id,body){         
+         if(body==="undergraduate"){
+             $('tr#'+id).addClass('table-danger'); 
+         }
+         else {
+             $('tr#'+id).removeClass('table-danger'); 
+         }
+         
+     }
      
      function update_transcript_request_body(elem){
-         var info = elem.attr('id').split('-');
-         var body = "undergraduate"; 
+         var info = elem.attr('id').split('-');  // 
+         var body = "undergraduate";  var id = info[2];
          if(elem.prop('checked')){
             body = "postgraduate"; 
          }
+         
+         paint_row(id,body);
          
          $.ajax({
                headers:{
@@ -1014,6 +1036,16 @@ $(function(){
                    }
            });      
          
+     }
+     
+     function toggle_show_only_pg_apps(elem){
+      
+         if(elem.prop('checked')){
+            $('tr[data-body="undergraduate"]').hide();
+         }
+         else{
+            $('tr[data-body="undergraduate"]').show(); 
+         }
      }
      
      /// 3213-7045-5083 

@@ -22,6 +22,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Mail\TranscriptRequestMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use function admin_info;
@@ -71,16 +73,51 @@ class TranscriptRequestController extends Controller
     }
     
     public function process_requests($param){
-        $info = explode("|",base64_decode($param)); 
-        $request = TranscriptsRequest::findOrFail($info[0]); 
-        # print "<pre>"; print_r($request->toarray());  die; 
+        [$id,$regno] = explode("|",base64_decode($param)); 
+       // $request = TranscriptsRequest::with('printout')->findOrFail($id); 
+        // $report = $request->printout?->report();
+        $request = TranscriptsRequest::query()
+            ->leftJoin('transcript_printouts as tp', 'tp.request_id', '=', 'transcripts_requests.id')
+            ->leftJoin('transcript_reports as tr', function ($join) {
+                $join->on('tr.regno', '=', 'tp.regno')
+                     ->on('tr.approve_date', '=', 'tp.approve_date');
+            })
+            ->where('transcripts_requests.id', $id)
+            ->select(
+                'transcripts_requests.*',
+                'tp.id as printout_id',
+                'tr.id as report_id',
+                'tr.approve_date as report_approve_date',
+                'tr.programme',
+                'tr.name'
+            )
+            ->firstOrFail();
+
+        
+       // print "<pre>"; print_r($request->toarray());  die; 
         Session::put('page','transcripts');  Session::put('tab','pendings');
         Session::put('page_title','Process Transcript Requests');
         $page_info = ['title'=> $request->regno. " - ". $request->surname. "  ". $request->middle_name. " - Transcript Requests ",'icon'=>'pe-7s-person_add','sub-title'=>''];       
         
+        $this->updateRequestProgression($request); 
+        
         return view('admin.transcripts.processing',compact('page_info','request'));    
     }
-
+    
+    protected function updateRequestProgression(TranscriptsRequest $request){
+        
+       $last_viewer = Auth::guard('admin')->user()->regno; 
+       $last_viewed = Carbon::now(); 
+       $progression = 20; 
+       if($request->request_status == 'Treated') :
+        $progression = 70;   
+       elseif($request->request_status == 'Sent'):
+          $progression = 100;    
+       endif; 
+       $request->update(['progression'=>$progression,'last_viewer'=>$last_viewer,'last_viewed'=>$last_viewed]);
+        
+    }
+    
     public function completed_requests(Request $request){
         Session::put('page','transcripts');  Session::put('tab','completed');
         Session::put('page_title','Completed Transcript Requests');
@@ -453,5 +490,41 @@ class TranscriptRequestController extends Controller
             'type'=>'success',
             'message'=>$name."'s Reequest ".ucwords("Updated To $body")
         ]);
+    }
+    
+    ## sending request mail 
+    public function send_transcript_mail(Request $request){
+        
+        $validated = $request->validate([
+            'destination_email' => 'required|email',
+            'message_title'     => 'required|string',
+            'message_body'      => 'required|string',
+            'attachments.*'     => 'nullable|file|max:10240',
+        ]);
+
+       Mail::to($validated['destination_email'])->send(
+            new TranscriptRequestMail(
+                $validated['message_title'],
+                $validated['message_body'],
+                $request->file('attachments') ?? []
+            )
+        );
+       $this->updateSentMail($request);   
+       
+        return back()->with('success_message', 'Mail sent successfully with attachment(s).');
+    }
+    
+      protected function updateSentMail(Request $request) : void {
+        ## print "<pre>  Updating Sent Mail : ";   print_r($request->all());
+        $sender = Auth::guard('admin')->user()->regno; 
+        $date_sent = Carbon::now();         
+        $updates = ['mail_sent'=>1,'sent_by'=>$sender,
+        'date_sent'=>$date_sent,'request_status'=>'Sent',
+            'sent_count'=>($request->total_sent + 1),
+            'last_sent_email'=>$request->destination_email];
+        
+        TranscriptsRequest::where('id',$request->request_id)
+                ->update($updates); 
+      
     }
 }
