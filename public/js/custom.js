@@ -11,9 +11,12 @@ $(function(){
     initDatePicker();
     
     // display/hide undergraduate student request
-    var toshow = $('#show-only-pg-apps') ;
-    if(toshow.length > 0)
-    toggle_show_only_pg_apps(toshow); 
+    var toshow = $('#show-only-pg-apps');
+    var tohide = $('#hide-completed-apps'); // completed requests
+    if(toshow.length > 0) toggle_show_only_pg_apps(toshow); 
+    if(tohide.length > 0) toggle_hide_copleted_apps(tohide); 
+   
+    
 });
 
     
@@ -1045,6 +1048,25 @@ $(function(){
          }
          else{
             $('tr[data-body="undergraduate"]').show(); 
+         }
+     }
+     
+     function toggle_hide_copleted_apps(elem){
+      
+         if(elem.prop('checked')){
+            $('tr.table-success').hide();
+         }
+         else{
+            $('tr.table-success').show(); 
+         }
+     }
+     
+    function toggle_email_resend(elem){      
+         if(elem.prop('checked')){
+           $('input.transcript-email,textarea.transcript-email','button.transcript-email').prop('disabled',false);          
+         }
+         else{
+           $('input.transcript-email,textarea.transcript-email','button.transcript-email').prop('disabled',true);
          }
      }
      

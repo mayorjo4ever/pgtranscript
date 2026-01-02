@@ -155,10 +155,36 @@
                                             @endif
                                             <hr class="border border-1 border-dashed border-danger"/>
                                                <!-- indicate maybe it has any issues -->
-                                                <div class="form-check form-switch d-flex align-items-center mb-3">
+                                                <div class="form-check form-switch d-flex align-items-center mb-4">
                                                     <input onchange="toggle_transcript_issues()" class="form-check-input" type="checkbox" id="transcript-issue" >
-                                                   <label class="form-check-label mb-0 ms-3" for="transcript-issue">THIS REQUEST HAVE ISSUES </label>
+                                                    <label class="form-check-label mb-0 ms-3" for="transcript-issue"><b>THIS REQUEST HAVE ISSUES </b></label>
                                                 </div>
+                                               <hr class="border border-1 border-dashed border-danger"/>
+                                               
+                                               <div class="">
+                                                   <div class="form-group mb-4 mt-4">
+                                                        <div class="radio-wrapper-8 mb-3 mt-3">
+                                                            <label class="control-label radio-wrapper-8"  style="font-size: 1rem">
+                                                            <input type="radio" value="Duplicate" name="transcript_status"/>
+                                                            <span>Duplicate Request - So Ignore </span></label>
+                                                        </div>
+                                                       &nbsp; &nbsp; &nbsp; &nbsp; 
+                                                       <div class="radio-wrapper-8 mb-3">
+                                                        <label class="control-label radio-wrapper-8" style="font-size: 1rem">
+                                                            <input class="form-radio" type="radio" value="Call For Spreadsheet" name="transcript_status"/>
+                                                        <span>Call For Spreadsheet - Spreadsheet Not Found</span></label>      
+                                                       </div>
+                                                       &nbsp; &nbsp; &nbsp; &nbsp; 
+                                                       <div class="radio-wrapper-8 mb-3">
+                                                        <label class="control-label radio-wrapper-8" style="font-size: 1rem">
+                                                            <input class="form-radio" type="radio" value="No Payment"    name="transcript_status"/>
+                                                        <span>No Payment Found - Did Not Pay </span></label>      
+                                                       </div>
+                                                   </div>   &nbsp; &nbsp; &nbsp; &nbsp; 
+                                                   <button type="submit" class="btn btn-info btn-md ladda-button " data-style="expand-right"> Update Status </button>
+                                               </div>
+                                               
+                                               
                                         </x-admin.card>
                                    </div><!-- col-md-12 -->
                                    
@@ -205,14 +231,14 @@
                                              </h6>    
                                            
                                             @if($request->request_status == "Sent")
-                                             <h6 class="text-uppercase"> 
-                                                   <span class="text-danger">sent by: </span> &nbsp;&nbsp; 
+                                             <h6 class="text-capitalize"> 
+                                                   <span class="text-success">sent by: </span> &nbsp;&nbsp; 
                                                    <span class="text-mutted">{{ $request->sent_by }} </span><br/>
-                                                   <span class="text-danger">Time Sent: </span> &nbsp;&nbsp; 
-                                                   <span class="text-mutted text-capitalize">{{ \Carbon\Carbon::parse($request->date_sent)->diffForHumans()}}</span><br/>
-                                                   <span class="text-danger">Destination Email: </span> &nbsp;&nbsp; 
+                                                   <span class="text-success">Time Sent: </span> &nbsp;&nbsp; 
+                                                   <span class="text-mutted text-capitalize">{{ Carbon::parse($request->date_sent)->diffForHumans()}} - <small>{{ Carbon::parse($request->date_sent)->toDayDateTimeString()}}</small></span><br/>
+                                                   <span class="text-success">Destination Email: </span> &nbsp;&nbsp; 
                                                    <span class="text-mutted text-lowercase">{{ $request->last_sent_email }} </span><br/>
-                                                   <span class="text-danger">Total Sent: </span> &nbsp;&nbsp; 
+                                                   <span class="text-success">Total Sent: </span> &nbsp;&nbsp; 
                                                    <span class="text-mutted">{{ $request->sent_count }} </span><br/>
                                              </h6>    
                                             @endif
@@ -224,34 +250,41 @@
                                             
                                            <div class="form-group mb-3"> 
                                                <label>Receiving Body Email : </label>
-                                               <input {{$disableReSend}} value="{{strtolower($request->receiving_body_email)}}" type="text" class="form-control border border-1 border-dark form-control-lg" name="destination_email" id="destination-email" style="font-size:1rem;  height:45px;" />                                              
+                                               <input {{$disableReSend}} value="{{strtolower($request->receiving_body_email)}}" type="text" class="form-control transcript-email border border-1 border-dark form-control-lg" name="destination_email" id="destination-email" style="font-size:1rem;  height:45px;" />                                              
                                             </div>
                                            <div class="form-group mb-3"> 
                                                <label>Message Title: </label>
-                                               <input {{$disableReSend}} value="POSTGRADUATE ACADEMIC TRANSCRIPT FOR : {{surname($request->name).", ". othername($request->name)}}" type="text" class="form-control border border-1 border-dark form-control-lg" name="message_title" id="message-title" style="font-size:1rem;  height:45px;" /> 
+                                               <input {{$disableReSend}} value="POSTGRADUATE ACADEMIC TRANSCRIPT FOR : {{surname($request->name).", ". othername($request->name)}}" type="text" class="form-control transcript-email border border-1 border-dark form-control-lg" name="message_title" id="message-title" style="font-size:1rem;  height:45px;" /> 
                                             </div>
                                            <div class="form-group mb-3"> 
                                                <label>Message Body: </label>
                                                <?php $message = "Dear, Kindly find the attached for your Information"; ?>
                                                @if($request->request_type == "TRANSCRIPT" && str_replace(" ","",$request->request_purpose) == "OFFICIAL")
-                                               <?php $message = "Kindly find attached Signed and Scanned Academic Transcript for ". surname($request->name).", ". othername($request->name).", With Matriculation Number : ".$request->regno.", Awarded The Degree of  ".formatProgrammeName($request->programme). "  To Your Institution / establishment ";  ?>
+                                               <?php $message = "Kindly find attached Signed and Scanned Academic Transcript for ". surname($request->name).", ". othername($request->name).", With Matriculation Number : ".$request->report_regno.", Awarded The Degree of  ".formatProgrammeName($request->programme). "  To Your Institution / Establishment ";  ?>
                                                @elseif($request->request_type == "TRANSCRIPT" && str_replace(" ","",$request->request_purpose) == "STUDENT")
-                                               <?php $message = "Dear ".surname($request->name).", ". othername($request->name)."!  Attached below is your Academic Transcript for ( ".formatProgrammeName($request->programme). " ) as requested ";  ?>
+                                               <?php $message = "Dear ".surname($request->name).", ". othername($request->name)."!  Attached below is your Academic Transcript for ( ".formatProgrammeName($request->programme). " ) As Requested ";  ?>
                                                @endif
-                                               <textarea {{$disableReSend}} name="message_body" id="message-body" style="font-size:1rem;" class="form-control form-control-lg border border-1 border-dark" rows="5">{{$message}}</textarea>
+                                               <textarea {{$disableReSend}} name="message_body" id="message-body" style="font-size:1rem;" class="form-control transcript-email form-control-lg border border-1 border-dark" rows="5">{{$message}}</textarea>
                                             </div>
                                            
                                            <div class="form-group mb-3"> 
                                                <label>Attachments  &nbsp; <i class="fa fa-clipboard" style="font-size:20px"></i></label>
-                                               <input {{$disableReSend}} required="" type="file"  name="attachments[]" multiple="" style="font-size:1rem;" class="form-control form-control-lg border border-1 border-dark"  />
+                                               <input {{$disableReSend}} required="" type="file"  name="attachments[]" multiple="" style="font-size:1rem;" class="form-control transcript-email form-control-lg border border-1 border-dark"  />
                                             </div>
                                            
                                             <div class="form-group mb-3">                                               
-                                                <button {{$disableReSend}} type="submit" class="btn btn-info btn-lg"> Send &nbsp; <i class="fa fa-envelope-circle-check fa-2x"></i></button>
+                                                <button {{$disableReSend}} type="submit" class="btn btn-info btn-lg transcript-email"> Send &nbsp; <i class="fa fa-envelope-circle-check fa-2x"></i></button>
+                                                &nbsp; &nbsp; 
+                                                @if($request->request_status=="Sent") 
+                                                <div class="form-check form-switch d-flex align-items-center mb-3">
+                                                    <input onchange="toggle_email_resend($(this))" class="form-check-input" type="checkbox" id="resend-transcript-email" >
+                                                   <label class="form-check-label mb-0 ms-3" for="resend-transcript-email">Resend This Email Again ? </label>
+                                                </div>
+                                                @endif
                                             </div>
                                            
                                            </form>
-                                            <div class="mail-response"></div>
+                                             
                                     </x-admin.card>
                                    </div><!-- col.md-12 -->
                                    

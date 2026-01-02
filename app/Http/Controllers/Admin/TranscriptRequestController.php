@@ -89,6 +89,7 @@ class TranscriptRequestController extends Controller
                 'tr.id as report_id',
                 'tr.approve_date as report_approve_date',
                 'tr.programme',
+                'tr.regno as report_regno',
                 'tr.name'
             )
             ->firstOrFail();

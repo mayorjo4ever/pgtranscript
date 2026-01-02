@@ -23,7 +23,12 @@
                      <div class="col-md-4 ">
                          <div class="form-check form-switch d-flex align-items-center mb-3 mt-3">
                              <input onchange="toggle_show_only_pg_apps($(this))" class="form-check-input" type="checkbox" id="show-only-pg-apps" checked >
-                            <label class="form-check-label mb-0 ms-3 font-weight-bold" for="show-only-pg-apps">SHOW ONLY PG APPS</label>
+                            <label class="form-check-label mb-0 ms-3 font-weight-bold" for="show-only-pg-apps">SHOW ONLY PG REQUESTS</label>
+                          </div>
+                         
+                         <div class="form-check form-switch d-flex align-items-center mb-3 mt-3">
+                             <input onchange="toggle_hide_copleted_apps($(this))" class="form-check-input" type="checkbox" id="hide-completed-apps" checked >
+                            <label class="form-check-label mb-0 ms-3 font-weight-bold" for="hide-completed-apps">HIDE COMPLETED REQUESTS</label>
                           </div>
                      </div>
                      
@@ -42,7 +47,7 @@
                   </thead>
                   <tbody>                     
                   @foreach($pendings as $pending)
-                  <tr id="{{$pending['id']}}" data-body="{{$pending['bodies']}}" class=" {{($pending['bodies']=="undergraduate")?"table-danger":""}}  {{($pending['request_status']=="Sent")?"table-success":""}} {{($pending['request_status']=="Duplicate")?"table-warning":""}} {{($pending['request_status']=="No-Payment")?"table-danger":""}} m-4 ">
+                  <tr id="{{$pending['id']}}" data-body="{{$pending['bodies']}}" class="{{($pending['bodies']=="undergraduate")?"table-danger":""}}  {{($pending['request_status']=="Sent")?"table-success":""}} {{($pending['request_status']=="Duplicate")?"table-warning":""}} {{($pending['request_status']=="No-Payment")?"table-danger":""}} m-4 ">
                         <td class="align-middle text-center"> {{ $loop->iteration + ($pendings->currentPage() - 1) * $pendings->perPage() }}</td>
                       <td>
                         <div class="d-flex px-2 py-1">                        
@@ -94,11 +99,8 @@
                   {{-- Pagination links --}}
                     <div class="d-flex justify-content-center">
                         {{ $pendings->links('vendor.pagination.material') }}
-                    </div>
-                     
-            </x-admin.card>
-            
-        
+                    </div>                     
+            </x-admin.card>                    
             
         </div>
       </div>
