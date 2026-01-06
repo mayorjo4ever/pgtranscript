@@ -6,19 +6,19 @@
         </tr>
         <tr>
             <th class="table-info">Matched Degree: </th>
-            <td><span class="">{{$info['acronymn']}}</span></td>
+            <td><span class="">{{$info['acronymn'] ??""}}</span></td>
         </tr>
         <tr>
             <th class="table-info">Degree ID: </th>
-            <td><span class="">{{$info['id']}}</span></td>
+            <td><span class="">{{$info['id']??""}}</span></td>
         </tr>
         <tr>
             <th class="table-info">Degree Name: </th>
-            <td><span class=""></span>{{$info['name']}}</td>
+            <td><span class=""></span>{{$info['name']??""}}</td>
         </tr>
         <tr>
             <th class="table-info">Programme Name: </th>
-            <td><span class=""></span>{{$info['field']}}</td>
+            <td><span class=""></span>{{$info['field']??""}}</td>
         </tr>
         <tr>
             <th class="table-info">Degree Setup Available ?: </th>

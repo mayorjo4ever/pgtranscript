@@ -709,11 +709,11 @@ class CertificateController extends Controller
         public function create_programme_template(Request $request){
             if($request->ajax()): # to create programmes. eg. M.Sc Animal Production
                 $data = $request->all();
-                
+                //print "<pre>"; print_r($data); exit; 
                Programme::updateOrCreate(['degree_id' => $data['deg_id'],'name' => $data['name']]); 
                    
                 return response()->json([
-                     'view'=>(String)View::make('admin.certificate.ajax_cert_prog_setup')->with(compact('info','data')),
+                     'view'=>(String)View::make('admin.certificate.ajax_cert_prog_setup')->with(compact('data')),
                     'type'=>'success','message'=>'Programme Successfully Saved'
                 ]);
             endif; # ajax 

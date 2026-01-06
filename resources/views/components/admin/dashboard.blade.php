@@ -13,7 +13,7 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-                <p class="mb-0"> <span class="text-success text-sm "> <a href="{{url('admin/import-transcript-requests')}}" target="_blank">  Last Imported Requests </a> </span>   </p>
+                <p class="mb-0"> <span class="text-success text-sm "> <a href="{{url('admin/pending-transcript-requests')}}" target="_blank">  Last Imported Requests </a> </span>   </p>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/all-transcript-requests')}}" target="_blank">  View All Requests </a> </span></p>
+              <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/pending-transcript-requests')}}" target="_blank">  View All Requests </a> </span></p>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/pending-transcript-requests')}}" target="_blank">  Total New Requests </a> </span></p>
+              <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/import-transcript-requests')}}" target="_blank">  Total New Requests </a> </span></p>
             </div>
           </div>
         </div>
@@ -86,12 +86,12 @@
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Website Views</h6>
+              <h6 class="mb-0 ">Transcript Request Analysis</h6>
               <p class="text-sm ">Last Campaign Performance</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
+                <p class="mb-0 text-sm"> Last 5 Request Imports  </p>
               </div>
             </div>
           </div>
@@ -141,7 +141,7 @@
         </div>
       </div>
     
-    <div class="row mb-4">
+<!--    <div class="row mb-4">
         <div class="col-lg-4">
             <div class="stepper">
                 <div class="step active">
@@ -163,13 +163,13 @@
                     <p>Finish</p>
                 </div>
             </div>
-        </div><!-- ./ col-lg-4 -->
+        </div> ./ col-lg-4 
         
         <div class="col-lg-4">
             <div class="circle-progress">
                 <span class="material-icons">sync</span>
             </div>
-        </div><!-- ./ col-lg-4 -->
+        </div> ./ col-lg-4 
      
         <div class="col-lg-4">
            <div class="progress-wrapper">
@@ -180,9 +180,9 @@
                 <span class="progress-text">60%</span>
             </div>
 
-        </div><!-- ./ col-lg-4 -->
+        </div> ./ col-lg-4 
         
-    </div>
+    </div>-->
 	  
 <!--      <div class="row mb-4">
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
