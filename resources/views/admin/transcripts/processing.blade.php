@@ -243,7 +243,7 @@
                                              </h6>    
                                             @endif
                                             
-                                            @php $disableReSend = ($request->sent_count > 0 )? "disabled=''" : ""; @endphp 
+                                            @php $disableReSend = ($request->sent_count > 0 )? "disable=''" : ""; @endphp 
                                             
                                             <input type="hidden" value="{{$request->id}}" name="request_id"/>
                                             <input type="hidden" value="{{$request->sent_count}}" name="total_sent"/>
