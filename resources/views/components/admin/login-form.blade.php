@@ -46,8 +46,14 @@
                 </form>
                  <hr/>
                  <div class="row">
-                 <div class="col-6"><a href="https://docs.google.com/forms/d/e/1FAIpQLSetCIFtMjXAAke8L-sDeeos3iTDrSX2yDUWhcaKPhjk17S6KQ/viewform" class="font-weight-bold text-white btn-sm btn btn-success" target="_blank">PG Transcript Form </a> </div>
-                 <div class="col-6"> <a href="https://login.remita.net/remita/onepage/2757205950/service.spa" class="font-weight-bold text-white btn btn-sm btn-info" target="_blank">Pay for Transcript </a></div>
+                 <div class="col-12 align-items-center">
+                     <center>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSetCIFtMjXAAke8L-sDeeos3iTDrSX2yDUWhcaKPhjk17S6KQ/viewform" class="font-weight-bold text-white btn-sm btn btn-success align-items-center" target="_blank">PG Transcript Form </a> 
+                        &nbsp;  &nbsp;  &nbsp;
+                        <a href="https://login.remita.net/remita/onepage/2757205950/service.spa" class="font-weight-bold text-white btn btn-sm btn-info align-items-center" target="_blank">Pay for Transcript </a>
+                     </center>
+                 </div>
+                    
                  </div>
               </div>
             </div>
