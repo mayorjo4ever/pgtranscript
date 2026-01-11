@@ -129,16 +129,16 @@ class TranscriptRequestController extends Controller
     }
 
     public function sync_requests(Request $request){
-       if($request->ajax()){
-           $history = TranscriptsImport::latest()->first();
-           $newRow = (empty($history)) ? 2 :  2 + $history['cum_total'];
-
-           # connect to google sheet and get new records
-           $range = "Sheet1!A{$newRow}:A";
-           $service = new GoogleSheetService($range);
-           $counts = $service->countRows();
-           return response($counts);
-       }
+        if ($request->ajax()) {
+        $history = TranscriptsImport::latest()->first();
+        $newRow = empty($history) ? 2 : 2 + $history->cum_total;
+        # connect to google sheet and get new records           
+        // $range = "Sheet1!A{$newRow}:A";
+        $range = "A{$newRow}:A";
+        $service = new GoogleSheetService('transcript');           
+        $counts = $service->countRows($range); 
+        return $counts;         
+        }  
     }
 
     ###################
@@ -149,11 +149,12 @@ class TranscriptRequestController extends Controller
 
            $tofetch = ($data['maxno'] <= 30) ? $data['maxno'] : 30;
            $lastRow = $tofetch + $newRow - 1;
-           $range = "Sheet1!A{$newRow}:AD{$lastRow}";
+           $range = "A{$newRow}:AD31";
            # connect to google sheet and get new records
-           $service = new GoogleSheetService($range);
-           $values = $service->readSheet();
-
+           $service = new GoogleSheetService('transcript');           
+           #$counts = $service->countRows($range); 
+           $values = $service->read($range);
+           #print "<pre>"; print_r($values); exit;
            ## calculate initial sum of records in history
            $sum = TranscriptsImport::sum('rows');
            $newsum = $sum + $tofetch;
@@ -206,6 +207,7 @@ class TranscriptRequestController extends Controller
            ## now update the import history
               /***/
             TranscriptsImport::create([
+               'form_key'   => 'transcript',
                'rows'=>$tofetch,
                'cum_total'=>$newsum,
                'created_by'=>Auth::id(),

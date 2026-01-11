@@ -75,7 +75,7 @@ class DriveDownloadController extends Controller
 
     public function index()
     {
-        Session::put('page','id_card');  Session::put('tab','id_card');
+        Session::put('page','users');  Session::put('tab','id_card');
         Session::put('page_title','Google ID Card Data Download');
         $page_info = ['title'=> "Google ID Card Data Download",'icon'=>'pe-7s-person_add','sub-title'=>'Downloading of Passports and Signature'];            
        

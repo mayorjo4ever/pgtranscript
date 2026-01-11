@@ -16,12 +16,12 @@ use function view;
 
 class AdminController extends Controller
 {
-    protected $googleSheetService;
+    ## protected $googleSheetService;
 
-    public function __construct(GoogleSheetService $googleSheetService)
-    {
-        $this->googleSheetService = $googleSheetService;
-    }
+    ##public function __construct(GoogleSheetService $googleSheetService)
+    ## {
+      ###  $this->googleSheetService = $googleSheetService;
+   # }
 
       public function dashboard() {
        Session::put('page','dashboard');

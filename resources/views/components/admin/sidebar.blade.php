@@ -40,11 +40,23 @@ use Illuminate\Support\Facades\Session;
                     <span class="nav-link-text ms-1">All Students </span>
                   </a>
                 </li>
+               <li class="nav-item">
+                <a class="nav-link text-white @if(Session::get('page')=="users") active bg-gradient-primary @endif " href="{{url('admin/google-id-card')}}">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="material-icons opacity-10">download</i>
+                  </div>
+                  <span class="nav-link-text ms-1">Download Passports</span>
+                </a>
+              </li>
+        
                 <li class="nav-item">
-                  <a class="nav-link text-white @if(Session::get('tab')=="process_certs") active bg-primary @endif" href="{{url('admin/cert-data-processing')}}">
-                    <span class="nav-link-text ms-1">Certificate Processing</span>
-                  </a>
-                </li>
+                 <a class="nav-link text-white @if(Session::get('page')=="id_card") active bg-gradient-primary @endif " href="{{url('admin/google-id-card')}}">
+                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                     <i class="material-icons opacity-10">badge</i>
+                   </div>
+                   <span class="nav-link-text ms-1">Import ID Card Forms </span>
+                 </a>
+               </li>
                
               </ul>
             </div>
@@ -197,14 +209,7 @@ use Illuminate\Support\Facades\Session;
           </a>
         </li>
         
-        <li class="nav-item">
-          <a class="nav-link text-white @if(Session::get('page')=="id_card") active bg-gradient-primary @endif " href="{{url('admin/google-id-card')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">badge</i>
-            </div>
-            <span class="nav-link-text ms-1">Google ID Card</span>
-          </a>
-        </li>
+        
         
             <li class="nav-item">
           <a class="nav-link text-white @if(Session::get('page')=="database") active bg-gradient-primary @endif " href="{{url('admin/data-backup-restore')}}">

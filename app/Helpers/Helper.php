@@ -30,18 +30,39 @@ function greetings(){
        
 
 function count_new_transcript_request(){
-    $history = TranscriptsImport::latest()->first();            
+    $history = TranscriptsImport::where('form_key', 'transcript')
+            ->latest()->first();            
     $newRow = (empty($history)) ? 2 :  2 + $history['cum_total'];
     try{
         # connect to google sheet and get new records           
-        $range = "Sheet1!A{$newRow}:A";
-        $service = new GoogleSheetService($range);           
-        $counts = $service->countRows(); 
+        // $range = "Sheet1!A{$newRow}:A";
+        $range = "A{$newRow}:A";
+        $service = new GoogleSheetService('transcript');           
+        $counts = $service->countRows($range); 
         return $counts;
      }
     catch (Exception $e) {
         Log::error("Google OAuth Token Error: ".$e->getMessage());
-        return '--:--'; // Graceful fail   
+        return '--:--'; // $e->getMessage() ;  
+       }
+}
+
+
+function count_new_id_card_request(){
+    $history = TranscriptsImport::where('form_key', 'id_card')
+            ->latest()->first();            
+    $newRow = (empty($history)) ? 2 :  2 + $history['cum_total'];
+    try{
+        # connect to google sheet and get new records           
+        // $range = "Sheet1!A{$newRow}:A";
+        $range = "A{$newRow}:A";
+        $service = new GoogleSheetService('id_card');           
+        $counts = $service->countRows($range); 
+        return $counts;      
+     }
+    catch (Exception $e) {
+        Log::error("Google OAuth Token Error: ".$e->getMessage());
+        return '--:--'; // Graceful fail  $e->getMessage() ;
        }
 }
 
