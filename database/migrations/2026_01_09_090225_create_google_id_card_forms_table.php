@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('google_id_card_forms', function (Blueprint $table) {
             $table->id();
-            $table->datetime('request_time'); 
+            $table->string('request_time')->nullable(); 
             $table->string('request_status')->default('applied');
             $table->string('request_email'); 
             $table->string('regno');
@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('programme')->nullable();
             $table->string('faculty')->nullable();
             $table->string('department')->nullable();
-            $table->text('passport');
-            $table->text('signature');
+            $table->text('passport')->nullable();
+            $table->text('signature')->nullable();
             $table->timestamps();
         });
     }
