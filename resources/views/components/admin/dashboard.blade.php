@@ -89,7 +89,7 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/import-transcript-requests')}}" target="_blank">  Total New ID Card Requests </a> </span></p>
+              <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/id-card-requests')}}" target="_blank">  Total New ID Card Requests </a> </span></p>
             </div>
           </div>
         </div>

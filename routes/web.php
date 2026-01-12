@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DriveDownloadController;
 use App\Services\GoogleSheetService;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DownloadController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -139,10 +140,18 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         Route::post('restore-sql','DatabaseController@restoreSql');
         
         Route::post('upload-new-student-data','UsersController@import');
-         #upload-new-student-data
+        
+        Route::get('id-card-requests','UsersController@id_card_requests');
+        Route::post('sync-id-card-requests','UsersController@sync_card_requests');
+        Route::post('import-latest-id-card-requests','UsersController@import_latest_card_requests');
+       
+
+        #upload-new-student-data
     });
   });
-
+  Route::get('/downloads/passports-signatures', [DownloadController::class, 'download'])
+       ->name('downloads.bulk');
+  
   Route::get('/google/callback', [DriveDownloadController::class, 'authCallback'])->name('google.callback');
 
 /**

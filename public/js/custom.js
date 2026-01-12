@@ -15,7 +15,37 @@ $(function(){
     var tohide = $('#hide-completed-apps'); // completed requests
     if(toshow.length > 0) toggle_show_only_pg_apps(toshow); 
     if(tohide.length > 0) toggle_hide_copleted_apps(tohide); 
-   
+    
+    // on id card page 
+     $('#checkAll').on('change', function () {
+         $('.record-checkbox').prop('checked', this.checked);
+    });
+
+    $('.record-checkbox').on('change', function () {
+        $('#checkAll').prop(
+            'checked',
+            $('.record-checkbox:checked').length === $('.record-checkbox').length
+        );
+    });
+    
+    /// download passports and signature 
+
+        document.getElementById('downloadSelected').addEventListener('click', function () {
+            const selected = document.querySelectorAll('.record-checkbox:checked');
+
+            if (selected.length === 0) {
+                alert('Please select at least one record');
+                return;
+            }
+
+            const ids = Array.from(selected).map(cb => cb.value);
+
+            // Build URL with query params
+            const url = `/downloads/passports-signatures?ids=${ids.join(',')}`;
+
+            // Redirect browser
+            window.location.href = url;
+        }); 
     
 });
 
@@ -240,6 +270,79 @@ $(function(){
            });
        } // end if 
     });
+    
+    $(document).on('click','.sync_id_card_request',function(){         
+        $.ajax({
+               headers:{
+                 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')  
+               },
+               type:'post',
+               url:'/admin/sync-id-card-requests',
+               data:{status:'latest'},
+               beforeSend:function(){
+                    $('.sync_id_card_request').prop('disabled',true);
+                    $('.import_id_card_request').prop('disabled',true);
+                    $('.counts').html(spin);   $('input#counts').val(0);
+                    $('.response').html(spin + " &nbsp; Getting Updates ");
+               },
+               success:function(resp){ // alert(resp);    
+                  $('.counts').html(resp);                    
+                  $('input#counts').val(resp);
+                  $('.sync_id_card_request').prop('disabled',false);
+                  $('.import_id_card_request').prop('disabled',false);
+                  $('.response').html(check + ""+  "&nbsp; New Request(s) Found ");
+                  if(resp > 0 ){
+                      setTimeout(function(){
+                          $('.import_id_card_request').click(); 
+                      },4000);
+                  }
+               }, 
+                   error:function(jhx,textStatus,errorThrown){                         
+                    $('.sync_id_card_request').prop('disabled',false);
+                    $('.import_id_card_request').prop('disabled',false);
+                     $('.counts').html("::");  
+                    $('.response').html(warn + "&nbsp;"+ errorThrown + "&nbsp; ");
+                    checkStatus(jhx.status); 
+                   }
+           });
+    });
+    
+    // import id cards requests 
+    $(document).on('click','.import_id_card_request',function(){   
+        var maxno = $('input#counts').val();         
+        if(maxno == "" || maxno <=0 ){
+            alert("No Data To Inport, Click On Refresh ");
+             exit; 
+        } else 
+        {
+           
+        $.ajax({
+               headers:{
+                 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')  
+               },
+               type:'post',
+               url:'/admin/import-latest-id-card-requests',
+               data:{status:'latest', maxno:maxno },
+               beforeSend:function(){
+                    // $('.sync_transcript_request').prop('disabled',true);
+                    $('.import_id_card_request').prop('disabled',true);
+                    $('.response').html(spin + " &nbsp; Importing New Requests ");
+               },
+               success:function(resp){  
+                   // alert(resp);    
+                   $('.sync_id_card_request').trigger('click');
+                   $('.response').html(check + "&nbsp; Import Successful ");
+               }, 
+                   error:function(jhx,textStatus,errorThrown){  
+                    $('.import_id_card_request').prop('disabled',false);
+                    $('.response').html(warn + " "+ errorThrown + "&nbsp; ");
+                    checkStatus(jhx.status); 
+                   }
+           });
+       } // end if 
+    });
+    
+   
  
     function renamePassport(elem){     
         var $btn = elem;

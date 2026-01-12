@@ -11,6 +11,6 @@ class TranscriptsImport extends Model
     protected $fillable = [
         'rows',
         'cum_total',
-        'created_by'
+        'created_by','form_key'
         ];
 }

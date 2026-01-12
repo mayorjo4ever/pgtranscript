@@ -12,6 +12,7 @@ use App\Models\TranscriptsImport;
 use App\Models\TranscriptsRequest;
 use App\Services\GoogleSheetService;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 function greetings(){
@@ -462,4 +463,36 @@ function formatProgrammeName($programme)
         return implode("(Ph.D.) in ",$break);
     }
     
+    function excelDate($value) {
+        try {
+            if (is_numeric($value)) {
+                return Date::excelToDateTimeObject($value)->format('Y-m-d h:i:s');
+            }
+
+            return Carbon::parse($value)->format('Y-m-d');
+        } catch (Exception $e) {
+            return null;
+        }
+    }
     
+    
+    function driveDownloadLink($url)
+{
+    if (!$url) return null;
+
+    // Check /d/FILE_ID/ pattern
+    if (preg_match('/\/d\/([^\/]+)/', $url, $matches)) {
+        return 'https://drive.google.com/uc?export=download&id=' . $matches[1];
+    }
+
+    // Check ?id=FILE_ID pattern (like your open link)
+    if (preg_match('/[?&]id=([^&]+)/', $url, $matches)) {
+        return 'https://drive.google.com/uc?export=download&id=' . $matches[1];
+    }
+
+    // Otherwise, return original URL
+    return $url;
+}
+
+    
+    // $response = Http::get($link);

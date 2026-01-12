@@ -156,7 +156,8 @@ class TranscriptRequestController extends Controller
            $values = $service->read($range);
            #print "<pre>"; print_r($values); exit;
            ## calculate initial sum of records in history
-           $sum = TranscriptsImport::sum('rows');
+           $sum = TranscriptsImport::where('form_key','transcript')
+                   ->sum('rows');
            $newsum = $sum + $tofetch;
 
            ## unwanted purpose

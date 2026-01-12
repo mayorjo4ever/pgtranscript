@@ -41,7 +41,7 @@ use Illuminate\Support\Facades\Session;
                   </a>
                 </li>
                <li class="nav-item">
-                <a class="nav-link text-white @if(Session::get('page')=="users") active bg-gradient-primary @endif " href="{{url('admin/google-id-card')}}">
+                <a class="nav-link text-white @if(Session::get('tab')=="users") active bg-gradient-primary @endif " href="{{url('admin/google-id-card')}}">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="material-icons opacity-10">download</i>
                   </div>
@@ -50,11 +50,11 @@ use Illuminate\Support\Facades\Session;
               </li>
         
                 <li class="nav-item">
-                 <a class="nav-link text-white @if(Session::get('page')=="id_card") active bg-gradient-primary @endif " href="{{url('admin/google-id-card')}}">
+                 <a class="nav-link text-white @if(Session::get('tab')=="id_card_requests") active bg-gradient-primary @endif " href="{{url('admin/id-card-requests')}}">
                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                      <i class="material-icons opacity-10">badge</i>
                    </div>
-                   <span class="nav-link-text ms-1">Import ID Card Forms </span>
+                   <span class="nav-link-text ms-1">ID Card Requests </span>
                  </a>
                </li>
                
