@@ -69,7 +69,7 @@
 
     <p class="font-22">
         At the request of the above-named who was a student of this University, 
-        I forward here a copy of his academic transcript to your Institution / Establishment.
+        I hereby forward  a copy of the academic transcript to your Institution / Establishment.
         The transcript is being sent to you in absolute confidence and it should be so treated.
     </p>
 
