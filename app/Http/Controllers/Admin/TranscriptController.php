@@ -54,8 +54,8 @@ class TranscriptController extends Controller
                     ->count(); 
         $transcript_completed = ($counts > 0 ); 
         
-        print $transcript_completed; 
-        die; 
+      #  print $transcript_completed; 
+      #  die; 
         if($request->isMethod('post')):          
           #  print "<pre>";  
             # print_r();  die;
