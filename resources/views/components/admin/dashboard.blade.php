@@ -1,6 +1,7 @@
 <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        @can('view-last-imported-transcript-widget')
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
               <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
@@ -16,8 +17,9 @@
                 <p class="mb-0"> <span class="text-success text-sm "> <a href="{{url('admin/pending-transcript-requests')}}" target="_blank">  Last Imported Requests </a> </span>   </p>
             </div>
           </div>
-        </div>
+        </div> @endcan
         
+        @can('view-total-transcript-request-widget')
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
@@ -34,9 +36,9 @@
               <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/pending-transcript-requests')}}" target="_blank">  View All Requests </a> </span></p>
             </div>
           </div>
-        </div>
+        </div> @endcan
 		
-		
+	@can('view-new-transcript-request-widget')	
          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
@@ -53,8 +55,9 @@
               <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/import-transcript-requests')}}" target="_blank">  Total New Requests </a> </span></p>
             </div>
           </div>
-        </div>
-				
+        </div>@endcan
+	
+        @can('view-completed-transcript-request-widget')
         <div class="col-xl-3 col-sm-6">
           <div class="card">
             <div class="card-header p-3 pt-2">
@@ -71,12 +74,13 @@
                 <p class="mb-0"><span class="text-success text-sm"><a href="{{url('admin/send-completed-requests')}}"> All Completed Requests </a> </span> </p>
             </div>
           </div>
-        </div>
+        </div>@endcan
           
       </div>
 	 
         <div class="row mt-4">
-              <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          @can('view-id-card-request-widget') 
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
               <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
@@ -92,7 +96,8 @@
               <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/id-card-requests')}}" target="_blank">  Total New ID Card Requests </a> </span></p>
             </div>
           </div>
-        </div>
+        </div>@endcan
+        
         </div>
 	  
       <div class="row mt-4">
@@ -137,8 +142,7 @@
             </div>
           </div>
         </div>
-		
-		
+			
         <div class="col-lg-4 mt-4 mb-3">
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">

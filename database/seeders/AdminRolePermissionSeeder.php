@@ -1,0 +1,72 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
+use function app;
+
+class AdminRolePermissionSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+         // Clear cached permissions
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+
+        // =====================
+        // PERMISSIONS
+        // =====================
+        $permissions = [
+            'manage-users',
+            'manage-roles',
+            'manage-permissions', 
+            'view-last-imported-transcript-widget',
+            'view-total-transcript-request-widget',
+            'view-new-transcript-request-widget',
+            'view-completed-transcript-request-widget',                      
+            'view-id-card-request-widget',   
+            'view-transcript-request-analysis-widget',
+            'view-completed-transcript-request-analysis-widget',
+        ];
+        
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate([
+                'name' => $permission,
+                'guard_name' => 'admin',                
+            ]);
+        }        
+        
+        // =====================
+        // ROLES
+        // =====================
+        $superAdmin = Role::firstOrCreate([
+            'name' => 'super-admin',
+            'guard_name' => 'admin',
+        ]);
+        
+        $moderator1 = Role::firstOrCreate([
+            'name' => 'transcript-officer',
+            'guard_name' => 'admin',
+        ]);
+        
+        $moderator2 = Role::firstOrCreate([
+            'name' => 'transcript-operator',
+            'guard_name' => 'admin',
+        ]);
+        
+        // =====================
+        // ASSIGN PERMISSIONS
+        // =====================
+        $superAdmin->givePermissionTo(Permission::where('guard_name','admin')->get());
+
+//        $moderator1->givePermissionTo([
+//            'manage chat',
+//        ]);        
+//        
+    }
+}

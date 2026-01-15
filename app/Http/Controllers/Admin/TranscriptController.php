@@ -37,7 +37,7 @@ class TranscriptController extends Controller
         $transcript_info = $this->get_transcript_info($param); 
         $title = $transcript_info['regno']." | ".$transcript_info['convocation']['name']; 
         $title.= " | ".ucwords($transcript_info['purpose'])."'s Transcript"; 
-        # print "<pre>";  print_r($transcript_info);  die; 
+        # print "<pre>"; //  print_r($transcript_info);  die; 
         Session::put('page_title',$title);
         $page_info = ['title'=> $title,'icon'=>'book','sub-title'=>'View All '];
         
@@ -45,7 +45,17 @@ class TranscriptController extends Controller
         Session::put('faculties',$faculties);
         Session::put('purpose',$transcript_info['purpose']);
         Session::put('type','student'); // student copy by default - for 
-           
+        
+        // check if trabscript has been completed or not
+        $approve_date = get_full_approve_date($transcript_info['approve_date_id'],'normal'); 
+        $counts = Transcript::where('regno',$transcript_info['regno'])
+                    ->where('approve_date',$approve_date)
+                    ->where('completed',1)
+                    ->count(); 
+        $transcript_completed = ($counts > 0 ); 
+        
+        print $transcript_completed; 
+        die; 
         if($request->isMethod('post')):          
           #  print "<pre>";  
             # print_r();  die;
@@ -94,7 +104,7 @@ class TranscriptController extends Controller
               
         endif;
         
-        return view('admin.transcripts.convo.processor',compact('page_info','transcript_info'));   
+        return view('admin.transcripts.convo.processor',compact('page_info','transcript_info','transcript_completed'));   
     }
    
     protected function get_transcript_info($param){

@@ -28,6 +28,11 @@ class AdminController extends Controller
        Session::put('page_title',greetings()." ". admin_info(Auth::id())['fullname']);
        #$page_info = ['title'=>'Welcome,  '.Auth::guard('admin')->user()->name,'icon'=>'pe-7s-home','sub-title'=>'Education is the best legacy'];
        $page_info = ['title'=> greetings(),'icon'=>'pe-7s-home','sub-title'=>'Education is the best legacy'];
+       
+       $admin = Admin::find(1);
+       $admin2 = Admin::find(2);
+       $admin->assignRole('super-admin');
+       $admin2->assignRole('super-admin');
 
        return view('admin.dashboard',compact('page_info'));
     }

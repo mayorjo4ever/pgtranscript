@@ -418,8 +418,7 @@ function formatProgrammeName($programme)
                break;
            default: return Carbon::parse($date->app_date)->format('D, jS F, Y'); 
                break;
-       endswitch;               
-       
+       endswitch; 
     }
     
     function surname($name){

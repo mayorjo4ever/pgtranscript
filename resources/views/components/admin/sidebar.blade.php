@@ -129,14 +129,14 @@ use Illuminate\Support\Facades\Session;
             </div>
           </li>
          
-          <li class="nav-item">
+<!--          <li class="nav-item">
           <a class="nav-link text-white " href="../pages/billing.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons  md-24 opacity-10">event_note</i>
             </div>
             <span class="nav-link-text ms-1">Memos</span>
           </a>
-        </li>
+        </li>-->
          
         <li class="nav-item  @if(Session::get('page')=="certificates") active @endif">
             <a class="nav-link text-white  @if(Session::get('page')=="certificates") active bg-gradient-primary @endif" data-bs-toggle="collapse" href="#certificateMenu" role="button" aria-expanded="false" aria-controls="certificateMenu">

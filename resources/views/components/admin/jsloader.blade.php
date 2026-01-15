@@ -17,9 +17,11 @@
   <script src="{{asset('js/spin.js')}}"></script>    
   <script src="{{asset('js/ladda.js')}}"></script>    
   <script src="{{asset('js/flatpickr.min.js')}}"></script>    
+  <script src="{{asset('js/chart-widget.js')}}"></script>    
       
   
   @if(in_array(Session::get('tab'),["upload_certs_data","import_users","upload-courses"])) 
     <script src="{{asset('js/dropzone5.9.js')}}"></script>
 @endif
+
  
