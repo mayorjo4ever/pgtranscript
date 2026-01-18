@@ -145,8 +145,19 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         Route::post('sync-id-card-requests','UsersController@sync_card_requests');
         Route::post('import-latest-id-card-requests','UsersController@import_latest_card_requests');
        
+        
+        #managing roles and permission           
+         Route::group(['middleware' => ['role:super-admin']], function () {
+          Route::get('roles','RoleController@viewRoles');
+          Route::get('permissions','RoleController@viewPermissions');
+          Route::match(['get','post'],'add-edit-role/{id?}','RoleController@addEditRole');
+          Route::match(['get','post'],'add-edit-permission/{id?}','RoleController@addEditPermission');
+          Route::get('role-permission','RoleController@rolesPermission');
+          Route::post('load-permissions','RoleController@loadPermissions');
+          Route::post('change-role-permission','RoleController@changeRolePermission');
+         }); ## end middleware
 
-        #upload-new-student-data
+        
     });
   });
   Route::get('/downloads/passports-signatures', [DownloadController::class, 'download'])

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+
 use ZipArchive;
 use function abort;
 use function back;
@@ -37,7 +38,7 @@ class DatabaseController extends Controller
          return view('admin.general.database_backup',compact('page_info'));
     }
     
-    public function backup_db(Request $request){
+    public function backup_db_initial(Request $request){
          $request->validate([
            'backup_key' => 'required|string',
         ]);
@@ -76,7 +77,48 @@ class DatabaseController extends Controller
         return Storage::disk($backupDisk)->download($latestBackup);
         
     }
-    
+        
+
+public function backup_db(Request $request)
+{
+    $request->validate([
+        'backup_key' => 'required|string',
+    ]);
+
+    // Verify key
+    if (!Hash::check($request->backup_key, Hash::make(env('DB_PASSKEY')))) {
+        return back()->with('error_message', 'Invalid Backup Credentials');
+    }
+
+    set_time_limit(0);
+
+    // Run backup in background (IMPORTANT)
+    $php = PHP_BINARY;
+    $artisan = base_path('artisan');
+
+    $command = "\"$php\" \"$artisan\" backup:run --only-db > NUL 2>&1";
+
+    pclose(popen("cmd /c start /B $command", 'r'));
+
+    // Wait briefly to allow file creation
+    sleep(3);
+
+    // Get backup file
+    $disk = config('backup.backup.destination.disks')[0];
+    $backupFolder = config('backup.backup.name');
+
+    $files = collect(Storage::disk($disk)->files($backupFolder))
+        ->filter(fn ($file) => str_ends_with($file, '.zip'))
+        ->sortDesc()
+        ->values();
+
+    if ($files->isEmpty()) {
+        return back()->with('error_message', 'Backup file not found');
+    }
+
+    return Storage::disk($disk)->download($files->first());
+}
+
     
     ## restore with sql file
     public function restoreSql(Request $request){

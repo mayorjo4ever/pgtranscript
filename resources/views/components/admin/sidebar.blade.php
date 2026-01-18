@@ -21,6 +21,55 @@ use Illuminate\Support\Facades\Session;
           </a>
         </li>    
         
+        @can('view-admin-menu')
+           <li class="nav-item  @if(Session::get('page')=="staff") active @endif ">
+            <a class="nav-link text-white  @if(Session::get('page')=="staff") active bg-gradient-primary @endif" data-bs-toggle="collapse" href="#staffMenu" role="button" aria-expanded="false" aria-controls="staffMenu">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons md-24 opacity-10">group</i>
+              </div>
+              <span class="nav-link-text ms-1">Admin Staff </span>
+            </a>
+            <div class="collapse @if(Session::get('page')=="staff") show @endif" id="staffMenu">
+              <ul class="navbar-nav ms-4">
+               @can('view-admin')
+                <li class="nav-item">
+                  <a class="nav-link text-white @if(Session::get('tab')=="admin-staff") active bg-primary @endif" href="{{url('admin/staff')}}">
+                    <span class="nav-link-text ms-1">View Admin Staff</span>
+                  </a>
+                </li>
+                @endcan
+                
+                @can('create-admin')
+                <li class="nav-item">
+                  <a class="nav-link text-white @if(Session::get('tab')=="view_users") active bg-primary @endif" href="{{url('admin/students')}}">
+                    <span class="nav-link-text ms-1">All Students </span>
+                  </a>
+                </li> @endcan
+               @can('view-role')
+               <li class="nav-item">
+                <a class="nav-link text-white @if(Session::get('tab')=="users") active bg-gradient-primary @endif " href="{{url('admin/roles')}}">
+                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="material-icons opacity-10">download</i>
+                  </div>
+                  <span class="nav-link-text ms-1">Download Passports</span>
+                </a>
+              </li>@endcan
+              
+               @can('create-role')
+                <li class="nav-item">
+                 <a class="nav-link text-white @if(Session::get('tab')=="id_card_requests") active bg-gradient-primary @endif " href="{{url('admin/id-card-requests')}}">
+                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                     <i class="material-icons opacity-10">badge</i>
+                   </div>
+                   <span class="nav-link-text ms-1">ID Card Requests </span>
+                 </a>
+               </li> @endcan
+               
+              </ul>
+            </div>
+          </li>          
+       @endcan
+       
            <li class="nav-item  @if(Session::get('page')=="users") active @endif">
             <a class="nav-link text-white  @if(Session::get('page')=="users") active bg-gradient-primary @endif" data-bs-toggle="collapse" href="#usersMenu" role="button" aria-expanded="false" aria-controls="usersMenu">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">

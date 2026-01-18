@@ -48,8 +48,45 @@ $(function(){
         }); 
     
 });
-
-    
+  // login controller
+  $(function(){
+    var log_messager = $("#login-message"); log_messager.hide('fast');
+    $('#loginForm').submit(function(ev){ ev.preventDefault();
+        var l = Ladda.create(document.querySelector('.login-btn'));  
+        var formdata = $(this).serialize(); 
+          $.ajax({
+            headers:{
+              'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')  
+            },
+            type:'post',
+            url:'/portal/login',
+            data:formdata,
+            beforeSend :function(){ $(document).find('span.error-text').text(''); log_messager.hide('fast'); l.start(); $("span.message").text(''); ; } , 
+            success:function(resp){ l.stop(); 
+              if(resp.type==="success"){
+                  // log_messager.show('fast'); 
+                  // log_messager.removeClass('alert-danger').addClass('alert-success');
+                   // $("span.message").text(resp.message);
+                  showpop(resp.message);
+                   window.location.href = resp.url; 
+              }
+              else if(resp.type==="incorrect" || resp.type==="inactive"){
+                  //log_messager.show('fast'); 
+                  //log_messager.removeClass('alert-success').addClass('alert-danger');
+                  // $("span.message").text(resp.message);
+                  showpop(resp.message,'error');
+              }
+              else if(resp.type==="error"){
+                  $.each(resp.errors,function(prefix,val){
+                       $('span.admin_'+prefix+'_error').text(val[0]);
+                  });
+              }              
+            }, 
+            error:function(jhx,textStatus,errorThrown){ l.stop(); 
+                alert(""+textStatus+' - '+errorThrown);}
+            });
+        });
+       });
     
  function initDatePicker(){
 

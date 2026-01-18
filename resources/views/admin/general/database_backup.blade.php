@@ -27,7 +27,7 @@
                                         <span>Restore </span></label>      
                                        </div>
                                    </div>
-                                 <p>&nbsp;</p>
+                                 <!--<p>&nbsp;</p>-->
                                  
                                  <div class="backup-div">
                                      <form method="post" action="{{url('admin/backup-db')}}">@csrf
@@ -57,18 +57,8 @@
                                  </div>
                              </div><!-- ./ col-md-6  -->
                              
-                         </div>
+                         </div> 
                           
-                         
-                                   
-                                
-                         
-                         <form action="{{ url('admin/google-id-card-upload') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                              
-                             </div>
-                        </form>
                     </x-admin.card>
                     
                     

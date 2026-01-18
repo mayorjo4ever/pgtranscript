@@ -34,18 +34,28 @@ class LoginController extends Controller
 
     public function login(Request $request) {
         // confirm if admin has already logged in
-        if(Auth::guard('admin')->check()){
-            return redirect('admin/dashboard');
-        }
+//        if(Auth::guard('admin')->check()){
+//            return redirect('admin/dashboard');
+//        }
 //        else if(Auth::guard('student')->check()){
 //            return redirect('student/dashboard');
 //        }
 
-        if($request->isMethod('post')){   # if($request->ajax()){
-            $data = $request->all();
-           // print_r($data); die;
+        # if($request->isMethod('post')){   
+         if($request->ajax()):
+              $data = $request->all();      #print_r($data); die;
+               if(Auth::guard('admin')->attempt([$this->username=>$data['username'],'password'=>$data['password']])){
+                    $redirectTo = url('/admin/dashboard');
+                    return response()->json(['type'=>'success','url'=>$redirectTo,'message'=>"Login successful - redirecting..."]);
+               }
+                else {
+                     Auth::guard('admin')->logout(); # $request->session()->invalidate();
+                     return response()->json(['type'=>'incorrect','message'=>"Invalid login parameters"]);
+               }            
+         endif;
+           
 
-           $rules = ['username' => 'required|max:100', 'password' => 'required'];
+           /** $rules = ['username' => 'required|max:100', 'password' => 'required'];
            $customMessage = ['username.required'  => 'Enter Valid Username or eMail',
             'password.required' => 'Enter Valid Password'];
            $validator = Validator::make($data, $rules,$customMessage);
@@ -72,8 +82,9 @@ class LoginController extends Controller
             }
          }
 
-         Admin::where('regno','s6068')->update(['password'=>Hash::make("123456")]);
-
+         Admin::where('regno','s60168')->update(['password'=>Hash::make("123456")]);
+            * **/
+            
         return view('admin.login');
     }
 

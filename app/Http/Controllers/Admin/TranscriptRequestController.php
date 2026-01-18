@@ -130,7 +130,8 @@ class TranscriptRequestController extends Controller
 
     public function sync_requests(Request $request){
         if ($request->ajax()) {
-        $history = TranscriptsImport::latest()->first();
+        $history = TranscriptsImport::where('form_key','transcript')
+                   ->latest()->first();
         $newRow = empty($history) ? 2 : 2 + $history->cum_total;
         # connect to google sheet and get new records           
         // $range = "Sheet1!A{$newRow}:A";
@@ -144,7 +145,8 @@ class TranscriptRequestController extends Controller
     ###################
      public function import_latest_requests(Request $request){
        if($request->ajax()){  $data = $request->all();
-           $history = TranscriptsImport::latest()->first();
+           $history = TranscriptsImport::where('form_key','transcript')
+                   ->latest()->first();
            $newRow = (empty($history)) ? 2 : 2 + $history['cum_total'];
 
            $tofetch = ($data['maxno'] <= 30) ? $data['maxno'] : 30;
