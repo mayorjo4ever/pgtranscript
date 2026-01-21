@@ -74,12 +74,18 @@ function count_total_transcript_request(){
 
 function count_total_completed_request(){          
     $counts = TranscriptsRequest::where('request_status','treated')->count();
-    return $counts;
+    return $counts ?? 0;
 }
 
 function last_imported_transcript_request(){          
-    $counts = TranscriptsImport::latest()->first();;
-    return $counts->rows;
+       try{ 
+           $counts = TranscriptsImport::latest()->first();;
+    return $counts->rows; 
+       }
+        catch (Exception $e) {
+        Log::error("Google OAuth Token Error: ".$e->getMessage());
+        return '--:--'; // Graceful fail  $e->getMessage() ;
+       }
 }
 
  function get_current_approve_date(){
@@ -475,23 +481,28 @@ function formatProgrammeName($programme)
     }
     
     
-    function driveDownloadLink($url)
-{
+    function driveDownloadLink($url){
     if (!$url) return null;
 
-    // Check /d/FILE_ID/ pattern
-    if (preg_match('/\/d\/([^\/]+)/', $url, $matches)) {
-        return 'https://drive.google.com/uc?export=download&id=' . $matches[1];
-    }
+        $url = trim($url);
 
-    // Check ?id=FILE_ID pattern (like your open link)
-    if (preg_match('/[?&]id=([^&]+)/', $url, $matches)) {
-        return 'https://drive.google.com/uc?export=download&id=' . $matches[1];
-    }
+        // Already normalized
+        if (str_contains($url, 'uc?export=download')) {
+            return $url;
+        }
 
-    // Otherwise, return original URL
-    return $url;
-}
+        // open?id=FILE_ID
+        if (preg_match('/open\\?id=([a-zA-Z0-9_-]+)/', $url, $m)) {
+            return "https://drive.google.com/uc?export=download&id={$m[1]}";
+        }
+
+        // file/d/FILE_ID/view
+        if (preg_match('/file\\/d\\/([a-zA-Z0-9_-]+)/', $url, $m)) {
+            return "https://drive.google.com/uc?export=download&id={$m[1]}";
+        }
+
+        return $url;
+    }
 
     
     // $response = Http::get($link);

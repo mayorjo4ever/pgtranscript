@@ -7,7 +7,7 @@
      
         <div class="row">
              <div class="col-md-5" style="border-radius:20px; min-height:500px;  background:url({{asset('img/unilorin.jpg')}}); background-repeat: no-repeat; background-size:100% 120%;"> </div>          
-            <div class="col-lg-4 col-md-8 col-12 mx-auto">
+            <div class="col-lg-5 col-md-8 col-12 mx-auto">
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-info shadow-info border-radius-lg py-3 pe-1">
@@ -39,6 +39,8 @@
                       <a href="{{url('portal/login')}}" class="text-primary text-gradient font-weight-bold">Login Here </a>
                   </p>
                 </form>
+               <center><small><em>Powered By : {{env('AUTHOR_NAME')}} </em></small></center>
+
               </div>
             </div>
           </div>

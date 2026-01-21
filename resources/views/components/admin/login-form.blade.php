@@ -53,7 +53,7 @@
                         <a href="https://login.remita.net/remita/onepage/2757205950/service.spa" class="font-weight-bold text-white btn btn-sm btn-info align-items-center" target="_blank">Pay for Transcript </a>
                      </center>
                  </div>
-                    
+                     <center><small><em>Powered By : {{env('AUTHOR_NAME')}} </em></small></center>
                  </div>
               </div>
             </div>

@@ -135,15 +135,140 @@ class TranscriptRequestController extends Controller
         $newRow = empty($history) ? 2 : 2 + $history->cum_total;
         # connect to google sheet and get new records           
         // $range = "Sheet1!A{$newRow}:A";
-        $range = "A{$newRow}:A";
+        $range = "A{$newRow}:A"; 
         $service = new GoogleSheetService('transcript');           
         $counts = $service->countRows($range); 
+        
         return $counts;         
         }  
     }
 
     ###################
-     public function import_latest_requests(Request $request){
+    public function import_latest_requests(Request $request){
+    if (!$request->ajax()) {
+        abort(403);
+    }
+
+    ini_set('max_execution_time', 0);
+    set_time_limit(0);
+
+    $maxFetch = min((int) $request->maxno, 200);
+
+    $import = TranscriptsImport::firstOrCreate(
+        ['form_key' => 'transcript'],
+        ['last_row' => 1, 'cum_total' => 0]
+    );
+
+    $startRow = $import->last_row + 1;
+    $endRow   = $startRow + $maxFetch - 1;
+    $range    = "A{$startRow}:AD{$endRow}";
+
+    $service = new GoogleSheetService('transcript');
+    $values  = $service->read($range);
+
+    if (empty($values)) {
+        return response()->json([
+            'status' => 'done',
+            'message' => 'No more records to import'
+        ]);
+    }
+        ## unwanted purpose
+        $unwanted_op = "(to be sent directly to an institution/establishment )";
+        $unwanted_sp = "(personal copy)";
+
+    DB::beginTransaction();
+
+    try {
+        $imported = 0;
+        $lastImportedRow = $import->last_row;
+        $rowPointer = $startRow;
+
+        foreach ($values as $row) {
+
+            if (empty(array_filter($row))) {
+                $rowPointer++;
+                continue;
+            }
+
+            $formResponseId = sha1(
+                trim(($row[0] ?? '')) . '|' .
+                trim(($row[2] ?? '')) . '|' .
+                trim(($row[4] ?? ''))
+            );
+            $row13 = str_replace($unwanted_op,"",$row[13]??"");
+            $row13 = str_replace($unwanted_sp,"",$row13);
+               
+            // ⛔ skip if already imported
+            if (TranscriptsRequest::where('form_response_id', $formResponseId)->exists()) {
+                $rowPointer++;
+                continue;
+            }
+
+            TranscriptsRequest::create([
+                'form_response_id' => $formResponseId,
+                'request_time' => $row[0],
+                'request_email' => $row[2],
+                'applicant_email' => $row[3] ?? "",
+                'regno' => $row[4] ?? "",
+                'surname' => $row[5] ?? "",
+                'middle_name' => $row[6] ?? "",
+                'year_of_entry' => $row[7] ?? "",
+                'year_of_graduation' => $row[8] ?? "",
+                'degree_awarded' => $row[9] ?? "",
+                'faculty' => $row[10] ?? "",
+                'department' => $row[11] ?? "",
+                'request_type' => $row[12] ?? "",
+                 'request_purpose' =>$row13 ??"",
+                'reference_number' => $row[14] ?? "",
+                'destination_address' => $row[15] ?? "",
+                'rrr' => str_replace("-", "", $row[16] ?? ""),
+                'mode_of_postage' => $row[17] ?? "",
+                'applicant_phone' => $row[18] ?? "",
+                'courier_agent' => $row[19] ?? "",
+                'receiving_body_email' => $row[20] ?? "",
+                'obtained_transcript_before' => $row[21] ?? "",
+                'date_obtained' => $row[22] ?? "",
+                'certificate_url' => $row[23] ?? "",
+                'rrr_receipt_url' => $row[24] ?? "",
+                'courier_receipt_url' => $row[25] ?? "",
+                'pgschool_receipt_url' => $row[26] ?? "",
+                'applicant_dob' => $row[28] ?? "",
+                'applicant_dob_cert' => $row[29] ?? "",
+            ]);
+
+            $imported++;
+            $lastImportedRow = $rowPointer;
+            $rowPointer++;
+        }
+
+        if ($imported > 0) {
+            $import->update([
+                'last_row' => $lastImportedRow,
+                'cum_total' => $import->cum_total + $imported,
+            ]);
+        }
+
+        DB::commit();
+
+        return response()->json([
+            'status' => 'success',
+            'imported' => $imported,
+            'next_start_row' => $lastImportedRow + 1
+        ]);
+
+    } catch (\Throwable $e) {
+        DB::rollBack();
+
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage()
+        ], 500);
+    }
+}
+
+
+    ###################
+     public function import_latest_requests_review(Request $request){
        if($request->ajax()){  $data = $request->all();
            $history = TranscriptsImport::where('form_key','transcript')
                    ->latest()->first();
@@ -156,7 +281,7 @@ class TranscriptRequestController extends Controller
            $service = new GoogleSheetService('transcript');           
            #$counts = $service->countRows($range); 
            $values = $service->read($range);
-           #print "<pre>"; print_r($values); exit;
+           
            ## calculate initial sum of records in history
            $sum = TranscriptsImport::where('form_key','transcript')
                    ->sum('rows');
@@ -198,12 +323,12 @@ class TranscriptRequestController extends Controller
                 'receiving_body_email' => $row[20]??"",
                 'obtained_transcript_before' => $row[21]??"",
                 'date_obtained' => $row[22]??"",
-                'certificate_url' => $row[23]??"",
-                'rrr_receipt_url' => $row[24]??"",
-                'courier_receipt_url' => $row[25]??"",
-                'pgschool_receipt_url' => $row[26]??"",
+                'certificate_url' => driveDownloadLink($row[23])??"",
+                'rrr_receipt_url' => driveDownloadLink($row[24])??"",
+                'courier_receipt_url' => driveDownloadLink($row[25])??"",
+                'pgschool_receipt_url' => driveDownloadLink($row[26])??"",
                 'applicant_dob' => $row[28]??"",
-                'applicant_dob_cert' => $row[29]??"",
+                'applicant_dob_cert' => driveDownloadLink($row[29])??"",
                 ]);   
               endforeach;
 

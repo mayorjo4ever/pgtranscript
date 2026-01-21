@@ -9,7 +9,7 @@ class TranscriptsImport extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'rows',
+        'rows','last_row',
         'cum_total',
         'created_by','form_key'
         ];

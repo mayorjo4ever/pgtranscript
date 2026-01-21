@@ -9,7 +9,7 @@ class TranscriptsRequest extends Model
 {
     use HasFactory;
     
-    protected $fillable = [
+    protected $fillable = ['form_response_id',
         'request_time', 'request_email',
         'applicant_email', 'regno',
         'surname','middle_name',

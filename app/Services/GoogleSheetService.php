@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Services;
-# use Google\Auth\HttpHandler\Guzzle6HttpHandler;
+use Google\Auth\HttpHandler\Guzzle6HttpHandler;
 
 
 use Exception;
@@ -39,7 +39,7 @@ class GoogleSheetService
         $fullRange = $range
             ? "{$this->sheetName}!{$range}"
             : "{$this->sheetName}!A2:Z";
-
+         #   print $fullRange; die; 
         $response = $this->service
             ->spreadsheets_values
             ->get($this->spreadsheetId, $fullRange);

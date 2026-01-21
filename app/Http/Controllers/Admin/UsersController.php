@@ -79,7 +79,7 @@ class UsersController extends Controller
         $newRow = empty($history) ? 2 : 2 + $history->cum_total;
         # connect to google sheet and get new records           
         // $range = "Sheet1!A{$newRow}:A";
-        $range = "A{$newRow}:A";
+         $range = "A{$newRow}:A";   die; 
         $service = new GoogleSheetService('id_card');           
         $counts = $service->countRows($range); 
         return $counts;         
@@ -94,12 +94,12 @@ class UsersController extends Controller
 
            $tofetch = ($data['maxno'] <= 50) ? $data['maxno'] : 50;
            $lastRow = $tofetch + $newRow - 1;
-           $range = "A{$newRow}:M";
+          $range = "A{$newRow}:M";  
            # connect to google sheet and get new records
            $service = new GoogleSheetService('id_card');           
            #$counts = $service->countRows($range); 
            $values = $service->read($range);
-          // print "<pre>"; print_r($values); exit;
+           print "<pre>"; print_r($values); exit;
            ## calculate initial sum of records in history
            $sum = TranscriptsImport::where('form_key','id_card')
                    ->sum('rows');
