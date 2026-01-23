@@ -123,7 +123,8 @@ use Illuminate\Support\Facades\Session;
                 
                 <li class="nav-item">
                   <a class="nav-link text-white @if(Session::get('tab')=="import") active bg-primary @endif" href="{{url('admin/import-transcript-requests')}}">
-                    <span class="nav-link-text ms-1">Import New Requests</span>
+                    <span class="nav-link-text ms-1">Import New Requests</span>&nbsp;&nbsp;
+                    <i class="material-icons md-24 opacity-10">download</i>
                   </a>
                 </li>
                 
@@ -135,8 +136,23 @@ use Illuminate\Support\Facades\Session;
                 </li>
                 
                 <li class="nav-item">
-                  <a class="nav-link text-white @if(Session::get('tab')=="pending") active bg-primary @endif" href="{{url('admin/pending-transcript-requests')}}">
-                    <span class="nav-link-text ms-1">Transcript Requests</span>
+                  <a class="nav-link text-white @if(Session::get('tab')=="pending-transcript") active bg-primary @endif" href="{{url('admin/pending-transcript-requests')}}">
+                    <span class="nav-link-text ms-1">New Requests</span>&nbsp;&nbsp;
+                    <i class="material-icons md-24 opacity-10">download</i>
+                  </a>
+                </li> 
+                
+                 <li class="nav-item">
+                  <a class="nav-link text-white @if(Session::get('tab')=="completed-transcript") active bg-primary @endif" href="{{url('admin/completed-transcript-requests')}}">
+                    <span class="nav-link-text ms-1">Completed Requests</span>&nbsp;&nbsp;
+                    <i class="material-icons md-24 opacity-10">check</i>
+                  </a>
+                </li> 
+                
+                <li class="nav-item">
+                  <a class="nav-link text-white @if(Session::get('tab')=="sent-transcript") active bg-primary @endif" href="{{url('admin/sent-transcript-requests')}}">
+                    <span class="nav-link-text ms-1">Sent Requests</span>&nbsp;&nbsp;
+                    <i class="material-icons md-24 opacity-10">send</i>
                   </a>
                 </li> 
                 

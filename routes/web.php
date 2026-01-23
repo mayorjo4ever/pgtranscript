@@ -40,6 +40,7 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         Route::match(['get','post'],'pending-transcript-requests','TranscriptRequestController@pending_requests');        
         Route::match(['get','post'],'process-transcript-requests/{param}','TranscriptRequestController@process_requests');        
         Route::match(['get','post'],'completed-transcript-requests','TranscriptRequestController@completed_requests');
+        Route::match(['get','post'],'sent-transcript-requests','TranscriptRequestController@completed_requests');
         Route::match(['get','post'],'transcripts','TranscriptRequestController@completed_requests');
         Route::post('search-my-transcript','TranscriptRequestController@search_transcript');
         Route::post('search-my-phd-transcript','TranscriptRequestController@search_phd_transcript');

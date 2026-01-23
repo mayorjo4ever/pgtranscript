@@ -48,50 +48,40 @@
                   <tbody>                     
                   @foreach($completeds as $completed)
                   <tr id="{{$completed['id']}}" data-body="{{$completed['bodies']}}" class="{{($completed['bodies']=="undergraduate")?"table-danger":""}}  {{($completed['request_status']=="Sent")?"table-success":""}} {{($completed['request_status']=="Duplicate")?"table-warning":""}} {{($completed['request_status']=="No-Payment")?"table-danger":""}} m-4 ">
-                        <td class="align-middle text-center"> {{ $loop->iteration + ($completeds->currentPage() - 1) * $completeds->perPage() }}
-                        &nbsp; &nbsp; 
-                        <!-- indicate maybe it's been sent or not -->
-                        <div class="form-check form-switch d-flex align-items-center mb-3" title="Has It Been Sent ?">
-                             <input onchange="update_transcript_request_body($(this))" class="form-check-input" type="checkbox" id="transcript-body-{{$completed['id']}}" @if($completed['bodies']=='postgraduate') checked @endif >
-                            <label class="form-check-label mb-0 ms-3" for="transcript-body-{{$completed['id']}}"></label>
-                          </div>
-                        </td>
+                        <td class="align-middle text-center"> {{ $loop->iteration + ($completeds->currentPage() - 1) * $completeds->perPage() }}</td>
                       <td>
                         <div class="d-flex px-2 py-1">                        
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="mb-0 text-sm"><strong class="text-lg">{{$completed['surname']." ".$completed['middle_name']}} </strong></h6>
                             <p class="text-xs text-dark mb-0">{{$completed['applicant_email']}} <br/> <strong class="text-lg">{{$completed['regno']}} </strong> 
                                 <br/> Request Time:  {{ \Carbon\Carbon::parse($completed['request_time'])->diffForHumans() ?? " --:--"}}  &nbsp; | &nbsp; {{$completed['request_time']}}
-                                <br/>Last Updates :{{ \Carbon\Carbon::parse($completed['updated_at'])->diffForHumans() ?? " --:--"}}&nbsp; | &nbsp; {{$completed['updated_at']}}                                  
+                                <br/>Last Updates :{{ \Carbon\Carbon::parse($completed['updated_at'])->diffForHumans() ?? " --:--"}}&nbsp; | &nbsp; {{$completed['updated_at']}}                               
+                                <br/> By : 
                             </p>
                           </div>
                         </div>
-<!--                          
+                          
                           <div class="progress-wrapper">
                                 <span class="fa fa-spinner fa-spin"></span>
                                 <div class="progress"  style="height:15px">
                                     <div class="progress-bar" style="width:{{$completed['progression']}}%;  height:100%;"></div>
                                 </div>
                                 <span class="progress-text font-weight-bold">{{$completed['progression']}}%</span>
-                            </div>-->
+                            </div>
                       </td>
                                             
                       <td>
                         <p class="text-md font-weight-bold mb-0">{{$completed['request_purpose']}} - {{$completed['request_type']}}</p>                       
-                        <span class="text-secondary text-xs font-weight-bold"> {{$completed->degree_awarded}} </span><br/>     
-                         @if(!empty($completed->printout))
-                          <?php $url = $completed->printout->regno."|".$completed->printout->approve_date ??'';
-                          $url .= "|".$completed->printout->id; ?>
-                         {{-- $completed->printout->id."|".$completed->printout->regno."|".$completed->printout->approve_date ??''--}}
-                             <a href="{{url('admin/print-transcript/'.base64_encode($url))}}" target="_blank" class="btn {{ ($completed->printout->print_count >0)?"btn-light":"btn-primary"}} "> PRINT {{ $completed->printout->type.' Transcript ' }}   [ {{ $completed->printout->print_count }} ]</a>
-                          @endif
-                          
-                           @if(!empty($completed->cover_letter))  
-                           <br/>
-                            <?php $memo_url = base64_encode($completed->cover_letter->regno."|".$completed->cover_letter->id); ?>
-                             &nbsp; &nbsp; <a href="{{url('admin/print-memo/'.$memo_url)}}" target="_blank" class="btn {{ ($completed->cover_letter->print_count >0)?"btn-light":"btn-primary"}} "> PRINT Covering  Memo  [ {{ $completed->cover_letter->print_count }} ]</a>
-                           @endif
-
+                        <span class="text-secondary text-xs font-weight-bold"> {{$completed->degree_awarded}} </span><br/>                        
+                          <?php $url = "";  #base64_encode($completed->regno."|".$completed->printout->approve_date ??''."|".$completed->printout->id);?>
+                             <a href="{{url('admin/print-transcript/'.$url)}}" target="_blank" class="btn btn-primary "> PRINT {{ $completed->printout->type.' Transcript ' }}   [ {{ $completed->printout->print_count }} ]</a>
+           
+                      
+                        <!-- indicate maybe it's PG or underG-->
+                         <div class="form-check form-switch d-flex align-items-center mb-3">
+                             <input onchange="update_transcript_request_body($(this))" class="form-check-input" type="checkbox" id="transcript-body-{{$completed['id']}}" @if($completed['bodies']=='postgraduate') checked @endif >
+                            <label class="form-check-label mb-0 ms-3" for="transcript-body-{{$completed['id']}}">PG TRANSCRIPT </label>
+                          </div>
                       </td>
                       
                       <td class="align-middle text-sm-right text-sm">

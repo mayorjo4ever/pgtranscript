@@ -163,7 +163,28 @@
             </div>
           </div>
         </div>
+          
+          
+        <div class="col-lg-4 mt-4 mb-3">
+          <div class="card z-index-2 ">
+           
+            <div class="card-body">
+              
+             <!--{ 
+             !!
+             -->
+             <!--QrCode::size(250)->generate('https://forms.gle/qJrfVveHx8mncUrk6')-->
+             <!--
+             !!
+             } 
+             -->
+
+          </div>
+        </div>
       </div>
+      
+    </div> 
+  </div> 
     
 <!--    <div class="row mb-4">
         <div class="col-lg-4">
@@ -593,5 +614,4 @@
         </div>
       </footer>
 	  
-	  
-    </div> 
+	

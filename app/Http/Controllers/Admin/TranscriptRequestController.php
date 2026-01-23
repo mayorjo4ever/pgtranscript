@@ -51,7 +51,7 @@ class TranscriptRequestController extends Controller
     }
 
       public function pending_requests(Request $request,$param = null){
-        Session::put('page','transcripts');  Session::put('tab','pending');
+        Session::put('page','transcripts');  Session::put('tab','pending-transcript');
         Session::put('page_title','Pending Transcript Requests');
 
        $page_info = ['title'=> "Transcript Requests",'icon'=>'pe-7s-person_add','sub-title'=>'Education is the best legacy'];       
@@ -71,6 +71,43 @@ class TranscriptRequestController extends Controller
         
        return view('admin.transcripts.pending',compact('page_info','pendings'));
     }
+    
+    
+    public function completed_requests(Request $request){
+        Session::put('page','transcripts');  Session::put('tab','completed-transcript');
+        Session::put('page_title','Completed Transcript Requests');
+
+        $page_info = ['title'=> "Transcript Requests",'icon'=>'pe-7s-person_add','sub-title'=>'Request That Have Been Completed and Ready To Be Sent'];
+        $completeds = TranscriptsRequest::with('printout','cover_letter')
+                ->where('request_status','Treated')
+                ->orderBy('updated_at','desc')
+                ->paginate(50);
+    // print "<pre>"; print_r($completeds->toarray()); die; 
+       if($request->isMethod('post')){
+           // print "<pre>"; print_r($request->all()); die;           
+           $param = $request->input('search'); 
+           Session::put('transcript_search',$param);
+           $completeds = TranscriptsRequest::where('request_status','Treated')
+                    ->where(DB::raw("CONCAT_WS(' ', surname, middle_name)"), 'LIKE', "%{$param}%")
+                    ->orWhere('regno', 'LIKE', "%{$param}%")                   
+                    ->orWhere('rrr', 'LIKE', "%{$param}%")
+                    ->orWhere('applicant_email', 'LIKE', "%{$param}%")
+                    ->paginate(50); 
+       }
+        
+       return view('admin.transcripts.completed',compact('page_info','completeds'));
+    }
+    
+    
+    public function sent_requests(Request $request){
+        Session::put('page','transcripts');  Session::put('tab','completed-transcript');
+        Session::put('page_title','Completed Transcript Requests');
+
+        $page_info = ['title'=> "Transcript Requests",'icon'=>'pe-7s-person_add','sub-title'=>'Education is the best legacy'];
+
+       return view('admin.transcripts.sents',compact('page_info'));
+    }
+
     
     public function process_requests($param){
         [$id,$regno] = explode("|",base64_decode($param)); 
@@ -119,15 +156,6 @@ class TranscriptRequestController extends Controller
         
     }
     
-    public function completed_requests(Request $request){
-        Session::put('page','transcripts');  Session::put('tab','completed');
-        Session::put('page_title','Completed Transcript Requests');
-
-        $page_info = ['title'=> "Transcript Requests",'icon'=>'pe-7s-person_add','sub-title'=>'Education is the best legacy'];
-
-       return view('admin.transcripts.completed',compact('page_info'));
-    }
-
     public function sync_requests(Request $request){
         if ($request->ajax()) {
         $history = TranscriptsImport::where('form_key','transcript')
