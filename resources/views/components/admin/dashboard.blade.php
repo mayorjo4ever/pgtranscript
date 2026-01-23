@@ -170,14 +170,7 @@
            
             <div class="card-body">
               
-             <!--{ 
-             !!
-             -->
-             <!--QrCode::size(250)->generate('https://forms.gle/qJrfVveHx8mncUrk6')-->
-             <!--
-             !!
-             } 
-             -->
+          
 
           </div>
         </div>
