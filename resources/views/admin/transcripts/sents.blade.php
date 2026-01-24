@@ -10,10 +10,10 @@
        
  <div class="row">
         <div class="col-12">
-            <x-admin.card header="Completed Transcript Requests">
+            <x-admin.card header="Sent Transcript Requests">
                  <div class="row mb-4 mt-0"> 
                     <div class="col-md-7">
-                        <form method="post" action="{{url('admin/completed-transcript-requests')}}">@csrf
+                        <form method="post" action="{{url('admin/sent-transcript-requests')}}">@csrf
                         <div class="input-group p-3 pt-0  m-3 mt-0">
                             <input type="text" name="search" class="form-control-lg  p-3 font-weight-bold w-75 col-md-4"  value="{{Session::get('transcript_search')}}" style="font-size:1.2rem" placeholder="Search Student Matric / Name " />
                             <button type="submit" class="btn btn-lg btn-info p-3">Search &nbsp; </button>
@@ -21,15 +21,15 @@
                         </form>    
                     </div>  
                      <div class="col-md-4 ">
-                         <div class="form-check form-switch d-flex align-items-center mb-3 mt-3">
+<!--                         <div class="form-check form-switch d-flex align-items-center mb-3 mt-3">
                              <input onchange="toggle_show_only_pg_apps($(this))" class="form-check-input" type="checkbox" id="show-only-pg-apps" checked >
                             <label class="form-check-label mb-0 ms-3 font-weight-bold" for="show-only-pg-apps">SHOW ONLY PG REQUESTS</label>
-                          </div>
+                          </div>-->
                          
-                         <div class="form-check form-switch d-flex align-items-center mb-3 mt-3">
+<!--                         <div class="form-check form-switch d-flex align-items-center mb-3 mt-3">
                              <input onchange="toggle_hide_copleted_apps($(this))" class="form-check-input" type="checkbox" id="hide-completed-apps" checked >
                             <label class="form-check-label mb-0 ms-3 font-weight-bold" for="hide-completed-apps">HIDE COMPLETED REQUESTS</label>
-                          </div>
+                          </div>-->
                      </div>
                      
                    </div>
@@ -46,49 +46,54 @@
                     </tr>
                   </thead>
                   <tbody>                     
-                  @foreach($completeds as $completed)
-                  <tr id="{{$completed['id']}}" data-body="{{$completed['bodies']}}" class="{{($completed['bodies']=="undergraduate")?"table-danger":""}}  {{($completed['request_status']=="Sent")?"table-success":""}} {{($completed['request_status']=="Duplicate")?"table-warning":""}} {{($completed['request_status']=="No-Payment")?"table-danger":""}} m-4 ">
-                        <td class="align-middle text-center"> {{ $loop->iteration + ($completeds->currentPage() - 1) * $completeds->perPage() }}</td>
+                  @foreach($sents as $sent)
+                  <tr id="{{$sent['id']}}" data-body="{{$sent['bodies']}}" class="{{($sent['bodies']=="undergraduate")?"table-danger":""}}  {{($sent['request_status']=="Sent")?"table-success":""}} {{($sent['request_status']=="Duplicate")?"table-warning":""}} {{($sent['request_status']=="No-Payment")?"table-danger":""}} m-4 ">
+                        <td class="align-middle text-center"> {{ $loop->iteration + ($sents->currentPage() - 1) * $sents->perPage() }}</td>
                       <td>
                         <div class="d-flex px-2 py-1">                        
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><strong class="text-lg">{{$completed['surname']." ".$completed['middle_name']}} </strong></h6>
-                            <p class="text-xs text-dark mb-0">{{$completed['applicant_email']}} <br/> <strong class="text-lg">{{$completed['regno']}} </strong> 
-                                <br/> Request Time:  {{ \Carbon\Carbon::parse($completed['request_time'])->diffForHumans() ?? " --:--"}}  &nbsp; | &nbsp; {{$completed['request_time']}}
-                                <br/>Last Updates :{{ \Carbon\Carbon::parse($completed['updated_at'])->diffForHumans() ?? " --:--"}}&nbsp; | &nbsp; {{$completed['updated_at']}}                               
+                            <h6 class="mb-0 text-sm"><strong class="text-lg">{{$sent['surname']." ".$sent['middle_name']}} </strong></h6>
+                            <p class="text-xs text-dark mb-0">{{$sent['applicant_email']}} <br/> <strong class="text-lg">{{$sent['regno']}} </strong> 
+                                <br/> Request Time:  {{ \Carbon\Carbon::parse($sent['request_time'])->diffForHumans() ?? " --:--"}}  &nbsp; | &nbsp; {{$sent['request_time']}}
+                                <br/>Last Updates :{{ \Carbon\Carbon::parse($sent['updated_at'])->diffForHumans() ?? " --:--"}}&nbsp; | &nbsp; {{$sent['updated_at']}}                               
                                 <br/> By : 
                             </p>
                           </div>
                         </div>
                           
-                          <div class="progress-wrapper">
+<!--                          <div class="progress-wrapper">
                                 <span class="fa fa-spinner fa-spin"></span>
                                 <div class="progress"  style="height:15px">
-                                    <div class="progress-bar" style="width:{{$completed['progression']}}%;  height:100%;"></div>
+                                    <div class="progress-bar" style="width:{{$sent['progression']}}%;  height:100%;"></div>
                                 </div>
-                                <span class="progress-text font-weight-bold">{{$completed['progression']}}%</span>
-                            </div>
+                                <span class="progress-text font-weight-bold">{{$sent['progression']}}%</span>
+                            </div>-->
                       </td>
                                             
+                                            
                       <td>
-                        <p class="text-md font-weight-bold mb-0">{{$completed['request_purpose']}} - {{$completed['request_type']}}</p>                       
-                        <span class="text-secondary text-xs font-weight-bold"> {{$completed->degree_awarded}} </span><br/>                        
-                          <?php $url = "";  #base64_encode($completed->regno."|".$completed->printout->approve_date ??''."|".$completed->printout->id);?>
-                             <a href="{{url('admin/print-transcript/'.$url)}}" target="_blank" class="btn btn-primary "> PRINT {{ $completed->printout->type.' Transcript ' }}   [ {{ $completed->printout->print_count }} ]</a>
-           
-                      
-                        <!-- indicate maybe it's PG or underG-->
-                         <div class="form-check form-switch d-flex align-items-center mb-3">
-                             <input onchange="update_transcript_request_body($(this))" class="form-check-input" type="checkbox" id="transcript-body-{{$completed['id']}}" @if($completed['bodies']=='postgraduate') checked @endif >
-                            <label class="form-check-label mb-0 ms-3" for="transcript-body-{{$completed['id']}}">PG TRANSCRIPT </label>
-                          </div>
+                        <p class="text-md font-weight-bold mb-0">{{$sent['request_purpose']}} - {{$sent['request_type']}}</p>                       
+                        <span class="text-secondary text-xs font-weight-bold"> {{$sent->degree_awarded}} </span><br/>     
+                         @if(!empty($sent->printout))
+                          <?php $url = $sent->printout->regno."|".$sent->printout->approve_date ??'';
+                          $url .= "|".$sent->printout->id; ?>
+                         {{-- $sent->printout->id."|".$sent->printout->regno."|".$sent->printout->approve_date ??''--}}
+                             <a href="{{url('admin/print-transcript/'.base64_encode($url))}}" target="_blank" class="btn {{ ($sent->printout->print_count >0)?"btn-light":"btn-primary"}} "> PRINT {{ $sent->printout->type.' Transcript ' }}   [ {{ $sent->printout->print_count }} ]</a>
+                          @endif
+                          
+                           @if(!empty($sent->cover_letter))  
+                           <br/>
+                            <?php $memo_url = base64_encode($sent->cover_letter->regno."|".$sent->cover_letter->id); ?>
+                             &nbsp; &nbsp; <a href="{{url('admin/print-memo/'.$memo_url)}}" target="_blank" class="btn {{ ($sent->cover_letter->print_count >0)?"btn-light":"btn-primary"}} "> PRINT Covering  Memo  [ {{ $sent->cover_letter->print_count }} ]</a>
+                           @endif
+
                       </td>
                       
                       <td class="align-middle text-sm-right text-sm">
-                          @php $url = base64_encode($completed->id."|".$completed->regno);  @endphp
-                          <a href="{{url('admin/process-transcript-requests/'.$url)}}" target="_blank" class="btn {{($completed['request_status']=='Sent')?'btn-success':'btn-primary'}} p-3"> @if($completed['request_status']=="created") Start Process @elseif($completed['request_status']=="Treated") Send e-Mail  @else {{ $completed['request_status']}} @endif </a>    
+                          @php $url = base64_encode($sent->id."|".$sent->regno);  @endphp
+                          <a href="{{url('admin/process-transcript-requests/'.$url)}}" target="_blank" class="btn {{($sent['request_status']=='Sent')?'btn-success':'btn-primary'}} p-3"> @if($sent['request_status']=="created") Start Process @elseif($sent['request_status']=="Treated") Send e-Mail  @else {{ $sent['request_status']}} @endif </a>    
                           <br/>
-                          <span class="text-grey">Last View: <strong>{{strtoupper($completed['last_viewer'])}}</strong></span>   @if($completed['last_viewed']!="")  <br/> {{\Carbon\Carbon::parse($completed['last_viewed'])->diffForHumans()}} @else --:-- @endif
+                          <span class="text-grey">Last View: <strong>{{strtoupper($sent['last_viewer'])}}</strong></span>   @if($sent['last_viewed']!="")  <br/> {{\Carbon\Carbon::parse($sent['last_viewed'])->diffForHumans()}} @else --:-- @endif
                       </td>                                          
                     </tr> 
                     
@@ -100,7 +105,7 @@
                 
                   {{-- Pagination links --}}
                     <div class="d-flex justify-content-center">
-                        {{ $completeds->links('vendor.pagination.material') }}
+                        {{ $sents->links('vendor.pagination.material') }}
                     </div>                     
             </x-admin.card>                    
             

@@ -33,9 +33,10 @@
                      </div>
                      
                    </div>
+              
+                <button disabled="" id="btn-update-sent-requests" onclick="update_sent_requests()" type="button" class="btn btn-info m-2 font-weight-bold"> update   <span class="counts" style="font-size: 1.2rem">0</span>   request as sent </button>
                 
-                
-                   <div class="table-responsive p-0">
+              <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr class="text-dark font-weight-bold">
@@ -47,12 +48,12 @@
                   </thead>
                   <tbody>                     
                   @foreach($completeds as $completed)
-                  <tr id="{{$completed['id']}}" data-body="{{$completed['bodies']}}" class="{{($completed['bodies']=="undergraduate")?"table-danger":""}}  {{($completed['request_status']=="Sent")?"table-success":""}} {{($completed['request_status']=="Duplicate")?"table-warning":""}} {{($completed['request_status']=="No-Payment")?"table-danger":""}} m-4 ">
+                  <tr id="{{$completed->form_response_id}}" data-body="{{$completed['bodies']}}" class="{{($completed['bodies']=="undergraduate")?"table-danger":""}}  {{($completed['request_status']=="Sent")?"table-success":""}} {{($completed['request_status']=="Duplicate")?"table-warning":""}} {{($completed['request_status']=="No-Payment")?"table-danger":""}} m-4 ">
                         <td class="align-middle text-center"> {{ $loop->iteration + ($completeds->currentPage() - 1) * $completeds->perPage() }}
                         &nbsp; &nbsp; 
                         <!-- indicate maybe it's been sent or not -->
                         <div class="form-check form-switch d-flex align-items-center mb-3" title="Has It Been Sent ?">
-                             <input onchange="update_transcript_request_body($(this))" class="form-check-input" type="checkbox" id="transcript-body-{{$completed['id']}}" @if($completed['bodies']=='postgraduate') checked @endif >
+                             <input onchange="compile_sent_transcripts($(this))" class="form-check-input completed-requests" type="checkbox" id="input-{{$completed->form_response_id}}" title="{{$completed->form_response_id}}" value="{{$completed->form_response_id}}">
                             <label class="form-check-label mb-0 ms-3" for="transcript-body-{{$completed['id']}}"></label>
                           </div>
                         </td>

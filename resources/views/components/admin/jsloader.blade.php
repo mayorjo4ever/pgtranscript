@@ -17,6 +17,7 @@
   <script src="{{asset('js/spin.js')}}"></script>    
   <script src="{{asset('js/ladda.js')}}"></script>    
   <script src="{{asset('js/flatpickr.min.js')}}"></script>    
+  <script src="{{asset('js/sweetalert2.all.min.js')}}"></script>    
   <script src="{{asset('js/chart-widget.js')}}"></script>    
       
   

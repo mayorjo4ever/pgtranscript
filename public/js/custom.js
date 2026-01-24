@@ -1151,8 +1151,16 @@ $(function(){
          }
          else {
              $('tr#'+id).removeClass('table-danger'); 
+         }         
+     }
+       
+    function paint_sent_row(id,body){         
+         if(body==="sent"){
+             $('tr#'+id).addClass('table-success'); 
          }
-         
+         else {
+             $('tr#'+id).removeClass('table-success'); 
+         }         
      }
      
      function update_transcript_request_body(elem){
@@ -1210,4 +1218,98 @@ $(function(){
          }
      }
      
-     /// 3213-7045-5083 
+     
+      function compile_sent_transcripts(elem){
+         var ref_id = elem.val();  // 
+         body = "unsent"; 
+         if(elem.prop('checked')){
+            body = "sent"; 
+         }
+         count_sent_requests();         
+         paint_sent_row(ref_id,body);
+         
+     
+//         
+     }
+     
+     function count_sent_requests(){
+         sents = [];
+          $.each($("input.completed-requests:checked"),function(){
+            sents.push($(this).val());
+         });
+         $('span.counts').text(sents.length);
+         if(sents.length > 0){
+             $('#btn-update-sent-requests').prop('disabled',false);
+         }
+         else { $('#btn-update-sent-requests').prop('disabled',true);}
+     }
+     
+     function update_sent_requests(){
+          sents = [];
+          $.each($("input.completed-requests:checked"),function(){
+            sents.push($(this).val());
+         });
+         
+         Swal.fire({
+            title: 'Are you sure that these request have been sent ?',
+            text: "It cannot be reversed when approved!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Sent!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                //
+                 Swal.fire({
+                  title: 'Finalizing Sent Requests...',
+                  text: 'Please wait while we complete the process.',
+                  allowOutsideClick: false,
+                  allowEscapeKey: false,
+                  didOpen: () => {
+                    Swal.showLoading();
+                  }
+                });
+                //
+                $.ajax({
+                headers:{ 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content') },
+                url: `/admin/update-these-requests-as-sent`,
+                method: 'POST',
+                data: {
+                  sents: sents,                          
+                  _token: $('meta[name="csrf-token"]').attr('content') // important!
+                },
+                success: function(response) {
+                  Swal.fire({
+                    title: 'Request Successfully Updated!',
+                    text: response.message,
+                    icon: 'success',
+                    timer: 2000
+                  });
+                },
+                error: function(xhr) {
+                  Swal.fire({
+                    title: 'Error!',
+                    text: 'Something went wrong: ' + xhr.statusText,
+                    icon: 'error'
+                  });
+                }
+              });
+
+          }
+        });
+         //         $.ajax({
+//               headers:{
+//                 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')  
+//               },
+//               type:'post',
+//               url:'/admin/update-transcript-request-body/'+info[2],
+//               data:{  body:body }, 
+//               success:function(resp){
+//                  showpop(resp.message,resp.type);
+//               }, 
+//                   error:function(jhx,textStatus,errorThrown){  
+//                     checkStatus(jhx.status); 
+//                   }
+//           }); 
+     }

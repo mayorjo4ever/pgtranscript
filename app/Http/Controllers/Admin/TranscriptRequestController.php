@@ -41,6 +41,7 @@ class TranscriptRequestController extends Controller
         $faculties = Faculty::all();        
         Session::put('faculties',$faculties);
     }
+    
     public function import_requests(Request $request){
         Session::put('page','transcripts');  Session::put('tab','import');
         Session::put('page_title','Import New Transcript Requests');
@@ -100,12 +101,27 @@ class TranscriptRequestController extends Controller
     
     
     public function sent_requests(Request $request){
-        Session::put('page','transcripts');  Session::put('tab','completed-transcript');
-        Session::put('page_title','Completed Transcript Requests');
+        Session::put('page','transcripts');  Session::put('tab','sent-transcript');
+        Session::put('page_title','Sent Transcript Requests');
 
-        $page_info = ['title'=> "Transcript Requests",'icon'=>'pe-7s-person_add','sub-title'=>'Education is the best legacy'];
-
-       return view('admin.transcripts.sents',compact('page_info'));
+        $page_info = ['title'=> "Sent Transcript Requests",'icon'=>'pe-7s-person_add','sub-title'=>'Education is the best legacy'];
+          $sents = TranscriptsRequest::with('printout','cover_letter')
+                ->where('request_status','Sent')
+                ->orderBy('updated_at','desc')
+                ->paginate(50);
+          
+            if($request->isMethod('post')){
+           // print "<pre>"; print_r($request->all()); die;           
+           $param = $request->input('search'); 
+           Session::put('transcript_search',$param);
+           $sents = TranscriptsRequest::where('request_status','Sent')
+                    ->where(DB::raw("CONCAT_WS(' ', surname, middle_name)"), 'LIKE', "%{$param}%")
+                    ->orWhere('regno', 'LIKE', "%{$param}%")                   
+                    ->orWhere('rrr', 'LIKE', "%{$param}%")
+                    ->orWhere('applicant_email', 'LIKE', "%{$param}%")
+                    ->paginate(50); 
+       }
+       return view('admin.transcripts.sents',compact('page_info','sents'));
     }
 
     
@@ -673,7 +689,7 @@ class TranscriptRequestController extends Controller
         return back()->with('success_message', 'Mail sent successfully with attachment(s).');
     }
     
-      protected function updateSentMail(Request $request) : void {
+    protected function updateSentMail(Request $request) : void {
         ## print "<pre>  Updating Sent Mail : ";   print_r($request->all());
         $sender = Auth::guard('admin')->user()->regno; 
         $date_sent = Carbon::now();         
@@ -683,6 +699,21 @@ class TranscriptRequestController extends Controller
             'last_sent_email'=>$request->destination_email];
         
         TranscriptsRequest::where('id',$request->request_id)
+                ->update($updates); 
+      
+    }
+    
+    public function updateCompletedToSent(Request $request) : void {
+       // print "<pre>  Updating Sent Mail : ";   print_r($request->all()); die; 
+        $sender = Auth::guard('admin')->user()->regno; 
+        $date_sent = Carbon::now();   $progression = 100;       
+        $updates = ['mail_sent'=>1,'sent_by'=>$sender,
+        'date_sent'=>$date_sent,'request_status'=>'Sent',
+            'sent_count'=>1, 'last_sent_email'=>'',
+            'progression'=>$progression,'last_viewer'=>$sender,
+            'last_viewed'=>$date_sent];
+        
+        TranscriptsRequest::whereIn('form_response_id',$request->sents)
                 ->update($updates); 
       
     }
