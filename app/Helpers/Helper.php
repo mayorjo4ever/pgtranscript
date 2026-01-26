@@ -73,19 +73,22 @@ function count_total_transcript_request(){
 }
 
 function count_total_completed_request(){          
-    $counts = TranscriptsRequest::where('request_status','treated')->count();
+    $counts = TranscriptsRequest::where('request_status','Treated')
+            ->orWhere('request_status','Sent')
+            ->count();
     return $counts ?? 0;
 }
 
-function last_imported_transcript_request(){          
-       try{ 
-           $counts = TranscriptsImport::latest()->first();;
-    return $counts->rows; 
-       }
-        catch (Exception $e) {
-        Log::error("Google OAuth Token Error: ".$e->getMessage());
-        return '--:--'; // Graceful fail  $e->getMessage() ;
-       }
+function total_sent_transcript_request(){          
+      $counts = TranscriptsRequest::Where('request_status','Sent')
+            ->count();
+    return $counts ?? 0;
+}
+
+function total_wrong_request(){          
+      $counts = TranscriptsRequest::Where('bodies','undergraduate')
+            ->count();
+    return $counts ?? 0;
 }
 
  function get_current_approve_date(){

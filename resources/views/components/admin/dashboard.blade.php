@@ -1,24 +1,5 @@
 <div class="container-fluid py-4">
-      <div class="row">
-        @can('view-last-imported-transcript-widget')
-          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person_add</i>
-              </div>
-              <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize font-weight-bold"> Last Imported</p>
-                <h4 class="mb-0"> {{ last_imported_transcript_request() }}  </h4>
-              </div>
-            </div>
-            <hr class="dark horizontal my-0">
-            <div class="card-footer p-3">
-                <p class="mb-0"> <span class="text-success text-sm "> <a href="{{url('admin/pending-transcript-requests')}}" target="_blank">  Last Imported Requests </a> </span>   </p>
-            </div>
-          </div>
-        </div> @endcan
-        
+      <div class="row">                
         @can('view-total-transcript-request-widget')
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
@@ -43,7 +24,7 @@
           <div class="card">
             <div class="card-header p-3 pt-2">
               <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">hourglass_empty</i>
+                <i class="material-icons opacity-10">download</i>
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize font-weight-bold"> New Requests</p>
@@ -61,8 +42,8 @@
         <div class="col-xl-3 col-sm-6">
           <div class="card">
             <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">forward_to_inbox</i>
+              <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                <i class="material-icons opacity-10">done_all</i>
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Completed Request</p>
@@ -75,6 +56,25 @@
             </div>
           </div>
         </div>@endcan
+        
+        @can('view-total-sent-transcript-widget')
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-header p-3 pt-2">
+              <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                <i class="material-icons opacity-10">send</i>
+              </div>
+              <div class="text-end pt-1">
+                <p class="text-sm mb-0 text-capitalize font-weight-bold"> Total Sent Requests</p>
+                <h4 class="mb-0"> {{ total_sent_transcript_request() }}  </h4>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-3">
+                <p class="mb-0"> <span class="text-success text-sm "> <a href="{{url('admin/pending-transcript-requests')}}" target="_blank">  Last Imported Requests </a> </span>   </p>
+            </div>
+          </div>
+        </div> @endcan
           
       </div>
 	 
@@ -94,6 +94,25 @@
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
               <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/id-card-requests')}}" target="_blank">  Total New ID Card Requests </a> </span></p>
+            </div>
+          </div>
+        </div>@endcan
+        
+         @can('view-id-card-request-widget') 
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-header p-3 pt-2">
+              <div class="icon icon-lg icon-shape bg-gradient-danger shadow-total_wrong_request text-center border-radius-xl mt-n4 position-absolute">
+                <i class="material-icons opacity-10">warning</i>
+              </div>
+              <div class="text-end pt-1">
+                <p class="text-sm mb-0 text-capitalize font-weight-bold">Wrong Requests</p>
+                <h4 class="mb-0">{{total_wrong_request()}}</h4>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-3">
+              <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/id-card-requests')}}" target="_blank"> Undergraduate Requests </a> </span></p>
             </div>
           </div>
         </div>@endcan

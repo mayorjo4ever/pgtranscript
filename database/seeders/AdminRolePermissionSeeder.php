@@ -25,7 +25,7 @@ class AdminRolePermissionSeeder extends Seeder
             'manage-users',
             'manage-roles',
             'manage-permissions', 
-            'view-last-imported-transcript-widget',
+            'view-total-sent-transcript-widget',
             'view-total-transcript-request-widget',
             'view-new-transcript-request-widget',
             'view-completed-transcript-request-widget',                      

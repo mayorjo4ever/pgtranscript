@@ -34,9 +34,9 @@ class LoginController extends Controller
 
     public function login(Request $request) {
         // confirm if admin has already logged in
-//        if(Auth::guard('admin')->check()){
-//            return redirect('admin/dashboard');
-//        }
+        if(Auth::guard('admin')->check()){
+            return redirect('admin/dashboard');
+        }
 //        else if(Auth::guard('student')->check()){
 //            return redirect('student/dashboard');
 //        }
