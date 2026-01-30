@@ -4,9 +4,9 @@
     <h6 class="card-title bg-light p-2 text-center"> RESULTS : {{count($reports)}}</h6>
     <div class="table"> 
         <table class="table"> 
-            
+           
             @foreach($reports as $report)
-            <?php # print_r($printout->toarray()); <pre></pre> ?>
+            <?php  #print_r($printout->toarray());  <pre></pre> ?>
             @if(!empty($printout))
             <?php $url = base64_encode($printout->regno."|".$printout->approve_date."|".$printout->id);?>
             <a href="{{url('admin/print-transcript/'.$url)}}" target="_blank" class="btn btn-primary "> PRINT {{ $printout->type.' Transcript ' }}   [ {{ $printout->print_count }} ]</a>
@@ -15,7 +15,8 @@
                 <?php $memo_url = base64_encode($cover_letter->regno."|".$cover_letter->id); ?>
                  &nbsp; &nbsp; <a href="{{url('admin/print-memo/'.$memo_url)}}" target="_blank" class="btn btn-primary "> PRINT Covering  Memo  [ {{ $cover_letter->print_count }} ]</a>
                  @endif
-            @else
+            @else 
+            <!-- when no printouts available -->
              <tr> 
                 <th> Name </th>
                 <th>Programme </th>
@@ -75,7 +76,17 @@
                 </th>
             </tr>
            @else
-            
+            <tr> 
+                <th> Name </th>
+                <th>Programme </th>
+                <th> Duration </th>
+            </tr>
+             <tr> 
+                <td> {{$report->name}}</td>
+                <td> {{$report->programme}}</td>
+                <td> {{$report->first_reg_date}} To 
+                    {{$report->approve_date}}</td>
+            </tr> 
             <tr>
                 <td colspan="3">
                     @php $regno = base64_encode($report->regno);

@@ -127,6 +127,7 @@ class TranscriptRequestController extends Controller
     
     public function process_requests($param){
         [$id,$regno] = explode("|",base64_decode($param)); 
+        # print $id; print "<br/>"; print $regno; die; 
        // $request = TranscriptsRequest::with('printout')->findOrFail($id); 
         // $report = $request->printout?->report();
         $request = TranscriptsRequest::query()
@@ -146,9 +147,8 @@ class TranscriptRequestController extends Controller
                 'tr.name'
             )
             ->firstOrFail();
-
-        
-       // print "<pre>"; print_r($request->toarray());  die; 
+          
+        //print "<pre>"; print_r($request->toarray());  die; 
         Session::put('page','transcripts');  Session::put('tab','pendings');
         Session::put('page_title','Process Transcript Requests');
         $page_info = ['title'=> $request->regno. " - ". $request->surname. "  ". $request->middle_name. " - Transcript Requests ",'icon'=>'pe-7s-person_add','sub-title'=>''];       
@@ -398,14 +398,19 @@ class TranscriptRequestController extends Controller
     } ## end Function
 
     public function search_transcript(Request $request){
-       # print "<pre>"; 
-       ## print_r($request->all()); die; 
+       #print "<pre>"; 
+       #print_r($request->all()); // die; 
         $request_id = $request->request_id;
         $request_type = $request->request_type; // official / student
         $reports = TranscriptReport::where('regno',$request->regno)
                 ->where('type','pgd_master')->get();
-        $printout = TranscriptPrintout::where('request_id',$request_id)->first();
-        $cover_letter = TranscriptCoverLetter::where('request_id',$request_id)->first();
+        $printout = TranscriptPrintout::where('request_id',$request_id)
+                ->where('regno',$request->regno)
+               ->limit(1)
+                ->first();
+        $cover_letter = TranscriptCoverLetter::where('request_id',$request_id)
+                ->where('regno',$request->regno)
+                ->first();
         
         # print_r($reports->toarray()); die; 
         
@@ -437,14 +442,23 @@ class TranscriptRequestController extends Controller
     }
     
     public function schedule_request(Request $request, $param=null){
+       #print($param); die; #  [$id,$regno] = explode("|",base64_decode($param)); 
        $request_info = explode("|",base64_decode($param)); 
        $info = array_map('base64_decode',$request_info); 
+       [$regno,$purpose,$approve_date,$request_id,$type] = array_map('base64_decode',$request_info); 
        # $info = ( $regno | $purpose | $approve_date | $request_id | $type=official ) 
-       $report = TranscriptReport::where('regno',$info[0])
-               ->where('approve_date',$info[2])
+       $report = TranscriptReport::where('regno',$regno)
+               ->where('approve_date',$approve_date)
                ->first(); 
-       #  print "<pre>";    
-       $approve_date_id = CertificateApprovalDate::firstOrCreate(['app_date'=>$info[2]]);
+       # print "<pre>";     
+       # print_r($request_info); print "<br/>";
+        if(!filter_var($request_id,FILTER_VALIDATE_INT)):
+            $request_id =  base64_decode($request_id) ;
+        endif;
+        # print "<br/>";print "<br/>";
+        #print_r($info); 
+       # die;
+       $approve_date_id = CertificateApprovalDate::firstOrCreate(['app_date'=>$approve_date]);
        #print "Approve date : ".  $approve_date_id->id;
        $degree = extractDegreeInfo($report->programme);
        $progid = program_available($degree['id'],$degree['field']);
@@ -461,9 +475,9 @@ class TranscriptRequestController extends Controller
                      
         $faculties = Faculty::all();        
         Session::put('faculties',$faculties);
-        Session::put('purpose',$info[1]);
-        Session::put('request_id',$info[3]);
-        Session::put('type',strtolower($info[4]));
+        Session::put('purpose',$purpose);
+        Session::put('request_id',$request_id);
+        Session::put('type',strtolower($type));
         
         
        Session::put('page','transcripts');  Session::put('tab','pendings');
@@ -472,8 +486,8 @@ class TranscriptRequestController extends Controller
           
             
         if($request->isMethod('post')):          
-            #print "<pre>";  
-            #print_r($request->all());  die;
+            # print "<pre>";  
+            # print_r($request->all());  die;
              $request->validate([
                 'first_reg_date' => 'required|date',
                 'approve_date' => 'required|date',
