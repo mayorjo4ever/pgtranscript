@@ -1199,6 +1199,17 @@ $(function(){
          }
      }
      
+    function toggle_transcript_issues(elem){
+      
+         if(elem.prop('checked')){
+            $('div.transcript-issue-form-body').show();
+         }
+         else{
+            $('div.transcript-issue-form-body').hide(); 
+         }
+     }
+     
+     
      function toggle_hide_copleted_apps(elem){
       
          if(elem.prop('checked')){
@@ -1218,6 +1229,29 @@ $(function(){
          }
      }
      
+     function submit_transcript_request_issue(){
+         var form_no = $('#form_no').val();
+         var issue = $("input[name='transcript_status']:checked").val(); 
+         if(issue === undefined){
+             swal.fire("No Selection","Select one Option","error");
+         }
+         else{
+             $.ajax({
+               headers:{
+                 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')  
+               },
+               type:'post',
+               url:'/admin/update-transcript-request-issue',
+               data:{  form_no:form_no,issue:issue }, 
+               success:function(resp){
+                  Swal.fire("Message",resp.message,resp.type);
+               }, 
+                   error:function(jhx,textStatus,errorThrown){  
+                     checkStatus(jhx.status); 
+                 }
+            }); 
+         }
+     }
      
       function compile_sent_transcripts(elem){
          var ref_id = elem.val();  // 

@@ -68,13 +68,15 @@ function count_new_id_card_request(){
 }
 
 function count_total_transcript_request(){          
-    $counts = TranscriptsRequest::where('bodies','postgraduate')->count();
+    $counts = TranscriptsRequest::where('bodies','postgraduate')
+            ->whereNot('request_status','Duplicate')
+            ->count();
     return $counts;
 }
 
 function count_total_completed_request(){          
-    $counts = TranscriptsRequest::where('request_status','Treated')
-            ->orWhere('request_status','Sent')
+    $counts = TranscriptsRequest::whereIn('request_status',['Treated','Sent'])
+            ->whereNot('request_status','Duplicate')
             ->count();
     return $counts ?? 0;
 }

@@ -79,6 +79,7 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
        
         ## transcript request 
         Route::post('update-transcript-request-body/{id}','TranscriptRequestController@bodyUpdate');
+        Route::post('update-transcript-request-issue','TranscriptRequestController@updateRequestIssue');
         Route::post('update-these-requests-as-sent','TranscriptRequestController@updateCompletedToSent');
         
         ## CERTIFICATES

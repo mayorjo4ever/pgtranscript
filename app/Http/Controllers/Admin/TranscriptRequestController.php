@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TranscriptRequestMail;
 use App\Models\Admin;
 use App\Models\CertificateApprovalDate;
 use App\Models\CertificateData;
@@ -22,12 +23,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Mail\TranscriptRequestMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
+use Throwable;
+use function abort;
 use function admin_info;
 use function back;
+use function driveDownloadLink;
 use function extractDegreeInfo;
 use function program_available;
 use function redirect;
@@ -54,22 +57,66 @@ class TranscriptRequestController extends Controller
       public function pending_requests(Request $request,$param = null){
         Session::put('page','transcripts');  Session::put('tab','pending-transcript');
         Session::put('page_title','Pending Transcript Requests');
-
+        
        $page_info = ['title'=> "Transcript Requests",'icon'=>'pe-7s-person_add','sub-title'=>'Education is the best legacy'];       
-       $pendings = TranscriptsRequest::orderBy('id','desc')->orderBy('request_status','asc')->paginate(100);
-        
+       $pendings = TranscriptsRequest::
+               whereIn('request_status',['created','Duplicate','No-Payment','No-Spreadsheet','No-Transcript-Yet'])
+               ->orderBy('id','desc')->orderBy('request_status','asc')->paginate(20);
+       
+      # ini_set('max_execution_time', 0);
+      #  set_time_limit(0);        
+//       TranscriptsRequest::chunk(100,function($rows){//          
+//               foreach($rows as $row){
+//                try{
+//                    $row->request_time_dt = Carbon::createFromFormat('d/m/Y H:i:s',$row->request_time); 
+//                } catch (Exception $ex) {
+//                        $row->request_time_dt = Carbon::createFromFormat('d/m/Y H:i:s',$row->request_time); 
+//                }
+//                $row->save();
+//               } 
+//            }//               
+//            );
+              
        if($request->isMethod('post')){
-           // print "<pre>"; print_r($request->all()); die;           
-           $param = $request->input('search'); 
-           Session::put('transcript_search',$param);
-           $pendings = TranscriptsRequest::
-                  Where(DB::raw("CONCAT_WS(' ', surname, middle_name)"), 'LIKE', "%{$param}%")
-                    ->orWhere('regno', 'LIKE', "%{$param}%")                   
-                    ->orWhere('rrr', 'LIKE', "%{$param}%")
-                    ->orWhere('applicant_email', 'LIKE', "%{$param}%")
-                    ->paginate(100); 
+          #print "<pre>"; print_r($request->all());   die;           
+           if($request->has('search')):
+            $param = $request->input('search'); 
+            Session::put('transcript_search',$param);
+            $pendings = TranscriptsRequest::
+                   Where(DB::raw("CONCAT_WS(' ', surname, middle_name)"), 'LIKE', "%{$param}%")
+                     ->orWhere('regno', 'LIKE', "%{$param}%")                   
+                     ->orWhere('rrr', 'LIKE', "%{$param}%")
+                     ->orWhere('applicant_email', 'LIKE', "%{$param}%")
+                      ->orderBy('id','desc')
+                     ->paginate(200);
+               
+            elseif($request->has('datefrom')):
+              $dateFrom =  Carbon::parse($request->datefrom);
+              $dateTo =  Carbon::parse($request->dateto);
+              Session::put('datefrom',$request->datefrom);
+              Session::put('dateto',$request->dateto);
+              
+                if($dateTo->lessThan($dateFrom->addDays(0))):
+                    return back()->withErrors([
+                       'datefrom' => 'Date To must be greater than Date From .'
+                   ])->withInput();  
+                    endif;
+                     $paramFrom = $dateFrom->startOfDay();                  
+                     $paramTo = $dateTo->endOfDay();
+                     
+                     $pendings = TranscriptsRequest:: 
+                         whereBetween('request_time_dt',[$paramFrom,$paramTo])
+                             ->orderBy('id','desc')
+                             ->paginate(200);
+                       
+
+//                     $pendings = TranscriptsRequest:: 
+//                         whereRaw("STR_TO_DATE(TRIM(request_time),'%d/%m/%Y %H:%i:%s') BETWEEN ? AND ?" , [$dateFrom,$dateTo])
+//                        ->paginate(50);               
+                endif;
+                 
        }
-        
+             
        return view('admin.transcripts.pending',compact('page_info','pendings'));
     }
     
@@ -84,8 +131,9 @@ class TranscriptRequestController extends Controller
                 ->orderBy('updated_at','desc')
                 ->paginate(50);
     // print "<pre>"; print_r($completeds->toarray()); die; 
-       if($request->isMethod('post')){
-           // print "<pre>"; print_r($request->all()); die;           
+       if($request->isMethod('post')):
+           # print "<pre>"; print_r($request->all()); die;           
+          if($request->has('search')):
            $param = $request->input('search'); 
            Session::put('transcript_search',$param);
            $completeds = TranscriptsRequest::where('request_status','Treated')
@@ -93,9 +141,29 @@ class TranscriptRequestController extends Controller
                     ->orWhere('regno', 'LIKE', "%{$param}%")                   
                     ->orWhere('rrr', 'LIKE', "%{$param}%")
                     ->orWhere('applicant_email', 'LIKE', "%{$param}%")
-                    ->paginate(50); 
-       }
-        
+                    ->paginate(50);
+             elseif($request->has('datefrom')):
+              $dateFrom =  Carbon::parse($request->datefrom);
+              $dateTo =  Carbon::parse($request->dateto);
+              Session::put('datefrom',$request->datefrom);
+              Session::put('dateto',$request->dateto);
+              
+                if($dateTo->lessThan($dateFrom->addDays(0))):
+                    return back()->withErrors([
+                       'datefrom' => 'Date To must be greater than Date From .'
+                   ])->withInput();  
+                  endif;
+                     $paramFrom = $dateFrom->startOfDay();                  
+                     $paramTo = $dateTo->endOfDay();
+                   
+                $completeds = TranscriptsRequest:: 
+                     whereBetween('request_time_dt',[$paramFrom,$paramTo])
+                      ->where('request_status','Treated')
+                         ->orderBy('id','desc')
+                         ->paginate(200);
+                endif; 
+            endif; 
+                     
        return view('admin.transcripts.completed',compact('page_info','completeds'));
     }
     
@@ -110,7 +178,7 @@ class TranscriptRequestController extends Controller
                 ->orderBy('updated_at','desc')
                 ->paginate(50);
           
-            if($request->isMethod('post')){
+        if($request->isMethod('post')): 
            // print "<pre>"; print_r($request->all()); die;           
            $param = $request->input('search'); 
            Session::put('transcript_search',$param);
@@ -119,8 +187,9 @@ class TranscriptRequestController extends Controller
                     ->orWhere('regno', 'LIKE', "%{$param}%")                   
                     ->orWhere('rrr', 'LIKE', "%{$param}%")
                     ->orWhere('applicant_email', 'LIKE', "%{$param}%")
-                    ->paginate(50); 
-       }
+                    ->paginate(50);  
+       endif;
+       
        return view('admin.transcripts.sents',compact('page_info','sents'));
     }
 
@@ -300,7 +369,7 @@ class TranscriptRequestController extends Controller
             'next_start_row' => $lastImportedRow + 1
         ]);
 
-    } catch (\Throwable $e) {
+    } catch (Throwable $e) {
         DB::rollBack();
 
         return response()->json([
@@ -543,15 +612,25 @@ class TranscriptRequestController extends Controller
     public function transcript_request_memo(Request $request, $param=null){
        $request_info = explode("|",base64_decode($param)); 
        $info = array_map('base64_decode',$request_info); 
-       # $info = ( $regno | $purpose | $approve_date | $request_id | $type=official ) 
-       $report = TranscriptReport::where('regno',$info[0])
-               ->where('approve_date',$info[2])
+       [$regno,$purpose,$approve_date,$request_id,$type] = array_map('base64_decode',$request_info); 
+        if(!filter_var($request_id,FILTER_VALIDATE_INT)):
+            $request_id =  base64_decode($request_id);
+        endif;
+        # $info = ( $regno | $purpose | $approve_date | $request_id | $type=official ) 
+       $report = TranscriptReport::where('regno',$regno)
+               ->where('approve_date',$approve_date)
                ->first(); 
-       $student_request = TranscriptsRequest::with('cover_letter')->find($info[3]);
+       $student_request = TranscriptsRequest::with('cover_letter')->find($request_id);
        $page_info =  ['title'=>$report->name,'icon'=>'pe-7s-person_add','sub-title'=>''];       
+       # print "<pre>"; print_r($info); die; 
+        
        
+       # print "<pre>";     
+       # print_r($request_info); print "<br/>";
+       
+        
        if($request->isMethod('post')){
-//        print "<pre>";     
+//           
 //        print_r($request->all()); die; 
 //           
            $secretary = TranscriptOfficial::where(['post'=>'secretary','is_current'=>1])->first();
@@ -678,6 +757,17 @@ class TranscriptRequestController extends Controller
         return response()->json([
             'type'=>'success',
             'message'=>$name."'s Reequest ".ucwords("Updated To $body")
+        ]);
+    }
+    
+    ## transcript request issues  - no-spreadsheet, duplicates, no-payments
+    public function updateRequestIssue(Request $request) {               
+        $transcript = TranscriptsRequest::where('form_response_id',$request->form_no)->first();
+        $transcript->update(['request_status'=>$request->issue]);
+        $name = $transcript->surname. " ".$transcript->middle_name; 
+        return response()->json([
+            'type'=>'success',
+            'message'=>$name."'s Request Status Updated Successfully"
         ]);
     }
     

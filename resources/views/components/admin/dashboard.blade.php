@@ -188,12 +188,23 @@
           <div class="card z-index-2 ">
            
             <div class="card-body">
-              
-          
-
+                <h6> ID Card Form </h6>
+                {!! QrCode::size(250)->generate('https://forms.gle/6J9YLXiuyjpgv3cGA')!!}                
           </div>
         </div>
       </div>
+      
+      <div class="col-lg-4 mt-4 mb-3">
+          <div class="card z-index-2 ">
+           
+            <div class="card-body">
+                <h6> 2025/26 Dummy Matric Form </h6>
+                {!! QrCode::size(250)->generate('https://forms.gle/qgSu7wytX46CbYZ49')!!}                
+          </div>
+        </div>
+      </div>
+          
+     
       
     </div> 
   </div> 

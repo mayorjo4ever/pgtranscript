@@ -156,32 +156,45 @@
                                             <hr class="border border-1 border-dashed border-danger"/>
                                                <!-- indicate maybe it has any issues -->
                                                 <div class="form-check form-switch d-flex align-items-center mb-4">
-                                                    <input onchange="toggle_transcript_issues()" class="form-check-input" type="checkbox" id="transcript-issue" >
+                                                    <input onchange="toggle_transcript_issues($(this))" class="form-check-input" type="checkbox" id="transcript-issue" @checked(in_array($request->request_status,['No-Spreadsheet','No-Payment','Duplicate'])) >
                                                     <label class="form-check-label mb-0 ms-3" for="transcript-issue"><b>THIS REQUEST HAVE ISSUES </b></label>
                                                 </div>
                                                <hr class="border border-1 border-dashed border-danger"/>
                                                
-                                               <div class="">
+                                               <div class="transcript-issue-form-body">
                                                    <div class="form-group mb-4 mt-4">
                                                         <div class="radio-wrapper-8 mb-3 mt-3">
                                                             <label class="control-label radio-wrapper-8"  style="font-size: 1rem">
-                                                            <input type="radio" value="Duplicate" name="transcript_status"/>
+                                                                <input type="radio" value="Duplicate" name="transcript_status" @checked($request->request_status=='Duplicate') />
                                                             <span>Duplicate Request - So Ignore </span></label>
                                                         </div>
                                                        &nbsp; &nbsp; &nbsp; &nbsp; 
                                                        <div class="radio-wrapper-8 mb-3">
                                                         <label class="control-label radio-wrapper-8" style="font-size: 1rem">
-                                                            <input class="form-radio" type="radio" value="Call For Spreadsheet" name="transcript_status"/>
+                                                            <input class="form-radio" type="radio" value="No-Spreadsheet" name="transcript_status" @checked($request->request_status=='No-Spreadsheet') />
                                                         <span>Call For Spreadsheet - Spreadsheet Not Found</span></label>      
                                                        </div>
                                                        &nbsp; &nbsp; &nbsp; &nbsp; 
                                                        <div class="radio-wrapper-8 mb-3">
                                                         <label class="control-label radio-wrapper-8" style="font-size: 1rem">
-                                                            <input class="form-radio" type="radio" value="No Payment"    name="transcript_status"/>
+                                                            <input class="form-radio" type="radio" value="No-Transcript-Yet" name="transcript_status" @checked($request->request_status=='No-Transcript-Yet') />
+                                                        <span>No Transcript Yet - Transcript Not Yet Prepared  </span></label>      
+                                                       </div>
+                                                       &nbsp; &nbsp; &nbsp; &nbsp; 
+                                                       <div class="radio-wrapper-8 mb-3">
+                                                        <label class="control-label radio-wrapper-8" style="font-size: 1rem">
+                                                            <input class="form-radio" type="radio" value="Course-Code-Issues" name="transcript_status" @checked($request->request_status=='Course-Code-Issues') />
+                                                        <span>Course Codes Not Available  </span></label>      
+                                                       </div>
+                                                       &nbsp; &nbsp; &nbsp; &nbsp; 
+                                                       <div class="radio-wrapper-8 mb-3">
+                                                        <label class="control-label radio-wrapper-8" style="font-size: 1rem">
+                                                            <input class="form-radio" type="radio" value="No-Payment" name="transcript_status" @checked($request->request_status=='No-Payment') />
                                                         <span>No Payment Found - Did Not Pay </span></label>      
                                                        </div>
                                                    </div>   &nbsp; &nbsp; &nbsp; &nbsp; 
-                                                   <button type="submit" class="btn btn-info btn-md ladda-button " data-style="expand-right"> Update Status </button>
+                                                   <input type="hidden" id="form_no" name="form_no" value="{{$request->form_response_id}}"/> 
+                                                   <button onclick="submit_transcript_request_issue()" type="submit" class="btn btn-info btn-md ladda-button " data-style="expand-right"> Update Status </button>
                                                </div>
                                                
                                                

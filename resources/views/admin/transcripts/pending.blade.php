@@ -1,4 +1,4 @@
-<?php use Illuminate\Support\Facades\Session; ?>
+<?php use Illuminate\Support\Facades\Session; use Carbon\Carbon;  ?>
 @extends('layouts.admin_layout')
 @section('bedcrumb') Transcripts @endsection
 @section('page_title')Pending Transcript Requests @endsection
@@ -12,30 +12,40 @@
         <div class="col-12">
             <x-admin.card header="Transcript Requests">
                  <div class="row mb-4 mt-0"> 
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <form method="post" action="{{url('admin/pending-transcript-requests')}}">@csrf
-                        <div class="input-group p-3 pt-0  m-3 mt-0">
-                            <input type="text" name="search" class="form-control-lg  p-3 font-weight-bold w-75 col-md-4"  value="{{Session::get('transcript_search')}}" style="font-size:1.2rem" placeholder="Search Student Matric / Name " />
-                            <button type="submit" class="btn btn-lg btn-info p-3">Search &nbsp; </button>
+                            <label class="font-weight-bold">Search With Students Name, Matric, RRR etc. </label>
+                        <div class="input-group p-2 pt-0  m-2 mt-0">
+                            <input type="text" name="search" class="form-control-lg  p-2 font-weight-bold w-75 col-md-4"  value="{{Session::get('transcript_search')}}" style="font-size:1.2rem" placeholder="Search Student Matric / Name " style="height: 45px;"/>
+                            <button type="submit" class="btn btn-md btn-info p-2" style="height: 45px;">Search &nbsp; </button>
                         </div>
-                        </form>    
+                        </form>   
+                    </div> 
+                     <div class="col-md-6">
+                        <form method="post" action="{{url('admin/pending-transcript-requests')}}">@csrf                           
+                            <label class="font-weight-bold">Filter By Date of Application: </label>
+                            <div class="input-group  pt-0  m-2 mt-0">                            
+                            <input type="text" name="datefrom" value="{{  Session::get('datefrom') ??  Carbon::now()}}" class="form-control datepicker border border-dark border-1 p-2 font-weight-bold w-35 col-md-3"  value="{{Session::get('transcript_search')}}" style="font-size:1.2rem; border-radius: 15px; height: 45px;" placeholder="Search From " />
+                            <input type="text" name="dateto" value="{{Session::get('dateto') ?? Carbon::now()}}" class="form-control datepicker border border-dark  border-1 p-2 font-weight-bold w-35 col-md-3"  value="{{Session::get('transcript_search')}}" style="font-size:1.2rem;  border-radius: 15px; height: 45px;" placeholder="To " />
+                            <button type="submit" class="btn btn-info p-2"  style="height: 45px;">Search &nbsp; </button>
+                        </div>                           
                     </div>  
-                     <div class="col-md-4 ">
+                     <div class="col-md-6 ">
                          <div class="form-check form-switch d-flex align-items-center mb-3 mt-3">
                              <input onchange="toggle_show_only_pg_apps($(this))" class="form-check-input" type="checkbox" id="show-only-pg-apps" checked >
                             <label class="form-check-label mb-0 ms-3 font-weight-bold" for="show-only-pg-apps">SHOW ONLY PG REQUESTS</label>
                           </div>
-                         
+                     </div>  
+                     <div class="col-md-6 "> 
                          <div class="form-check form-switch d-flex align-items-center mb-3 mt-3">
                              <input onchange="toggle_hide_copleted_apps($(this))" class="form-check-input" type="checkbox" id="hide-completed-apps" checked >
                             <label class="form-check-label mb-0 ms-3 font-weight-bold" for="hide-completed-apps">HIDE COMPLETED REQUESTS</label>
                           </div>
-                     </div>
-                     
+                     </div>                     
                    </div>
                 
                 
-                   <div class="table-responsive p-0">
+               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr class="text-dark font-weight-bold">

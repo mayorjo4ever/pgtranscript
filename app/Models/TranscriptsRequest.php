@@ -17,7 +17,7 @@ class TranscriptsRequest extends Model
         'degree_awarded','faculty',
         'department', 'request_type',
         'request_purpose', 'reference_number',
-        'destination_address',
+        'destination_address','request_status',
         'rrr','	rrr_receipt_url',
         'mode_of_postage', 'applicant_phone',
         'courier_agent','receiving_body_email',
