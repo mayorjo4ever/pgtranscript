@@ -773,6 +773,8 @@ class TranscriptRequestController extends Controller
     
     ## sending request mail 
     public function send_transcript_mail(Request $request){
+        ini_set('max_execution_time', 0);
+        set_time_limit(0);
         
         $validated = $request->validate([
             'destination_email' => 'required|email',

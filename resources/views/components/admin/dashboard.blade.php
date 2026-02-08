@@ -219,6 +219,25 @@
     </div>
         </div>
       </div>
+
+       <div class="col-lg-4 mt-4 mb-3">
+            <div class="card z-index-2 ">           
+              <div class="card-body">
+                  <h6> 2024 Dummy / Final Matric List</h6>
+                  {!! QrCode::size(260)->generate('https://drive.google.com/drive/folders/1HkeSEFGfAwji36Y0EY7wtSaYTBEIQ1ap?usp=sharing')!!}                
+            </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 mt-4 mb-3">
+            <div class="card z-index-2 ">           
+              <div class="card-body">
+                  <h6> PGSCHOOL IT. WHATSAPP GROUP </h6>
+                  {!! QrCode::size(260)->generate('https://chat.whatsapp.com/CcZvuuIAtosHYA2W6FzfUL')!!}                
+            </div>
+        </div>
+      </div>
+          
           
     </div> 
   </div> 
