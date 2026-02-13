@@ -127,7 +127,7 @@
       <div class="row mt-4">
           <!--
         <div class="col-lg-4 col-md-6 mt-4 mb-4">
-          <div class="card z-index-2 ">
+          <div class="card z-index-2 justify-content-center align-items-center ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                 <div class="chart">
@@ -148,7 +148,7 @@
         </div>
 		
         <div class="col-lg-4 col-md-6 mt-4 mb-4">
-          <div class="card z-index-2  ">
+          <div class="card z-index-2 justify-content-center align-items-center  ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
                 <div class="chart">
@@ -169,7 +169,7 @@
         </div>
 			
         <div class="col-lg-4 mt-4 mb-3">
-          <div class="card z-index-2 ">
+          <div class="card z-index-2 justify-content-center align-items-center ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
                 <div class="chart">
@@ -191,7 +191,7 @@
           
           
         <div class="col-lg-4 mt-4 mb-3">
-          <div class="card z-index-2 ">           
+          <div class="card z-index-2 justify-content-center align-items-center ">           
             <div class="card-body">
                 <h6> PG ID Card Form </h6>
                 {!! QrCode::size(260)->generate('https://forms.gle/6J9YLXiuyjpgv3cGA')!!}                
@@ -204,7 +204,7 @@
               </div>
       
       <div class="col-lg-4 mt-4 mb-3">
-          <div class="card z-index-2 ">           
+          <div class="card z-index-2 justify-content-center align-items-center ">           
             <div class="card-body">
                 <h6> 2025/2026 Dummy Matric Form </h6>
                 {!! QrCode::size(260)->generate('https://forms.gle/qgSu7wytX46CbYZ49')!!}                
@@ -217,7 +217,7 @@
       </div>
       
     <div class="col-lg-4 mt-4 mb-3">
-          <div class="card z-index-2 ">           
+          <div class="card z-index-2 justify-content-center align-items-center ">           
             <div class="card-body">
                 <h6> PG Transcript Form </h6>
                 {!! QrCode::size(260)->generate('https://forms.gle/qgSu7wytX46CbYZ49')!!}                
@@ -230,7 +230,7 @@
       </div>
      
     <div class="col-lg-4 mt-4 mb-3">
-    <div class="card z-index-2 ">           
+    <div class="card z-index-2 justify-content-center align-items-center ">           
       <div class="card-body">
           <h6> PG Transcript Payment </h6>
           {!! QrCode::size(260)->generate('https://forms.gle/qgSu7wytX46CbYZ49')!!}                
@@ -243,7 +243,7 @@
       </div>
 
        <div class="col-lg-4 mt-4 mb-3">
-            <div class="card z-index-2 ">           
+            <div class="card z-index-2 justify-content-center align-items-center ">           
               <div class="card-body">
                   <h6> 2024 Dummy / Final Matric List</h6>
                   {!! QrCode::size(260)->generate('https://drive.google.com/drive/folders/1HkeSEFGfAwji36Y0EY7wtSaYTBEIQ1ap?usp=sharing')!!}                
@@ -256,7 +256,7 @@
       </div>
       
       <div class="col-lg-4 mt-4 mb-3">
-            <div class="card z-index-2 ">           
+            <div class="card z-index-2 justify-content-center align-items-center ">           
               <div class="card-body">
                   <h6> PGSCHOOL IT. WHATSAPP GROUP </h6>
                   {!! QrCode::size(260)->generate('https://chat.whatsapp.com/CcZvuuIAtosHYA2W6FzfUL')!!}                
