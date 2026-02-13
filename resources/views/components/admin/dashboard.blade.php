@@ -220,11 +220,11 @@
           <div class="card z-index-2 justify-content-center align-items-center ">           
             <div class="card-body">
                 <h6> PG Transcript Form </h6>
-                {!! QrCode::size(260)->generate('https://forms.gle/qgSu7wytX46CbYZ49')!!}                
+                {!! QrCode::size(260)->generate('https://docs.google.com/forms/d/e/1FAIpQLSetCIFtMjXAAke8L-sDeeos3iTDrSX2yDUWhcaKPhjk17S6KQ/viewform')!!}                
           </div>
               <button
                 class="btn btn-sm w-50 btn-outline-secondary copy-link"
-                 data-link="https://forms.gle/qgSu7wytX46CbYZ49">Copy Link
+                 data-link="https://docs.google.com/forms/d/e/1FAIpQLSetCIFtMjXAAke8L-sDeeos3iTDrSX2yDUWhcaKPhjk17S6KQ/viewform">Copy Link
               </button>
         </div>
       </div>
@@ -233,11 +233,11 @@
     <div class="card z-index-2 justify-content-center align-items-center ">           
       <div class="card-body">
           <h6> PG Transcript Payment </h6>
-          {!! QrCode::size(260)->generate('https://forms.gle/qgSu7wytX46CbYZ49')!!}                
+          {!! QrCode::size(260)->generate('https://login.remita.net/remita/onepage/2757205950/service.spa')!!}                
     </div>
         <button
                 class="btn btn-sm  w-50 btn-outline-secondary copy-link"
-                 data-link="https://forms.gle/qgSu7wytX46CbYZ49">Copy Link
+                 data-link="https://login.remita.net/remita/onepage/2757205950/service.spa">Copy Link
               </button>
         </div>
       </div>
