@@ -197,7 +197,7 @@
                 {!! QrCode::size(260)->generate('https://forms.gle/6J9YLXiuyjpgv3cGA')!!}                
           </div>
               <button
-                class="btn btn-sm btn-icon-only btn-outline-secondary copy-link"
+                class="btn btn-sm w-50 btn-outline-secondary copy-link"
                  data-link="https://forms.gle/6J9YLXiuyjpgv3cGA">Copy Link
               </button>
                 </div>
@@ -210,7 +210,7 @@
                 {!! QrCode::size(260)->generate('https://forms.gle/qgSu7wytX46CbYZ49')!!}                
           </div>
               <button
-                class="btn btn-sm btn-icon-only btn-outline-secondary copy-link"
+                class="btn btn-sm w-50 btn-outline-secondary copy-link"
                  data-link="https://forms.gle/qgSu7wytX46CbYZ49">Copy Link
               </button>
         </div>
@@ -223,7 +223,7 @@
                 {!! QrCode::size(260)->generate('https://forms.gle/qgSu7wytX46CbYZ49')!!}                
           </div>
               <button
-                class="btn btn-sm btn-outline-secondary copy-link"
+                class="btn btn-sm w-50 btn-outline-secondary copy-link"
                  data-link="https://forms.gle/qgSu7wytX46CbYZ49">Copy Link
               </button>
         </div>
@@ -236,7 +236,7 @@
           {!! QrCode::size(260)->generate('https://forms.gle/qgSu7wytX46CbYZ49')!!}                
     </div>
         <button
-                class="btn btn-sm btn-outline-secondary copy-link"
+                class="btn btn-sm  w-50 btn-outline-secondary copy-link"
                  data-link="https://forms.gle/qgSu7wytX46CbYZ49">Copy Link
               </button>
         </div>
@@ -249,7 +249,7 @@
                   {!! QrCode::size(260)->generate('https://drive.google.com/drive/folders/1HkeSEFGfAwji36Y0EY7wtSaYTBEIQ1ap?usp=sharing')!!}                
             </div>
                 <button
-                class="btn btn-sm btn-outline-secondary copy-link"
+                class="btn btn-sm w-50  btn-outline-secondary copy-link"
                  data-link="https://drive.google.com/drive/folders/1HkeSEFGfAwji36Y0EY7wtSaYTBEIQ1ap?usp=sharing">Copy Link
               </button>
         </div>
@@ -262,7 +262,7 @@
                   {!! QrCode::size(260)->generate('https://chat.whatsapp.com/CcZvuuIAtosHYA2W6FzfUL')!!}                
             </div>
                 <button
-                class="btn btn-sm btn-outline-secondary copy-link"
+                class="btn btn-sm  w-50 btn-outline-secondary copy-link"
                  data-link="https://chat.whatsapp.com/CcZvuuIAtosHYA2W6FzfUL">Copy Link
               </button>
         </div>
