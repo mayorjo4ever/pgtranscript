@@ -28,25 +28,47 @@ $(function(){
         );
     });
     
-    /// download passports and signature 
+//    /// download passports and signature 
+//
+//        document.getElementById('downloadSelected').addEventListener('click', function () {
+//            const selected = document.querySelectorAll('.record-checkbox:checked');
+//
+//            if (selected.length === 0) {
+//                alert('Please select at least one record');
+//                return;
+//            }
+//
+//            const ids = Array.from(selected).map(cb => cb.value);
+//
+//            // Build URL with query params
+//            const url = `/downloads/passports-signatures?ids=${ids.join(',')}`;
+//
+//            // Redirect browser
+//            window.location.href = url;
+//        }); 
+//    
 
-        document.getElementById('downloadSelected').addEventListener('click', function () {
-            const selected = document.querySelectorAll('.record-checkbox:checked');
+    // Download passports and signatures
+        $(document).on('click', '#downloadSelected', function () {
+
+            const selected = $('.record-checkbox:checked');
 
             if (selected.length === 0) {
                 alert('Please select at least one record');
                 return;
             }
 
-            const ids = Array.from(selected).map(cb => cb.value);
+            const ids = selected.map(function () {
+                return this.value;
+            }).get();
 
-            // Build URL with query params
-            const url = `/downloads/passports-signatures?ids=${ids.join(',')}`;
+            // Build URL
+            const url = '/downloads/passports-signatures?ids=' + ids.join(',');
 
             // Redirect browser
             window.location.href = url;
-        }); 
-    
+        });
+
     
       
      // copying items to clipboard
