@@ -47,6 +47,17 @@ $(function(){
             window.location.href = url;
         }); 
     
+    
+      
+     // copying items to clipboard
+        $(document).on('click', '.copy-link', function () {
+          const link = $(this).data('link');
+
+          navigator.clipboard.writeText(link).then(() => {
+              $(this).text('Copied ✔');
+          });
+      });
+
 });
   // login controller
   $(function(){
@@ -1347,19 +1358,4 @@ $(function(){
 //                   }
 //           }); 
      }
-     
-     // copying items to clipboard
-     document.addEventListener('click', function (e) {
-        if (!e.target.classList.contains('copy-link')) return;
-
-        const button = e.target;
-        const link = button.dataset.link;
-
-        navigator.clipboard.writeText(link).then(() => {
-            button.textContent = 'Copied ✔';
-
-            setTimeout(() => {
-                button.textContent = 'Copy Link';
-            }, 1500);
-        });
-    });
+   
