@@ -50,13 +50,19 @@ $(function(){
     
       
      // copying items to clipboard
-        $(document).on('click', '.copy-link', function () {
-          const link = $(this).data('link');
+       $(document).on('click', '.copy-link', function () {
+            const link = $(this).data('link');
+            const button = $(this);
 
-          navigator.clipboard.writeText(link).then(() => {
-              $(this).text('Copied ✔');
-          });
-      });
+            navigator.clipboard.writeText(link).then(function () {
+                button.text('Copied ✔');
+
+                setTimeout(function () {
+                    button.text('Copy Link');
+                }, 1500);
+            });
+        });
+
 
 });
   // login controller
