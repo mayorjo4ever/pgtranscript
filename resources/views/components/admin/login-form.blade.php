@@ -5,8 +5,14 @@
       <span class="mask bg-gradient-secondary opacity-8"></span>
       <div class="container my-auto">
 
-        <div class="row">
-          <div class="col-md-5" style="border-radius:20px;  min-height:500px;  background:url({{asset('img/unilorin.jpg')}}); background-repeat: no-repeat; background-size:100% 120%;"> </div>
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-5 d-none d-md-block"
+                style="border-radius:20px; min-height:500px;  
+                background:url({{asset('img/unilorin.jpg')}}); 
+                background-repeat: no-repeat; 
+                background-size:100% 120%;">
+           </div>
+
           <div class="col-lg-5 col-md-8 col-12 mx-auto">
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -53,7 +59,7 @@
                         <a href="https://login.remita.net/remita/onepage/2757205950/service.spa" class="font-weight-bold text-white btn btn-sm btn-info align-items-center" target="_blank">Pay for Transcript </a>
                      </center>
                  </div>
-                     <center><small><em>Powered By : {{env('AUTHOR_NAME')}} </em></small></center>
+                     <!--<center><small><em>Powered By : {{env('AUTHOR_NAME')}} </em></small></center>-->
                  </div>
               </div>
             </div>
