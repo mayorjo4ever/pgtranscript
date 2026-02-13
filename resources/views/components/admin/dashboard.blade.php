@@ -1,6 +1,7 @@
 <div class="container-fluid py-4">
       <div class="row">                
         @can('view-total-transcript-request-widget')
+         @endcan
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
@@ -17,9 +18,10 @@
               <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/pending-transcript-requests')}}" target="_blank">  View All Requests </a> </span></p>
             </div>
           </div>
-        </div> @endcan
+        </div>
 		
 	@can('view-new-transcript-request-widget')	
+        @endcan
          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
@@ -36,9 +38,10 @@
               <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/import-transcript-requests')}}" target="_blank">  Total New Requests </a> </span></p>
             </div>
           </div>
-        </div>@endcan
+        </div>
 	
         @can('view-completed-transcript-request-widget')
+        @endcan
         <div class="col-xl-3 col-sm-6">
           <div class="card">
             <div class="card-header p-3 pt-2">
@@ -55,9 +58,10 @@
                 <p class="mb-0"><span class="text-success text-sm"><a href="{{url('admin/send-completed-requests')}}"> All Completed Requests </a> </span> </p>
             </div>
           </div>
-        </div>@endcan
+        </div>
         
         @can('view-total-sent-transcript-widget')
+         @endcan
           <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
@@ -74,7 +78,7 @@
                 <p class="mb-0"> <span class="text-success text-sm "> <a href="{{url('admin/pending-transcript-requests')}}" target="_blank">  Last Imported Requests </a> </span>   </p>
             </div>
           </div>
-        </div> @endcan
+        </div>
           
       </div>
 	 
@@ -99,6 +103,7 @@
         </div>@endcan
         
          @can('view-id-card-request-widget') 
+         @endcan
           <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
@@ -115,11 +120,12 @@
               <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/id-card-requests')}}" target="_blank"> Undergraduate Requests </a> </span></p>
             </div>
           </div>
-        </div>@endcan
+        </div>
         
         </div>
 	  
       <div class="row mt-4">
+          <!--
         <div class="col-lg-4 col-md-6 mt-4 mb-4">
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
@@ -181,7 +187,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>  -->
           
           
         <div class="col-lg-4 mt-4 mb-3">
@@ -190,8 +196,12 @@
                 <h6> PG ID Card Form </h6>
                 {!! QrCode::size(260)->generate('https://forms.gle/6J9YLXiuyjpgv3cGA')!!}                
           </div>
-        </div>
-      </div>
+              <button
+                class="btn btn-sm btn-outline-secondary copy-link"
+                 data-link="https://forms.gle/6J9YLXiuyjpgv3cGA">Copy Link
+              </button>
+                </div>
+              </div>
       
       <div class="col-lg-4 mt-4 mb-3">
           <div class="card z-index-2 ">           
@@ -199,6 +209,10 @@
                 <h6> 2025/2026 Dummy Matric Form </h6>
                 {!! QrCode::size(260)->generate('https://forms.gle/qgSu7wytX46CbYZ49')!!}                
           </div>
+              <button
+                class="btn btn-sm btn-outline-secondary copy-link"
+                 data-link="https://forms.gle/qgSu7wytX46CbYZ49">Copy Link
+              </button>
         </div>
       </div>
       
@@ -208,6 +222,10 @@
                 <h6> PG Transcript Form </h6>
                 {!! QrCode::size(260)->generate('https://forms.gle/qgSu7wytX46CbYZ49')!!}                
           </div>
+              <button
+                class="btn btn-sm btn-outline-secondary copy-link"
+                 data-link="https://forms.gle/qgSu7wytX46CbYZ49">Copy Link
+              </button>
         </div>
       </div>
      
@@ -217,6 +235,10 @@
           <h6> PG Transcript Payment </h6>
           {!! QrCode::size(260)->generate('https://forms.gle/qgSu7wytX46CbYZ49')!!}                
     </div>
+        <button
+                class="btn btn-sm btn-outline-secondary copy-link"
+                 data-link="https://forms.gle/qgSu7wytX46CbYZ49">Copy Link
+              </button>
         </div>
       </div>
 
@@ -226,6 +248,10 @@
                   <h6> 2024 Dummy / Final Matric List</h6>
                   {!! QrCode::size(260)->generate('https://drive.google.com/drive/folders/1HkeSEFGfAwji36Y0EY7wtSaYTBEIQ1ap?usp=sharing')!!}                
             </div>
+                <button
+                class="btn btn-sm btn-outline-secondary copy-link"
+                 data-link="https://drive.google.com/drive/folders/1HkeSEFGfAwji36Y0EY7wtSaYTBEIQ1ap?usp=sharing">Copy Link
+              </button>
         </div>
       </div>
       
@@ -235,6 +261,10 @@
                   <h6> PGSCHOOL IT. WHATSAPP GROUP </h6>
                   {!! QrCode::size(260)->generate('https://chat.whatsapp.com/CcZvuuIAtosHYA2W6FzfUL')!!}                
             </div>
+                <button
+                class="btn btn-sm btn-outline-secondary copy-link"
+                 data-link="https://chat.whatsapp.com/CcZvuuIAtosHYA2W6FzfUL">Copy Link
+              </button>
         </div>
       </div>
           

@@ -1347,3 +1347,19 @@ $(function(){
 //                   }
 //           }); 
      }
+     
+     // copying items to clipboard
+     document.addEventListener('click', function (e) {
+        if (!e.target.classList.contains('copy-link')) return;
+
+        const button = e.target;
+        const link = button.dataset.link;
+
+        navigator.clipboard.writeText(link).then(() => {
+            button.textContent = 'Copied ✔';
+
+            setTimeout(() => {
+                button.textContent = 'Copy Link';
+            }, 1500);
+        });
+    });
