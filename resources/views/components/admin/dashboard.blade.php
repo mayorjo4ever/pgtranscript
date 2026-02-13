@@ -197,7 +197,7 @@
                 {!! QrCode::size(260)->generate('https://forms.gle/6J9YLXiuyjpgv3cGA')!!}                
           </div>
               <button
-                class="btn btn-sm btn-outline-secondary copy-link"
+                class="btn btn-sm btn-icon-only btn-outline-secondary copy-link"
                  data-link="https://forms.gle/6J9YLXiuyjpgv3cGA">Copy Link
               </button>
                 </div>
@@ -210,7 +210,7 @@
                 {!! QrCode::size(260)->generate('https://forms.gle/qgSu7wytX46CbYZ49')!!}                
           </div>
               <button
-                class="btn btn-sm btn-outline-secondary copy-link"
+                class="btn btn-sm btn-icon-only btn-outline-secondary copy-link"
                  data-link="https://forms.gle/qgSu7wytX46CbYZ49">Copy Link
               </button>
         </div>
