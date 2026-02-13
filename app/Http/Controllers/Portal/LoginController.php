@@ -129,7 +129,7 @@ class LoginController extends Controller
                       $email = $userDetails->email;
                       $messageData = [
                             'email'=>$userDetails->email,
-                            'name'=>$userDetails->name,
+                            'name'=>$userDetails->surname.', '.$userDetails->firstname.' '.$userDetails->othername,
                             'password'=>$new_psw
                             ];
                         ## send confirmation email
