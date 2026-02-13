@@ -5,9 +5,15 @@
       <span class="mask bg-gradient-secondary opacity-8"></span>
       <div class="container my-auto">
      
-        <div class="row">
-             <div class="col-md-5" style="border-radius:20px; min-height:500px;  background:url({{asset('img/unilorin.jpg')}}); background-repeat: no-repeat; background-size:100% 120%;"> </div>          
-            <div class="col-lg-5 col-md-8 col-12 mx-auto">
+        <div class="row justify-content-center align-items-center">
+             <div class="col-md-5 d-none d-md-block"
+                style="border-radius:20px; min-height:500px;  
+                background:url({{asset('img/unilorin.jpg')}}); 
+                background-repeat: no-repeat; 
+                background-size:100% 120%;">
+           </div>
+            
+             <div class="col-lg-5 col-md-8 col-12 mx-auto">
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-info shadow-info border-radius-lg py-3 pe-1">
@@ -27,7 +33,7 @@
                   <form role="form" class="text-start" action="{{url('portal/forgot-password')}}" method="post">@csrf 
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Recovery Email</label>
-                    <input type="text" name="email" id="user-email" class="form-control">
+                    <input type="text" name="email" id="user-email" class="form-control" style="font-size: 20px">
                   </div>
                   
                   <div class="text-center">
@@ -39,7 +45,7 @@
                       <a href="{{url('portal/login')}}" class="text-primary text-gradient font-weight-bold">Login Here </a>
                   </p>
                 </form>
-               <center><small><em>Powered By : {{env('AUTHOR_NAME')}} </em></small></center>
+               <!--<center><small><em>Powered By : {{env('AUTHOR_NAME')}} </em></small></center>-->
 
               </div>
             </div>
