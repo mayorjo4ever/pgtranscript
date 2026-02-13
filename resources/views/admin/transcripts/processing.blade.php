@@ -138,8 +138,13 @@
                                    <div class="col-md-12" style="font-size:14px;">
                                        <x-admin.card >
                                             <h6 class="text-uppercase">REQUEST ::&nbsp;{{$request->request_purpose}}&nbsp;{{$request->request_type}} </h6>
-                                            <?php $preUrl = "https://login.remita.net/remita/exapp/api/v1/send/api/print/billsvc/biller/".$request->rrr."/printrecieptRequest.pdf"; ?>
-                                            <a href="{{ $preUrl }}" target="_blank"  class="btn btn-primary btn-md" > Download Receipt &nbsp; <i class="fa fa-print"></i> </a>
+                                            <?php 
+                                                   # $preUrl = "https://login.remita.net/remita/exapp/api/v1/send/api/print/billsvc/biller/".$request->rrr."/printrecieptRequest.pdf";
+                                                   $preUrl = "https://login.remita.net/remita/onepage/invoice.spa?rrr=".$request->rrr; 
+                                                   #$preUrl = "https://login.remita.net/remita/exapp/api/v1/send/api/print/billsvc/biller/".$request->rrr."/printrecieptRequest.pdf";
+                                                    
+                                            ?>
+                                            <a href="{{ $preUrl }}" target="_blank"  class="btn btn-primary btn-md" > Print Receipt &nbsp; <i class="fa fa-print"></i> </a>
                                             <!--<a href="{{empty($request->rrr_receipt_url)?"https://login.remita.net/remita/auto-receipt/receipt.reg":$request->rrr_receipt_url}}" target="_blank"  class="btn btn-primary btn-md" > Download Receipt &nbsp; <i class="fa fa-print"></i> </a>-->
                                             <a href="{{"https://login.remita.net/remita/onepage/biller/".$request->rrr."/payment.spa"}}" target="_blank"  class="btn btn-primary btn-md" > Verify Receipt &nbsp; <i class="fa fa-print"></i> </a>
                                             <a href="{{$request->certificate_url}}" target="_blank" class="btn btn-primary btn-md" > Print Certificate  &nbsp; <i class="fa fa-print"></i> </a>
@@ -265,6 +270,17 @@
                                                <label>Receiving Body Email : </label>
                                                <input {{$disableReSend}} value="{{strtolower($request->receiving_body_email)}}" type="text" class="form-control transcript-email border border-1 border-dark form-control-lg" name="destination_email" id="destination-email" style="font-size:1rem;  height:45px;" />                                              
                                             </div>
+                                           <div class="form-group mb-3"> 
+                                               <label>CC: (optional) </label>
+                                               <input {{$disableReSend}} value="" type="text" class="form-control transcript-email border border-1 border-dark form-control-lg" name="cc" id="cc-email" style="font-size:1rem;  height:45px;" placeholder="cc@example.com | leave blank" />                                              
+                                            </div>
+                                            
+                                           <div class="form-group mb-3"> 
+                                               <label>BC: (optional) </label>
+                                               <input {{$disableReSend}} value="{{strtolower($request->applicant_email)}}" type="text" class="form-control transcript-email border border-1 border-dark form-control-lg" name="bcc" id="bc-email" style="font-size:1rem;  height:45px;"  placeholder="bcc@example.com | leave blank"  />                                              
+                                            </div>
+                                            
+                                            
                                            <div class="form-group mb-3"> 
                                                <label>Message Title: </label>
                                                <input {{$disableReSend}} value="POSTGRADUATE ACADEMIC TRANSCRIPT FOR : {{surname($request->name).", ". othername($request->name)}}" type="text" class="form-control transcript-email border border-1 border-dark form-control-lg" name="message_title" id="message-title" style="font-size:1rem;  height:45px;" /> 

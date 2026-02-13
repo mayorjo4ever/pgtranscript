@@ -511,3 +511,17 @@ function formatProgrammeName($programme)
 
     
     // $response = Http::get($link);
+    
+    function parseEmails(?string $emails): array
+    {
+        if (!$emails) {
+            return [];
+        }
+
+        return collect(explode(',', $emails))
+            ->map(fn ($email) => trim($email))
+            ->filter(fn ($email) => filter_var($email, FILTER_VALIDATE_EMAIL))
+            ->unique()
+            ->values()
+            ->toArray();
+    }

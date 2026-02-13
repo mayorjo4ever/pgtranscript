@@ -777,23 +777,46 @@ class TranscriptRequestController extends Controller
         set_time_limit(0);
         
         $validated = $request->validate([
-            'destination_email' => 'required|email',
+            'destination_email' => 'required|string',
             'message_title'     => 'required|string',
             'message_body'      => 'required|string',
+            'cc' => 'nullable|string',
+            'bcc' => 'nullable|string',
             'attachments.*'     => 'nullable|file|max:10240',
         ]);
-
-       Mail::to($validated['destination_email'])->send(
-            new TranscriptRequestMail(
-                $validated['message_title'],
-                $validated['message_body'],
-                $request->file('attachments') ?? []
-            )
-        );
+        $to  = $this->parseEmails($request->destination_email);
+        $cc  = $this->parseEmails($request->cc);
+        $bcc = $this->parseEmails($request->bcc);
+        
+        Mail::to($to)
+             ->cc($cc)
+             ->bcc($bcc)
+             ->send(
+                new TranscriptRequestMail(
+                    $validated['message_title'],
+                    $validated['message_body'],
+                    $request->file('attachments') ?? []
+                    )
+            );
        $this->updateSentMail($request);   
        
         return back()->with('success_message', 'Mail sent successfully with attachment(s).');
     }
+    
+    private function parseEmails(?string $emails): array
+    {
+        if (!$emails) {
+            return [];
+        }
+
+        return collect(explode(',', $emails))
+            ->map(fn ($email) => trim($email))
+            ->filter(fn ($email) => filter_var($email, FILTER_VALIDATE_EMAIL))
+            ->unique()
+            ->values()
+            ->toArray();
+    }
+
     
     protected function updateSentMail(Request $request) : void {
         ## print "<pre>  Updating Sent Mail : ";   print_r($request->all());

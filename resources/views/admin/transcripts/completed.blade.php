@@ -87,7 +87,7 @@
                             </div>-->
                       </td>
                                             
-                      <td>
+                      <td class="text-md-start">
                         <p class="text-md font-weight-bold mb-0">{{$completed['request_purpose']}} - {{$completed['request_type']}}</p>                       
                         <span class="text-secondary text-xs font-weight-bold"> {{$completed->degree_awarded}} </span><br/>     
                          @if(!empty($completed->printout))
@@ -102,7 +102,14 @@
                             <?php $memo_url = base64_encode($completed->cover_letter->regno."|".$completed->cover_letter->id); ?>
                              &nbsp; &nbsp; <a href="{{url('admin/print-memo/'.$memo_url)}}" target="_blank" class="btn {{ ($completed->cover_letter->print_count >0)?"btn-light":"btn-primary"}} "> PRINT Covering  Memo  [ {{ $completed->cover_letter->print_count }} ]</a>
                            @endif
-
+                           
+                           <br/>  <!-- include receipt -->                           
+                            <?php 
+                                # $preUrl = "https://login.remita.net/remita/exapp/api/v1/send/api/print/billsvc/biller/".$request->rrr."/printrecieptRequest.pdf";
+                                $preUrl = "https://login.remita.net/remita/onepage/invoice.spa?rrr=".$completed->rrr; 
+                                #$preUrl = "https://login.remita.net/remita/exapp/api/v1/send/api/print/billsvc/biller/".$request->rrr."/printrecieptRequest.pdf";
+                            ?>
+                            <a href="{{ $preUrl }}" target="_blank"  class="btn btn-info btn-md" > Print Receipt &nbsp; <i class="fa fa-print"></i> </a>
                       </td>
                       
                       <td class="align-middle text-sm-right text-sm">
