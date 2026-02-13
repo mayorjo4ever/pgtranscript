@@ -81,7 +81,7 @@ $(function(){
 
                 setTimeout(function () {
                     button.text('Copy Link');
-                }, 1500);
+                }, 4000);
             });
         });
 
