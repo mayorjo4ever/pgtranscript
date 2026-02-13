@@ -1,4 +1,4 @@
-<html>
+<!--<html>
     <head>
         <title></title>        
     </head>
@@ -16,4 +16,89 @@
             <tr> <td><strong>Mayorjo4ever Developer Team </strong> </td> </tr>
         </table>
     </body>
+</html>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Reset</title>
+</head>
+
+<body style="margin:0; padding:0; background-color:#f4f6f9; font-family: Arial, Helvetica, sans-serif;">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td align="center">
+
+<!-- Main Container -->
+<table width="600" cellpadding="0" cellspacing="0" border="0" 
+       style="background:#ffffff; margin-top:40px; border-radius:10px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+
+    <!-- Header -->
+    <tr>
+        <td align="center" 
+            style="background: linear-gradient(60deg,#26c6da,#00acc1); padding:25px;">
+            <h2 style="color:#ffffff; margin:0;">Password Reset Request</h2>
+        </td>
+    </tr>
+
+    <!-- Body -->
+    <tr>
+        <td style="padding:30px; color:#333333; font-size:15px; line-height:1.6;">
+            
+            <p><strong>Dear {{$name}},</strong></p>
+
+            <p>
+                We received a request to reset your password for your account.
+                Click the button below to create a new password.
+            </p>
+            
+            <p>Your new temporary password is:</p>
+            <p style="font-size:18px; font-weight:bold; color:#00acc1;">
+                {{$password}}
+            </p>
+<!--            <p style="text-align:center; margin:30px 0;">
+                <a href="{{ url('reset-password/'.$token) }}"
+                   style="background:#00acc1; 
+                          color:#ffffff; 
+                          padding:12px 25px; 
+                          text-decoration:none; 
+                          border-radius:5px; 
+                          display:inline-block;
+                          font-weight:bold;">
+                    Reset Password
+                </a>
+            </p>-->
+            
+            
+
+            <p>
+                If you did not request this, please ignore this email.
+            </p>
+
+            <p style="margin-top:30px;">
+                Thanks & Regards,<br>
+                <strong>Mayorjo4ever Developer Team</strong>
+            </p>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td align="center" 
+            style="background:#f4f6f9; padding:15px; font-size:12px; color:#777;">
+            © {{ date('Y') }} All Rights Reserved
+        </td>
+    </tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
 </html>
+

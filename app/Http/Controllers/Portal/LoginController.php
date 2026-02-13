@@ -137,7 +137,7 @@ class LoginController extends Controller
                            $message->to($email)->subject('Password Reset');
                          });
 
-                       return redirect('portal/login')->with('success_message','New password  is '.$new_psw);
+                       return redirect('portal/login')->with('success_message','New Password Sent To Your Mail');
                        #return response()->json(['type'=>'success','message'=>'New password  is '.$new_psw]);
                 }
             }
