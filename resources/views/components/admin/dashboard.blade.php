@@ -1,3 +1,4 @@
+<?php use Illuminate\Support\Str; ?> 
 <div class="container-fluid py-4">
       <div class="row">                
         @can('view-total-transcript-request-widget')
@@ -123,6 +124,111 @@
         </div>
         
         </div>
+    
+    @can('view-online-admins')
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success">
+                        <h6 class="mb-0 text-white">Active Admins ({{ $activeAdmins->count() }})</h6>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+
+                            @forelse($activeAdmins as $admin)
+                                <div class="col-md-4 mb-3">
+                                    <div class="card border-start border-success border-4 shadow-sm">
+                                        <div class="card-body">
+
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <h6 class="mb-1">
+                                                        {{ $admin->surname }}
+                                                        <span class="badge bg-success">Online</span>
+                                                    </h6>
+                                                    <small class="text-muted">
+                                                        Last seen: {{ $admin->last_seen_at->diffForHumans() }}
+                                                    </small>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <small class="text-muted d-block">
+                                                🌍 IP: {{ $admin->last_login_ip }}
+                                            </small>
+
+                                            <small class="text-muted">
+                                                💻 {{ Str::limit($admin->user_agent, 40) }}
+                                            </small>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <p class="text-muted">No active admins</p>
+                            @endforelse
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endcan
+    
+     @can('view-offline-admins')
+        <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary">
+                    <h6 class="mb-0 text-white">Offline Admins ({{ $inactiveAdmins->count() }})</h6>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+
+                        @forelse($inactiveAdmins as $admin)
+                            <div class="col-md-4 mb-3">
+                                <div class="card border-start border-secondary border-4 shadow-sm">
+                                    <div class="card-body">
+
+                                        <h6 class="mb-1">
+                                            {{ $admin->surname }}
+                                            <span class="badge bg-secondary">Offline</span>
+                                        </h6>
+
+                                        @if($admin->last_seen_at)
+                                            <small class="text-muted d-block">
+                                                Last seen: {{ $admin->last_seen_at->diffForHumans() }}
+                                            </small>
+                                        @else
+                                            <small class="text-muted">
+                                                Never logged in
+                                            </small>
+                                        @endif
+
+                                        <hr>
+
+                                        <small class="text-muted d-block">
+                                            Last Login: 
+                                            {{ $admin->last_login_at ? $admin->last_login_at->format('d M Y h:i A') : 'N/A' }}
+                                        </small>
+
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="text-muted">No offline admins</p>
+                        @endforelse
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    @endcan
+    
 	  
       <div class="row mt-4">
           <!--

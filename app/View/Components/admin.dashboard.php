@@ -1,25 +1,24 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Admin;
 
-use Closure;
-use Illuminate\Contracts\View\View;
+use App\Models\Admin;
 use Illuminate\View\Component;
+use function now;
+use function view;
 
-class admin.dashboard extends Component
+class Dashboard extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $activeAdmins;
+    public $inactiveAdmins;
+
+    public function __construct($activeAdmins, $inactiveAdmins)
     {
-        //
+        $this->activeAdmins = $activeAdmins;
+        $this->inactiveAdmins = $inactiveAdmins;
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
+    public function render()
     {
         return view('components.admin.dashboard');
     }

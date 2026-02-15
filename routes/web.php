@@ -24,9 +24,10 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
 });
 
 // Admin dashboard without admin
- Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function(){
+ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')
+         ->group(function(){
 
-    Route::group(['middleware'=>['admin']],function(){
+    Route::group(['middleware'=>['auth:admin', 'admin.active']],function(){
 
         Route::get('dashboard','AdminController@dashboard');
         Route::get('/test-google-sheet', function (GoogleSheetService $googleSheetService) {

@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
-use App\Services\GoogleSheetService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use function admin_info;
 use function greetings;
+use function now;
 use function redirect;
 use function view;
 
@@ -33,8 +33,26 @@ class AdminController extends Controller
        $admin2 = Admin::find(2);
        $admin->assignRole('super-admin');
        $admin2->assignRole('super-admin');
+       
+       $admin = Auth::guard('admin')->user();
 
-       return view('admin.dashboard',compact('page_info'));
+//        $admin->update([
+//            'last_login_at' => now(),
+//            'last_seen_at' => now(), // VERY IMPORTANT
+//            'last_login_ip' => $request->ip(),
+//        ]);
+        $activeAdmins = Admin::where('last_seen_at', '>=', now()->subMinutes(5))
+        ->orderBy('last_seen_at','desc')
+        ->get();
+
+        $inactiveAdmins = Admin::where(function($query){
+            $query->whereNull('last_seen_at')
+                  ->orWhere('last_seen_at', '<', now()->subMinutes(5));
+        })
+        ->orderBy('last_seen_at','desc')
+        ->get();
+
+       return view('admin.dashboard',compact('page_info','activeAdmins','inactiveAdmins'));
     }
 
     public function managePassword(Request $request) {

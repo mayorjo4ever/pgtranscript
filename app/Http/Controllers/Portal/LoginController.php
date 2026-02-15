@@ -45,7 +45,15 @@ class LoginController extends Controller
          if($request->ajax()):
               $data = $request->all();      #print_r($data); die;
                if(Auth::guard('admin')->attempt([$this->username=>$data['username'],'password'=>$data['password']])){
-                    $redirectTo = url('/admin/dashboard');
+                   $admin = Auth::guard('admin')->user();
+                    $admin->update([
+                        'last_login_at' => now(),
+                        'last_seen_at' => now(),
+                        'last_login_ip' => $request->ip(),
+                        'user_agent' => $request->userAgent(),
+                        'is_online' => true,
+                    ]);
+                   $redirectTo = url('/admin/dashboard');
                     return response()->json(['type'=>'success','url'=>$redirectTo,'message'=>"Login successful - redirecting..."]);
                }
                 else {
@@ -92,6 +100,13 @@ class LoginController extends Controller
      public function logout(Request $request) : RedirectResponse {
 
         if(Auth::guard('admin')->check()){
+            $admin = Auth::guard('admin')->user();
+            $admin->update([
+                'last_login_at' => now(),
+                'last_seen_at' => now(), // VERY IMPORTANT
+                'last_login_ip' => $request->ip(),
+            ]);
+
             Auth::guard('admin')->logout();
         }
 //        else if(Auth::guard('student')->check()){
