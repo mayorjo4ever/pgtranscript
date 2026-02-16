@@ -1,4 +1,33 @@
 <?php use Illuminate\Support\Str; ?> 
+<style>
+.online-dot {
+    height: 10px;
+    width: 10px;
+    background-color: #28a745;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+}
+
+.online-dot::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #28a745;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+    top: 0;
+    left: 0;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    70% { transform: scale(2.5); opacity: 0; }
+    100% { opacity: 0; }
+}
+</style>
+
 <div class="container-fluid py-4">
       <div class="row">                
         @can('view-total-transcript-request-widget')
@@ -126,7 +155,45 @@
         </div>
     
     @can('view-online-admins')
-        <div class="row mt-5">
+    @php
+$totalAdmins = $activeAdmins->count() + $inactiveAdmins->count();
+$activeCount = $activeAdmins->count();
+$activePercent = $totalAdmins > 0 ? round(($activeCount / $totalAdmins) * 100) : 0;
+@endphp
+
+<div class="row mb-4 mt-4">
+
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h6>Total Admins</h6>
+                <h3>{{ $totalAdmins }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-start border-success border-1">
+            <div class="card-body text-center">
+                <h6>Active Now</h6>
+                <h3 class="text-success">{{ $activeCount }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-start border-info border-1">
+            <div class="card-body text-center">
+                <h6>Active Percentage</h6>
+                <h3>{{ $activePercent }}%</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+        <div class="row mt-4">
             <div class="col-12">
                 <div class="card shadow-sm">
                     <div class="card-header bg-success">
@@ -138,14 +205,14 @@
 
                             @forelse($activeAdmins as $admin)
                                 <div class="col-md-4 mb-3">
-                                    <div class="card border-start border-success border-4 shadow-sm">
+                                    <div class="card border-start border-success border-1 shadow-sm">
                                         <div class="card-body">
 
                                             <div class="d-flex justify-content-between">
                                                 <div>
                                                     <h6 class="mb-1">
                                                         {{ $admin->surname }}
-                                                        <span class="badge bg-success">Online</span>
+                                                        &nbsp;&nbsp; <span class="online-dot"></span>
                                                     </h6>
                                                     <small class="text-muted">
                                                         Last seen: {{ $admin->last_seen_at->diffForHumans() }}
@@ -190,7 +257,7 @@
 
                         @forelse($inactiveAdmins as $admin)
                             <div class="col-md-4 mb-3">
-                                <div class="card border-start border-secondary border-4 shadow-sm">
+                                <div class="card border-start border-secondary border-1 shadow-sm">
                                     <div class="card-body">
 
                                         <h6 class="mb-1">
