@@ -156,10 +156,10 @@
     
     @can('view-online-admins')
     @php
-$totalAdmins = $activeAdmins->count() + $inactiveAdmins->count();
-$activeCount = $activeAdmins->count();
-$activePercent = $totalAdmins > 0 ? round(($activeCount / $totalAdmins) * 100) : 0;
-@endphp
+        $totalAdmins = $activeAdmins->count() + $inactiveAdmins->count();
+        $activeCount = $activeAdmins->count();
+        $activePercent = $totalAdmins > 0 ? round(($activeCount / $totalAdmins) * 100) : 0;
+    @endphp
 
 <div class="row mb-4 mt-4">
 
@@ -176,7 +176,7 @@ $activePercent = $totalAdmins > 0 ? round(($activeCount / $totalAdmins) * 100) :
         <div class="card shadow-sm border-start border-success border-1">
             <div class="card-body text-center">
                 <h6>Active Now</h6>
-                <h3 class="text-success">{{ $activeCount }}</h3>
+                <h3 class="text-success" id="active-count">{{ $activeCount }}</h3>
             </div>
         </div>
     </div>

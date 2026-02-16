@@ -160,7 +160,9 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
           Route::post('load-permissions','RoleController@loadPermissions');
           Route::post('change-role-permission','RoleController@changeRolePermission');
          }); ## end middleware
-
+         
+         Route::get('activity-data', 'AdminController@activityData');
+            
         
     });
   });

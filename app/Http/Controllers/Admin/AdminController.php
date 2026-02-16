@@ -54,7 +54,19 @@ class AdminController extends Controller
 
        return view('admin.dashboard',compact('page_info','activeAdmins','inactiveAdmins'));
     }
+    public function activityData()
+    {
+        $activeAdmins = Admin::where('last_seen_at', '>=', now()->subMinutes(2))->get();
+        $inactiveAdmins = Admin::where(function($query){
+            $query->whereNull('last_seen_at')
+                  ->orWhere('last_seen_at', '<', now()->subMinutes(2));
+        })->get();
 
+        return response()->json([
+            'active' => $activeAdmins->count(),
+            'inactive' => $inactiveAdmins->count()
+        ]);
+    }
     public function managePassword(Request $request) {
           Session::put('page','manage_password');
           $page_info = ['title'=>'Manage Password','icon'=>'pe-7s-user','sub-title'=>'When you noticed vunerability, please always change your password, and subsequently every 3 months '];
