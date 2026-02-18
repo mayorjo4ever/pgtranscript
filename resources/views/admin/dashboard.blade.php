@@ -6,7 +6,6 @@
         :active-admins="$activeAdmins" 
         :inactive-admins="$inactiveAdmins" 
     />
-   @push('script')
    
     <script>
         alert('i make request');
@@ -57,5 +56,5 @@
     }
  
     </script>
-    @endpush
+
 @endsection
