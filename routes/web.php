@@ -166,7 +166,7 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         Route::get('/fix-dates', function () {
 
                 $updated = DB::update("
-                    UPDATE transcript_requests
+                    UPDATE transcripts_requests
                     SET request_time_dt = STR_TO_DATE(request_time, '%m/%d/%Y %H:%i:%s')
                     WHERE request_time_dt IS NULL
                 ");
