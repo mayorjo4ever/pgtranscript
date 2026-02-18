@@ -154,6 +154,7 @@
     </div>
     
   @can('view-online-admins')
+  <div class="row mt-4">
     <h4>Active Admins (<span id="active-count">{{ $activeAdmins->count() }}</span>)</h4>
 
         <div id="active-admins-container">
@@ -167,7 +168,7 @@
         <div id="inactive-admins-container">
             {{-- inactive admins initial render here --}}
         </div>
-        
+    </div>  
     @endcan
   
  

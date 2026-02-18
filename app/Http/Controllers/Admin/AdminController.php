@@ -57,13 +57,15 @@ class AdminController extends Controller
     public function liveActivity()
     {
        $activeAdmins = Admin::where('last_seen_at', '>=', now()->subMinutes(2))
-        ->orderBy('last_seen_at','desc')
-        ->get();
+            ->select('id','surname','last_seen_at','last_login_at','last_login_ip')
+            ->orderBy('last_seen_at','desc')
+            ->get();
 
         $inactiveAdmins = Admin::where(function($query){
             $query->whereNull('last_seen_at')
                   ->orWhere('last_seen_at', '<', now()->subMinutes(2));
         })
+        ->select('id','surname','last_seen_at','last_login_at','last_login_ip')
         ->orderBy('last_seen_at','desc')
         ->get();
 
@@ -71,7 +73,6 @@ class AdminController extends Controller
             'active' => $activeAdmins,
             'inactive' => $inactiveAdmins,
             'active_count' => $activeAdmins->count(),
-            'inactive_count' => $inactiveAdmins->count(),
         ]);
     }
     public function managePassword(Request $request) {

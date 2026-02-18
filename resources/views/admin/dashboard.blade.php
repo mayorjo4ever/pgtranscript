@@ -7,49 +7,70 @@
         :inactive-admins="$inactiveAdmins" 
     />
    @can('view-online-admins')
-    <script>
-        function renderList(containerId, admins, isActive) {
+   <script>
+    function renderAdmins(containerId, admins, isActive) {
 
-            let html = '';
+        let html = '<div class="row">';
 
-            admins.forEach(admin => {
+        admins.forEach(admin => {
 
-                html += `
-                    <div class="card mb-2 p-2">
-                        <strong>${admin.surname}</strong>
-                        ${isActive ? '<span style="color:green;">● Online</span>' 
-                                   : '<span style="color:gray;">● Offline</span>'}
+            let badge = isActive
+                ? '<span class="online-dot"></span>'
+                : '<span class="badge bg-secondary">Offline</span>';
+
+            html += `
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm border-start border-${isActive ? 'success' : 'secondary'} border-4">
+                        <div class="card-body">
+                            <h6>
+                                ${admin.surname}
+                                ${badge}
+                            </h6>
+
+                            <small class="text-muted d-block">
+                                Last Login:
+                                ${admin.last_login_at ?? 'N/A'}
+                            </small>
+
+                            <small class="text-muted d-block">
+                                IP:
+                                ${admin.last_login_ip ?? 'N/A'}
+                            </small>
+
+                            <small class="text-muted">
+                                Last Seen:
+                                ${admin.last_seen_at ?? 'Never'}
+                            </small>
+
+                        </div>
                     </div>
-                `;
-            });
+                </div>
+            `;
+        });
 
-            document.getElementById(containerId).innerHTML = html;
-        }
+        html += '</div>';
 
-        function fetchLiveActivity() {
+        document.getElementById(containerId).innerHTML = html;
+    }
 
-            fetch("{{ route('admin.activity.live') }}", {
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            })
+    function fetchLiveActivity() {
+
+        fetch("{{ route('admin.activity.live') }}")
             .then(response => response.json())
             .then(data => {
 
-                // Update count
                 document.getElementById('active-count').innerText = data.active_count;
 
-                // Update lists
-                renderList('active-admins-container', data.active, true);
-                renderList('inactive-admins-container', data.inactive, false);
+                renderAdmins('active-admins-container', data.active, true);
+                renderAdmins('inactive-admins-container', data.inactive, false);
 
             })
-            .catch(error => console.error('Live update error:', error));
-        }
+            .catch(error => console.error(error));
+    }
 
-        // Run every 20 seconds
-        setInterval(fetchLiveActivity, 20000);
-        </script>
+    setInterval(fetchLiveActivity, 20000);
+    </script>
+
     @endcan
 
 @endsection
