@@ -331,7 +331,7 @@ class TranscriptRequestController extends Controller
                 'faculty' => $row[10] ?? "",
                 'department' => $row[11] ?? "",
                 'request_type' => $row[12] ?? "",
-                 'request_purpose' =>$row13 ??"",
+                'request_purpose' =>$row13 ??"",
                 'reference_number' => $row[14] ?? "",
                 'destination_address' => $row[15] ?? "",
                 'rrr' => str_replace("-", "", $row[16] ?? ""),

@@ -7,8 +7,27 @@
         :inactive-admins="$inactiveAdmins" 
     />
    @push('script')
+   
     <script>
-        function renderAdmins(containerId, admins, type) {
+        function fetchLiveActivity() {
+            fetch("{{ route('admin.activity.live') }}")
+                .then(response => response.json())
+                .then(data => {
+
+                    console.log(data); // 👈 DEBUG
+
+                    document.getElementById('active-count').innerText = data.active_count;
+
+                    renderAdmins('active-admins-container', data.active, true);
+                    renderAdmins('inactive-admins-container', data.inactive, false);
+
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    
+        setInterval(fetchLiveActivity, 20000);
+    
+    function renderAdmins(containerId, admins, type) {
         let html = '';
 
         admins.forEach(admin => {
@@ -34,23 +53,7 @@
         document.getElementById(containerId).innerHTML =
             `<div class="row">${html}</div>`;
     }
-
-    function fetchLiveActivity() {
-        fetch('/admin/activity/live')
-            .then(response => response.json())
-            .then(data => {
-
-                renderAdmins('active-admins-container', data.active, 'active');
-                renderAdmins('inactive-admins-container', data.inactive, 'inactive');
-
-                document.getElementById('active-count').innerText = data.active_count;
-
-            });
-            alert('/admin/activity/live'')
-    }
-
-    setInterval(fetchLiveActivity, 20000);
-        
+ 
     </script>
     @endpush
 @endsection

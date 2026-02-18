@@ -30,6 +30,7 @@ class TranscriptsRequest extends Model
         'bodies','last_viewer','last_viewed',
         'progression','mail_sent','sent_by',
         'date_sent','sent_count','last_sent_email',
+        'request_time_dt',
     ];
     
      public function printout(){
@@ -39,6 +40,23 @@ class TranscriptsRequest extends Model
      public function cover_letter(){
         return $this->hasOne(TranscriptCoverLetter::class,'request_id'); 
     }
+    
+    protected $casts = [
+    'request_time_dt' => 'datetime',
+    ];
+    
+    public function setRequestTimeAttribute($value)
+        {
+            $this->attributes['request_time'] = $value;
+
+            $this->attributes['request_time_dt'] =
+                \Carbon\Carbon::createFromFormat(
+                    'm/d/Y H:i:s',
+                    trim($value)
+                );
+        }
+
+
     
     
     

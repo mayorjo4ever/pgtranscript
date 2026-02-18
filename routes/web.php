@@ -162,7 +162,7 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
           Route::post('change-role-permission','RoleController@changeRolePermission');
          }); ## end middleware
          
-        Route::get('activity/live', 'AdminController@liveActivity');            
+        Route::get('activity/live', 'AdminController@liveActivity')->name('admin.activity.live');            
         Route::get('/fix-dates', function () {
 
                 $updated = DB::update("
