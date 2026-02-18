@@ -150,163 +150,28 @@
               <p class="mb-0"><span class="text-success text-sm"> <a href="{{url('admin/id-card-requests')}}" target="_blank"> Undergraduate Requests </a> </span></p>
             </div>
           </div>
+        </div>       
+    </div>
+    
+  @can('view-online-admins')
+    <h4>Active Admins (<span id="active-count">{{ $activeAdmins->count() }}</span>)</h4>
+
+        <div id="active-admins-container">
+            {{-- active admins initial render here --}}
+        </div>
+
+        <hr>
+
+        <h4>Inactive Admins</h4>
+
+        <div id="inactive-admins-container">
+            {{-- inactive admins initial render here --}}
         </div>
         
-        </div>
-    
-    @can('view-online-admins')
-    @php
-        $totalAdmins = $activeAdmins->count() + $inactiveAdmins->count();
-        $activeCount = $activeAdmins->count();
-        $activePercent = $totalAdmins > 0 ? round(($activeCount / $totalAdmins) * 100) : 0;
-    @endphp
-
-<div class="row mb-4 mt-4">
-
-    <div class="col-md-4">
-        <div class="card shadow-sm">
-            <div class="card-body text-center">
-                <h6>Total Admins</h6>
-                <h3>{{ $totalAdmins }}</h3>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="card shadow-sm border-start border-success border-1">
-            <div class="card-body text-center">
-                <h6>Active Now</h6>
-                <h3 class="text-success" id="active-count">{{ $activeCount }}</h3>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="card shadow-sm border-start border-info border-1">
-            <div class="card-body text-center">
-                <h6>Active Percentage</h6>
-                <h3>{{ $activePercent }}%</h3>
-            </div>
-        </div>
-    </div>
-
-</div>
-    
-    
-
-        <div class="row mt-4">
-            
-            <div id="active-admins-container">
-                {{-- active admins list here --}}
-            </div>
-            
-            <div class="col-12">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-success">
-                        <h6 class="mb-0 text-white">Active Admins ({{ $activeAdmins->count() }})</h6>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="row">
-
-                            @forelse($activeAdmins as $admin)
-                                <div class="col-md-4 mb-3">
-                                    <div class="card border-start border-success border-1 shadow-sm">
-                                        <div class="card-body">
-
-                                            <div class="d-flex justify-content-between">
-                                                <div>
-                                                    <h6 class="mb-1">
-                                                        {{ $admin->surname }}
-                                                        &nbsp;&nbsp; <span class="online-dot"></span>
-                                                    </h6>
-                                                    <small class="text-muted">
-                                                        Last seen: {{ $admin->last_seen_at->diffForHumans() }}
-                                                    </small>
-                                                </div>
-                                            </div>
-
-                                            <hr>
-
-                                            <small class="text-muted d-block">
-                                                🌍 IP: {{ $admin->last_login_ip }}
-                                            </small>
-
-                                            <small class="text-muted">
-                                                💻 {{ Str::limit($admin->user_agent, 40) }}
-                                            </small>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            @empty
-                                <p class="text-muted">No active admins</p>
-                            @endforelse
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     @endcan
-    
-     @can('view-offline-admins')
-        <div class="row mt-4">
-            
-        <div id="inactive-admins-container">
-            {{-- inactive admins list here --}}
-        </div>
-            
-        <div class="col-12">
-            <div class="card shadow-sm">
-                <div class="card-header bg-secondary">
-                    <h6 class="mb-0 text-white">Offline Admins ({{ $inactiveAdmins->count() }})</h6>
-                </div>
-
-                <div class="card-body">
-                    <div class="row">
-
-                        @forelse($inactiveAdmins as $admin)
-                            <div class="col-md-4 mb-3">
-                                <div class="card border-start border-secondary border-1 shadow-sm">
-                                    <div class="card-body">
-
-                                        <h6 class="mb-1">
-                                            {{ $admin->surname }}
-                                            <span class="badge bg-secondary">Offline</span>
-                                        </h6>
-
-                                        @if($admin->last_seen_at)
-                                            <small class="text-muted d-block">
-                                                Last seen: {{ $admin->last_seen_at->diffForHumans() }}
-                                            </small>
-                                        @else
-                                            <small class="text-muted">
-                                                Never logged in
-                                            </small>
-                                        @endif
-
-                                        <hr>
-
-                                        <small class="text-muted d-block">
-                                            Last Login: 
-                                            {{ $admin->last_login_at ? $admin->last_login_at->format('d M Y h:i A') : 'N/A' }}
-                                        </small>
-
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <p class="text-muted">No offline admins</p>
-                        @endforelse
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    @endcan
-    
+  
+ 
+     
 	  
       <div class="row mt-4">
           <!--

@@ -6,55 +6,50 @@
         :active-admins="$activeAdmins" 
         :inactive-admins="$inactiveAdmins" 
     />
-   
+   @can('view-online-admins')
     <script>
-        alert('i make request');
-        
-        function fetchLiveActivity() {
-            fetch("{{ route('admin.activity.live') }}")
-                .then(response => response.json())
-                .then(data => {
+        function renderList(containerId, admins, isActive) {
 
-                    console.log(data); // 👈 DEBUG
+            let html = '';
 
-                    document.getElementById('active-count').innerText = data.active_count;
+            admins.forEach(admin => {
 
-                    renderAdmins('active-admins-container', data.active, true);
-                    renderAdmins('inactive-admins-container', data.inactive, false);
-
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    
-        setInterval(fetchLiveActivity, 20000);
-    
-    function renderAdmins(containerId, admins, type) {
-        let html = '';
-
-        admins.forEach(admin => {
-
-            let badge = type === 'active'
-                ? `<span class="online-dot"></span>`
-                : `<span class="badge bg-secondary">Offline</span>`;
-
-            html += `
-                <div class="col-md-4 mb-3">
-                    <div class="card shadow-sm border-start border-${type === 'active' ? 'success' : 'secondary'} border-4">
-                        <div class="card-body">
-                            <h6>${admin.surname} ${badge}</h6>
-                            <small class="text-muted">
-                                Last seen: ${admin.last_seen_at ?? 'Never'}
-                            </small>
-                        </div>
+                html += `
+                    <div class="card mb-2 p-2">
+                        <strong>${admin.surname}</strong>
+                        ${isActive ? '<span style="color:green;">● Online</span>' 
+                                   : '<span style="color:gray;">● Offline</span>'}
                     </div>
-                </div>
-            `;
-        });
+                `;
+            });
 
-        document.getElementById(containerId).innerHTML =
-            `<div class="row">${html}</div>`;
-    }
- 
-    </script>
+            document.getElementById(containerId).innerHTML = html;
+        }
+
+        function fetchLiveActivity() {
+
+            fetch("{{ route('admin.activity.live') }}", {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+
+                // Update count
+                document.getElementById('active-count').innerText = data.active_count;
+
+                // Update lists
+                renderList('active-admins-container', data.active, true);
+                renderList('inactive-admins-container', data.inactive, false);
+
+            })
+            .catch(error => console.error('Live update error:', error));
+        }
+
+        // Run every 20 seconds
+        setInterval(fetchLiveActivity, 20000);
+        </script>
+    @endcan
 
 @endsection
