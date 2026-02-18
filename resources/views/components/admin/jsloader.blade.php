@@ -18,7 +18,7 @@
   <script src="{{asset('js/ladda.js')}}"></script>    
   <script src="{{asset('js/flatpickr.min.js')}}"></script>    
   <script src="{{asset('js/sweetalert2.all.min.js')}}"></script>    
-  <script src="{{asset('js/chart-widget.js')}}"></script>    
+  <!--<script src="{{asset('js/chart-widget.js')}}"></script>-->    
       
   
   @if(in_array(Session::get('tab'),["upload_certs_data","import_users","upload-courses"])) 

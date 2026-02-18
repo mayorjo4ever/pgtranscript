@@ -191,9 +191,15 @@
     </div>
 
 </div>
-
+    
+    
 
         <div class="row mt-4">
+            
+            <div id="active-admins-container">
+                {{-- active admins list here --}}
+            </div>
+            
             <div class="col-12">
                 <div class="card shadow-sm">
                     <div class="card-header bg-success">
@@ -246,6 +252,11 @@
     
      @can('view-offline-admins')
         <div class="row mt-4">
+            
+        <div id="inactive-admins-container">
+            {{-- inactive admins list here --}}
+        </div>
+            
         <div class="col-12">
             <div class="card shadow-sm">
                 <div class="card-header bg-secondary">
@@ -440,6 +451,21 @@
               </button>
         </div>
       </div>
+
+
+      <div class="col-lg-4 mt-4 mb-3">
+            <div class="card z-index-2 justify-content-center align-items-center ">           
+              <div class="card-body">
+                  <h6> 2024/2025 STUDENT WITH MATRIC ISSUE  </h6>
+                  {!! QrCode::size(260)->generate('https://forms.gle/u9cqZSzxCC14P9F87')!!}                
+            </div>
+                <button
+                class="btn btn-sm  w-50 btn-outline-secondary copy-link"
+                 data-link="https://chat.whatsapp.com/CcZvuuIAtosHYA2W6FzfUL">Copy Link
+              </button>
+        </div>
+      </div>
+          
           
           
     </div> 

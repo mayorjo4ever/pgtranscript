@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\DriveDownloadController;
-use App\Services\GoogleSheetService;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DownloadController;
+use App\Services\GoogleSheetService;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -151,7 +152,7 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
        
         
         #managing roles and permission           
-         Route::group(['middleware' => ['role:super-admin']], function () {
+        Route::group(['middleware' => ['role:super-admin']], function () {
           Route::get('roles','RoleController@viewRoles');
           Route::get('permissions','RoleController@viewPermissions');
           Route::match(['get','post'],'add-edit-role/{id?}','RoleController@addEditRole');
@@ -161,9 +162,17 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
           Route::post('change-role-permission','RoleController@changeRolePermission');
          }); ## end middleware
          
-         Route::get('activity-data', 'AdminController@activityData');
-            
-        
+        Route::get('activity/live', 'AdminController@liveActivity');            
+        Route::get('/fix-dates', function () {
+
+                $updated = DB::update("
+                    UPDATE transcript_requests
+                    SET request_time_dt = STR_TO_DATE(request_time, '%m/%d/%Y %H:%i:%s')
+                    WHERE request_time_dt IS NULL
+                ");
+
+                return "Updated rows: " . $updated;
+            });
     });
   });
   Route::get('/downloads/passports-signatures', [DownloadController::class, 'download'])

@@ -54,17 +54,24 @@ class AdminController extends Controller
 
        return view('admin.dashboard',compact('page_info','activeAdmins','inactiveAdmins'));
     }
-    public function activityData()
+    public function liveActivity()
     {
-        $activeAdmins = Admin::where('last_seen_at', '>=', now()->subMinutes(2))->get();
+       $activeAdmins = Admin::where('last_seen_at', '>=', now()->subMinutes(2))
+        ->orderBy('last_seen_at','desc')
+        ->get();
+
         $inactiveAdmins = Admin::where(function($query){
             $query->whereNull('last_seen_at')
                   ->orWhere('last_seen_at', '<', now()->subMinutes(2));
-        })->get();
+        })
+        ->orderBy('last_seen_at','desc')
+        ->get();
 
         return response()->json([
-            'active' => $activeAdmins->count(),
-            'inactive' => $inactiveAdmins->count()
+            'active' => $activeAdmins,
+            'inactive' => $inactiveAdmins,
+            'active_count' => $activeAdmins->count(),
+            'inactive_count' => $inactiveAdmins->count(),
         ]);
     }
     public function managePassword(Request $request) {
