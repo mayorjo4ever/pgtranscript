@@ -20,7 +20,7 @@
 
             html += `
                 <div class="col-md-4 mb-3">
-                    <div class="card shadow-sm border-start border-${isActive ? 'success' : 'secondary'} border-4">
+                    <div class="card shadow-sm border-start border-${isActive ? 'success' : 'secondary'} border-2">
                         <div class="card-body">
                             <h6>
                                 ${admin.surname}
