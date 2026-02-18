@@ -9,6 +9,8 @@
    @push('script')
    
     <script>
+        alert('i make request');
+        
         function fetchLiveActivity() {
             fetch("{{ route('admin.activity.live') }}")
                 .then(response => response.json())
