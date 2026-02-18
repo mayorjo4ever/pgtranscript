@@ -59,7 +59,15 @@ class AdminController extends Controller
        $activeAdmins = Admin::where('last_seen_at', '>=', now()->subMinutes(2))
             ->select('id','surname','last_seen_at','last_login_at','last_login_ip')
             ->orderBy('last_seen_at','desc')
-            ->get();
+            ->get()->map(function($admin){
+            return [
+                    'id' => $admin->id,
+                    'surname' => $admin->surname,
+                    'last_seen_at' => optional($admin->last_seen_at)->diffForHumans(),
+                    'last_login_at' => optional($admin->last_login_at)->format('d M Y h:i A'),
+                    'last_login_ip' => $admin->last_login_ip,
+                ];
+             });
 
         $inactiveAdmins = Admin::where(function($query){
             $query->whereNull('last_seen_at')
@@ -67,7 +75,15 @@ class AdminController extends Controller
         })
         ->select('id','surname','last_seen_at','last_login_at','last_login_ip')
         ->orderBy('last_seen_at','desc')
-        ->get();
+        ->get()->map(function($admin){
+            return [
+                'id' => $admin->id,
+                'surname' => $admin->surname,
+                'last_seen_at' => optional($admin->last_seen_at)->diffForHumans(),
+                'last_login_at' => optional($admin->last_login_at)->format('d M Y h:i A'),
+                'last_login_ip' => $admin->last_login_ip,
+                ];
+            });
 
         return response()->json([
             'active' => $activeAdmins,
@@ -75,6 +91,8 @@ class AdminController extends Controller
             'active_count' => $activeAdmins->count(),
         ]);
     }
+    
+    
     public function managePassword(Request $request) {
           Session::put('page','manage_password');
           $page_info = ['title'=>'Manage Password','icon'=>'pe-7s-user','sub-title'=>'When you noticed vunerability, please always change your password, and subsequently every 3 months '];
