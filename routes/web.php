@@ -15,6 +15,10 @@ Route::get('/', function () {
     return redirect('portal/login');
 });
 
+ Route::get('login',function () {
+    return redirect('portal/login');
+});
+
 
 ## login page
 ##===================
