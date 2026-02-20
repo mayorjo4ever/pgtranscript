@@ -17,7 +17,7 @@ Route::get('/', function () {
 
  Route::get('login',function () {
     return redirect('portal/login');
-});
+    })->name('login');
 
 
 ## login page
