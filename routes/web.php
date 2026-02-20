@@ -18,6 +18,10 @@ Route::get('/', function () {
  Route::get('login',function () {
     return redirect('portal/login');
     })->name('login');
+    
+ Route::get('register',function () {
+    return redirect('portal/login');
+    }) ->name('register');
 
 
 ## login page

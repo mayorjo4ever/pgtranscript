@@ -61,7 +61,7 @@ class TranscriptRequestController extends Controller
        $page_info = ['title'=> "Transcript Requests",'icon'=>'pe-7s-person_add','sub-title'=>'Education is the best legacy'];       
        $pendings = TranscriptsRequest::
                whereIn('request_status',['created','Duplicate','No-Payment','No-Spreadsheet','No-Transcript-Yet'])
-               ->orderBy('id','desc')->orderBy('request_status','asc')->paginate(20);
+               ->orderBy('id','desc')->orderBy('request_status','asc')->paginate(50);
        
       # ini_set('max_execution_time', 0);
       #  set_time_limit(0);        
