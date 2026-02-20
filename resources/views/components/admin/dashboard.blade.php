@@ -108,8 +108,7 @@
                 <p class="mb-0"> <span class="text-success text-sm "> <a href="{{url('admin/pending-transcript-requests')}}" target="_blank">  Last Imported Requests </a> </span>   </p>
             </div>
           </div>
-        </div>
-          
+        </div>          
       </div>
 	 
         <div class="row mt-4">

@@ -11,6 +11,7 @@ use App\Models\CertificateApprovalDate;
 use App\Models\CertificateData;
 use App\Models\Degree;
 use App\Models\Programme;
+use App\Models\Transcript;
 use App\Models\TranscriptPrintout;
 use App\Models\TranscriptReport;
 use Carbon\Carbon;
@@ -446,8 +447,12 @@ class CertificateController extends Controller
                     case "regno" : 
                         $msg = "Matric No. Updated Successfully ";                     
                         $newPixName = $init_record->name ."".str_replace("/","",$data['value']);
-                        CertificateData::where('id',$data['ref'])->update(['modified_regno'=>$init_record->regno,'regno'=>$data['value'],'pix_name'=>$newPixName,'completed'=>0]); 
-                        $msg .= " From ".$init_record->regno." To ".$data['value'];
+                       CertificateData::where('id',$data['ref'])->update(['modified_regno'=>$init_record->regno,'regno'=>$data['value'],'pix_name'=>$newPixName,'completed'=>0]); 
+                        
+                        // also update transcript if already done 
+                        $updates = $this->updateTranscriptMatric($init_record->regno, $data['value']); 
+                                
+                        $msg .= $updates; #  " From ".$init_record->regno." To ".$data['value'];
                         $type = "success";  
                         break; 
                     case  "name" : 
@@ -467,6 +472,30 @@ class CertificateController extends Controller
         endif; # ajax        
     }
     
+    protected function updateTranscriptMatric($oldMatric, $newMatric){
+        $approve_date = $this->approve_date; 
+        $response = "From ".$oldMatric." To ".$newMatric.", approved on  ".$approve_date;
+        $transcripts = Transcript::where('regno',$oldMatric)
+                ->where('approve_date',$approve_date)->count(); 
+        if($transcripts >0):
+            // change matric
+            Transcript::where('regno',$oldMatric)
+                ->where('approve_date',$approve_date)
+                ->update(['regno'=>$newMatric]);
+            // update transcript report too
+            TranscriptReport::where('regno',$oldMatric)
+                ->where('approve_date',$approve_date)
+                ->update(['regno'=>$newMatric]);
+             // update transcript printout too
+             TranscriptPrintout::where('regno',$oldMatric)
+                ->where('approve_date',$approve_date)
+                ->update(['regno'=>$newMatric,'printed'=>0,'print_count'=>0,'printed_by'=>null]);
+            $response .= " with ".$transcripts." courses ";
+        endif;
+        
+        return $response; 
+    }  
+            
     function normalizeName($name) {
             return strtolower(preg_replace('/[^a-z0-9]/i', '', pathinfo($name, PATHINFO_FILENAME)));
         }
