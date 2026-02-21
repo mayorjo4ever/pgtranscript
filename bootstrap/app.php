@@ -14,6 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
            $middleware->alias([
                 'admin.active' => \App\Http\Middleware\UpdateAdminLastSeen::class,
             ]);
+            // Add CSRF exception for Telegram webhook
+            $middleware->validateCsrfTokens(except: [
+                'bible/webhook',
+            ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
