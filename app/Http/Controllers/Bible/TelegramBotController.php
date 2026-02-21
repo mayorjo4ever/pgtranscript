@@ -1,12 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Bible;
 
+use App\Services\Bible\TelegramHandler;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Telegram\Bot\Api;
+use function app;
 use function env;
 use function GuzzleHttp\json_encode;
+use function now;
 use function response;
 use function str_starts_with;
 
@@ -15,7 +19,7 @@ class TelegramBotController extends Controller
 {
     public function webhook(Request $request){
         
-        app(\App\Services\Telegram\TelegramHandler::class)
+        app(TelegramHandler::class)
             ->handle($request->all());
         
         return response()->json(['ok' => true]);

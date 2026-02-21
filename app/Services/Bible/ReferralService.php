@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Services\Telegram;
-use Telegram\Bot\FileUpload\InputFile;
+namespace App\Services\Bible;
+
 use Illuminate\Support\Facades\DB;
+use Telegram\Bot\FileUpload\InputFile;
+use function app;
+use function public_path;
 
 class ReferralService
 {
@@ -51,10 +54,10 @@ class ReferralService
         
         ";
 
-        $keyboard = app(\App\Services\Telegram\KeyboardService::class)
+        $keyboard = app(KeyboardService::class)
             ->mainMenu();
 
-        app(\App\Services\Telegram\TelegramService::class)
+        app(TelegramService::class)
             ->sendPhoto([
                 'chat_id' => $chatId,
                 'chat_id' => $chatId,

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DriveDownloadController;
+use App\Http\Controllers\Bible\TelegramBotController;
 use App\Http\Controllers\DownloadController;
 use App\Services\GoogleSheetService;
 use Illuminate\Support\Facades\DB;
@@ -188,9 +189,11 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
   
   Route::get('/google/callback', [DriveDownloadController::class, 'authCallback'])->name('google.callback');
   
-  Route::post('/bible', [TelegramBotController::class, 'webhook'])->withoutMiddleware(
-         [\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]
-    );
+
+  Route::prefix('bible')->group(function () {
+    Route::post('/webhook', [TelegramBotController::class, 'webhook'])
+        ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+   });
   
 /**
 Route::get('/dashboard', function () {

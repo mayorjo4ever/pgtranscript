@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Services\Telegram;
+namespace App\Services\Bible;
 
 use Illuminate\Support\Facades\DB;
+use function app;
+use function str_starts_with;
 
 class BibleService
 {

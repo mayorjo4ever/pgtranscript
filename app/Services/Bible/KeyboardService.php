@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Services\Telegram;
+namespace App\Services\Bible;
+
+use function GuzzleHttp\json_encode;
 
 class KeyboardService
 {

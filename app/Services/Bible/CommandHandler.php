@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Services\Telegram;
+namespace App\Services\Bible;
+
+use function app;
+use function str_starts_with;
 
 class CommandHandler
 {
