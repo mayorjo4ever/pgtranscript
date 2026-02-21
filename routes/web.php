@@ -187,7 +187,11 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
        ->name('downloads.bulk');
   
   Route::get('/google/callback', [DriveDownloadController::class, 'authCallback'])->name('google.callback');
-
+  
+  Route::post('/bible', [TelegramBotController::class, 'webhook'])->withoutMiddleware(
+         [\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]
+    );
+  
 /**
 Route::get('/dashboard', function () {
     return view('dashboard');
