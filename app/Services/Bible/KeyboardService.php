@@ -28,12 +28,12 @@ class KeyboardService
     public function mainMenu()
     {
         return Keyboard::make()
+            ->setResizeKeyboard(true)
+            ->setOneTimeKeyboard(false)
             ->row(['📖 Read Bible', '🔍 Search'])
             ->row(['📚 Books', '⭐ Favorites'])
             ->row(['🎵 Hymns', '👥 My Referrals'])
-            ->row(['📤 Invite Friends'])
-            ->resize()
-            ->oneTime(false);
+            ->row(['📤 Invite Friends']);
     }
 }
 
