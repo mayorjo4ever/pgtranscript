@@ -1,5 +1,43 @@
 <?php
+namespace App\Services\Bible;
 
+use Telegram\Bot\Keyboard\Keyboard;
+
+class KeyboardService
+{
+    public function verseNavigation($bookId, $chapter, $verse)
+    {
+        return Keyboard::make()
+            ->inline()
+            ->row([
+                Keyboard::inlineButton([
+                    'text' => '⬅️ Previous',
+                    'callback_data' => "prev_{$bookId}_{$chapter}_{$verse}"
+                ]),
+                Keyboard::inlineButton([
+                    'text' => "📖 {$chapter}:{$verse}",
+                    'callback_data' => "current_{$bookId}_{$chapter}_{$verse}"
+                ]),
+                Keyboard::inlineButton([
+                    'text' => 'Next ➡️',
+                    'callback_data' => "next_{$bookId}_{$chapter}_{$verse}"
+                ])
+            ]);
+    }
+
+    public function mainMenu()
+    {
+        return Keyboard::make()
+            ->row(['📖 Read Bible', '🔍 Search'])
+            ->row(['📚 Books', '⭐ Favorites'])
+            ->row(['🎵 Hymns', '👥 My Referrals'])
+            ->row(['📤 Invite Friends'])
+            ->resize()
+            ->oneTime(false);
+    }
+}
+
+/**
 namespace App\Services\Bible;
 
 use function GuzzleHttp\json_encode;
@@ -34,4 +72,4 @@ class KeyboardService
             ]
         ]);
     }
-}
+}**/

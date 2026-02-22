@@ -23,12 +23,7 @@ class BibleService
         // Log for debugging
         Log::info('Bible search request', ['text' => $text]);
 
-        // Updated regex to handle various formats:
-        // 1 Cor 2:1-10
-        // 1Cor 2:1-10
-        // Corinthians 2:1-10
-        // Gen 1:1
-        // Genesis 1
+        // Updated regex to handle various formats
         if (!preg_match(
             '/^([1-3]?\s*[A-Za-z]+\.?)\s+(\d+)(?::(\d+)(?:-(\d+))?)?$/i',
             $text,
@@ -50,37 +45,12 @@ class BibleService
             'verse_end' => $verseEnd
         ]);
 
-        // Clean up book input - remove dots and extra spaces
+        // Clean up book input
         $bookInput = str_replace('.', '', $bookInput);
         $bookInput = trim($bookInput);
 
-        // Search for book with better matching
-        $book = DB::table('kjv_books')
-            ->where(function($query) use ($bookInput) {
-                $query->where('name', 'like', $bookInput.'%')
-                      ->orWhere('name', 'like', '%'.$bookInput.'%')
-                      ->orWhere('abbreviation', 'like', $bookInput.'%');
-            })
-            ->first();
-
-        // If not found, try common alternative names
-        if (!$book) {
-            $bookAliases = $this->getBookAliases($bookInput);
-            if ($bookAliases) {
-                $book = DB::table('kjv_books')
-                    ->whereIn('id', function($query) use ($bookAliases) {
-                        $query->select('id')
-                              ->from('kjv_books')
-                              ->where(function($q) use ($bookAliases) {
-                                  foreach ($bookAliases as $alias) {
-                                      $q->orWhere('name', 'like', $alias.'%')
-                                        ->orWhere('abbreviation', 'like', $alias.'%');
-                                  }
-                              });
-                    })
-                    ->first();
-            }
-        }
+        // Search for book
+        $book = $this->findBook($bookInput);
 
         if (!$book) {
             Log::warning('Book not found', ['book_input' => $bookInput]);
@@ -119,6 +89,9 @@ class BibleService
             return;
         }
 
+        // Check if it's a single verse (add navigation buttons)
+        $isSingleVerse = $verseStart && !$verseEnd && $verses->count() === 1;
+
         // Build response
         $title = "{$book->name} {$chapter}";
         if ($verseStart && $verseEnd) {
@@ -133,19 +106,61 @@ class BibleService
             $message .= "*{$v->verse}.* {$v->text}\n\n";
         }
 
-        // Split long messages
-        foreach (str_split($message, 3500) as $chunk) {
+        // Send message with or without navigation buttons
+        if ($isSingleVerse) {
+            // Single verse - add navigation buttons
+            $keyboard = app(KeyboardService::class)
+                ->verseNavigation($book->id, $chapter, $verseStart);
+
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'text' => $chunk,
+                'text' => $message,
                 'parse_mode' => 'Markdown',
+                'reply_markup' => $keyboard
             ]);
+        } else {
+            // Multiple verses or whole chapter - no navigation
+            foreach (str_split($message, 3500) as $chunk) {
+                $this->telegram->sendMessage([
+                    'chat_id' => $chatId,
+                    'text' => $chunk,
+                    'parse_mode' => 'Markdown',
+                ]);
+            }
         }
     }
 
-    /**
-     * Get common alternative names/abbreviations for books
-     */
+    private function findBook($bookInput)
+    {
+        // First try direct match
+        $book = DB::table('kjv_books')
+            ->where(function($query) use ($bookInput) {
+                $query->where('name', 'like', $bookInput.'%')
+                      ->orWhere('name', 'like', '%'.$bookInput.'%')
+                      ->orWhere('abbreviation', 'like', $bookInput.'%');
+            })
+            ->first();
+
+        // If not found, try aliases
+        if (!$book) {
+            $bookAliases = $this->getBookAliases($bookInput);
+            if ($bookAliases) {
+                foreach ($bookAliases as $alias) {
+                    $book = DB::table('kjv_books')
+                        ->where(function($query) use ($alias) {
+                            $query->where('name', 'like', $alias.'%')
+                                  ->orWhere('abbreviation', 'like', $alias.'%');
+                        })
+                        ->first();
+                    
+                    if ($book) break;
+                }
+            }
+        }
+
+        return $book;
+    }
+
     private function getBookAliases($input)
     {
         $input = strtolower(trim($input));
@@ -153,7 +168,7 @@ class BibleService
         $aliases = [
             // Old Testament
             'gen' => ['Genesis'],
-            'exo' => ['Exodus'],
+            'exod' => ['Exodus'],
             'lev' => ['Leviticus'],
             'num' => ['Numbers'],
             'deut' => ['Deuteronomy'],
@@ -239,23 +254,67 @@ class BibleService
         [$action, $bookId, $chapter, $verse] = explode('_', $callback);
         $verse = (int) $verse;
 
-        if ($action === 'next') $verse++;
-        if ($action === 'prev' && $verse > 1) $verse--;
+        if ($action === 'next') {
+            $verse++;
+        } elseif ($action === 'prev' && $verse > 1) {
+            $verse--;
+        }
 
+        // Get the verse data
         $verseData = DB::table('kjv_verses')
             ->where('book_id', $bookId)
             ->where('chapter', $chapter)
             ->where('verse', $verse)
             ->first();
 
-        if (!$verseData) return;
+        // If verse not found, try next chapter or previous chapter
+        if (!$verseData) {
+            if ($action === 'next') {
+                // Try first verse of next chapter
+                $chapter = (int)$chapter + 1;
+                $verse = 1;
+                $verseData = DB::table('kjv_verses')
+                    ->where('book_id', $bookId)
+                    ->where('chapter', $chapter)
+                    ->where('verse', $verse)
+                    ->first();
+            } elseif ($action === 'prev') {
+                // Try last verse of previous chapter
+                $chapter = (int)$chapter - 1;
+                if ($chapter > 0) {
+                    $lastVerse = DB::table('kjv_verses')
+                        ->where('book_id', $bookId)
+                        ->where('chapter', $chapter)
+                        ->max('verse');
+                    
+                    if ($lastVerse) {
+                        $verse = $lastVerse;
+                        $verseData = DB::table('kjv_verses')
+                            ->where('book_id', $bookId)
+                            ->where('chapter', $chapter)
+                            ->where('verse', $verse)
+                            ->first();
+                    }
+                }
+            }
+        }
+
+        if (!$verseData) {
+            // Reached end of book or beginning
+            app(TelegramService::class)->answerCallback([
+                'callback_query_id' => $update['callback_query']['id'],
+                'text' => $action === 'next' ? '✅ End of book reached' : '✅ Beginning of book reached',
+                'show_alert' => false
+            ]);
+            return;
+        }
 
         $book = DB::table('kjv_books')->where('id', $bookId)->first();
 
         $keyboard = app(KeyboardService::class)
             ->verseNavigation($bookId, $chapter, $verse);
 
-        $newText = "📖 *{$book->name} {$chapter}:{$verse}*\n\n{$verseData->text}";
+        $newText = "📖 *{$book->name} {$chapter}:{$verse}*\n\n*{$verse}.* {$verseData->text}";
 
         app(TelegramService::class)->editMessage([
             'chat_id' => $chatId,
@@ -265,157 +324,4 @@ class BibleService
             'reply_markup' => $keyboard
         ]);
     }
-} 
-
-## **Key Changes:**
-//
-//1. **Fixed regex** - Changed from `:` to allow optional `:` with `(?::` to handle formats like "Rev 10" (chapter only)
-//2. **Better book matching** - Added fuzzy matching and common aliases
-//3. **Added logging** - To help debug what's happening
-//4. **Book aliases function** - Handles common abbreviations like "1 Cor", "2 Cor", "Matt", "Rev", etc.
-//5. **Better error messages** - Shows what format to use
-
-//## **Test These Formats:**
-//```
-////1 Cor 2:1-10
-//1Cor 2:1-10
-//1 Corinthians 2:1-10
-//Rev 10:7
-//Revelation 10:7
-//Gen 1:1
-//Genesis 1
-//Ps 23
-    
-/**
- * namespace App\Services\Bible;
-
-use Illuminate\Support\Facades\DB;
-use function app;
-use function str_starts_with;
-
-class BibleService
-{
-    protected TelegramService $telegram;
-
-    public function __construct(TelegramService $telegram)
-    {
-        $this->telegram = $telegram;
-    }
-
-   public function search($update){
-        $chatId = $update['message']['chat']['id'];
-        $text   = trim($update['message']['text']);
-
-        if (!preg_match(
-            '/^([1-3]?\s?[A-Za-z]+)\s+(\d+)(?:[:\s](\d+)(?:-(\d+))?)?$/i',
-            $text,
-            $matches
-        )) {
-            return;
-        }
-
-        $bookInput  = trim($matches[1]);
-        $chapter    = (int) $matches[2];
-        $verseStart = $matches[3] ?? null;
-        $verseEnd   = $matches[4] ?? null;
-
-        $book = DB::table('kjv_books')
-            ->where('name', 'like', $bookInput.'%')
-            ->orWhere('abbreviation', 'like', $bookInput.'%')
-            ->first();
-
-        if (!$book) {
-            $this->telegram->sendMessage([
-                'chat_id' => $chatId,
-                'text' => "❌ Book not found."
-            ]);
-            return;
-        }
-
-        $query = DB::table('kjv_verses')
-            ->where('book_id', $book->id)
-            ->where('chapter', $chapter);
-
-        if ($verseStart && $verseEnd) {
-            $query->whereBetween('verse', [(int)$verseStart, (int)$verseEnd]);
-        } elseif ($verseStart) {
-            $query->where('verse', (int)$verseStart);
-        }
-
-        $verses = $query->orderBy('verse')->get();
-
-        if ($verses->isEmpty()) {
-            $this->telegram->sendMessage([
-                'chat_id' => $chatId,
-                'text' => "❌ No verses found."
-            ]);
-            return;
-        }
-
-        $title = "{$book->name} {$chapter}";
-
-        if ($verseStart && $verseEnd) {
-            $title .= ":{$verseStart}-{$verseEnd}";
-        } elseif ($verseStart) {
-            $title .= ":{$verseStart}";
-        }
-
-        $message = "📖 * {$title} * \n\n";
-
-        foreach ($verses as $v) {
-            $message .= "{$v->verse}. {$v->text}\n\n";
-        }
-
-        foreach (str_split($message, 3500) as $chunk) {
-            $this->telegram->sendMessage([
-                'chat_id' => $chatId,
-                'text' => $chunk,
-                'parse_mode' => 'Markdown',
-            ]);
-        }
-    }
-
-    public function handleCallback($update){
-        $callback = $update['callback_query']['data'];
-        $chatId   = $update['callback_query']['message']['chat']['id'];
-        $messageId = $update['callback_query']['message']['message_id'];
-
-        app(TelegramService::class)->answerCallback([
-            'callback_query_id' => $update['callback_query']['id']
-        ]);
-
-        if (!str_starts_with($callback, 'next_') && 
-            !str_starts_with($callback, 'prev_')) {
-            return;
-        }
-
-        [$action, $bookId, $chapter, $verse] = explode('_', $callback);
-
-        $verse = (int) $verse;
-
-        if ($action === 'next') $verse++;
-        if ($action === 'prev' && $verse > 1) $verse--;
-
-        $verseData = DB::table('kjv_verses')
-            ->where('book_id', $bookId)
-            ->where('chapter', $chapter)
-            ->where('verse', $verse)
-            ->first();
-
-        if (!$verseData) return;
-
-        $book = DB::table('kjv_books')->where('id', $bookId)->first();
-
-        $keyboard = app(KeyboardService::class)
-            ->verseNavigation($bookId, $chapter, $verse);
-
-        $newText = "📖 {$book->name} {$chapter}:{$verse}\n\n{$verseData->text}";
-
-        app(TelegramService::class)->editMessage([
-            'chat_id' => $chatId,
-            'message_id' => $messageId,
-            'text' => $newText,
-            'reply_markup' => $keyboard
-        ]);
-    }
-}**/
+}
