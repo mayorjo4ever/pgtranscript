@@ -74,28 +74,28 @@ class ReferralService
         
         $caption = "📖 *Welcome {$firstName}!*
 
-✨ *Holy Bible KJV & Hymns*
+            ✨ *Holy Bible KJV & Hymns*
 
-You can:
-- Search any Bible verse
-- Read full chapters
-- Search by keyword
-- Read verse ranges
-- Navigate verses easily
+            You can:
+            - Search any Bible verse
+            - Read full chapters
+            - Search by keyword
+            - Read verse ranges
+            - Navigate verses easily
 
-📌 *How To Use:* 
-Type references like:
-- Rev 10:7
-- Mal 4:5-6
-- John 3:16
-- Ps 23
+            📌 *How To Use:* 
+            Type references like:
+            - Rev 10:7
+            - Mal 4:5-6
+            - John 3:16
+            - Ps 23
 
-🎯 *Search Only Believe Hymns:*
-- Hymn 100
-- Hymn 25
-- Hymn 1
+            🎯 *Search Only Believe Hymns:*
+            - Hymn 100
+            - Hymn 25
+            - Hymn 1
 
-📖 *Continue Your Study*\n\n";
+            📖 *Continue Your Study*\n\n";
 
         $keyboard = app(KeyboardService::class)->mainMenu();
 
