@@ -22,7 +22,7 @@ class ReferralService
         $chatId = $update['message']['chat']['id'];
         $telegramId = $update['message']['from']['id'];
         $firstName = $update['message']['from']['first_name'] ?? '';
-        $firstName .=" ". $update['message']['from']['last_name'] ?? '';
+        $lastName = $update['message']['from']['last_name'] ?? '';
         $username = $update['message']['from']['username'] ?? null;
 
         // Extract referrer ID from the start command
@@ -44,8 +44,10 @@ class ReferralService
                 'telegram_id' => $telegramId,
                 'chat_id' => $chatId,
                 'first_name' => $firstName,
+                'last_name' => $lastName,
                 'username' => $username,
-                'referred_by' => $referrerId && $referrerId != $telegramId ? $referrerId : null,               
+                'referred_by' => $referrerId && $referrerId != $telegramId ? $referrerId : null,
+                'is_active' => true,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -60,8 +62,10 @@ class ReferralService
                 ->where('telegram_id', $telegramId)
                 ->update([
                     'chat_id' => $chatId,
-                    'first_name' => $firstName,                    
+                    'first_name' => $firstName,
+                    'last_name' => $lastName,
                     'username' => $username,
+                    'is_active' => true,
                     'updated_at' => Carbon::now(),
                 ]);
         }
@@ -70,28 +74,28 @@ class ReferralService
         
         $caption = "📖 *Welcome {$firstName}!*
 
-            ✨ *Holy Bible KJV & Hymns*
+✨ *Holy Bible KJV & Hymns*
 
-            You can:
-            - Search any Bible verse
-            - Read full chapters
-            - Search by keyword
-            - Read verse ranges
-            - Navigate verses easily
+You can:
+- Search any Bible verse
+- Read full chapters
+- Search by keyword
+- Read verse ranges
+- Navigate verses easily
 
-            📌 *How To Use:* 
-            Type references like:
-            - Rev 10:7
-            - Mal 4:5-6
-            - John 3:16
-            - Ps 23
+📌 *How To Use:* 
+Type references like:
+- Rev 10:7
+- Mal 4:5-6
+- John 3:16
+- Ps 23
 
-            🎯 *Search Only Believe Hymns:*
-            - Hymn 100
-            - Hymn 25
-            - Hymn 1
+🎯 *Search Only Believe Hymns:*
+- Hymn 100
+- Hymn 25
+- Hymn 1
 
-            📖 *Continue Your Study*\n\n";
+📖 *Continue Your Study*\n\n";
 
         $keyboard = app(KeyboardService::class)->mainMenu();
 
