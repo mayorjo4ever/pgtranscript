@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('telegram_users', function (Blueprint $table) {
-        $table->id();
-        $table->bigInteger('telegram_id')->unique();
-        $table->bigInteger('chat_id')->nullable();
-        $table->string('first_name')->nullable();
-        $table->string('last_name')->nullable();
-        $table->string('username')->nullable();
-        $table->bigInteger('referred_by')->nullable();
-        $table->boolean('is_active')->default(true);
-        $table->timestamps();
-    });
+//        Schema::create('telegram_users', function (Blueprint $table) {
+//        $table->id();
+//        $table->bigInteger('telegram_id')->unique();
+//        $table->bigInteger('chat_id')->nullable();
+//        $table->string('first_name')->nullable();
+//        $table->string('last_name')->nullable();
+//        $table->string('username')->nullable();
+//        $table->bigInteger('referred_by')->nullable();
+//        $table->boolean('is_active')->default(true);
+//        $table->timestamps();
+//    });
     }
 
     /**
