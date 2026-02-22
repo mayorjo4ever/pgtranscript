@@ -1,7 +1,8 @@
 <?php
-
 namespace App\Services\Bible;
 
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Telegram\Bot\FileUpload\InputFile;
 use function app;
@@ -16,104 +17,173 @@ class ReferralService
         $this->telegram = $telegram;
     }
 
-   public function start($update)
+    public function start($update)
     {
         $chatId = $update['message']['chat']['id'];
         $telegramId = $update['message']['from']['id'];
         $firstName = $update['message']['from']['first_name'] ?? '';
+        $firstName .=" ". $update['message']['from']['last_name'] ?? '';
+        $username = $update['message']['from']['username'] ?? null;
+
+        // Extract referrer ID from the start command
+        $text = $update['message']['text'] ?? '';
+        $referrerId = null;
+        
+        if (preg_match('/\/start\s+(\d+)/', $text, $matches)) {
+            $referrerId = $matches[1];
+        }
+
+        // Check if user already exists
+        $existingUser = DB::table('telegram_users')
+            ->where('telegram_id', $telegramId)
+            ->first();
+
+        if (!$existingUser) {
+            // Create new user
+            DB::table('telegram_users')->insert([
+                'telegram_id' => $telegramId,
+                'chat_id' => $chatId,
+                'first_name' => $firstName,
+                'username' => $username,
+                'referred_by' => $referrerId && $referrerId != $telegramId ? $referrerId : null,               
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+
+            // If they were referred by someone, notify the referrer
+            if ($referrerId && $referrerId != $telegramId) {
+                $this->notifyReferrer($referrerId, $firstName);
+            }
+        } else {
+            // Update existing user info
+            DB::table('telegram_users')
+                ->where('telegram_id', $telegramId)
+                ->update([
+                    'chat_id' => $chatId,
+                    'first_name' => $firstName,                    
+                    'username' => $username,
+                    'updated_at' => Carbon::now(),
+                ]);
+        }
 
         $referralLink = "https://t.me/Theholy_bible_bot?start={$telegramId}";
-
+        
         $caption = "📖 *Welcome {$firstName}!*
 
-        ✨ * Holy Bible KJV & Hymns *
+            ✨ *Holy Bible KJV & Hymns*
 
-        You can:
-        • Search any Bible verse
-        • Read full chapters
-        • Search by keyword
-        • Read verse ranges
-        • Navigate verses easily
+            You can:
+            - Search any Bible verse
+            - Read full chapters
+            - Search by keyword
+            - Read verse ranges
+            - Navigate verses easily
 
-        📌 *How To Use:* 
+            📌 *How To Use:* 
+            Type references like:
+            - Rev 10:7
+            - Mal 4:5-6
+            - John 3:16
+            - Ps 23
 
-        Type references like:
-        • John 3:16
-        • James 3 6
-        • 1 Cor 13:4-7
-        • Psalm 23
-        • search love
+            🎯 *Search Only Believe Hymns:*
+            - Hymn 100
+            - Hymn 25
+            - Hymn 1
 
-        🎯 * Search Only Beieve Hymns:*
-        • Hymn 100
-        • Hymn 25
-        • Hymn 1
+            📖 *Continue Your Study*\n\n";
+
+        $keyboard = app(KeyboardService::class)->mainMenu();
+
+        app(TelegramService::class)->sendPhoto([
+            'chat_id' => $chatId,
+            'photo' => InputFile::create(public_path('images/bible.png')),    
+            'caption' => $caption,
+            'parse_mode' => 'Markdown',
+            'reply_markup' => $keyboard
+        ]);
+    }
+
+    protected function notifyReferrer($referrerId, $newUserName)
+    {
+        try {
+            $referrer = DB::table('telegram_users')
+                ->where('telegram_id', $referrerId)
+                ->first();
+
+            if ($referrer) {
+                $this->telegram->sendMessage([
+                    'chat_id' => $referrer->chat_id,
+                    'text' => "🎉 Great news! {$newUserName} just joined using your referral link!",
+                    'parse_mode' => 'Markdown'
+                ]);
+            }
+        } catch (Exception $e) {
+            // Silently fail if notification doesn't work
+            \Log::error('Failed to notify referrer: ' . $e->getMessage());
+        }
+    }
+
+    public function myRef($update)
+    {
+        $chatId = $update['message']['chat']['id'];
+        $telegramId = $update['message']['from']['id'];
         
-        
-        📖 *Continue Your Study*
-        
-        ";
+        $referrals = DB::table('telegram_users')
+            ->where('referred_by', $telegramId)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-        $keyboard = app(KeyboardService::class)
-            ->mainMenu();
-
-        app(TelegramService::class)
-            ->sendPhoto([
+        if ($referrals->isEmpty()) {
+            $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'chat_id' => $chatId,
-                'photo' => InputFile::create(public_path('images/bible.png')),    
-                'caption' => $caption,
-                'parse_mode' => 'Markdown',
-                'reply_markup' => $keyboard
+                'text' => "👥 You have no referrals yet.\n\nShare your referral link to invite friends!"
             ]);
-        }   
+            return;
+        }
 
-   public function myRef($update){
-    $chatId = $update['message']['chat']['id'];
-    $telegramId = $update['message']['from']['id'];
+        $message = "👥 *Your Referrals (" . $referrals->count() . ")*\n\n";
+        
+        foreach ($referrals as $index => $user) {
+            $name = $user->first_name ?? 'Unknown';
+            $username = $user->username ? "@{$user->username}" : '';
+            $date = Carbon::parse($user->created_at)->format('M d, Y');
+            $message .= ($index + 1) . ". {$name} {$username} - {$date}\n";
+        }
 
-    $referrals = DB::table('telegram_users')
-        ->where('referred_by', $telegramId)
-        ->orderBy('created_at', 'desc')
-        ->get();
-
-    if ($referrals->isEmpty()) {
-        $this->telegram->sendMessage([
-            'chat_id' => $chatId,
-            'text' => "👥 You have no referrals yet."
-        ]);
-        return;
+        foreach (str_split($message, 3500) as $chunk) {
+            $this->telegram->sendMessage([
+                'chat_id' => $chatId,
+                'text' => $chunk,
+                'parse_mode' => 'Markdown'
+            ]);
+        }
     }
-
-    $message = "👥 *Your Referrals (" . $referrals->count() . ")*\n\n";
-
-    foreach ($referrals as $index => $user) {
-
-        $name = $user->first_name ?? 'Unknown';
-        $username = $user->username ? "@{$user->username}" : '';
-
-        $message .= ($index + 1) . ". {$name} {$username}\n";
-    }
-
-    foreach (str_split($message, 3500) as $chunk) {
-        $this->telegram->sendMessage([
-            'chat_id' => $chatId,
-            'text' => $chunk,
-            'parse_mode' => 'Markdown'
-        ]);
-    }
-}
 
     public function invite($update)
     {
         $chatId = $update['message']['chat']['id'];
         $telegramId = $update['message']['from']['id'];
-
+        $firstName = $update['message']['from']['first_name'] ?? '';
+        
         $referralLink = "https://t.me/Theholy_bible_bot?start={$telegramId}";
+        
+        // Count current referrals
+        $referralCount = DB::table('telegram_users')
+            ->where('referred_by', $telegramId)
+            ->count();
+
+        $message = "📤 *Share the Gospel!*\n\n";
+        $message .= "Hi {$firstName}! 👋\n\n";
+        $message .= "Invite friends to read the Bible:\n\n";
+        $message .= "`{$referralLink}`\n\n";
+        $message .= "👥 Total Referrals: *{$referralCount}*\n\n";
+        $message .= "Share this link with your friends and family! 🙏";
 
         $this->telegram->sendMessage([
             'chat_id' => $chatId,
-            'text' => "📤 Invite friends:\n{$referralLink}"
+            'text' => $message,
+            'parse_mode' => 'Markdown'
         ]);
     }
 }
