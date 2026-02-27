@@ -96,7 +96,7 @@
                           @php $url = base64_encode($pending->id."|".$pending->regno);  @endphp
                           <a href="{{url('admin/process-transcript-requests/'.$url)}}" target="_blank" class="btn {{($pending['request_status']=='Sent')?'btn-success':'btn-primary'}} p-3"> @if($pending['request_status']=="created") Start Process @elseif($pending['request_status']=="Treated") Send e-Mail  @else {{ $pending['request_status']}} @endif </a>    
                           <br/>
-                          {{ $pending->id."|".$pending->regno}}
+                          {{-- $pending->id."|".$pending->regno--}}
                           <br/>
                           <span class="text-grey">Last View: <strong>{{strtoupper($pending['last_viewer'])}}</strong></span>   @if($pending['last_viewed']!="")  <br/> {{\Carbon\Carbon::parse($pending['last_viewed'])->diffForHumans()}} @else --:-- @endif
                       </td>                                          
