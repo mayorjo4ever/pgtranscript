@@ -437,24 +437,44 @@ function formatProgrammeName($programme)
     }
     
     
-    function othername($name){
-         $names = explode(" ",$name);
-         $tot = count($names); 
-         if($tot==2):
-             $othername = $names[1];
-         else:
-             $othername = $names[1]." ".$names[2];
-         endif;
-         return ucwords(strtolower($othername));
+//    function othername($name){
+//         $names = explode(" ",$name);
+//         $tot = count($names); 
+//         if($tot==2):
+//             $othername = $names[1];
+//         else:
+//             $othername = $names[1]." ".$names[2];
+//         endif;
+//         return ucwords(strtolower($othername));
+//    }
+//    
+    
+    function othername($name)
+    {
+        $names = explode(" ", trim($name));
+        array_shift($names); // remove first name
+
+        return ucwords(strtolower(implode(" ", $names)));
     }
     
+    
+//    function fact_name($id){
+//        $fact = Faculty::where('fact_id',$id)->first();
+//        return $fact->name; 
+//    }
+    
     function fact_name($id){
-        $fact = Faculty::where('fact_id',$id)->first();
-        return $fact->name; 
+        return Faculty::where('fact_id',$id)->value('name') ?? '';
     }
-    function dept_name($id){
-        $dept = Department::where('dept_id',$id)->first();
-        return $dept->name;
+    
+    
+//    function dept_name($id){
+//        $dept = Department::where('dept_id',$id)->first();
+//        return $dept->name;
+//    }
+    
+     function dept_name($id){
+        return Department::where('dept_id',$id)->value('name') ?? '';       
     }
           
     
