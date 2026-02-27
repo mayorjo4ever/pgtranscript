@@ -34,7 +34,8 @@ class AdminRolePermissionSeeder extends Seeder
             'view-completed-transcript-request-analysis-widget',
             'view-admin-menu','create-admin','view-admin',
             'view-role','create-role',
-            'view-online-admins','view-offline-admins'
+            'view-online-admins','view-offline-admins',
+            'import-new-transcript-request'
         ];
         
         foreach ($permissions as $permission) {

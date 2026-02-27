@@ -121,12 +121,13 @@ use Illuminate\Support\Facades\Session;
             <div class="collapse @if(Session::get('page')=="transcripts") show @endif" id="transcriptMenu">
               <ul class="navbar-nav ms-4">
                 
+                @can('import-new-transcript-request')
                 <li class="nav-item">
                   <a class="nav-link text-white @if(Session::get('tab')=="import") active bg-primary @endif" href="{{url('admin/import-transcript-requests')}}">
                     <span class="nav-link-text ms-1">Import New Requests</span>&nbsp;&nbsp;
                     <i class="material-icons md-24 opacity-10">download</i>
                   </a>
-                </li>
+                </li> @endcan
                 
                  <li class="nav-item">
                   <a class="nav-link text-white @if(Session::get('tab')=="transcript_search") active bg-primary @endif" href="{{url('admin/transcript-search')}}">

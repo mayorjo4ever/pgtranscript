@@ -130,7 +130,7 @@ class TranscriptRequestController extends Controller
                 ->where('request_status','Treated')
                 ->orderBy('updated_at','desc')
                 ->paginate(50);
-    // print "<pre>"; print_r($completeds->toarray()); die; 
+       # print "<pre>"; print_r($completeds->toarray()); die; 
        if($request->isMethod('post')):
            # print "<pre>"; print_r($request->all()); die;           
           if($request->has('search')):
@@ -217,7 +217,7 @@ class TranscriptRequestController extends Controller
             )
             ->firstOrFail();
           
-        //print "<pre>"; print_r($request->toarray());  die; 
+       # print "<pre>"; print_r($request->toarray());  die; 
         Session::put('page','transcripts');  Session::put('tab','pendings');
         Session::put('page_title','Process Transcript Requests');
         $page_info = ['title'=> $request->regno. " - ". $request->surname. "  ". $request->middle_name. " - Transcript Requests ",'icon'=>'pe-7s-person_add','sub-title'=>''];       
@@ -472,7 +472,9 @@ class TranscriptRequestController extends Controller
         $request_id = $request->request_id;
         $request_type = $request->request_type; // official / student
         $reports = TranscriptReport::where('regno',$request->regno)
-                ->where('type','pgd_master')->get();
+                ->where('type','pgd_master')
+                ->orWhere('type','phd')
+                ->get();
         $printout = TranscriptPrintout::where('request_id',$request_id)
                 ->where('regno',$request->regno)
                ->limit(1)
