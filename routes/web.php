@@ -177,7 +177,8 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
                 $details = Transcript::where('regno','05/66MF075')->get(); 
                 print "<pre>"; 
                 print_r($details->toarray()); 
-               
+                  
+     });       
     });
   });
   Route::get('/downloads/passports-signatures', [DownloadController::class, 'download'])
