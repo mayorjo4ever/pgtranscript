@@ -6,6 +6,7 @@ use App\Http\Controllers\DownloadController;
 use App\Services\GoogleSheetService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Models\Transcript;
 
 //Route::get('/', function () {
 //    return view('welcome');
