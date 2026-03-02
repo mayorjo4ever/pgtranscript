@@ -175,9 +175,11 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         Route::get('activity/live', 'AdminController@liveActivity')->name('admin.activity.live');            
         Route::get('/fix-dates', function () {
 
-                 Transcript::where('regno','05/66MF075')
+                Transcript::where('regno','05/66MF075')
                         ->update(['approve_date'=>'2011-12-30']); 
-                    
+                
+                $details = Transcript::where('regno','05/66MF075')->get(); 
+                 
                 print "<pre>"; 
                 print_r($details->toarray()); 
                   
