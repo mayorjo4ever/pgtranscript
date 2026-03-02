@@ -174,14 +174,10 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         Route::get('activity/live', 'AdminController@liveActivity')->name('admin.activity.live');            
         Route::get('/fix-dates', function () {
 
-                $updated = DB::update("
-                    UPDATE transcripts_requests
-                    SET request_time_dt = STR_TO_DATE(request_time, '%m/%d/%Y %H:%i:%s')
-                    WHERE request_time_dt IS NULL
-                ");
-
-                return "Updated rows: " . $updated;
-            });
+                $details = Transcript::where('regno','05/66MF075')->get(); 
+                print "<pre>"; 
+                print_r($details->toarray()); 
+               
     });
   });
   Route::get('/downloads/passports-signatures', [DownloadController::class, 'download'])
