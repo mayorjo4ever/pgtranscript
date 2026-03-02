@@ -7,6 +7,9 @@ use App\Services\GoogleSheetService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Models\Transcript;
+use App\Models\TranscriptPrintout;
+use App\Models\TranscriptReport;
+
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -174,14 +177,20 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
          
         Route::get('activity/live', 'AdminController@liveActivity')->name('admin.activity.live');            
         Route::get('/fix-dates', function () {
-
-                Transcript::where('regno','05/66MF075')
+                
+                
+                
+                TranscriptPrintout::where('regno','05/66MF075')
+                        ->update(['approve_date'=>'2011-12-30']); 
+                TranscriptReport::where('regno','05/66MF075')
                         ->update(['approve_date'=>'2011-12-30']); 
                 
-                $details = Transcript::where('regno','05/66MF075')->get(); 
+                $printout = TranscriptPrintout::where('regno','05/66MF075')->get(); 
+                $report = TranscriptReport::where('regno','05/66MF075')->get(); 
                  
                 print "<pre>"; 
-                print_r($details->toarray()); 
+                print_r($printout->toarray()); 
+                print_r($report->toarray()); 
                   
      });       
     });
