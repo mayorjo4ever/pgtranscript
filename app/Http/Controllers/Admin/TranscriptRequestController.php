@@ -473,7 +473,7 @@ class TranscriptRequestController extends Controller
         $request_type = $request->request_type; // official / student
         $reports = TranscriptReport::where('regno',$request->regno)
                 ->where('type','pgd_master')
-                ->orWhere('type','phd')
+                //->orWhere('type','phd')
                 ->get();
         $printout = TranscriptPrintout::where('request_id',$request_id)
                 ->where('regno',$request->regno)
