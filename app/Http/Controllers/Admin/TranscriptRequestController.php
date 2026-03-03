@@ -468,7 +468,7 @@ class TranscriptRequestController extends Controller
 
     public function search_transcript(Request $request){
        print "<pre>"; 
-       print_r($request->all()); // die; 
+       print_r($request->all());  die; 
         $request_id = $request->request_id;
         $request_type = $request->request_type; // official / student
         $reports = TranscriptReport::where('regno',$request->regno)
