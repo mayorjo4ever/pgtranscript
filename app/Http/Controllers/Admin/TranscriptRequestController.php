@@ -549,8 +549,7 @@ class TranscriptRequestController extends Controller
         Session::put('purpose',$purpose);
         Session::put('request_id',$request_id);
         Session::put('type',strtolower($type));
-        
-        
+               
        Session::put('page','transcripts');  Session::put('tab','pendings');
        Session::put('page_title','Process Transcript Requests');
        $page_info =  ['title'=>$report->name,'icon'=>'pe-7s-person_add','sub-title'=>''];       
