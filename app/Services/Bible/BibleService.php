@@ -22,7 +22,7 @@ class BibleService
 
         Log::info('Bible search request', ['text' => $text]);
 
-        // Check if it's a verse reference format
+        // Updated regex to handle various formats including "2Kings", "2 Kings", "1 Cor", etc.
         if (preg_match(
             '/^([1-3]?\s*[A-Za-z]+\.?)\s+(\d+)(?::(\d+)(?:-(\d+))?)?$/i',
             $text,
@@ -33,8 +33,11 @@ class BibleService
             return;
         }
 
-        // Otherwise, search by keyword in Bible text
-        $this->searchByKeyword($chatId, $text);
+        // If user is in Bible mode and input doesn't look like a reference, search by keyword
+        $userMode = cache()->get("user_mode_{$chatId}");
+        if ($userMode === 'bible') {
+            $this->searchByKeyword($chatId, $text);
+        }
     }
 
     private function searchByReference($chatId, $matches)
@@ -51,8 +54,9 @@ class BibleService
             'verse_end' => $verseEnd
         ]);
 
-        // Clean up book input
+        // Clean up book input - remove dots and extra spaces
         $bookInput = str_replace('.', '', $bookInput);
+        $bookInput = preg_replace('/\s+/', ' ', $bookInput); // normalize spaces
         $bookInput = trim($bookInput);
 
         // Search for book
@@ -61,9 +65,18 @@ class BibleService
         if (!$book) {
             Log::warning('Book not found', ['book_input' => $bookInput]);
             
+            // Try searching for partial matches and suggest
+            $suggestions = DB::table('kjv_books')
+                ->where('name', 'LIKE', "%{$bookInput}%")
+                ->orWhere('abbreviation', 'LIKE', "%{$bookInput}%")
+                ->limit(5)
+                ->pluck('name');
+            
+            $suggestionText = $suggestions->isEmpty() ? '' : "\n\nDid you mean:\n• " . $suggestions->implode("\n• ");
+            
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'text' => "❌ Book not found: '{$bookInput}'\n\nTry:\n• Gen 1:1\n• John 3:16\n• 1 Cor 13:1-13\n\nOr search by keyword: *faith*, *love*, etc.",
+                'text' => "❌ Book not found: '{$bookInput}'{$suggestionText}\n\nTry:\n• Gen 1:1\n• John 3:16\n• 1 Cor 13:1-13\n• 2 Kings 5:10",
                 'parse_mode' => 'Markdown'
             ]);
             return;
@@ -145,7 +158,7 @@ class BibleService
             ->where('kjv_verses.text', 'LIKE', "%{$keyword}%")
             ->select('kjv_books.name as book_name', 'kjv_verses.*')
             ->orderBy('kjv_verses.id')
-            ->limit(20) // Limit to 20 results
+            ->limit(20)
             ->get();
 
         if ($verses->isEmpty()) {
@@ -186,33 +199,45 @@ class BibleService
 
     private function findBook($bookInput)
     {
-        // First try direct match
+        $bookInput = strtolower($bookInput);
+        
+        // First try exact match
         $book = DB::table('kjv_books')
-            ->where(function($query) use ($bookInput) {
-                $query->where('name', 'like', $bookInput.'%')
-                      ->orWhere('name', 'like', '%'.$bookInput.'%')
-                      ->orWhere('abbreviation', 'like', $bookInput.'%');
-            })
+            ->whereRaw('LOWER(name) = ?', [$bookInput])
+            ->orWhereRaw('LOWER(abbreviation) = ?', [$bookInput])
             ->first();
+        
+        if ($book) return $book;
 
-        // If not found, try aliases
-        if (!$book) {
-            $bookAliases = $this->getBookAliases($bookInput);
-            if ($bookAliases) {
-                foreach ($bookAliases as $alias) {
-                    $book = DB::table('kjv_books')
-                        ->where(function($query) use ($alias) {
-                            $query->where('name', 'like', $alias.'%')
-                                  ->orWhere('abbreviation', 'like', $alias.'%');
-                        })
-                        ->first();
-                    
-                    if ($book) break;
-                }
+        // Try starts with match
+        $book = DB::table('kjv_books')
+            ->whereRaw('LOWER(name) LIKE ?', [$bookInput.'%'])
+            ->orWhereRaw('LOWER(abbreviation) LIKE ?', [$bookInput.'%'])
+            ->first();
+        
+        if ($book) return $book;
+
+        // Try contains match
+        $book = DB::table('kjv_books')
+            ->whereRaw('LOWER(name) LIKE ?', ['%'.$bookInput.'%'])
+            ->first();
+        
+        if ($book) return $book;
+
+        // Try common aliases
+        $bookAliases = $this->getBookAliases($bookInput);
+        if ($bookAliases) {
+            foreach ($bookAliases as $alias) {
+                $book = DB::table('kjv_books')
+                    ->whereRaw('LOWER(name) LIKE ?', [strtolower($alias).'%'])
+                    ->orWhereRaw('LOWER(abbreviation) LIKE ?', [strtolower($alias).'%'])
+                    ->first();
+                
+                if ($book) return $book;
             }
         }
 
-        return $book;
+        return null;
     }
 
     private function getBookAliases($input)
@@ -220,24 +245,108 @@ class BibleService
         $input = strtolower(trim($input));
         
         $aliases = [
+            // Old Testament
             'gen' => ['Genesis'],
             'exod' => ['Exodus'],
+            'ex' => ['Exodus'],
             'lev' => ['Leviticus'],
             'num' => ['Numbers'],
             'deut' => ['Deuteronomy'],
+            'dt' => ['Deuteronomy'],
+            'josh' => ['Joshua'],
+            'judg' => ['Judges'],
+            'ruth' => ['Ruth'],
+            '1 sam' => ['1 Samuel', 'I Samuel', 'First Samuel'],
+            '1sam' => ['1 Samuel', 'I Samuel'],
+            '2 sam' => ['2 Samuel', 'II Samuel', 'Second Samuel'],
+            '2sam' => ['2 Samuel', 'II Samuel'],
+            '1 kings' => ['1 Kings', 'I Kings', 'First Kings'],
+            '1kings' => ['1 Kings', 'I Kings'],
+            '2 kings' => ['2 Kings', 'II Kings', 'Second Kings'],
+            '2kings' => ['2 Kings', 'II Kings'],
+            '1 chron' => ['1 Chronicles', 'I Chronicles'],
+            '1chron' => ['1 Chronicles'],
+            '2 chron' => ['2 Chronicles', 'II Chronicles'],
+            '2chron' => ['2 Chronicles'],
+            'ezra' => ['Ezra'],
+            'neh' => ['Nehemiah'],
+            'esth' => ['Esther'],
+            'job' => ['Job'],
             'ps' => ['Psalms', 'Psalm'],
             'prov' => ['Proverbs'],
+            'pr' => ['Proverbs'],
+            'eccles' => ['Ecclesiastes'],
+            'eccl' => ['Ecclesiastes'],
+            'song' => ['Song of Solomon', 'Song of Songs'],
             'isa' => ['Isaiah'],
+            'is' => ['Isaiah'],
             'jer' => ['Jeremiah'],
+            'lam' => ['Lamentations'],
+            'ezek' => ['Ezekiel'],
+            'ez' => ['Ezekiel'],
+            'dan' => ['Daniel'],
+            'hos' => ['Hosea'],
+            'joel' => ['Joel'],
+            'amos' => ['Amos'],
+            'obad' => ['Obadiah'],
+            'jonah' => ['Jonah'],
+            'mic' => ['Micah'],
+            'nah' => ['Nahum'],
+            'hab' => ['Habakkuk'],
+            'zeph' => ['Zephaniah'],
+            'hag' => ['Haggai'],
+            'zech' => ['Zechariah'],
+            'zec' => ['Zechariah'],
+            'mal' => ['Malachi'],
+            
+            // New Testament
             'matt' => ['Matthew'],
+            'mat' => ['Matthew'],
+            'mt' => ['Matthew'],
+            'mark' => ['Mark'],
+            'mk' => ['Mark'],
+            'luke' => ['Luke'],
+            'lk' => ['Luke'],
+            'john' => ['John'],
+            'jn' => ['John'],
+            'acts' => ['Acts'],
             'rom' => ['Romans'],
             '1 cor' => ['1 Corinthians', 'I Corinthians'],
+            '1cor' => ['1 Corinthians'],
             '2 cor' => ['2 Corinthians', 'II Corinthians'],
+            '2cor' => ['2 Corinthians'],
             'gal' => ['Galatians'],
             'eph' => ['Ephesians'],
             'phil' => ['Philippians'],
+            'php' => ['Philippians'],
             'col' => ['Colossians'],
+            '1 thess' => ['1 Thessalonians', 'I Thessalonians'],
+            '1thess' => ['1 Thessalonians'],
+            '2 thess' => ['2 Thessalonians', 'II Thessalonians'],
+            '2thess' => ['2 Thessalonians'],
+            '1 tim' => ['1 Timothy', 'I Timothy'],
+            '1tim' => ['1 Timothy'],
+            '2 tim' => ['2 Timothy', 'II Timothy'],
+            '2tim' => ['2 Timothy'],
+            'titus' => ['Titus'],
+            'tit' => ['Titus'],
+            'philem' => ['Philemon'],
+            'phlm' => ['Philemon'],
             'heb' => ['Hebrews'],
+            'james' => ['James'],
+            'jas' => ['James'],
+            '1 pet' => ['1 Peter', 'I Peter'],
+            '1pet' => ['1 Peter'],
+            '2 pet' => ['2 Peter', 'II Peter'],
+            '2pet' => ['2 Peter'],
+            '1 john' => ['1 John', 'I John'],
+            '1john' => ['1 John'],
+            '1jn' => ['1 John'],
+            '2 john' => ['2 John', 'II John'],
+            '2john' => ['2 John'],
+            '3 john' => ['3 John', 'III John'],
+            '3john' => ['3 John'],
+            'jude' => ['Jude'],
             'rev' => ['Revelation'],
         ];
 
