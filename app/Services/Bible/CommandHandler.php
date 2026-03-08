@@ -20,33 +20,38 @@ class CommandHandler
 
         // Handle /start command
         if (str_starts_with($text, '/start')) {
+            cache()->forget("user_mode_{$chatId}"); // Clear any mode
             app(ReferralService::class)->start($update);
             return;
         }
 
         // Handle referral commands
         if ($text === '/myref' || $text === '👥 My Referrals') {
+            cache()->forget("user_mode_{$chatId}");
             app(ReferralService::class)->myRef($update);
             return;
         }
 
         // Handle invite command
         if ($text === '/invite' || $text === '📤 Invite Friends') {
+            cache()->forget("user_mode_{$chatId}");
             app(ReferralService::class)->invite($update);
             return;
         }
 
-        // Handle Hymns menu click - prompt for hymn number
+        // Handle Hymns menu click - SET hymn mode
         if ($text === '🎵 Hymns' || $text === '/hymns') {
+            cache()->put("user_mode_{$chatId}", 'hymn', 3600); // 1 hour
             app(HymnService::class)->promptForHymn($update);
             return;
         }
 
-        // Handle Read Bible menu click - show instructions
+        // Handle Read Bible menu click - SET bible mode and CLEAR hymn mode
         if ($text === '📖 Read Bible' || $text === '/bible') {
+            cache()->put("user_mode_{$chatId}", 'bible', 3600); // 1 hour
             app(TelegramService::class)->sendMessage([
                 'chat_id' => $chatId,
-                'text' => "📖 *Bible Reading*\n\nType a Bible reference to read:\n\n" .
+                'text' => "📖 *Bible Reading Mode*\n\nType a Bible reference to read:\n\n" .
                          "Examples:\n" .
                          "• Gen 1:1\n" .
                          "• John 3:16\n" .
@@ -58,30 +63,61 @@ class CommandHandler
             return;
         }
 
-        // Try to handle as hymn search first (Hymn 1, Hymn 25, etc.)
-        if (app(HymnService::class)->search($update)) {
+        // Get current user mode
+        $userMode = cache()->get("user_mode_{$chatId}");
+
+        // If in hymn mode, try to parse as hymn number first
+        if ($userMode === 'hymn') {
+            if (app(HymnService::class)->search($update)) {
+                return; // Successfully handled as hymn
+            }
+        }
+
+        // Try to handle as hymn with explicit "Hymn X" format (works in any mode)
+        if (preg_match('/^hymn\s+(\d+)$/i', $text)) {
+            cache()->put("user_mode_{$chatId}", 'hymn', 3600); // Switch to hymn mode
+            app(HymnService::class)->search($update);
             return;
         }
 
-        // Handle Bible verse searches
-        // This regex handles formats like:
-        // - Gen 1:1
-        // - 1 Cor 2:1-10
-        // - John 3:16
-        // - Psalms 23
+        // Handle Bible verse searches (works in any mode)
         if (preg_match('/^([1-3]?\s*[A-Za-z]+\.?)\s+(\d+)(?::(\d+)(?:-(\d+))?)?$/i', $text)) {
+            cache()->put("user_mode_{$chatId}", 'bible', 3600); // Switch to bible mode
             app(BibleService::class)->search($update);
             return;
         }
 
-        // Optional: Help message for unrecognized input
-        app(TelegramService::class)->sendMessage([
-            'chat_id' => $chatId,
-            'text' => "ℹ️ I didn't understand that. Try:\n\n" .
-                     "📖 Bible: Gen 1:1, John 3:16\n" .
-                     "🎵 Hymns: Hymn 1, Hymn 25\n" .
-                     "👥 /myref - View referrals\n" .
-                     "📤 /invite - Get invite link"
-        ]);
+        // If nothing matched, provide helpful feedback based on mode
+        if ($userMode === 'hymn') {
+            app(TelegramService::class)->sendMessage([
+                'chat_id' => $chatId,
+                'text' => "🎵 *Hymn Mode Active*\n\n" .
+                         "Enter a hymn number (1-500) or:\n\n" .
+                         "• Click '📖 Read Bible' to switch to Bible mode\n" .
+                         "• Type 'Hymn 25' for a specific hymn"
+            ]);
+        } elseif ($userMode === 'bible') {
+            app(TelegramService::class)->sendMessage([
+                'chat_id' => $chatId,
+                'text' => "📖 *Bible Mode Active*\n\n" .
+                         "Enter a Bible reference or:\n\n" .
+                         "Examples:\n" .
+                         "• Gen 1:1\n" .
+                         "• John 3:16\n" .
+                         "• 1 Cor 13:1-13\n\n" .
+                         "Click '🎵 Hymns' to switch to Hymn mode"
+            ]);
+        } else {
+            // No mode set - general help
+            app(TelegramService::class)->sendMessage([
+                'chat_id' => $chatId,
+                'text' => "ℹ️ *How to use this bot:*\n\n" .
+                         "📖 *Bible verses:* Gen 1:1, John 3:16, Mat 7:7\n" .
+                         "🎵 *Hymns:* Hymn 1, Hymn 25, or click 🎵 Hymns button\n" .
+                         "👥 *Referrals:* /myref\n" .
+                         "📤 *Invite:* /invite",
+                'parse_mode' => 'Markdown'
+            ]);
+        }
     }
 }

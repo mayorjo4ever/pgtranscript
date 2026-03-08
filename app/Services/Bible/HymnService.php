@@ -3,7 +3,6 @@
 namespace App\Services\Bible;
 
 use App\Models\Hymn;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class HymnService
@@ -21,13 +20,17 @@ class HymnService
 
         $this->telegram->sendMessage([
             'chat_id' => $chatId,
-            'text' => "🎵 *Hymn Selection*\n\nPlease enter a hymn number (1-500):\n\nExample: Hymn 1 or just 1",
+            'text' => "🎵 *Hymn Mode Activated*\n\n" .
+                     "Enter a hymn number (1-500):\n\n" .
+                     "Examples:\n" .
+                     "• 1\n" .
+                     "• 25\n" .
+                     "• 100\n" .
+                     "• Hymn 50\n\n" .
+                     "You can browse multiple hymns.\n" .
+                     "Click '📖 Read Bible' to switch to Bible mode.",
             'parse_mode' => 'Markdown'
         ]);
-
-        // Set user state to expect hymn number
-        // You can use cache or database to track user state
-        cache()->put("user_state_{$chatId}", 'waiting_for_hymn', 300); // 5 minutes
     }
 
     public function search($update)
@@ -46,12 +49,7 @@ class HymnService
         }
         // Match: just a number "1", "25", "100"
         elseif (preg_match('/^(\d+)$/', $text)) {
-            // Only if user is in hymn mode
-            $userState = cache()->get("user_state_{$chatId}");
-            if ($userState === 'waiting_for_hymn') {
-                $hymnNumber = (int)$text;
-                cache()->forget("user_state_{$chatId}"); // Clear state
-            }
+            $hymnNumber = (int)$text;
         }
 
         if (!$hymnNumber) {
@@ -64,13 +62,17 @@ class HymnService
         if (!$hymn) {
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'text' => "❌ Hymn #{$hymnNumber} not found.\n\nPlease try a number between 1-500."
+                'text' => "❌ Hymn #{$hymnNumber} not found.\n\n" .
+                         "Available hymns: 1-" . Hymn::max('number') . "\n\n" .
+                         "Try another number or click '📖 Read Bible' to switch modes."
             ]);
             return true;
         }
 
         // Send hymn
-        $message = "🎵 *Hymn {$hymn->number} - {$hymn->title}*\n\n{$hymn->lyrics}";
+        $message = "🎵 *Hymn {$hymn->number} - {$hymn->title}*\n\n{$hymn->lyrics}\n\n" .
+                   "━━━━━━━━━━━━━━━\n" .
+                   "Enter another hymn number or click '📖 Read Bible'";
 
         // Split if too long
         foreach (str_split($message, 3500) as $chunk) {
