@@ -21,14 +21,11 @@ class HymnService
         $this->telegram->sendMessage([
             'chat_id' => $chatId,
             'text' => "🎵 *Hymn Mode Activated*\n\n" .
-                     "Enter a hymn number (1-500):\n\n" .
-                     "Examples:\n" .
-                     "• 1\n" .
-                     "• 25\n" .
-                     "• 100\n" .
-                     "• Hymn 50\n\n" .
-                     "You can browse multiple hymns.\n" .
-                     "Click '📖 Read Bible' to switch to Bible mode.",
+                     "You can:\n" .
+                     "• Enter a number: *1*, *25*, *100*\n" .
+                     "• Search by title: *Amazing Grace*\n" .
+                     "• Search by lyrics: *sweet hour*\n\n" .
+                     "Click '📖 Read Bible' to switch modes.",
             'parse_mode' => 'Markdown'
         ]);
     }
@@ -40,9 +37,10 @@ class HymnService
 
         Log::info('Hymn search request', ['text' => $text]);
 
-        // Extract hymn number from various formats
         $hymnNumber = null;
+        $searchResults = null;
 
+        // First, try to match hymn number formats
         // Match: "Hymn 1", "hymn 25", "HYMN 100"
         if (preg_match('/^hymn\s+(\d+)$/i', $text, $matches)) {
             $hymnNumber = (int)$matches[1];
@@ -51,39 +49,111 @@ class HymnService
         elseif (preg_match('/^(\d+)$/', $text)) {
             $hymnNumber = (int)$text;
         }
+        // If not a number, search by title or lyrics
+        else {
+            $searchResults = $this->searchByTitleOrLyrics($text);
+            
+            if ($searchResults->isEmpty()) {
+                $this->telegram->sendMessage([
+                    'chat_id' => $chatId,
+                    'text' => "❌ No hymns found matching: *{$text}*\n\n" .
+                             "Try:\n" .
+                             "• A hymn number (1-" . Hymn::max('number') . ")\n" .
+                             "• Part of the title: *Amazing Grace*\n" .
+                             "• Part of the lyrics: *sweet hour*",
+                    'parse_mode' => 'Markdown'
+                ]);
+                return true;
+            }
 
-        if (!$hymnNumber) {
-            return false; // Not a hymn request
-        }
+            // If exactly one result, display it
+            if ($searchResults->count() === 1) {
+                $this->displayHymn($chatId, $searchResults->first());
+                return true;
+            }
 
-        // Fetch hymn from database
-        $hymn = Hymn::where('number', $hymnNumber)->first();
-
-        if (!$hymn) {
-            $this->telegram->sendMessage([
-                'chat_id' => $chatId,
-                'text' => "❌ Hymn #{$hymnNumber} not found.\n\n" .
-                         "Available hymns: 1-" . Hymn::max('number') . "\n\n" .
-                         "Try another number or click '📖 Read Bible' to switch modes."
-            ]);
+            // If multiple results, show list for user to choose
+            $this->displaySearchResults($chatId, $searchResults, $text);
             return true;
         }
 
-        // Send hymn
+        // If we have a hymn number, fetch and display it
+        if ($hymnNumber) {
+            $hymn = Hymn::where('number', $hymnNumber)->first();
+
+            if (!$hymn) {
+                $this->telegram->sendMessage([
+                    'chat_id' => $chatId,
+                    'text' => "❌ Hymn #{$hymnNumber} not found.\n\n" .
+                             "Available hymns: 1-" . Hymn::max('number') . "\n\n" .
+                             "Try another number, or search by title/lyrics."
+                ]);
+                return true;
+            }
+
+            $this->displayHymn($chatId, $hymn);
+            return true;
+        }
+
+        return false;
+    }
+
+    private function searchByTitleOrLyrics($searchTerm)
+    {
+        return Hymn::where(function($query) use ($searchTerm) {
+            $query->where('title', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('lyrics', 'LIKE', "%{$searchTerm}%");
+        })
+        ->orderBy('number')
+        ->get();
+    }
+
+    private function displayHymn($chatId, $hymn)
+    {
         $message = "🎵 *Hymn {$hymn->number} - {$hymn->title}*\n\n{$hymn->lyrics}\n\n" .
                    "━━━━━━━━━━━━━━━\n" .
-                   "Enter another hymn number or click '📖 Read Bible'";
+                   "Enter another hymn number or search term";
 
         // Split if too long
-        foreach (str_split($message, 3500) as $chunk) {
+        $chunks = str_split($message, 3500);
+        foreach ($chunks as $index => $chunk) {
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
                 'text' => $chunk,
                 'parse_mode' => 'Markdown'
             ]);
+            
+            // Small delay between chunks to avoid rate limiting
+            if ($index < count($chunks) - 1) {
+                usleep(100000); // 0.1 second
+            }
+        }
+    }
+
+    private function displaySearchResults($chatId, $results, $searchTerm)
+    {
+        $message = "🔍 *Found {$results->count()} hymns matching:* _{$searchTerm}_\n\n";
+        $message .= "Select a hymn by typing its number:\n\n";
+
+        foreach ($results as $hymn) {
+            // Highlight the search term in title
+            $title = $hymn->title;
+            if (stripos($title, $searchTerm) !== false) {
+                $message .= "*{$hymn->number}*. {$title} ✓\n";
+            } else {
+                // Found in lyrics
+                $message .= "*{$hymn->number}*. {$title}\n";
+            }
         }
 
-        return true;
+        $message .= "\n━━━━━━━━━━━━━━━\n";
+        $message .= "Type the number to view the full hymn.";
+
+        $this->telegram->sendMessage([
+            'chat_id' => $chatId,
+            'text' => $message,
+            'parse_mode' => 'Markdown'
+        ]);
     }
 
     public function listHymns($update)
@@ -94,16 +164,16 @@ class HymnService
 
         $message = "🎵 *Available Hymns*\n\n";
         $message .= "We have {$totalHymns} hymns available.\n\n";
-        $message .= "To view a hymn, type:\n";
-        $message .= "• Hymn 1\n";
-        $message .= "• Hymn 25\n";
-        $message .= "• Or just the number: 100\n\n";
-        $message .= "Popular Hymns:\n";
+        $message .= "*Search Options:*\n";
+        $message .= "• By number: *1*, *25*, *Hymn 100*\n";
+        $message .= "• By title: *Amazing Grace*\n";
+        $message .= "• By lyrics: *sweet hour*\n\n";
+        $message .= "*Popular Hymns:*\n";
 
         // Show first 10 hymns as examples
         $popularHymns = Hymn::orderBy('number')->limit(10)->get();
         foreach ($popularHymns as $hymn) {
-            $message .= "• Hymn {$hymn->number} - {$hymn->title}\n";
+            $message .= "• {$hymn->number}. {$hymn->title}\n";
         }
 
         $this->telegram->sendMessage([

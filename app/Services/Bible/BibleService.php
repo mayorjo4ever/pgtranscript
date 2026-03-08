@@ -20,19 +20,25 @@ class BibleService
         $chatId = $update['message']['chat']['id'];
         $text   = trim($update['message']['text']);
 
-        // Log for debugging
         Log::info('Bible search request', ['text' => $text]);
 
-        // Updated regex to handle various formats
-        if (!preg_match(
+        // Check if it's a verse reference format
+        if (preg_match(
             '/^([1-3]?\s*[A-Za-z]+\.?)\s+(\d+)(?::(\d+)(?:-(\d+))?)?$/i',
             $text,
             $matches
         )) {
-            Log::info('Regex did not match', ['text' => $text]);
+            // It's a verse reference
+            $this->searchByReference($chatId, $matches);
             return;
         }
 
+        // Otherwise, search by keyword in Bible text
+        $this->searchByKeyword($chatId, $text);
+    }
+
+    private function searchByReference($chatId, $matches)
+    {
         $bookInput  = trim($matches[1]);
         $chapter    = (int) $matches[2];
         $verseStart = isset($matches[3]) && $matches[3] !== '' ? (int)$matches[3] : null;
@@ -57,7 +63,8 @@ class BibleService
             
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'text' => "❌ Book not found: '{$bookInput}'\n\nTry formats like:\n• Gen 1:1\n• John 3:16\n• 1 Cor 13:1-13"
+                'text' => "❌ Book not found: '{$bookInput}'\n\nTry:\n• Gen 1:1\n• John 3:16\n• 1 Cor 13:1-13\n\nOr search by keyword: *faith*, *love*, etc.",
+                'parse_mode' => 'Markdown'
             ]);
             return;
         }
@@ -108,7 +115,6 @@ class BibleService
 
         // Send message with or without navigation buttons
         if ($isSingleVerse) {
-            // Single verse - add navigation buttons
             $keyboard = app(KeyboardService::class)
                 ->verseNavigation($book->id, $chapter, $verseStart);
 
@@ -119,7 +125,6 @@ class BibleService
                 'reply_markup' => $keyboard
             ]);
         } else {
-            // Multiple verses or whole chapter - no navigation
             foreach (str_split($message, 3500) as $chunk) {
                 $this->telegram->sendMessage([
                     'chat_id' => $chatId,
@@ -128,6 +133,55 @@ class BibleService
                 ]);
             }
         }
+    }
+
+    private function searchByKeyword($chatId, $keyword)
+    {
+        Log::info('Searching Bible by keyword', ['keyword' => $keyword]);
+
+        // Search in verse text
+        $verses = DB::table('kjv_verses')
+            ->join('kjv_books', 'kjv_verses.book_id', '=', 'kjv_books.id')
+            ->where('kjv_verses.text', 'LIKE', "%{$keyword}%")
+            ->select('kjv_books.name as book_name', 'kjv_verses.*')
+            ->orderBy('kjv_verses.id')
+            ->limit(20) // Limit to 20 results
+            ->get();
+
+        if ($verses->isEmpty()) {
+            $this->telegram->sendMessage([
+                'chat_id' => $chatId,
+                'text' => "❌ No verses found containing: *{$keyword}*\n\nTry:\n• Different keywords\n• Or a verse reference: Gen 1:1",
+                'parse_mode' => 'Markdown'
+            ]);
+            return;
+        }
+
+        $message = "🔍 *Found {$verses->count()} verses containing:* _{$keyword}_\n\n";
+        
+        foreach ($verses->take(10) as $verse) {
+            $reference = "{$verse->book_name} {$verse->chapter}:{$verse->verse}";
+            $text = $verse->text;
+            
+            // Truncate if too long
+            if (strlen($text) > 100) {
+                $text = substr($text, 0, 100) . '...';
+            }
+            
+            $message .= "📖 *{$reference}*\n{$text}\n\n";
+        }
+
+        if ($verses->count() > 10) {
+            $message .= "_(Showing first 10 of {$verses->count()} results)_\n\n";
+        }
+
+        $message .= "Type a specific reference to read the full verse.";
+
+        $this->telegram->sendMessage([
+            'chat_id' => $chatId,
+            'text' => $message,
+            'parse_mode' => 'Markdown'
+        ]);
     }
 
     private function findBook($bookInput)
@@ -166,66 +220,16 @@ class BibleService
         $input = strtolower(trim($input));
         
         $aliases = [
-            // Old Testament
             'gen' => ['Genesis'],
-            'exo' => ['Exodus'],
             'exod' => ['Exodus'],
             'lev' => ['Leviticus'],
             'num' => ['Numbers'],
             'deut' => ['Deuteronomy'],
-            'jos' => ['Joshua'],
-            'josh' => ['Joshua'],
-            'judg' => ['Judges'],
-            'rut' => ['Ruth'],
-            'ruth' => ['Ruth'],
-            '1 sam' => ['1 Samuel', 'I Samuel'],
-            '2 sam' => ['2 Samuel', 'II Samuel'],
-            '1 kings' => ['1 Kings', 'I Kings'],
-            '1 kin' => ['1 Kings', 'I Kings'],
-            '2 kings' => ['2 Kings', 'II Kings'],
-            '2 kin' => ['2 Kings', 'II Kings'],
-            '1 chron' => ['1 Chronicles', 'I Chronicles'],
-            '1 chro' => ['1 Chronicles', 'I Chronicles'],
-            '2 chron' => ['2 Chronicles', 'II Chronicles'],
-            '2 chro' => ['2 Chronicles', 'II Chronicles'],
             'ps' => ['Psalms', 'Psalm'],
             'prov' => ['Proverbs'],
-            'eccl' => ['Ecclesiastes'],
-            'eccles' => ['Ecclesiastes'],
-            'song' => ['Song of Solomon', 'Song of Songs'],
             'isa' => ['Isaiah'],
             'jer' => ['Jeremiah'],
-            'lam' => ['Lamentations'],
-            'eze' => ['Ezekiel'],
-            'ezek' => ['Ezekiel'],
-            'dan' => ['Daniel'],
-            'hos' => ['Hosea'],
-            'joel' => ['Joel'],
-            'amos' => ['Amos'],
-            'obad' => ['Obadiah'],
-            'jon' => ['Jonah'],
-            'jonah' => ['Jonah'],
-            'mic' => ['Micah'],
-            'nah' => ['Nahum'],
-            'hab' => ['Habakkuk'],
-            'zep' => ['Zephaniah'],
-            'zeph' => ['Zephaniah'],
-            'hag' => ['Haggai'],
-            'zec' => ['Zechariah'],
-            'zech' => ['Zechariah'],
-            'mal' => ['Malachi'],
-            
-            // New Testament
-            'mat' => ['Matthew'],
             'matt' => ['Matthew'],
-            'mk' => ['Mark'],
-            'mark' => ['Mark'],
-            'luk' => ['Luke'],
-            'luke' => ['Luke'],
-            'jn' => ['John'],
-            'john' => ['John'],
-            'act' => ['Acts'],
-            'acts' => ['Acts'],
             'rom' => ['Romans'],
             '1 cor' => ['1 Corinthians', 'I Corinthians'],
             '2 cor' => ['2 Corinthians', 'II Corinthians'],
@@ -233,28 +237,7 @@ class BibleService
             'eph' => ['Ephesians'],
             'phil' => ['Philippians'],
             'col' => ['Colossians'],
-            '1 thes' => ['1 Thessalonians', 'I Thessalonians'],
-            '1 thess' => ['1 Thessalonians', 'I Thessalonians'],
-            '2 thes' => ['2 Thessalonians', 'II Thessalonians'],
-            '2 thess' => ['2 Thessalonians', 'II Thessalonians'],
-            '1 tim' => ['1 Timothy', 'I Timothy'],
-            '2 tim' => ['2 Timothy', 'II Timothy'],
-            'tit' => ['Titus'],
-            'titus' => ['Titus'],
-            'phil' => ['Philemon'],
-            'philem' => ['Philemon'],
             'heb' => ['Hebrews'],
-            'jam' => ['James'],
-            'james' => ['James'],
-            '1 pet' => ['1 Peter', 'I Peter'],
-            '2 pet' => ['2 Peter', 'II Peter'],
-            '1 jn' => ['1 John', 'I John'],
-            '1 john' => ['1 John', 'I John'],
-            '2 jn' => ['2 John', 'II John'],
-            '2 john' => ['2 John', 'II John'],
-            '3 jn' => ['3 John', 'III John'],
-            '3 john' => ['3 John', 'III John'],
-            'jude' => ['Jude'],
             'rev' => ['Revelation'],
         ];
 
@@ -285,17 +268,14 @@ class BibleService
             $verse--;
         }
 
-        // Get the verse data
         $verseData = DB::table('kjv_verses')
             ->where('book_id', $bookId)
             ->where('chapter', $chapter)
             ->where('verse', $verse)
             ->first();
 
-        // If verse not found, try next chapter or previous chapter
         if (!$verseData) {
             if ($action === 'next') {
-                // Try first verse of next chapter
                 $chapter = (int)$chapter + 1;
                 $verse = 1;
                 $verseData = DB::table('kjv_verses')
@@ -304,7 +284,6 @@ class BibleService
                     ->where('verse', $verse)
                     ->first();
             } elseif ($action === 'prev') {
-                // Try last verse of previous chapter
                 $chapter = (int)$chapter - 1;
                 if ($chapter > 0) {
                     $lastVerse = DB::table('kjv_verses')
@@ -325,7 +304,6 @@ class BibleService
         }
 
         if (!$verseData) {
-            // Reached end of book or beginning
             app(TelegramService::class)->answerCallback([
                 'callback_query_id' => $update['callback_query']['id'],
                 'text' => $action === 'next' ? '✅ End of book reached' : '✅ Beginning of book reached',
