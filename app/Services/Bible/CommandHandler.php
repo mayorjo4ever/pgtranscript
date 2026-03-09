@@ -24,6 +24,47 @@ class CommandHandler
             app(ReferralService::class)->start($update);
             return;
         }
+        
+        // Add to CommandHandler.php
+
+        if ($text === '⚙️ Settings' || $text === '/settings') {
+            $user = DB::table('telegram_users')
+                ->where('telegram_id', $update['message']['from']['id'])
+                ->first();
+
+            $status = $user->receive_daily_verse ? '✅ Enabled' : '❌ Disabled';
+
+            app(TelegramService::class)->sendMessage([
+                'chat_id' => $chatId,
+                'text' => "⚙️ *Settings*\n\n" .
+                         "Daily Verses: {$status}\n\n" .
+                         "Type /toggle to enable/disable daily verses",
+                'parse_mode' => 'Markdown'
+            ]);
+            return;
+        }
+
+        if ($text === '/toggle') {
+            $user = DB::table('telegram_users')
+                ->where('telegram_id', $update['message']['from']['id'])
+                ->first();
+
+            $newStatus = !$user->receive_daily_verse;
+
+            DB::table('telegram_users')
+                ->where('telegram_id', $update['message']['from']['id'])
+                ->update(['receive_daily_verse' => $newStatus]);
+
+            $message = $newStatus 
+                ? "✅ Daily verses enabled! You'll receive verses at 6 AM and 6 PM."
+                : "❌ Daily verses disabled.";
+
+            app(TelegramService::class)->sendMessage([
+                'chat_id' => $chatId,
+                'text' => $message
+            ]);
+            return;
+        }
 
         // Handle referral commands
         if ($text === '/myref' || $text === '👥 My Referrals') {

@@ -28,6 +28,7 @@ class SendDailyBibleVerse extends Command
         // Get all active users
         $users = DB::table('telegram_users')
             ->where('is_active', true)
+            ->where('receive_daily_verse', true) // Add this
             ->whereNotNull('chat_id')
             ->get();
 
