@@ -5,7 +5,7 @@ use Telegram\Bot\Keyboard\Keyboard;
 
 class KeyboardService
 {
-    public function verseNavigation($bookId, $chapter, $verse)
+     public function verseNavigation($bookId, $chapter, $verse)
     {
         return Keyboard::make()
             ->inline()
@@ -30,11 +30,22 @@ class KeyboardService
         return Keyboard::make()
             ->setResizeKeyboard(true)
             ->setOneTimeKeyboard(false)
-            ->row(['📖 Read Bible', '🔍 Search'])
-            ->row(['📚 Books', '⭐ Favorites'])
-            ->row(['🎵 Hymns', '👥 My Referrals'])
-            ->row(['📤 Invite Friends']);
+            ->row(['📖 Read Bible', '🎵 Hymns'])
+            ->row(['👥 My Referrals', '📤 Invite Friends'])
+            ->row(['⚙️ Settings']);
+        }
+        
+   public function settingsMenu($dailyVerseEnabled)
+    {
+        $dailyVerseStatus = $dailyVerseEnabled ? '✅ ON' : '❌ OFF';
+        
+        return Keyboard::make()
+            ->setResizeKeyboard(true)
+            ->setOneTimeKeyboard(false)
+            ->row(["📬 Daily Verses: {$dailyVerseStatus}"])
+            ->row(['🔙 Back to Main Menu']);
     }
+
 }
 
 /**

@@ -20,49 +20,28 @@ class CommandHandler
 
         // Handle /start command
         if (str_starts_with($text, '/start')) {
-            cache()->forget("user_mode_{$chatId}"); // Clear any mode
+            cache()->forget("user_mode_{$chatId}");
             app(ReferralService::class)->start($update);
             return;
         }
-        
-        // Add to CommandHandler.php
 
+        // Handle Settings
         if ($text === '⚙️ Settings' || $text === '/settings') {
-            $user = DB::table('telegram_users')
-                ->where('telegram_id', $update['message']['from']['id'])
-                ->first();
-
-            $status = $user->receive_daily_verse ? '✅ Enabled' : '❌ Disabled';
-
-            app(TelegramService::class)->sendMessage([
-                'chat_id' => $chatId,
-                'text' => "⚙️ *Settings*\n\n" .
-                         "Daily Verses: {$status}\n\n" .
-                         "Type /toggle to enable/disable daily verses",
-                'parse_mode' => 'Markdown'
-            ]);
+            cache()->forget("user_mode_{$chatId}");
+            app(SettingsService::class)->showSettings($update);
             return;
         }
 
-        if ($text === '/toggle') {
-            $user = DB::table('telegram_users')
-                ->where('telegram_id', $update['message']['from']['id'])
-                ->first();
+        // Handle Toggle Daily Verse (both button click and command)
+        if (str_starts_with($text, '📬 Daily Verses:') || $text === '/toggle') {
+            app(SettingsService::class)->toggleDailyVerse($update);
+            return;
+        }
 
-            $newStatus = !$user->receive_daily_verse;
-
-            DB::table('telegram_users')
-                ->where('telegram_id', $update['message']['from']['id'])
-                ->update(['receive_daily_verse' => $newStatus]);
-
-            $message = $newStatus 
-                ? "✅ Daily verses enabled! You'll receive verses at 6 AM and 6 PM."
-                : "❌ Daily verses disabled.";
-
-            app(TelegramService::class)->sendMessage([
-                'chat_id' => $chatId,
-                'text' => $message
-            ]);
+        // Handle Back to Main Menu
+        if ($text === '🔙 Back to Main Menu' || $text === '/menu') {
+            cache()->forget("user_mode_{$chatId}");
+            app(SettingsService::class)->backToMainMenu($update);
             return;
         }
 
@@ -82,14 +61,14 @@ class CommandHandler
 
         // Handle Hymns menu click - SET hymn mode
         if ($text === '🎵 Hymns' || $text === '/hymns') {
-            cache()->put("user_mode_{$chatId}", 'hymn', 3600); // 1 hour
+            cache()->put("user_mode_{$chatId}", 'hymn', 3600);
             app(HymnService::class)->promptForHymn($update);
             return;
         }
 
-        // Handle Read Bible menu click - SET bible mode and CLEAR hymn mode
+        // Handle Read Bible menu click - SET bible mode
         if ($text === '📖 Read Bible' || $text === '/bible') {
-            cache()->put("user_mode_{$chatId}", 'bible', 3600); // 1 hour
+            cache()->put("user_mode_{$chatId}", 'bible', 3600);
             app(TelegramService::class)->sendMessage([
                 'chat_id' => $chatId,
                 'text' => "📖 *Bible Reading Mode*\n\nType a Bible reference to read:\n\n" .
@@ -110,20 +89,20 @@ class CommandHandler
         // If in hymn mode, try to parse as hymn number first
         if ($userMode === 'hymn') {
             if (app(HymnService::class)->search($update)) {
-                return; // Successfully handled as hymn
+                return;
             }
         }
 
         // Try to handle as hymn with explicit "Hymn X" format (works in any mode)
         if (preg_match('/^hymn\s+(\d+)$/i', $text)) {
-            cache()->put("user_mode_{$chatId}", 'hymn', 3600); // Switch to hymn mode
+            cache()->put("user_mode_{$chatId}", 'hymn', 3600);
             app(HymnService::class)->search($update);
             return;
         }
 
         // Handle Bible verse searches (works in any mode)
         if (preg_match('/^([1-3]?\s*[A-Za-z]+\.?)\s+(\d+)(?::(\d+)(?:-(\d+))?)?$/i', $text)) {
-            cache()->put("user_mode_{$chatId}", 'bible', 3600); // Switch to bible mode
+            cache()->put("user_mode_{$chatId}", 'bible', 3600);
             app(BibleService::class)->search($update);
             return;
         }
@@ -149,14 +128,14 @@ class CommandHandler
                          "Click '🎵 Hymns' to switch to Hymn mode"
             ]);
         } else {
-            // No mode set - general help
             app(TelegramService::class)->sendMessage([
                 'chat_id' => $chatId,
                 'text' => "ℹ️ *How to use this bot:*\n\n" .
                          "📖 *Bible verses:* Gen 1:1, John 3:16, Mat 7:7\n" .
                          "🎵 *Hymns:* Hymn 1, Hymn 25, or click 🎵 Hymns button\n" .
                          "👥 *Referrals:* /myref\n" .
-                         "📤 *Invite:* /invite",
+                         "📤 *Invite:* /invite\n" .
+                         "⚙️ *Settings:* /settings",
                 'parse_mode' => 'Markdown'
             ]);
         }
