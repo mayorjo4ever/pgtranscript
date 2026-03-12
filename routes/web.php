@@ -184,7 +184,10 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
                 #$report = TranscriptReport::where('regno','05/66MF075')->get(); 
                  
                 $data = CertificateData::find(7372); 
-                
+                $data->update([
+                    'approve_date_id'=>104,
+                    'year'=>'2014'
+                ]);
                 print "<pre>"; 
                 print_r($data->toarray()); 
                 ## print_r($printout->toarray()); 
