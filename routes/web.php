@@ -3,12 +3,9 @@
 use App\Http\Controllers\Admin\DriveDownloadController;
 use App\Http\Controllers\Bible\TelegramBotController;
 use App\Http\Controllers\DownloadController;
+use App\Models\CertificateData;
 use App\Services\GoogleSheetService;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use App\Models\Transcript;
-use App\Models\TranscriptPrintout;
-use App\Models\TranscriptReport;
 
 
 //Route::get('/', function () {
@@ -176,21 +173,22 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
          }); ## end middleware
          
         Route::get('activity/live', 'AdminController@liveActivity')->name('admin.activity.live');            
-        Route::get('/fix-dates', function () {
-                
-                
-                
+        Route::get('/fix-dates', function () {                               
+                /*
                 TranscriptPrintout::where('regno','05/66MF075')
                         ->update(['approve_date'=>'2011-12-30']); 
                 TranscriptReport::where('regno','05/66MF075')
                         ->update(['approve_date'=>'2011-12-30']); 
-                
-                $printout = TranscriptPrintout::where('regno','05/66MF075')->get(); 
-                $report = TranscriptReport::where('regno','05/66MF075')->get(); 
+                */
+                #$printout = TranscriptPrintout::where('regno','05/66MF075')->get(); 
+                #$report = TranscriptReport::where('regno','05/66MF075')->get(); 
                  
+                $data = CertificateData::where('regno','00/66MA018')->get(); 
+            
                 print "<pre>"; 
-                print_r($printout->toarray()); 
-                print_r($report->toarray()); 
+                print_r($data->toarray()); 
+                ## print_r($printout->toarray()); 
+                ## print_r($report->toarray()); 
                   
      });       
     });
