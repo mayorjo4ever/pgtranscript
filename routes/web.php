@@ -183,8 +183,8 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
                 #$printout = TranscriptPrintout::where('regno','05/66MF075')->get(); 
                 #$report = TranscriptReport::where('regno','05/66MF075')->get(); 
                  
-                $data = CertificateData::where('regno','00/66MA018')->get(); 
-            
+                $data = CertificateData::find(7372); 
+                
                 print "<pre>"; 
                 print_r($data->toarray()); 
                 ## print_r($printout->toarray()); 
