@@ -181,8 +181,9 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         TranscriptReport::where('regno','05/66MF075')
                 ->update(['approve_date'=>'2011-12-30']); 
         */
-        #$printout = TranscriptPrintout::where('regno','05/66MF075')->get(); 
-        #$report = TranscriptReport::where('regno','05/66MF075')->get(); 
+            
+        # $printout = TranscriptPrintout::where('regno','05/66MF075')->get(); 
+        # $report = TranscriptReport::where('regno','05/66MF075')->get();             
         /* 
         $data = CertificateData::find(7372); 
         $data->update(['approve_date_id'=>104,'year'=>'2014']);
@@ -191,14 +192,16 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         print_r($data->toarray()); */
         ## print_r($printout->toarray()); 
         ## print_r($report->toarray()); 
+        
         #
-        #
-        $req = TranscriptsRequest::where('regno','07/68/GI004')->get();
-        TranscriptsRequest::where('regno','07/68/GI004')->update(['regno'=>'07/68GI004']);
+        
+        $req = TranscriptsRequest::where('regno','07/68GI004')->get();
+        
+        # TranscriptsRequest::where('regno','07/68/GI004')->update(['regno'=>'07/68GI004']);
         # $req = TranscriptsRequest::find(3542);
         # $req->update(['request_status'=>'created']);
-        print "<pre>"; 
-        print_r($req->toarray());
+            print "<pre>"; 
+            print_r($req->toarray());
         # $report = TranscriptReport::where('regno','14/25PC196_error')->update(['regno'=>'14/25PC196']); 
         # $report = TranscriptReport::where('regno','14/25PC196')->get(); #->update(['regno'=>'14/25PC196_error']); 
         # print_r($report->toarray()); 
