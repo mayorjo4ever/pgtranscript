@@ -193,14 +193,14 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         ## print_r($report->toarray()); 
         #
         #
-        # $req = TranscriptsRequest::where('regno','14/25PC196')->get();
-        $req = TranscriptsRequest::find(3542);
+        $req = TranscriptsRequest::where('regno','07/68/GI004')->get();
+        # $req = TranscriptsRequest::find(3542);
         # $req->update(['request_status'=>'created']);
         print "<pre>"; 
-        #print_r($req->toarray());
-        #$report = TranscriptReport::where('regno','14/25PC196_error')->update(['regno'=>'14/25PC196']); 
-        $report = TranscriptReport::where('regno','14/25PC196')->get(); #->update(['regno'=>'14/25PC196_error']); 
-        print_r($report->toarray()); 
+        print_r($req->toarray());
+        # $report = TranscriptReport::where('regno','14/25PC196_error')->update(['regno'=>'14/25PC196']); 
+        # $report = TranscriptReport::where('regno','14/25PC196')->get(); #->update(['regno'=>'14/25PC196_error']); 
+        # print_r($report->toarray()); 
             
                   
      });       
