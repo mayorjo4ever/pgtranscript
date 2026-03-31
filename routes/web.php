@@ -3,7 +3,8 @@
 use App\Http\Controllers\Admin\DriveDownloadController;
 use App\Http\Controllers\Bible\TelegramBotController;
 use App\Http\Controllers\DownloadController;
-use App\Models\CertificateData;
+use App\Models\TranscriptReport;
+use App\Models\TranscriptsRequest;
 use App\Services\GoogleSheetService;
 use Illuminate\Support\Facades\Route;
 
@@ -190,10 +191,15 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         print_r($data->toarray()); */
         ## print_r($printout->toarray()); 
         ## print_r($report->toarray()); 
-        $req = App\Models\TranscriptsRequest::where('regno','14/25PC196')->get();
+        #
+        #
+        # $req = TranscriptsRequest::where('regno','14/25PC196')->get();
+        $req = TranscriptsRequest::find(3542);
+        # $req->update(['request_status'=>'created']);
         print "<pre>"; 
-        print_r($req->toarray());
-        $report = TranscriptReport::where('regno','14/25PC196')->get();
+        #print_r($req->toarray());
+        #$report = TranscriptReport::where('regno','14/25PC196_error')->update(['regno'=>'14/25PC196']); 
+        $report = TranscriptReport::where('regno','14/25PC196')->get(); #->update(['regno'=>'14/25PC196_error']); 
         print_r($report->toarray()); 
             
                   
