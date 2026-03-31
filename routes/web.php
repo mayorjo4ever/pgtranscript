@@ -193,7 +193,8 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         $req = App\Models\TranscriptsRequest::where('regno','14/25PC196')->get();
         print "<pre>"; 
         print_r($req->toarray());
-        
+        $report = TranscriptReport::where('regno','14/25PC196')->get();
+        print_r($report->toarray()); 
             
                   
      });       
