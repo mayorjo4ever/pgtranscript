@@ -174,24 +174,27 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
          
         Route::get('activity/live', 'AdminController@liveActivity')->name('admin.activity.live');            
         Route::get('/fix-dates', function () {                               
-                /*
-                TranscriptPrintout::where('regno','05/66MF075')
-                        ->update(['approve_date'=>'2011-12-30']); 
-                TranscriptReport::where('regno','05/66MF075')
-                        ->update(['approve_date'=>'2011-12-30']); 
-                */
-                #$printout = TranscriptPrintout::where('regno','05/66MF075')->get(); 
-                #$report = TranscriptReport::where('regno','05/66MF075')->get(); 
-                 
-                $data = CertificateData::find(7372); 
-                $data->update([
-                    'approve_date_id'=>104,
-                    'year'=>'2014'
-                ]);
-                print "<pre>"; 
-                print_r($data->toarray()); 
-                ## print_r($printout->toarray()); 
-                ## print_r($report->toarray()); 
+        /*
+        TranscriptPrintout::where('regno','05/66MF075')
+                ->update(['approve_date'=>'2011-12-30']); 
+        TranscriptReport::where('regno','05/66MF075')
+                ->update(['approve_date'=>'2011-12-30']); 
+        */
+        #$printout = TranscriptPrintout::where('regno','05/66MF075')->get(); 
+        #$report = TranscriptReport::where('regno','05/66MF075')->get(); 
+        /* 
+        $data = CertificateData::find(7372); 
+        $data->update(['approve_date_id'=>104,'year'=>'2014']);
+
+        print "<pre>"; 
+        print_r($data->toarray()); */
+        ## print_r($printout->toarray()); 
+        ## print_r($report->toarray()); 
+        $req = App\Models\TranscriptsRequest::where('regno','14/25PC196')->get();
+        print "<pre>"; 
+        print_r($req->toarray());
+        
+            
                   
      });       
     });
