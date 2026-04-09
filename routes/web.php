@@ -195,11 +195,11 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         
         #
         
-        $req = TranscriptsRequest::where('regno','17/AM68002')->get();
+        # $req = TranscriptsRequest::where('regno','17/AM68002')->get();
         
         # TranscriptsRequest::where('regno','14/25PC196')->update(['reference_number'=>'B261ADMBAT']);
-        # $req = TranscriptsRequest::find(3542);
-        # $req->update(['request_status'=>'created']);
+        $req = TranscriptsRequest::find(3579);
+        $req->update(['regno'=>'17/68AM002']);
             print "<pre>"; 
             print_r($req->toarray());
         # $report = TranscriptReport::where('regno','14/25PC196_error')->update(['regno'=>'14/25PC196']); 
