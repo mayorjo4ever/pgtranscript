@@ -195,9 +195,9 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         
         #
         
-        $req = TranscriptsRequest::where('regno','14/25PC196')->get();
+        $req = TranscriptsRequest::where('regno','17/AM68002')->get();
         
-        TranscriptsRequest::where('regno','14/25PC196')->update(['reference_number'=>'B261ADMBAT']);
+        # TranscriptsRequest::where('regno','14/25PC196')->update(['reference_number'=>'B261ADMBAT']);
         # $req = TranscriptsRequest::find(3542);
         # $req->update(['request_status'=>'created']);
             print "<pre>"; 
