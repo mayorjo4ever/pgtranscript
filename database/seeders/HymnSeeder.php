@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Seeders;
+namespace DatabaseSeeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\Hymn;
+use IlluminateDatabaseSeeder;
+use AppModelsHymn;
 
 class HymnSeeder extends Seeder
 {
@@ -32,7 +32,7 @@ class HymnSeeder extends Seeder
         He drank all the bitter in Gethsemane.
         
         3. Fear not, little flock, whatever your lot
-        He enters all rooms, \'the doors being shut\'
+        He enters all rooms, 'the doors being shut'
         He never forsakes, He never is gone
         So count on His presence in darkness and dawn",
     ],
@@ -54,9 +54,9 @@ class HymnSeeder extends Seeder
         ’Tis grace hath brought me safe thus far,
         And grace will lead me home.
         
-        4. When we\'ve been there ten thousand years,
+        4. When we've been there ten thousand years,
         Bright shining as the sun;
-        We\'ve no less days to sing God\'s praise,
+        We've no less days to sing God's praise,
         Than when we first begun.",
     ],
     [
@@ -94,7 +94,7 @@ class HymnSeeder extends Seeder
         
         3. The gates of that holy place
         Stand open by night and day;
-        O look to the Lord who \'giveth more grace\',
+        O look to the Lord who 'giveth more grace',
         Whose love has prepared the way.
         A home in those mansions fair,
         His hand has reserved for all,
@@ -127,7 +127,7 @@ class HymnSeeder extends Seeder
         2. Once I was lost, and way down deep in sin; 
         Once was a slave to passions fierce within, 
         Once was afraid to trust a loving God; 
-        But now I\'m cleansed from every Stain through Jesus\' blood.
+        But now I'm cleansed from every Stain through Jesus' blood.
         
         3. Once I was bound, but now I am set free;
         Once I was blind, but now the light I see;
@@ -139,11 +139,11 @@ class HymnSeeder extends Seeder
         'title' => "SWEET HOUR OF PRAYER",
         'lyrics' => "1. Sweet hour of prayer, sweet hour of prayer,
         That calls me from a world of care,
-        And bids me, at my Father\'s throne,
+        And bids me, at my Father's throne,
         Make all my wants and wishes known;
         In seasons of distress and grief,
         My soul has often found relief,
-        And oft escaped the tempter\'s snare,
+        And oft escaped the tempter's snare,
         By thy return, sweet hour of prayer.
         
         2. Sweet hour of prayer, sweet hour of prayer,
@@ -161,7 +161,7 @@ class HymnSeeder extends Seeder
         Engage the waiting soul to bless;
         And since He bids me seek His face,
         Believe His Word and trust His grace,
-        I\'ll cast on Him my every care,
+        I'll cast on Him my every care,
         And wait for thee, sweet hour of prayer.",
     ],
     [
@@ -177,12 +177,12 @@ class HymnSeeder extends Seeder
         Oh, how I love Jesus,
         Oh, how I love Jesus,
         Because He first loved me.
-        (I\'ll never forsake Him . . .)
+        (I'll never forsake Him . . .)
         
-        2. It tells me of a Saviour\'s love,
+        2. It tells me of a Saviour's love,
         Who died to set me free;
         It tells me of His precious blood;
-        The sinner\'s perfect plea.
+        The sinner's perfect plea.
         
         3. It tells me what my Father hath
         In store for every day,
@@ -199,7 +199,7 @@ class HymnSeeder extends Seeder
         'title' => "When The Redeemed Gather",
         'lyrics' => "1. I am thinking of the rapture in our blessed home on high
         When the redeemed are gathering in;
-        How we\'ll raise the heavenly anthem in that city in the sky
+        How we'll raise the heavenly anthem in that city in the sky
         When the redeemed are gathering in.
         
         CHORUS
@@ -210,10 +210,10 @@ class HymnSeeder extends Seeder
         
         2. There will be a great procession over on the streets of gold
         When the redeemed are gathering in;
-        O what music, O what singing, o\'er the city will be rolled.
+        O what music, O what singing, o'er the city will be rolled.
         When the redeemed are gathering in.
         
-        3. Saints will sing redemption\'s story 
+        3. Saints will sing redemption's story 
         with their voices clear and strong,
         When the redeemed are gathering in;
         Then the angels all will listen,
@@ -223,8 +223,8 @@ class HymnSeeder extends Seeder
         4. Then the Saviour will give orders to prepare
         the banquet board,
         When the redeemed are gathering in;
-        And we\'ll hear His invitation,
-        \'Come, ye blessed of the Lord,\'
+        And we'll hear His invitation,
+        'Come, ye blessed of the Lord,'
         When the redeemed are gathering in.",
     ],
     [
@@ -242,9 +242,9 @@ class HymnSeeder extends Seeder
         Cares all past, home at last, ever to rejoice.
         
         2. 2. When in service for my Lord, dark may be the night.
-        But I\'ll cling more close to Him, He will give me light;
-        Satan\'s snares may vex my soul, turn my thoughts aside;
-        But my Lord goes ahead, leads whate\'er betide.
+        But I'll cling more close to Him, He will give me light;
+        Satan's snares may vex my soul, turn my thoughts aside;
+        But my Lord goes ahead, leads whate'er betide.
         
         3. 3. When in valleys low I look toward the mountain height,
         And behold my Saviour there, leading in the fight,
@@ -254,7 +254,7 @@ class HymnSeeder extends Seeder
         4. 4. When before me billows rise from the mighty deep,
         Then my Lord directs my bark, He doth safely keep,
         And He leads me gently on through this world below;
-        He\'s a real Friend to me, O I love Him so.",
+        He's a real Friend to me, O I love Him so.",
     ],
     [
         'number' => "9",
@@ -262,16 +262,16 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. Feeling so much better talking about this
         good old Way,
         Feeling so much better talking about the Lord;
-        Let\'s go on, let\'s go on talking about this
+        Let's go on, let's go on talking about this
         good old Way,
-        Let\'s go on, let\'s go on talking about the  Lord.
+        Let's go on, let's go on talking about the  Lord.
         
-        2. The devil he don\'t like it, talking about this
+        2. The devil he don't like it, talking about this
         good old Way,
-        The devil he don\'t like it, talking about the Lord;
-        So, let\'s go on, let\'s go on talking bout this
+        The devil he don't like it, talking about the Lord;
+        So, let's go on, let's go on talking bout this
         good old Way,
-        Let\'s go on, let\'s go on talking about the  Lord.",
+        Let's go on, let's go on talking about the  Lord.",
     ],
     [
         'number' => "10",
@@ -302,7 +302,7 @@ class HymnSeeder extends Seeder
         When the trump of God shall sound,
         We shall rise, ( Hallelujah! ) we shall rise!
         Then the saints will come rejoicing
-        And no tears will e\'er be found,
+        And no tears will e'er be found,
         We shall rise, ( Hallelujah!) we shall rise.
         
         CHORUS
@@ -310,7 +310,7 @@ class HymnSeeder extends Seeder
         We shall rise! (Amen!)
         We shall rise! (Hallelujah!)
         In the resurrection morning,
-        When death\'s prison bars are broken,
+        When death's prison bars are broken,
         We shall rise, (Hallelujah!) we shall rise.
         
         2. In the resurrection morning,
@@ -343,13 +343,13 @@ class HymnSeeder extends Seeder
         Or blush to speak His Name?
         
         CHORUS
-        And when the battle\'s over, we shall wear a crown!
+        And when the battle's over, we shall wear a crown!
         Yes, we shall wear a crown! Yes, we shall wear a crown
-        And when the battle\'s over, we shall wear a crown!
+        And when the battle's over, we shall wear a crown!
         In the new Jerusalem.
         Wear a crown, wear a crown,
         Wear a bright and shining crown.
-        And when the battle\'s over, we shall wear a crown
+        And when the battle's over, we shall wear a crown
         In the new Jerusalem.
         
         2. Must I be carried to the skies
@@ -364,7 +364,7 @@ class HymnSeeder extends Seeder
         
         4. I must fight if I would reign,
         Increase my courage, Lord;
-        I\'ll bear the toil, endure the pain,
+        I'll bear the toil, endure the pain,
         Supported by Thy Word.",
     ],
     [
@@ -372,13 +372,13 @@ class HymnSeeder extends Seeder
         'title' => "Marvelous Grace",
         'lyrics' => "1. Marvelous grace of our loving Lord,
         Grace that exceeds our sin and our guilt.
-        Yonder on Calvary\'s mount outpoured,
+        Yonder on Calvary's mount outpoured,
         There where the blood of the Lamb was spilt.
         
         CHORUS
-        Grace, grace, God\'s grace,
+        Grace, grace, God's grace,
         Grace that will pardon and cleanse within;
-        Grace, grace, God\'s grace,
+        Grace, grace, God's grace,
         Grace that is greater than all our sin.
         
         2. Sin and despair like the sea waves cold,
@@ -398,36 +398,36 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "14",
-        'title' => "Zion\'s Hill",
+        'title' => "Zion's Hill",
         'lyrics' => "1. There waits for me a glad tomorrow,
         Where gates of pearl swing open wide,
-        And when I\'ve passed this vale of sorrow,
-        I\'ll camp upon the other side.
+        And when I've passed this vale of sorrow,
+        I'll camp upon the other side.
         
         CHORUS
         Some day beyond the reach of mortal ken,
         Some day, God only knows just where and when,
         The wheels of mortal life shall all stand still.
-        And I shall go to dwell on Zion\'s hill.
+        And I shall go to dwell on Zion's hill.
         
-        2. Some day I\'ll hear the angels singing,
+        2. Some day I'll hear the angels singing,
         Beyond the shadows of the tomb;
         And all the bells of heaven ringing,
-        While saints are singing, \'Home, sweet Home.\'
+        While saints are singing, 'Home, sweet Home.'
         
         3. Some day my labors will be ended,
-        and all my wand\'rings will be o\'er,
-        And all earth\'s broken ties be mended,
+        and all my wand'rings will be o'er,
+        And all earth's broken ties be mended,
         And I shall sigh and weep no more.
         
         4. Some day the dark clouds will be rifted,
         And all the night of gloom be past;
-        And all life\'s burdens will be lifted,
+        And all life's burdens will be lifted,
         The day of rest shall dawn at last.",
     ],
     [
         'number' => "15",
-        'title' => "We\'re Marching To Zion",
+        'title' => "We're Marching To Zion",
         'lyrics' => "1. Come, we that love the Lord,
         And let our joys be known,
         Join in a song with sweet accord,
@@ -436,9 +436,9 @@ class HymnSeeder extends Seeder
         And thus surround the throne.
         
         CHORUS
-        We\'re marching to Zion,
+        We're marching to Zion,
         Beautiful, beautiful Zion;
-        We\'re marching upward to Zion,
+        We're marching upward to Zion,
         The beautiful city of God.
         
         2. Let those refuse to sing,
@@ -457,8 +457,8 @@ class HymnSeeder extends Seeder
         
         4. Then let our songs abound,
         And every tear be dry;
-        We\'re marching thru Immanuel\'s ground,
-        We\'re marching thru Immanuel\'s ground,
+        We're marching thru Immanuel's ground,
+        We're marching thru Immanuel's ground,
         To fairer worlds on high,
         To fairer worlds on high.",
     ],
@@ -493,7 +493,7 @@ class HymnSeeder extends Seeder
         They follow wherever I go;
         My sheep know My voice,
         And come at My call,
-        But a stranger\'s voice do they not know.
+        But a stranger's voice do they not know.
         
         CHORUS
         My sheep know My voice,
@@ -551,15 +551,15 @@ class HymnSeeder extends Seeder
         But the Church of Jesus
         Constant will remain;
         Gates of hell can never
-        \'Gainst that church prevail;
-        We have Christ\'s own promise,
+        'Gainst that church prevail;
+        We have Christ's own promise,
         Which can never fail.
         
         4. At the sign of triumph,
-        Satan\'s host doth flee;
+        Satan's host doth flee;
         Oh, then Christian soldiers,
         On to victory!
-        Hell\'s foundations quiver
+        Hell's foundations quiver
         At the shout of praise;
         Brothers, lift your voices,
         Loud your anthems raise!
@@ -575,14 +575,14 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "19",
-        'title' => "Let\'s Talk About Jesus",
-        'lyrics' => "1. Let\'s talk about Jesus.
+        'title' => "Let's Talk About Jesus",
+        'lyrics' => "1. Let's talk about Jesus.
         The King of kings is He,
         The Lord of lords, Supreme
         Throughout Eternity;
         The great I AM, the Way,
         The Truth, the Life, the Door;
-        Let\'s talk about Jesus
+        Let's talk about Jesus
         More and more.",
     ],
     [
@@ -594,9 +594,9 @@ class HymnSeeder extends Seeder
         When our Lord shall come again?
         
         CHORUS
-        There\'ll be singing, There\'ll be shouting,
-        There\'ll be sorrow, there\'ll be pain,
-        There\'ll be weeping, there\'ll be praying,
+        There'll be singing, There'll be shouting,
+        There'll be sorrow, there'll be pain,
+        There'll be weeping, there'll be praying,
         When our Lord shall come again.
         
         2. Will his coming bring rejoicing?
@@ -605,20 +605,20 @@ class HymnSeeder extends Seeder
         When our Lord shall come again?
         
         3. Will you join in lamentation?
-        Or the angel\'s glad refrain?
+        Or the angel's glad refrain?
         Will you help His people crown Him,
         When our Lord shall come again?
         
         4. Work and pray till Jesus calls you.
         Help to gather in the grain,
-        Then with joy you\'ll meet the Saviour,
+        Then with joy you'll meet the Saviour,
         When our Lord shall come again.",
     ],
     [
         'number' => "21",
         'title' => "The Fight Is On",
         'lyrics' => "1. The fight is on, the trumpet sound is ringing out,
-        The cry \'To arms\' is heard afar and near;
+        The cry 'To arms' is heard afar and near;
         The Lord of hosts is marching on to victory,
         The triumph of the right will soon appear.
         
@@ -629,11 +629,11 @@ class HymnSeeder extends Seeder
         The right and wrong engage today;
         The fight is on, but be not weary,
         Be strong and in his might hold fast;
-        If God be for us, his banner o\'er us,
-        We\'ll sing the victor\'s song at last.
+        If God be for us, his banner o'er us,
+        We'll sing the victor's song at last.
         
         2. The fight is on, arouse ye soldiers brave and true,
-        Jehovah leads, and vict\'ry will assure;
+        Jehovah leads, and vict'ry will assure;
         Go buckle on the armor God has given you.
         And in his strength unto the end endure.
         
@@ -650,7 +650,7 @@ class HymnSeeder extends Seeder
         How he gave His life on Calvary
         To save a wretch like me;
         I heard about His groaning,
-        Of His precious blood\'s atoning,
+        Of His precious blood's atoning,
         Then I repented of my sins
         And won the victory.
         
@@ -665,11 +665,11 @@ class HymnSeeder extends Seeder
         Beneath the cleansing flood.
         
         2. I heard about His healing,
-        Of His cleansing pow\'r revealing,
+        Of His cleansing pow'r revealing,
         How he made the lame to walk again
         And caused the blind to see;
-        then I cried, \'Dear Jesus,
-        Come and heal my broken spirit,\'
+        then I cried, 'Dear Jesus,
+        Come and heal my broken spirit,'
         And somehow Jesus came and brought
         To me the victory.
         
@@ -679,7 +679,7 @@ class HymnSeeder extends Seeder
         Beyond the crystal sea;
         About the angels singing,
         And the old redemption story,
-        And some sweet day I\'ll sing up there
+        And some sweet day I'll sing up there
         The song of victory.",
     ],
     [
@@ -700,11 +700,11 @@ class HymnSeeder extends Seeder
         Pure, warm, and changeless be,
         A living fire!
         
-        3. While life\'s dark maze I tread,
+        3. While life's dark maze I tread,
         And griefs around me spread,
         Be Thou my Guide;
         Bid darkness turn to day,
-        Wipe sorrow\'s tears away,
+        Wipe sorrow's tears away,
         Nor let me ever stray
         From Thee aside.",
     ],
@@ -713,18 +713,18 @@ class HymnSeeder extends Seeder
         'title' => "Living By Faith",
         'lyrics' => "1. I care not today what the morrow may bring,
         If shadow or sunshine or rain,
-        The Lord I know ruleth o\'er everything,
+        The Lord I know ruleth o'er everything,
         And all of my worry is vain.
         
         CHORUS
         Living by faith, in Jesus above,
         Trusting, confiding in His great love;
         From all harm safe in His sheltering arm,
-        I\'m living by faith and feel no alarm.
+        I'm living by faith and feel no alarm.
         
         2. Though tempest may blow and the storm clouds arise,
         Obscuring the brightness of life.
-        I\'m never alarmed at the overcast skies,
+        I'm never alarmed at the overcast skies,
         The Master looks on at the strife.
         
         3. I know that He safely will carry me through,
@@ -733,7 +733,7 @@ class HymnSeeder extends Seeder
         If Jesus walks close to my side.
         
         4. Our lord will return to this earth some sweet day,
-        Our troubles will then all be o\'er.
+        Our troubles will then all be o'er.
         The Master so gently will lead us away,
         Beyond that blest heavenly shore.",
     ],
@@ -780,39 +780,39 @@ class HymnSeeder extends Seeder
         
         CHORUS
         Oh, that city on Mount Zion,
-        Tho\' a pilgrim, yet I love thee still;
-        I\'ll not leave thee, through the ages,
+        Tho' a pilgrim, yet I love thee still;
+        I'll not leave thee, through the ages,
         When I reach that city on the hill.
         
-        2. I\'m invited to come home to that city,
-        For the Word says, \'Whosoever will,\'
-        And I\'ll find there a mansion for me waiting
+        2. I'm invited to come home to that city,
+        For the Word says, 'Whosoever will,'
+        And I'll find there a mansion for me waiting
         When I reach that city on the hill.
         
         3. Death will never molest me in that city,
         Never leave me lying cold and chill;
-        And I\'ll enter to live up there forever
+        And I'll enter to live up there forever
         When I reach that city on the hill.
         
-        4. So I\'ll stay here until my Saviour calls me,
+        4. So I'll stay here until my Saviour calls me,
         Trying daily to perform his will,
-        Then He\'ll say unto me, \'Well done,\'
+        Then He'll say unto me, 'Well done,'
         up yonder,
         When I reach that city on the hill.",
     ],
     [
         'number' => "27",
         'title' => "Farther Along",
-        'lyrics' => "1. Tempted and tried we\'re oft made to wonder,
+        'lyrics' => "1. Tempted and tried we're oft made to wonder,
         Why it should be thus all the day long,
         While there are others living about us,
         Never molested though in the wrong.
         
         CHORUS
-        Farther along we\'ll know all about it.
-        Farther along we\'ll understand why;
+        Farther along we'll know all about it.
+        Farther along we'll understand why;
         Cheer up, my brother, live in the sunshine,
-        We\'ll understand it all by and by.
+        We'll understand it all by and by.
         
         2. When death has come and taken our loved ones,
         It leaves our home so lonely and drear;
@@ -820,14 +820,14 @@ class HymnSeeder extends Seeder
         Living so wicked year after year.
         
         3. Faithful till death said our loving Master,
-        A few more days to labor and wait\'
+        A few more days to labor and wait'
         Toils of the road will then seem as nothing,
         As we sweep through the beautiful gate.
         
         4. When we see Jesus coming in glory,
         When He comes from His home in the sky;
         Then we shall meet Him in that bright mansion,
-        We\'ll understand it all by and by.",
+        We'll understand it all by and by.",
     ],
     [
         'number' => "28",
@@ -848,7 +848,7 @@ class HymnSeeder extends Seeder
         Keep my path free from wrath, and my soul satisfied,
         Fill my way every day with love.
         
-        3. Soon the race will be o\'er, and I\'ll travel no more,
+        3. Soon the race will be o'er, and I'll travel no more,
         But abide in my home above;
         Let me sing, blessed King, all the way to the shore,
         Fill my way every day with love.",
@@ -857,7 +857,7 @@ class HymnSeeder extends Seeder
         'number' => "29",
         'title' => "I Am Resolved",
         'lyrics' => "1. I am resolved no longer to linger,
-        Charmed by the world\'s delight;
+        Charmed by the world's delight;
         Things that are higher, things that are nobler,
         These have allured my sight.
         
@@ -885,31 +885,31 @@ class HymnSeeder extends Seeder
         5. I am resolved, and who will go with me?
         Come, friends, without delay,
         Taught by the Bible, led by the Spirit,
-        We\'ll walk the heavenly way.",
+        We'll walk the heavenly way.",
     ],
     [
         'number' => "30",
         'title' => "Higher Ground",
-        'lyrics' => "1. I\'m pressing on the upward way,
-        New heights I\'m gaining every day;
-        Still praying as I\'m onward bound,
-        \'Lord, plant my feet on higher ground.\'
+        'lyrics' => "1. I'm pressing on the upward way,
+        New heights I'm gaining every day;
+        Still praying as I'm onward bound,
+        'Lord, plant my feet on higher ground.'
         
         CHORUS
         Lord, lift me up and let me stand,
-        By faith, on heaven\'s table land,
+        By faith, on heaven's table land,
         A higher plane than I have found;
         Lord, plant my feet on higher ground.
         
         2. My heart has no desire to stay,
         Where doubts arise and fears dismay;
-        Tho\' some may dwell where these abound,
+        Tho' some may dwell where these abound,
         My prayer, my aim, is higher ground.
         
         3. I want to scale the utmost height,
         And catch a gleam of glory bright;
-        But still I\'ll pray till heav\'n I\'ve found,
-        \'Lord, lead me on to higher ground.\'",
+        But still I'll pray till heav'n I've found,
+        'Lord, lead me on to higher ground.'",
     ],
     [
         'number' => "31",
@@ -923,7 +923,7 @@ class HymnSeeder extends Seeder
         Standing, standing,
         Standing on the promises of God my Saviour,
         Standing, standing,
-        I\'m standing on the promises of God.
+        I'm standing on the promises of God.
         
         2. Standing on the promises that cannot fail,
         When the howling storms of doubt and fear assail,
@@ -936,12 +936,12 @@ class HymnSeeder extends Seeder
         Standing on the promises of God.
         
         4. Standing on the promises of Christ the Lord,
-        Bound to Him eternally by love\'s strong cord,
-        Overcoming daily with the Spirit\'s sword,
+        Bound to Him eternally by love's strong cord,
+        Overcoming daily with the Spirit's sword,
         Standing on the promises of God.
         
         5. Standing on the promises I cannot fall,
-        List\'ning every moment to the Spirit\'s call,
+        List'ning every moment to the Spirit's call,
         Resting in my Saviour, as my all in all,
         Standing on the promises of God.",
     ],
@@ -957,23 +957,23 @@ class HymnSeeder extends Seeder
         By and by when the morning comes,
         When all the saints of God are gathered home,
         We will tell the story how we overcome,
-        For we\'ll understand it better by and by.
+        For we'll understand it better by and by.
         
         2. We are often destitute of the things that life demands,
         Want of food and want of shelter, thirsty hills and barren lands;
-        But we\'re trusting in the Lord, and according to His Word,
+        But we're trusting in the Lord, and according to His Word,
         We will understand it better by and by.
         
         3. Trials dark on every hand, and we cannot understand,
         All the ways that God would lead us to that Blessed Promised Land;
-        But He guides us with His eye and we\'ll follow till we die,
-        For we\'ll understand it better by and by.
+        But He guides us with His eye and we'll follow till we die,
+        For we'll understand it better by and by.
         
         4. Temptations, hidden snares often take us unawares,
         And our hearts are made to bleed for many a thoughtless word or deed,
         And we wonder why the test
         when we try to do our best,
-        But we\'ll understand it better by and by.",
+        But we'll understand it better by and by.",
     ],
     [
         'number' => "33",
@@ -1049,11 +1049,11 @@ class HymnSeeder extends Seeder
         love lifted me.
         
         2. All my heart to Him I give,
-        Ever to Him I\'ll cling,
+        Ever to Him I'll cling,
         In His blessed presence live,
         Ever His praises sing.
         Love so mighty and so true,
-        Merits my soul\'s best songs;
+        Merits my soul's best songs;
         Faithful, loving service, too,
         To Him belongs.
         
@@ -1061,7 +1061,7 @@ class HymnSeeder extends Seeder
         Jesus completely saves;
         He will lift you by His love,
         Out of the angry waves,
-        He\'s the Master of the sea,
+        He's the Master of the sea,
         Billows His will obey;
         He your Saviour wants to be;
         Be saved today.",
@@ -1069,7 +1069,7 @@ class HymnSeeder extends Seeder
     [
         'number' => "36",
         'title' => "Showers Of Blessing",
-        'lyrics' => "1. \'There shall be showers of blessing,\'
+        'lyrics' => "1. 'There shall be showers of blessing,'
         This is the promise of love;
         There shall be seasons refreshing,
         Sent from the Saviour above.
@@ -1080,19 +1080,19 @@ class HymnSeeder extends Seeder
         Mercy drops round us are falling,
         But for the showers we plead.
         
-        2. \'There shall be showers of blessing,\'
+        2. 'There shall be showers of blessing,'
         Precious reviving again;
         Over the hills and the valleys,
         Sound of abundance of rain.
         
-        3. \'There shall be showers of blessing,\'
+        3. 'There shall be showers of blessing,'
         Send them upon us, O Lord;
         Grant to us now a refreshing,
         Come, and now honor Thy Word.
         
-        4. \'There shall be showers of blessing,\'
+        4. 'There shall be showers of blessing,'
         Oh, that today they might fall,
-        Now as to God we\'re confessing,
+        Now as to God we're confessing,
         Now as on Jesus we call!",
     ],
     [
@@ -1126,7 +1126,7 @@ class HymnSeeder extends Seeder
         
         4. Have Thine own way, Lord!
         Have Thine own way!
-        Hold o\'er my being,
+        Hold o'er my being,
         Absolute sway!
         Fill with Thy Spirit,
         Till all shall see,
@@ -1148,7 +1148,7 @@ class HymnSeeder extends Seeder
         To Thy precious bleeding side.
         
         2. Consecrate me now to Thy service, Lord,
-        By the pow\'r of grace divine;
+        By the pow'r of grace divine;
         Let my soul look up with a steadfast hope,
         And my will be lost in Thine.
         
@@ -1170,8 +1170,8 @@ class HymnSeeder extends Seeder
         Since I let my Saviour in;
         Now they pass me by unknown,
         when they once passed with a smile;
-        Now they say I\'m very foolish,
-        and they say I\'m out of style.
+        Now they say I'm very foolish,
+        and they say I'm out of style.
         
         CHORUS
         I am marked, marked, marked,
@@ -1188,32 +1188,32 @@ class HymnSeeder extends Seeder
         And they cannot understand it,
         for I had such plans one day;
         But I know what I surrendered
-        when I promised I\'d go through;
+        when I promised I'd go through;
         And I gained far more glory since God made me ever new.",
     ],
     [
         'number' => "40",
-        'title' => "Won\'t It Be Wonderful?",
+        'title' => "Won't It Be Wonderful?",
         'lyrics' => "1. When with the Saviour we enter the gloryland,
-        Won\'t it be wonderful there?
+        Won't it be wonderful there?
         Ended the troubles and cares of the stroyland,
-        Won\'t it be wonderful there?
+        Won't it be wonderful there?
         
         CHORUS
-        Won\'t it be wonderful there.
+        Won't it be wonderful there.
         Having no burdens to bear?
         Joyously singing with heart-bells all ringing,
-        Won\'t it be wonderful there?
+        Won't it be wonderful there?
         
         2. Walking and talking with Christ, the supernal One,
-        Won\'t it be wonderful there?
+        Won't it be wonderful there?
         Praising, adoring the matchless eternal One,
-        Won\'t it be wonderful there?
+        Won't it be wonderful there?
         
         3. There where the tempest will never be sweeping us,
-        Won\'t it be wonderful there?
+        Won't it be wonderful there?
         Sure that forever the Lord will be keeping us,
-        Won\'t it be wonderful there?",
+        Won't it be wonderful there?",
     ],
     [
         'number' => "41",
@@ -1246,7 +1246,7 @@ class HymnSeeder extends Seeder
         In many a way,
         I cried for healing
         Both night and day;
-        Faith wasn\'t forgotten
+        Faith wasn't forgotten
         By the Father above,
         He gave me His sign
         On the wings of a dove.",
@@ -1272,7 +1272,7 @@ class HymnSeeder extends Seeder
         
         3. Let others seek a home below,
         I feel like traveling on;
-        flames devour, or waves o\'erflow,
+        flames devour, or waves o'erflow,
         I feel like traveling on.
         
         4. Lord has been so good to me,
@@ -1284,25 +1284,25 @@ class HymnSeeder extends Seeder
         'number' => "43",
         'title' => "Come And Dine",
         'lyrics' => "1. Jesus has a table spread where the saints of God are fed,
-        He invites His chosen people \'Come and dine;\'
+        He invites His chosen people 'Come and dine;'
         With His manna He doth feed and supplies our every need;
-        O, \'tis sweet to sup with Jesus all the time!
+        O, 'tis sweet to sup with Jesus all the time!
         
         CHORUS
-        \'Come and dine,\' the Master calleth, \'Come and dine;\'
-        You may feast at Jesus\' table all the time;
+        'Come and dine,' the Master calleth, 'Come and dine;'
+        You may feast at Jesus' table all the time;
         He who fed the multitude,
         Turned the water into wine,
-        To the hungry calleth now, \'come and dine.\'
+        To the hungry calleth now, 'come and dine.'
         
-        2. The disciples came to land, thus obeying Christ\'s command,
-        For the Master called to them,  \'Come and dine;\'
-        There they found their hearts\' desire, bread and fish upon the fire;
+        2. The disciples came to land, thus obeying Christ's command,
+        For the Master called to them,  'Come and dine;'
+        There they found their hearts' desire, bread and fish upon the fire;
         Thus He satisfies the hungry every time.
         
         3. Soon the Lamb will take His bride to be ever at His side,
         All the host of heaven will assembled be;
-        O, \'twill be a glorious sight, all the saints in Spotless white;
+        O, 'twill be a glorious sight, all the saints in Spotless white;
         And with Jesus they will feast eternally.",
     ],
     [
@@ -1310,7 +1310,7 @@ class HymnSeeder extends Seeder
         'title' => "GOD LEADS US ALONG",
         'lyrics' => "1. In shady, green pastures, so rich and so sweet,
         God leads His dear children along;
-        Where the water\'s cool flow bathes the weary one\'s feet,
+        Where the water's cool flow bathes the weary one's feet,
         God leads His dear children along.
         
         CHORUS
@@ -1324,14 +1324,14 @@ class HymnSeeder extends Seeder
         Sometimes in the valley in the darkest of night,
         God leads His dear children along.
         
-        3. Tho\' sorrows befall us, and Satan oppose,
+        3. Tho' sorrows befall us, and Satan oppose,
         God leads His dear children along;
         Through grace we can conquer, defeat all our foes,
         God leads his dear children along.
         
         4. Away from the mire, and away from the clay,
         God leads His dear children along;
-        Away up in glory, eternity\'s day,
+        Away up in glory, eternity's day,
         God leads His dear children along.",
     ],
     [
@@ -1373,9 +1373,9 @@ class HymnSeeder extends Seeder
         I have had the sunlight of His love within.
         
         2. Though clouds may gather in the sky,
-        And billows \'round me roll.
+        And billows 'round me roll.
         However dark the world may be,
-        I\'ve sunlight in my soul.
+        I've sunlight in my soul.
         
         3. While walking in the light of God,
         I sweet communion find;
@@ -1383,7 +1383,7 @@ class HymnSeeder extends Seeder
         And leave the world behind.
         
         4. I cross the wide extended fields,
-        I journey o\'er the plains,
+        I journey o'er the plains,
         And in the sunlight of His love
         I reap the golden grain.
         
@@ -1395,16 +1395,16 @@ class HymnSeeder extends Seeder
     [
         'number' => "47",
         'title' => "I Know Whom I Believed",
-        'lyrics' => "1. I know not why God\'s wondrous grace
+        'lyrics' => "1. I know not why God's wondrous grace
         To me He hath made known,
         Nor why, unworthy, Christ in love,
         Redeemed me for His own.
         
         CHORUS
-        But \'I know whom I have believed,
+        But 'I know whom I have believed,
         And am persuaded that He is able,
-        To keep that which I\'ve committed,
-        Unto Him against that day.\'
+        To keep that which I've committed,
+        Unto Him against that day.'
         
         2. I know not how this saving faith
         To me He did impart,
@@ -1423,8 +1423,8 @@ class HymnSeeder extends Seeder
         
         5. I know not when my Lord may come,
         At night or noonday fair,
-        Nor if I\'ll walk the vale with Him,
-        Or \'meet Him in the air.\'",
+        Nor if I'll walk the vale with Him,
+        Or 'meet Him in the air.'",
     ],
     [
         'number' => "48",
@@ -1441,13 +1441,13 @@ class HymnSeeder extends Seeder
         We shall come rejoicing, bringing in the sheaves.
         
         2. Sowing in the sunshine, sowing in the shadows,
-        Fearing neither clouds nor winter\'s chilling breeze;
+        Fearing neither clouds nor winter's chilling breeze;
         By and by the harvest and the labor ended,
         We shall come rejoicing, bringing in the sheaves.
         
         3. Going forth with weeping, sowing for the Master,
         Though the loss sustained, our spirit often grieves;
-        When our weeping\'s over, He will bid us welcome,
+        When our weeping's over, He will bid us welcome,
         We shall come rejoicing, bringing in the sheaves.",
     ],
     [
@@ -1461,13 +1461,13 @@ class HymnSeeder extends Seeder
         CHORUS
         Some golden daybreak, Jesus will come;
         Some golden daybreak, battles all won,
-        He\'ll shout the victory, break through the blue,
+        He'll shout the victory, break through the blue,
         Some golden daybreak, for me, for you.
         
         2. Sad hearts will gladden, all shall be bright,
-        Good-bye forever to earth\'s dark night;
+        Good-bye forever to earth's dark night;
         Changed in a moment, like Him to be,
-        Oh, glorious daybreak, Jesus I\'ll see.
+        Oh, glorious daybreak, Jesus I'll see.
         
         3. Oh, what a meeting, there in the skies,
         No tears nor crying shall dim our eyes;
@@ -1483,7 +1483,7 @@ class HymnSeeder extends Seeder
         Flowing by the throne of God?
         
         CHORUS
-        Yes, we\'ll gather at the river,
+        Yes, we'll gather at the river,
         The beautiful, the beautiful river;
         Gather with the saints at the river
         That flows by the throne of God.
@@ -1491,7 +1491,7 @@ class HymnSeeder extends Seeder
         2. On the bosom of the river,
         Where the Saviour-King we own,
         We shall meet and sorrow never,
-        \'Neath the glory of the throne.
+        'Neath the glory of the throne.
         
         3. On the margin of the river,
         Washing up its silver spray,
@@ -1504,11 +1504,11 @@ class HymnSeeder extends Seeder
         And provide a robe and crown.
         
         5. At the smiling of the river,
-        Mirror of the Saviour\'s face,
+        Mirror of the Saviour's face,
         Saints whom death will never sever
         Lift their songs of saving grace.
         
-        6. Soon we\'ll reach the shining river,
+        6. Soon we'll reach the shining river,
         Soon our pilgrimage will cease;
         Soon our happy hearts will quiver
         With the melody of peace.",
@@ -1538,14 +1538,14 @@ class HymnSeeder extends Seeder
         Glory to His name!
         
         4. Come, to this fountain so rich and sweet;
-        Cast thy poor soul at the Saviour\'s feet;
+        Cast thy poor soul at the Saviour's feet;
         Plunge in today, and be made complete;
         Glory to His name!",
     ],
     [
         'number' => "52",
         'title' => "He Brought Me Out",
-        'lyrics' => "1. My heart was distressed \'neath Jehovah\'s dread frown,
+        'lyrics' => "1. My heart was distressed 'neath Jehovah's dread frown,
         And low in the pit where my sins dragged me down;
         I cried to the Lord from the deep miry clay,
         Who tenderly brought me out to golden day.
@@ -1557,24 +1557,24 @@ class HymnSeeder extends Seeder
         A song of praise, hallelujah!
         
         2. He placed me upon the strong Rock by His side,
-        My steps were established and here I\'ll abide;
+        My steps were established and here I'll abide;
         No danger of falling while here I remain,
         But stand by His grace until the crown I gain.
         
-        3. He gave me a song, \'twas a new song of praise,
+        3. He gave me a song, 'twas a new song of praise,
         By day and by night its sweet notes I will raise;
-        My heart\'s overflowing, I\'m happy and free,
-        I\'ll praise my Redeemer, who has rescued me.
+        My heart's overflowing, I'm happy and free,
+        I'll praise my Redeemer, who has rescued me.
         
-        4. I\'ll sing of his wonderful mercy to me,
-        I\'ll praise him till all men his goodness shall see;
-        I\'ll sing of salvation at home and abroad,
+        4. I'll sing of his wonderful mercy to me,
+        I'll praise him till all men his goodness shall see;
+        I'll sing of salvation at home and abroad,
         Till many shall hear the truth and trust in God.",
     ],
     [
         'number' => "53",
         'title' => "Sweet By And By",
-        'lyrics' => "1. There\'s a land that is fairer than day,
+        'lyrics' => "1. There's a land that is fairer than day,
         And by faith we can see it afar;
         For the Father waits over the way,
         To prepare us a dwelling place there.
@@ -1599,7 +1599,7 @@ class HymnSeeder extends Seeder
         'number' => "54",
         'title' => "There Is A Fountain",
         'lyrics' => "1. There is a fountain filled with blood,
-        Drawn from Immanuel\'s veins,
+        Drawn from Immanuel's veins,
         And sinners plunged beneath that flood,
         Lose all their guilty stains.
         Lose all their guilty stains,
@@ -1625,7 +1625,7 @@ class HymnSeeder extends Seeder
         Till all the ransomed Church of God
         Be saved, to sin no more.
         
-        4. E\'er since by faith I saw the stream
+        4. E'er since by faith I saw the stream
         Thy flowing wounds supply,
         Redeeming love has been my theme,
         And shall be till I die.
@@ -1635,7 +1635,7 @@ class HymnSeeder extends Seeder
         And shall be till I die.
         
         5. Then in a nobler, sweeter song,
-        I\'ll sing Thy power to save,
+        I'll sing Thy power to save,
         When this poor lisping, stammering tongue,
         Lies silent in the grave.
         Lies silent in the grave,
@@ -1647,7 +1647,7 @@ class HymnSeeder extends Seeder
         'number' => "55",
         'title' => "Oh, What Precious Love",
         'lyrics' => "1. Oh, what precious love the Father
-        Had for Adam\'s fallen race,
+        Had for Adam's fallen race,
         Gave His only Son to suffer,
         And redeem us by His Grace.",
     ],
@@ -1702,13 +1702,13 @@ class HymnSeeder extends Seeder
         Do you believe Him? Amen!
         Amen, Amen!
         
-        3. The Bible\'s true. Amen!
+        3. The Bible's true. Amen!
         I believe It. Amen!
-        It\'s the Word of God. Amen!
+        It's the Word of God. Amen!
         Amen, Amen!
         
-        4. We believe You\'re coming. Amen!
-        We\'re ready to meet You. Amen!
+        4. We believe You're coming. Amen!
+        We're ready to meet You. Amen!
         Come, Lord Jesus. Amen!
         Amen, Amen!",
     ],
@@ -1735,13 +1735,13 @@ class HymnSeeder extends Seeder
         There is power, power, wonder-working power,
         In the precious blood of the Lamb.
         
-        3. His rifle\'s old and rusty, and it\'s hanging
+        3. His rifle's old and rusty, and it's hanging
         on the wall;
-        His Bible\'s worn and dusty, and it\'s seldom
+        His Bible's worn and dusty, and it's seldom
         touched at all:
         But his Message from this Bible will meet
         us at Judgment Day,
-        For God\'s Truth keeps marching on.
+        For God's Truth keeps marching on.
         
         CHORUS 3. Glory! glory, hallelujah!
         Glory! glory, hallelujah!
@@ -1751,13 +1751,13 @@ class HymnSeeder extends Seeder
     [
         'number' => "60",
         'title' => "EACH STEP OF THE WAY",
-        'lyrics' => "1. I\'m following Jesus,
+        'lyrics' => "1. I'm following Jesus,
         One step at a time;
         I live for the moment,
         In His love divine,
         Why think of tomorrow,
         Just live for today;
-        I\'m following Jesus,
+        I'm following Jesus,
         Each step of the way.
         
         2. The pathway is narrow,
@@ -1774,44 +1774,44 @@ class HymnSeeder extends Seeder
         'title' => "I Shall Not Be Moved",
         'lyrics' => "1. Jesus is my Saviour, I shall not be moved;
         In His love and favor, I shall not be moved;
-        Just like a tree that\'s planted by the waters,
+        Just like a tree that's planted by the waters,
         I shall not be moved.
         
         CHORUS
         I shall not be, I shall not be moved.
         I shall not be, I shall not be moved;
-        Just like a tree that\'s planted by the waters,
+        Just like a tree that's planted by the waters,
         I shall not be moved.
         
         2. In me Christ abiding, I shall not be moved;
-        In His love I\'m hiding, I shall not be moved;
-        Just like a tree that\'s planted by the waters,
+        In His love I'm hiding, I shall not be moved;
+        Just like a tree that's planted by the waters,
         I shall not be moved.
         
         3. If I trust Him ever, I shall not be moved;
         He will fail me never, I shall not be moved;
-        Just like a tree that\'s planted by the waters,
+        Just like a tree that's planted by the waters,
         I shall not be moved.
         
-        4. His word I\'m feeding, I shall not be moved;
-        He\'s the One that\'s leading,
+        4. His word I'm feeding, I shall not be moved;
+        He's the One that's leading,
         I shall not be moved,
-        Just like a tree that\'s planted by the waters,
+        Just like a tree that's planted by the waters,
         I shall not be moved.
         
         5. Glory hallelujah, I shall not be moved;
         Anchored in Jehovah, I shall not be moved;
-        Just like a tree that\'s planted by the waters,
+        Just like a tree that's planted by the waters,
         I shall not be moved.
         
         6. Though all hell assail me, I shall not be moved;
         Jesus will not fail me, I shall not be moved;
-        Just like a tree that\'s planted by the water,
+        Just like a tree that's planted by the water,
         I shall not be moved.
         
         7. Though the tempest rages, I shall not be moved;
         On the Rock of Ages, I shall not be moved;
-        Just like a tree that\'s planted by the waters,
+        Just like a tree that's planted by the waters,
         I shall not be moved.",
     ],
     [
@@ -1837,20 +1837,20 @@ class HymnSeeder extends Seeder
         2. He who was the friend of sinners,
         Seeks thee, lost one, now;
         Sinner, come, and at His footstool penitently bow.
-        He who said, \'I\'ll not condemn thee,
-        Go and sin no more;\'
+        He who said, 'I'll not condemn thee,
+        Go and sin no more;'
         Speaks to thee that word of pardon,
         As in days of yore.
         
-        3. Oft on earth He healed the suff\'rer
+        3. Oft on earth He healed the suff'rer
         By His mighty hand; Still our sicknesses
         and sorrows Go at His command.
         He who gave His healing virtue,
-        To a woman\'s touch; To the faith that claims His fullness,
+        To a woman's touch; To the faith that claims His fullness,
         Still will give as much.
         
         4. He who pardoned erring Peter,
-        Never need\'st thou fear;
+        Never need'st thou fear;
         He that came to faithless Thomas,
         All thy doubt will clear.
         He who let the loved disciple
@@ -1858,7 +1858,7 @@ class HymnSeeder extends Seeder
         with love as tender,
         Lean upon His breast.
         
-        5. He who \'mid the raging billows,
+        5. He who 'mid the raging billows,
         Walked upon the sea;
         Still can hush our wildest tempest,
         As on Galilee.
@@ -1869,36 +1869,36 @@ class HymnSeeder extends Seeder
         
         6. As of old He walked to Emmaus,
         With them to abide;
-        So through all life\'s way He walketh,
+        So through all life's way He walketh,
         Ever near our side.
         Soon again we shall behold Him,
         Hasten, Lord, the day!
-        But \'twill still be \'this same Jesus,\'
+        But 'twill still be 'this same Jesus,'
         As He went away.",
     ],
     [
         'number' => "63",
         'title' => "The Old-Time Religion",
-        'lyrics' => "1. It\'s the old-time Holy Spirit,
-        And the devil won\'t go near It,
-        That\'s the reason people fear It;
-        But It\'s good enough for me.
+        'lyrics' => "1. It's the old-time Holy Spirit,
+        And the devil won't go near It,
+        That's the reason people fear It;
+        But It's good enough for me.
         
         CHORUS
         Give me that old-time religion,
         Give me that old-time religion,
         Give me that old-time religion,
-        It\'s good enough for me.
+        It's good enough for me.
         
         2. It will make you stop your lying;
-        It will save you when you\'re dying;
+        It will save you when you're dying;
         It will start the devil flying;
-        And it\'s good enough for me.
+        And it's good enough for me.
         
-        3. It\'s so good I want no other,
+        3. It's so good I want no other,
         For It makes me love my brother;
         And It brings things from under cover,
-        And It\'s good enough for me.
+        And It's good enough for me.
         
         Rephrases. (It was good in the fiery furnace . . .)
         (It was good for Paul and Silas . . . )
@@ -1911,9 +1911,9 @@ class HymnSeeder extends Seeder
     [
         'number' => "64",
         'title' => "Get On Board",
-        'lyrics' => "1. It\'s the old ship of Zion,
-        It\'s the old ship of Zion,
-        It\'s the old ship of Zion,
+        'lyrics' => "1. It's the old ship of Zion,
+        It's the old ship of Zion,
+        It's the old ship of Zion,
         Get on board, get on board.
         
         2. It has landed my old father,
@@ -1924,19 +1924,19 @@ class HymnSeeder extends Seeder
     [
         'number' => "65",
         'title' => "On The Other Shore",
-        'lyrics' => "1. I\'ve got a Father over yonder,
-        I\'ve got a Father over yonder,
-        I\'ve got a Father over yonder,
+        'lyrics' => "1. I've got a Father over yonder,
+        I've got a Father over yonder,
+        I've got a Father over yonder,
         On the other shore.
         
-        2. Some bright day I\'ll go and see Him,
-        Some bright day I\'ll go and see Him,
-        Some bright day I\'ll go and see Him,
+        2. Some bright day I'll go and see Him,
+        Some bright day I'll go and see Him,
+        Some bright day I'll go and see Him,
         On the other shore.
         
-        3. Won\'t that be a happy meeting!
-        Won\'t that be a happy meeting!
-        Won\'t that be a happy meeting!
+        3. Won't that be a happy meeting!
+        Won't that be a happy meeting!
+        Won't that be a happy meeting!
         On the other shore.
         
         4. That bright day may be tomorrow,
@@ -1955,7 +1955,7 @@ class HymnSeeder extends Seeder
     [
         'number' => "67",
         'title' => "To Be Like Him",
-        'lyrics' => "1. From Bethlehem\'s manger came forth a Stranger.
+        'lyrics' => "1. From Bethlehem's manger came forth a Stranger.
         On earth I long to be like Him;
         My faithful Saviour, how rich His favor!
         On earth I long to be like Him.
@@ -1963,7 +1963,7 @@ class HymnSeeder extends Seeder
         CHORUS
         To be like Jesus, to be like Jesus,
         On earth I long to be like Him;
-        All thru life\'s journey from earth to glory
+        All thru life's journey from earth to glory
         I only ask to be like Him.
         
         2. Serene and holy, obedient, lowly,
@@ -1974,16 +1974,16 @@ class HymnSeeder extends Seeder
     [
         'number' => "68",
         'title' => "Great Is Thy Faithfulness",
-        'lyrics' => "1. \'Great is Thy faithfulness,\' O God my Father,
+        'lyrics' => "1. 'Great is Thy faithfulness,' O God my Father,
         There is no shadow of turning with Thee;
         Thou changest not, Thy compassions, they fail not;
         As Thou hast been Thou forever wilt be.
         
         CHORUS
-        \'Great is thy faithfulness! Great is Thy faithfulness!\'
+        'Great is thy faithfulness! Great is Thy faithfulness!'
         Morning by morning new mercies I see;
         All I have needed Thy hand hath provided;
-        \'Great is Thy faithfulness,\' Lord, unto me!
+        'Great is Thy faithfulness,' Lord, unto me!
         
         2. Summer and winter, and springtime and harvest,
         Sun, moon and stars in their courses above,
@@ -2021,12 +2021,12 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "70",
-        'title' => "He\'s Everything To Me",
-        'lyrics' => "1. He\'s everything, He\'s everything to me;
-        He\'s everything, He\'s everything to me;
-        For He\'s my father, my mother, my
+        'title' => "He's Everything To Me",
+        'lyrics' => "1. He's everything, He's everything to me;
+        He's everything, He's everything to me;
+        For He's my father, my mother, my
         sister and my brother,
-        He\'s everything to me.",
+        He's everything to me.",
     ],
     [
         'number' => "71",
@@ -2040,18 +2040,18 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "72",
-        'title' => "OH, WON\'T YOU WATCH!",
-        'lyrics' => "1. Oh, won\'t you watch with me one hour,
+        'title' => "OH, WON'T YOU WATCH!",
+        'lyrics' => "1. Oh, won't you watch with me one hour,
         While I go yonder, while I go yonder?
-        Oh, won\'t you watch with me one hour,
+        Oh, won't you watch with me one hour,
         While I go yonder and pray?",
     ],
     [
         'number' => "73",
-        'title' => "I\'m Overcoming",
-        'lyrics' => "1. I\'m overcoming, I\'m overcoming,
-        I\'m overcoming, I\'m overcoming;
-        For I love Jesus, He\'s my Saviour,
+        'title' => "I'm Overcoming",
+        'lyrics' => "1. I'm overcoming, I'm overcoming,
+        I'm overcoming, I'm overcoming;
+        For I love Jesus, He's my Saviour,
         And He smiles and He loves me too.",
     ],
     [
@@ -2083,7 +2083,7 @@ class HymnSeeder extends Seeder
         'title' => "Turn Your Eyes Upon Jesus",
         'lyrics' => "1. O soul, are you weary and troubled?
         No light in the darkness you see?
-        There\'s light for a look at the Saviour,
+        There's light for a look at the Saviour,
         And life more abundant and free!
         
         CHORUS
@@ -2096,7 +2096,7 @@ class HymnSeeder extends Seeder
         2. Through death into life everlasting
         He passed, and we follow Him there;
         Over us sin no more hath dominion,
-        For more than conqu\'rors we are!
+        For more than conqu'rors we are!
         
         3. His Word shall not fail you,  He promised;
         Believe Him, and all will be well;
@@ -2105,10 +2105,10 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "78",
-        'title' => "We\'ll Give Glory To Jesus",
-        'lyrics' => "1. We\'ll give the glory to Jesus,
+        'title' => "We'll Give Glory To Jesus",
+        'lyrics' => "1. We'll give the glory to Jesus,
         And tell of His love, and tell of His love;
-        We\'ll give the glory to Jesus,
+        We'll give the glory to Jesus,
         And tell of His wonderful love.",
     ],
     [
@@ -2143,9 +2143,9 @@ class HymnSeeder extends Seeder
         A friend as through the vale I go,
         A friend to help and cheer.
         
-        4. A friend when life\'s short race is o\'er,
+        4. A friend when life's short race is o'er,
         A friend when earth is past,
-        A friend to meet on heaven\'s shore,
+        A friend to meet on heaven's shore,
         A friend when home at last.",
     ],
     [
@@ -2153,11 +2153,11 @@ class HymnSeeder extends Seeder
         'title' => "Jesus Is The One",
         'lyrics' => "1. When the day is dark before you,
         And the clouds are hanging low,
-        There is One who watches o\'er you,
+        There is One who watches o'er you,
         Everywhere that you may go.
         
         CHORUS
-        Jesus is the one, yes, He\'s the only one,
+        Jesus is the one, yes, He's the only one,
         Let Him have His way until the day is done;
         When He speaks, you know the clouds will
         have to go,
@@ -2175,42 +2175,42 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "82",
-        'title' => "He\'s Coming Again",
+        'title' => "He's Coming Again",
         'lyrics' => "1. Would you be numbered as one of His fold?
         Would you be numbered as one of His fold?
         Be spotless within, be watching and waiting
         that sight to behold;
-        He\'s coming again.",
+        He's coming again.",
     ],
     [
         'number' => "83",
         'title' => "The Lily Of The Valley",
-        'lyrics' => "1. I\'ve found a friend in Jesus, He\'s everything to me.
-        He\'s the fairest of ten thousand to my soul;
+        'lyrics' => "1. I've found a friend in Jesus, He's everything to me.
+        He's the fairest of ten thousand to my soul;
         The Lily of the Valley in Him alone I see,
         All I need to cleanse and make me fully whole.
-        In sorrow He\'s my comfort, in trouble He\'s my stay,
+        In sorrow He's my comfort, in trouble He's my stay,
         He tells me every care on Him to roll. Hallelujah!
-        He\'s the Lily of the Valley, the Bright and Morning Star.
-        He\'s the fairest of ten thousand to my soul.
+        He's the Lily of the Valley, the Bright and Morning Star.
+        He's the fairest of ten thousand to my soul.
         
         2. He all my griefs has taken, and all my sorrows borne;
-        In temptation He\'s my strong and mighty tow\'r;
+        In temptation He's my strong and mighty tow'r;
         I have all for Him forsaken, and all my idols torn
         From my heart, and now He keeps me by His power.
         Though all the world forsake me, and Satan tempt me sore,
         Through Jesus I shall safely reach the goal. Hallelujah!
-        He\'s the Lily of the Valley, the Bright and Morning Star,
-        He\'s the fairest of ten thousand to my soul.
+        He's the Lily of the Valley, the Bright and Morning Star,
+        He's the fairest of ten thousand to my soul.
         
-        3. He\'ll never, never leave me, nor yet forsake me here,
+        3. He'll never, never leave me, nor yet forsake me here,
         While I live by faith and do His blessed will;
-        A wall of fire about me, I\'ve nothing now to fear;
+        A wall of fire about me, I've nothing now to fear;
         With His manna He my hungry soul shall fill.
-        Then sweeping up to glory, we\'ll see His blessed face,
+        Then sweeping up to glory, we'll see His blessed face,
         Where rivers of delight shall ever roll. Hallelujah!
-        He\'s the Lily of the Valley, the Bright and morning Star,
-        He\'s the fairest of ten thousand to my soul.",
+        He's the Lily of the Valley, the Bright and morning Star,
+        He's the fairest of ten thousand to my soul.",
     ],
     [
         'number' => "84",
@@ -2223,7 +2223,7 @@ class HymnSeeder extends Seeder
         'number' => "85",
         'title' => "WHEN I GET TO THE END",
         'lyrics' => "1. The sands have been washed in the footprints
-        Of the Stranger on Galilee\'s shore,
+        Of the Stranger on Galilee's shore,
         And the voice that subdued the rough billows,
         Will be heard in Judea no more.
         But the path of that lone Galilean
@@ -2238,7 +2238,7 @@ class HymnSeeder extends Seeder
         But He who appoints me my pathway,
         Knows just what is needful and best,
         I know in His word He hath promised
-        That my strength, \'it shall be as my day.\'
+        That my strength, 'it shall be as my day.'
         And the toils of the road will seem nothing,
         When I get to the end of the way,
         And the toils of the road will seem nothing,
@@ -2275,21 +2275,21 @@ class HymnSeeder extends Seeder
         And deep is its fountain; as wide as the sea.
         
         CHORUS
-        There\'s room at the cross for you.
-        There\'s room at the cross for you.
-        Though millions have come, there\'s
+        There's room at the cross for you.
+        There's room at the cross for you.
+        Though millions have come, there's
         still room for one,
-        Yes, there\'s room at the cross for you.
+        Yes, there's room at the cross for you.
         
         2. Though millions have found Him a friend
         And have turned from the sins they have sinned.
         Saviour still waits to open the gates,
-        And welcome a sinner before it\'s too late.
+        And welcome a sinner before it's too late.
         
         3. The hand of my Saviour is strong
         And the love of my Saviour is long.
         Through sunshine or rain, through loss or in gain,
-        The blood flows from Calv\'ry to cleanse every stain.",
+        The blood flows from Calv'ry to cleanse every stain.",
     ],
     [
         'number' => "87",
@@ -2299,42 +2299,42 @@ class HymnSeeder extends Seeder
         And the morning breaks eternal, bright and fair;
         When the saved of earth shall gather over
         on the other shore,
-        And the roll is called up yonder, I\'ll be there.
+        And the roll is called up yonder, I'll be there.
         
         CHORUS
         When the roll is called up yonder,
         When the roll is called up yonder,
         When the roll is called up yonder,
-        When the roll is called up yonder, I\'ll be there.
+        When the roll is called up yonder, I'll be there.
         
         2. On that bright and cloudless morning
         when the dead in Christ shall rise,
         And the glory of His resurrection share;
         When His chosen ones shall gather to
         their home beyond the skies,
-        And the roll is called up yonder, I\'ll be there.
+        And the roll is called up yonder, I'll be there.
         
         3. Let us labor for the Master from the
         dawn till setting sun.
         Let us talk of all His wondrous love and care;
         Then when all of life is over, and our work
         on earth is done,
-        And the roll is called up yonder, I\'ll be there.",
+        And the roll is called up yonder, I'll be there.",
     ],
     [
         'number' => "88",
         'title' => "The Haven Of Rest",
-        'lyrics' => "1. My soul in sad exile was out on life\'s sea,
+        'lyrics' => "1. My soul in sad exile was out on life's sea,
         So burdened with sin and distressed,
         Till I heard a sweet voice saying:
-        \'Make Me your choice;\'
-        And I entered the \'haven of Rest!\'
+        'Make Me your choice;'
+        And I entered the 'haven of Rest!'
         
         CHORUS
-        I\'ve anchored my soul in the haven of rest,
-        I\'ll sail the wild seas no more;
-        The tempest may sweep o\'er the wild, stormy deep,
-        In Jesus I\'m safe evermore.
+        I've anchored my soul in the haven of rest,
+        I'll sail the wild seas no more;
+        The tempest may sweep o'er the wild, stormy deep,
+        In Jesus I'm safe evermore.
         
         2. I yielded myself to His tender embrace,
         And faith taking hold of the Word,
@@ -2343,35 +2343,35 @@ class HymnSeeder extends Seeder
         
         3. The song of my soul, since the Lord made me whole,
         Has been the old story, so blest,
-        Of Jesus, who\'ll save whosoever will have
-        A home in the \'Haven of Rest!\'
+        Of Jesus, who'll save whosoever will have
+        A home in the 'Haven of Rest!'
         
         4. How precious the thought that we all may recline,
         Like John, the beloved and blest,
-        On Jesus\' strong arm, where no tempest can harm.
-        Secure in the \'Haven of Rest!\'
+        On Jesus' strong arm, where no tempest can harm.
+        Secure in the 'Haven of Rest!'
         
         5. O come to the Saviour, He patiently waits
         To save by His power divine;
         Come, anchor your soul in the haven of rest,
-        And say, \'My Beloved is mine.\'",
+        And say, 'My Beloved is mine.'",
     ],
     [
         'number' => "89",
         'title' => "Must Jesus Bear Alone?",
         'lyrics' => "1. Must Jesus bear the cross alone,
         And all the world go free?
-        No, there\'s a cross for every one,
-        And there\'s a cross for me.
+        No, there's a cross for every one,
+        And there's a cross for me.
         
-        2. The consecrated cross I\'ll bear,
+        2. The consecrated cross I'll bear,
         Till death shall set me free,
         And then go home my crown to wear,
-        For there\'s a crown for me.
+        For there's a crown for me.
         
         3. Upon the crystal pavement, down
-        At Jesus\' pierced feet,
-        With joy I\'ll cast my golden crown,
+        At Jesus' pierced feet,
+        With joy I'll cast my golden crown,
         And His dear name repeat.
         
         4. O precious cross! O glorious crown!
@@ -2397,39 +2397,39 @@ class HymnSeeder extends Seeder
         
         2. His name above all names shall stand,
         Exalted more and more,
-        At God the Father\'s own right hand,
+        At God the Father's own right hand,
         Where angel hosts adore.
         
         3. Redeemer, Savior, Friend of men
         Once ruined by the fall;
-        Thou hast devised salvation\'s plan,
+        Thou hast devised salvation's plan,
         For thou hast died for all.
         
         4. His name shall be the Counselor,
         The mighty Prince of Peace,
-        Of all earth\'s kingdoms Conqueror,
+        Of all earth's kingdoms Conqueror,
         Whose reign shall never cease.",
     ],
     [
         'number' => "91",
-        'title' => "I\'m Going Through",
+        'title' => "I'm Going Through",
         'lyrics' => "1. Lord, I have started to walk in the light.
         Shining upon me from heaven so bright;
         I bade the world and its follies adieu,
-        I\'ve started in Jesus and I\'m going through.
+        I've started in Jesus and I'm going through.
         
         CHORUS
-        I\'m going through, yes, I\'m going through.
-        I\'ll pay the price whatever others do,
-        I\'ll take the way with the Lord\'s despised few,
-        I\'m going through, Jesus, I\'m going through.
+        I'm going through, yes, I'm going through.
+        I'll pay the price whatever others do,
+        I'll take the way with the Lord's despised few,
+        I'm going through, Jesus, I'm going through.
         
         2. O there are many who start in the race,
         But with the light refuse to keep pace;
         Others accept it because it is new,
         But not very many expect to go through.
         
-        3. I\'d rather walk with Jesus alone,
+        3. I'd rather walk with Jesus alone,
         Have for a pillow, like Jacob, a stone;
         Living each moment with His face in view,
         Than shrink from my pathway and fail to go through.
@@ -2443,31 +2443,31 @@ class HymnSeeder extends Seeder
         'number' => "92",
         'title' => "Speak, My Lord",
         'lyrics' => "1. Hear the Lord of harvest sweetly calling.
-        \'Who will go and work for Me today?
+        'Who will go and work for Me today?
         Who will bring to Me the lost and dying?
-        Who will point them to the narrow way?\'
+        Who will point them to the narrow way?'
         
         CHORUS
         Speak, my Lord, speak my Lord,
-        Speak, and I\'ll be quick to answer Thee;
+        Speak, and I'll be quick to answer Thee;
         Speak, my Lord, speak, my Lord,
-        Speak, and I will answer, \'Lord, send me.\'
+        Speak, and I will answer, 'Lord, send me.'
         
         2. When the coal of fire touched the prophet,
         Making him as pure as pure can be.
         When the voice of God, said
-        \'Who\'ll go for us?\'
-        The he answered, \'Here I am , send me.\'
+        'Who'll go for us?'
+        The he answered, 'Here I am , send me.'
         
         3. Millions now in sin and shame are dying;
         Listen to their sad and bitter cry;
         Hasten, brother, hasten to the rescue;
-        Quickly answer, \'Master, here am I.\'
+        Quickly answer, 'Master, here am I.'
         
         4. Soon the time for reaping will be over;
-        Soon we\'ll gather for the harvest home;
+        Soon we'll gather for the harvest home;
         May the Lord of harvest smile upon us,
-        May we hear His blessed, \'Child, well done.\'",
+        May we hear His blessed, 'Child, well done.'",
     ],
     [
         'number' => "93",
@@ -2491,10 +2491,10 @@ class HymnSeeder extends Seeder
         And earthly thrones and kingdoms fall;
         When men who here refuse to pray,
         On rocks and hills and mountains call;
-        God\'s love, so sure, shall still endure,
+        God's love, so sure, shall still endure,
         All measureless and strong;
-        Redeeming grace to Adam\'s race,
-        The saints\' and angels\' song.
+        Redeeming grace to Adam's race,
+        The saints' and angels' song.
         
         3. Could we with ink the ocean fill,
         And were the skies of parchment made;
@@ -2523,8 +2523,8 @@ class HymnSeeder extends Seeder
         I am going to meet you, meet you there
         In that home beyond the sky;
         Such singing you will hear, never heard by mortal ear,
-        \'Twill be glorious, I do declare!
-        And God\'s own Son will be the leading one
+        'Twill be glorious, I do declare!
+        And God's own Son will be the leading one
         At the meeting in the air.
         
         2. Many things will there be missing, in that meeting;
@@ -2540,21 +2540,21 @@ class HymnSeeder extends Seeder
         All the skeptics will be absent on that day;
         There will be no grumblers present to disturb us,
         And the Achans will be busy far away.
-        There the saints will have His \'seal upon their foreheads,\'
+        There the saints will have His 'seal upon their foreheads,'
         Dressed in raiments none but ransomed ones Can wear;
         All who have the wedding garments will be present.
         At the meeting in the air.",
     ],
     [
         'number' => "95",
-        'title' => "It\'s Dripping With Blood",
+        'title' => "It's Dripping With Blood",
         'lyrics' => "1. The first one to die for this Holy Ghost plan,
         Was John the Baptist, but he died like a man;
         Then came the Lord Jesus, they crucified Him,
         He taught that the Spirit would save men from sin.
         
         CHORUS
-        It\'s dripping with blood, yes, it\'s dripping with blood.
+        It's dripping with blood, yes, it's dripping with blood.
         This Holy Ghost Gospel is dripping with blood.
         The blood of disciples who died for the Truth,
         This Holy Ghost Gospel is dripping with blood.
@@ -2569,9 +2569,9 @@ class HymnSeeder extends Seeder
         But he died in the Spirit, and gave up the ghost,
         And went to join others, in that life-giving host.
         
-        4. There\'s souls under the altar, crying, \'How Long?\'
-        For the Lord to punish those who\'ve done wrong;
-        But there\'s going to be more who\'ll give their life\'s blood
+        4. There's souls under the altar, crying, 'How Long?'
+        For the Lord to punish those who've done wrong;
+        But there's going to be more who'll give their life's blood
         For this Holy Ghost Gospel and its crimson flood.",
     ],
     [
@@ -2583,15 +2583,15 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "97",
-        'title' => "This World Can\'t Hold Me",
+        'title' => "This World Can't Hold Me",
         'lyrics' => "1. This old world can never hold me.
-        Any moment I\'ll be gone,
-        For I\'ve made my consecration,
+        Any moment I'll be gone,
+        For I've made my consecration,
         And I have the wedding garment on.",
     ],
     [
         'number' => "98",
-        'title' => "Our Lord\'s Return",
+        'title' => "Our Lord's Return",
         'lyrics' => "1. I am watching for the coming of the glad millennial day,
         When our blessed Lord shall come and
         catch His waiting Bride away;
@@ -2603,12 +2603,12 @@ class HymnSeeder extends Seeder
         Oh! Our Lord is coming back to earth again,
         Yes, our Lord is coming back to earth again,
         Satan will be bound a thousand years,
-        We\'ll have no tempter then,
+        We'll have no tempter then,
         After Jesus shall come back to earth again.
         
-        2. Jesus\' coming back will be the answer to earth\'s sorr\'wing cry,
+        2. Jesus' coming back will be the answer to earth's sorr'wing cry,
         For the knowledge of the Lord shall fill the earth and sea and sky;
-        God shall take away all sickness and the suff\'rer\'s tears will dry,
+        God shall take away all sickness and the suff'rer's tears will dry,
         When our Saviour shall come back to earth again.
         
         3. Yes, the ransomed of the Lord shall come to Zion then with joy,
@@ -2624,10 +2624,10 @@ class HymnSeeder extends Seeder
     [
         'number' => "99",
         'title' => "I Shall Know Him",
-        'lyrics' => "1. Standing somewhere in the shadows you\'ll find Jesus,
-        He\'s the One who always cares and understands;
+        'lyrics' => "1. Standing somewhere in the shadows you'll find Jesus,
+        He's the One who always cares and understands;
         Standing somewhere in the shadows you will find Him,
-        And you\'ll know Him by the nail prints in his hands.
+        And you'll know Him by the nail prints in his hands.
         
         CHORUS
         I shall know Him, I shall know Him,
@@ -2644,14 +2644,14 @@ class HymnSeeder extends Seeder
         Then Jesus came and bade his darkness flee.
         
         CHORUS
-        When Jesus comes the tempter\'s pow\'r is broken;
+        When Jesus comes the tempter's pow'r is broken;
         When Jesus comes the tears are wiped away.
         He takes the gloom and fills the life with glory,
         For all is changed when Jesus comes to stay.
         
         2. From home and friends the evil spirits drove him,
         Among the tombs he dwelt in misery;
-        He cut himself as demon pow\'rs possessed him.
+        He cut himself as demon pow'rs possessed him.
         Then Jesus came and set the captive free.
         
         3. Unclean! Unclean! The leper cried in torment,
@@ -2679,7 +2679,7 @@ class HymnSeeder extends Seeder
         
         3. See, from his head, his hands, his feet,
         Sorrow and love flow mingled down;
-        Did e\'er such love and sorrow meet,
+        Did e'er such love and sorrow meet,
         Or thorns compose so rich a crown?
         
         4. Were the whole realm of nature mine,
@@ -2694,10 +2694,10 @@ class HymnSeeder extends Seeder
         In the evening time, they say,
         One day Isaac sent his servant
         To stop Rebekah on her way,
-        \'My master sent me here to tell thee;
+        'My master sent me here to tell thee;
         See these jewels rich and rare;
-        Would\'st thou not his lovely bride be
-        In that country over there?\'
+        Would'st thou not his lovely bride be
+        In that country over there?'
         
         CHORUS
         It shall be light in the evening time,
@@ -2709,7 +2709,7 @@ class HymnSeeder extends Seeder
         The evening Light has come,
         It is a fact that God and Christ are one.
         
-        2. So God\'s servants come to tell you
+        2. So God's servants come to tell you
         Of a Bridegroom in the sky,
         Looking for a holy people
         To be His bride soon, by and by;
@@ -2734,43 +2734,43 @@ class HymnSeeder extends Seeder
         O saints who never have been buried
         In the blessed name of God,
         Let the truth now sanctify you;
-        It\'s the way apostles trod.",
+        It's the way apostles trod.",
     ],
     [
         'number' => "103",
-        'title' => "Don\'t Forget Prayer",
-        'lyrics' => "1. Don\'t forget the family prayer,
+        'title' => "Don't Forget Prayer",
+        'lyrics' => "1. Don't forget the family prayer,
         Jesus wants to meet you there;
         He will take your every care,
-        Oh, don\'t forget the family prayer.",
+        Oh, don't forget the family prayer.",
     ],
     [
         'number' => "104",
         'title' => "Standing On That Rock",
-        'lyrics' => "1. Crying \'Holy\' unto the Lord,
-        Crying \'Holy\' unto the Lord,
+        'lyrics' => "1. Crying 'Holy' unto the Lord,
+        Crying 'Holy' unto the Lord,
         If I could, I surely would
         Stand on that rock where Moses stood.",
     ],
     [
         'number' => "105",
         'title' => "Oh, That Man From Galilee",
-        'lyrics' => "1. In a manger long ago, I know it\'s really so,
+        'lyrics' => "1. In a manger long ago, I know it's really so,
         A babe was born to save men from their sin.
         John saw Him on the shore, the Lamb forevermore,
         Oh, Christ, the Crucified of Calvary.
         
         CHORUS
         Oh, I love that Man from Galilee, from Galilee,
-        For He\'s done so very much for me.
-        He\'s forgiven all my sins, placed the Holy Ghost within;
+        For He's done so very much for me.
+        He's forgiven all my sins, placed the Holy Ghost within;
         Oh, I love, I love that Man from Galilee.
         
         2. The publican went to pray in the temple there one day,
-        He cried, \'O Lord, be merciful to me!\'
+        He cried, 'O Lord, be merciful to me!'
         He was forgiven of every sin,
         and a deep Peace placed within;
-        He said, \'Come see this Man from Galilee.\'
+        He said, 'Come see this Man from Galilee.'
         
         3. The lame was made to walk, the dumb was made to talk
         That power was spoken with love upon the sea;
@@ -2779,34 +2779,34 @@ class HymnSeeder extends Seeder
         
         4. Nicodemus came by night, to know the way of right,
         He asked the Son of man what must he do.
-        These words He said to him, \'Ye must be Born again,\'
+        These words He said to him, 'Ye must be Born again,'
         By the Spirit of that Man from Galilee.
         
         5. The woman at the well, He all her sins did tell,
         How five husbands she had at that time,
         She was forgiven of every sin, and a deep peace came within;
-        Then she cried, \'Come see that Man from Galilee!\'",
+        Then she cried, 'Come see that Man from Galilee!'",
     ],
     [
         'number' => "106",
         'title' => "Reach Out, Touch The Lord",
         'lyrics' => "1. Reach out and touch the Lord as He passes by,
-        You\'ll find He\'s not too busy to hear your heart\'s cry;
-        He\'s passing by this moment, your needs to supply,
+        You'll find He's not too busy to hear your heart's cry;
+        He's passing by this moment, your needs to supply,
         Reach out and touch the Lord as He goes by.",
     ],
     [
         'number' => "107",
         'title' => "In That City, Lamb Is Light",
-        'lyrics' => "1. There\'s a country far beyond the starry sky,
-        There\'s a city where there never comes a night;
-        If we\'re faithful we shall go there by and by,
-        It\'s the city where the Lamb is the light.
+        'lyrics' => "1. There's a country far beyond the starry sky,
+        There's a city where there never comes a night;
+        If we're faithful we shall go there by and by,
+        It's the city where the Lamb is the light.
         
         CHORUS
         In that city where the Lamb is the light,
         The city where there cometh no night;
-        I\'ve a mansion over there, and when free from toils and care,
+        I've a mansion over there, and when free from toils and care,
         I am going where the Lamb is the light.
         
         2. Here we have our days of sunshine, but we know
@@ -2832,14 +2832,14 @@ class HymnSeeder extends Seeder
     [
         'number' => "108",
         'title' => "Jesus Set Me Free",
-        'lyrics' => "1. I\'m so glad Jesus sets me free,
-        I\'m so glad Jesus sets me free,
-        I\'m so glad Jesus sets me free,
+        'lyrics' => "1. I'm so glad Jesus sets me free,
+        I'm so glad Jesus sets me free,
+        I'm so glad Jesus sets me free,
         Glory, hallelujah,
         Jesus set me free.
         
-        (I\'m so glad Jesus lifted me . . . )
-        (I\'m on my way to Heaven, shouting
+        (I'm so glad Jesus lifted me . . . )
+        (I'm on my way to Heaven, shouting
         victory . . . )",
     ],
     [
@@ -2858,11 +2858,11 @@ class HymnSeeder extends Seeder
         When I take my vacation in heaven,
         What a wonderful time that will be;
         Hearing concerts by the heavenly Chorus,
-        And the face of my Savior I\'ll see;
+        And the face of my Savior I'll see;
         Sitting down by the banks of the river;
-        \'Neath the shade of the ever green tree,
+        'Neath the shade of the ever green tree,
         I shall rest from my burdens forever,
-        Won\'t you spend your vacation with me.
+        Won't you spend your vacation with me.
         
         2. Now some day I shall take my vacation
         To the city John tells us about;
@@ -2876,10 +2876,10 @@ class HymnSeeder extends Seeder
         3. There the weather will always be perfect.
         Not a cloud shall sweep over the sky;
         And no earthquakes or cyclones shall threaten,
-        In the land of the \'Sweet by and by\';
-        Soon there\'s going to be an excursion,
+        In the land of the 'Sweet by and by';
+        Soon there's going to be an excursion,
         I am booked for a ride in the air.
-        You\'re invited to share my vacation,
+        You're invited to share my vacation,
         And the feast with our Bridegroom to share.
         
         4. Here on earth when we take our vacation,
@@ -2905,12 +2905,12 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. When the great plants of our cities have turned out their last finished work,
         When our merchants have sold their last yard of goods and dismissed the last tired clerk,
         When our banks have raked in their last dollar and paid the last dividends,
-        When the Judge, of the earth say, \'closed for the night,\' and asks for a balance - What Then?
+        When the Judge, of the earth say, 'closed for the night,' and asks for a balance - What Then?
         
         CHORUS
         What then? What then?
         When the great Book is opened, what then?
-        When the ones that\'s rejecting this Message tonight,
+        When the ones that's rejecting this Message tonight,
         Will be asked to give a reason -What Then?
         
         2. When the choir has sung its last song and the preacher has said his last prayer,
@@ -2951,20 +2951,20 @@ class HymnSeeder extends Seeder
         If you trust and never doubt, He will surely bring you out;
         Take your burden to the Lord and leave it there.
         
-        2. If your body suffers pain and your health you can\'t regain,
+        2. If your body suffers pain and your health you can't regain,
         And your soul is almost sinking in despair,
         Jesus knows the pain you feel,
         He can save and He can heal;
         Take your burden to the Lord and leave it there.
         
         3. When your enemies assail and your heart begins to fail,
-        Don\'t forget that God in heaven answers prayer;
+        Don't forget that God in heaven answers prayer;
         He will make a way for you and will lead you safely through;
         Take your burden to the Lord and leave it there.
         
         4. When your youthful days are gone and old age is stealing on,
         And your body bends beneath the weight of care;
-        He will never leave you then, He\'ll go with you to the end;
+        He will never leave you then, He'll go with you to the end;
         Take your burden to the Lord and leave it there.",
     ],
     [
@@ -2974,60 +2974,60 @@ class HymnSeeder extends Seeder
         I can, I will, I do believe;
         I can, I will, I do believe
         That Jesus heals me now.
-        (I\'m trusting only in the Lord . . . )",
+        (I'm trusting only in the Lord . . . )",
     ],
     [
         'number' => "115",
-        'title' => "ISN\'T HE WONDERFUL!",
-        'lyrics' => "1. Isn\'t He wonderful, wonderful, wonderful?
-        Isn\'t Jesus my Lord wonderful?
-        Eyes have seen, ears have heard, what\'s recorded in God\'s Word:
-        Isn\'t Jesus my Lord wonderful?",
+        'title' => "ISN'T HE WONDERFUL!",
+        'lyrics' => "1. Isn't He wonderful, wonderful, wonderful?
+        Isn't Jesus my Lord wonderful?
+        Eyes have seen, ears have heard, what's recorded in God's Word:
+        Isn't Jesus my Lord wonderful?",
     ],
     [
         'number' => "116",
         'title' => "The Lifeboat",
-        'lyrics' => "1. We\'re floating down the stream of time, We have not long to stay;
+        'lyrics' => "1. We're floating down the stream of time, We have not long to stay;
         The stormy clouds of darkness Will turn to brightest day.
-        Then let us all take courage, For we\'re not left alone;
+        Then let us all take courage, For we're not left alone;
         The lifeboat soon is coming To gather the Jewels home.
         
         CHORUS
         Then cheer, my brother, cheer,
-        Our trials will soon be o\'er,
+        Our trials will soon be o'er,
         Our loved ones we shall meet, shall meet,
         Upon the golden shore.
-        We\'re pilgrims and we\'re strangers here,
-        We\'re seeking a city to come,
+        We're pilgrims and we're strangers here,
+        We're seeking a city to come,
         The lifeboat soon is coming, To gather the Jewels home.
         
-        2. Sometimes the Devil tempts me, And says it\'s all in vain
-        To try to live a Christian life And walk in Jesus\' name;
-        But then we hear the Master say, \'I\'ll lend you a helping hand,
-        And if you\'ll only trust Me, I\'ll guide you to that land.\'
+        2. Sometimes the Devil tempts me, And says it's all in vain
+        To try to live a Christian life And walk in Jesus' name;
+        But then we hear the Master say, 'I'll lend you a helping hand,
+        And if you'll only trust Me, I'll guide you to that land.'
         
         3. The lifeboat soon is coming, By eyes of faith I see
         As she sweeps through the waters To rescue you and me.
         And land us safely in the port With friends we love so dear.
-        \'Get ready,\' cries the Captain; \'Oh, look, she\'s almost here.\'
+        'Get ready,' cries the Captain; 'Oh, look, she's almost here.'
         
-        4. Oh, now\'s the time to get on board, While she is passing by;
+        4. Oh, now's the time to get on board, While she is passing by;
         But if you stand and wait too long, You shall forever die;
         The fare is paid for one and all, The Captain bids you come,
-        And get on board the lifeboat, She\'ll carry you safely home.",
+        And get on board the lifeboat, She'll carry you safely home.",
     ],
     [
         'number' => "117",
         'title' => "It Shall Flow Like A River",
         'lyrics' => "1. It shall flow like a river. It shall fall like the rain.
-        It shall rise as the dew in morning o\'er the plain;
+        It shall rise as the dew in morning o'er the plain;
         For the knowledge of the Lord shall fill all the earth
         When the Spirit of the Lord shall fall.
         
         2. Flow, river, flow; flow, river, flow;
         Flow out through the nations wherever man may go;
         Cause life to spring forth, that all men may know
-        That You\'re the river of the Spirit;
+        That You're the river of the Spirit;
         Oh, flow, river, flow.",
     ],
     [
@@ -3071,8 +3071,8 @@ class HymnSeeder extends Seeder
         The men who had crucified Jesus
         Had passed off as moral men, too;
         The soul that had put off salvation,
-        \'Not tonight; I\'ll get saved by and by,
-        No time now to think of religion!\'
+        'Not tonight; I'll get saved by and by,
+        No time now to think of religion!'
         At last they had found time to die.",
     ],
     [
@@ -3081,77 +3081,77 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. I have crossed the riven veil where the glory never fails,
         Hallelujah, Hallelujah;
         I have crossed the riven veil where the glory never fails,
-        For I\'m living in the presence of the King.",
+        For I'm living in the presence of the King.",
     ],
     [
         'number' => "120",
         'title' => "ROOM AT THE FOUNTAIN",
         'lyrics' => "1. I heard my loving Savior say,
-        There\'s room at the fountain for thee,
+        There's room at the fountain for thee,
         Come, wash the stains of sin away,
-        There\'s room at the fountain for thee.
+        There's room at the fountain for thee.
         
         CHORUS
         Room, room yes, there is room,
         Room at the fountain for thee;
         Room, room, yes, there is room,
-        There\'s room at the fountain for thee.
+        There's room at the fountain for thee.
         
         2. I came to Him, my sins confessed,
         There was room at the fountain for me;
         When I gave up, my heart was blest,
-        There\'s room at the fountain for thee.
+        There's room at the fountain for thee.
         
         3. I plunged beneath the crimson tide,
         There was room at the fountain for me;
         And now by faith am sanctified,
-        There\'s room at the fountain for thee.
+        There's room at the fountain for thee.
         
         4. I found the crimson stream I know,
         There was room at the fountain for me;
         His blood has washed me white as snow,
-        There\'s room at the fountain for thee.
+        There's room at the fountain for thee.
         
         5. He cleansed my heart from inbred sin,
         There was room at the fountain for me;
         And now He keeps me pure within,
-        There\'s room at the fountain for thee.
+        There's room at the fountain for thee.
         
-        6. I\'ll praise Him while He gives me breath,
+        6. I'll praise Him while He gives me breath,
         There was room at the fountain for me;
         He saved me from an awful death.
-        There\'s room at the fountain for thee.
+        There's room at the fountain for thee.
         
         7. His blood was shed but once for all,
         There was room at the fountain for me;
-        Oh, don\'t reject sweet Mercy\'s call,
-        There\'s room at the fountain for thee.
+        Oh, don't reject sweet Mercy's call,
+        There's room at the fountain for thee.
         
-        8. We\'ll sing with all the saints above,
+        8. We'll sing with all the saints above,
         There was room at the fountain for me
         And praise Him for redeeming love,
-        There\'s room at the fountain for thee.",
+        There's room at the fountain for thee.",
     ],
     [
         'number' => "121",
         'title' => "COME AND GO WITH ME",
-        'lyrics' => "1. Come and go with me to my Father\'s House,
-        To my Father\'s House, to my Father\'s House.
-        Come and go with me to my Father\'s House,
-        Where there\'s peace, peace, peace.",
+        'lyrics' => "1. Come and go with me to my Father's House,
+        To my Father's House, to my Father's House.
+        Come and go with me to my Father's House,
+        Where there's peace, peace, peace.",
     ],
     [
         'number' => "122",
         'title' => "JUST ANOTHER TOUCH, LORD",
         'lyrics' => "1. Just another touch, Lord, from you,
         To help in hard trials I go through;
-        Though dark may be the night, You\'ve sent a ray of light,
+        Though dark may be the night, You've sent a ray of light,
         When I get a touch, Lord, from you.",
     ],
     [
         'number' => "123",
         'title' => "THE PEARLY WHITE CITY",
-        'lyrics' => "1. There\'s a holy and beautiful city,
+        'lyrics' => "1. There's a holy and beautiful city,
         Whose builder and ruler is God.
         John saw it descending from heaven
         When Patmos, in exile, he trod;
@@ -3170,35 +3170,35 @@ class HymnSeeder extends Seeder
         And nothing defiling nor mean;
         No pain and no sickness can enter,
         No crape on the doorknob is seen;
-        Earth\'s sorrows and cares are forgotten,
+        Earth's sorrows and cares are forgotten,
         No tempter is there to annoy;
         No parting words ever are spoken,
-        There\'s nothing to hurt and destroy.
+        There's nothing to hurt and destroy.
         
         3. No heartaches are known in that city,
         No tears ever moisten the eye,
-        There\'s no disappointment in heaven,
+        There's no disappointment in heaven,
         No envy and strife in the sky;
         The saints are all sanctified wholly,
         They live in sweet harmony there;
         My heart is now set on that city,
-        And some day its blessings I\'ll share.
+        And some day its blessings I'll share.
         
         4. My loved ones are gathering yonder,
         My friends, too, are passing away;
         And soon I shall join their bright number,
-        And dwell in eternity\'s day;
-        They\'re safe now in glory with Jesus,
+        And dwell in eternity's day;
+        They're safe now in glory with Jesus,
         Their trials and battles are past;
         They overcome sin and the tempter,
-        They\'ve reached that fair city at last.",
+        They've reached that fair city at last.",
     ],
     [
         'number' => "124",
         'title' => "Just A Closer Walk",
         'lyrics' => "1. I am weak but Thou art strong,
         Jesus keep me from all wrong;
-        I\'ll be satisfied as long,
+        I'll be satisfied as long,
         As I walk let me walk close to Thee.
         
         CHORUS
@@ -3212,34 +3212,34 @@ class HymnSeeder extends Seeder
         Who with me my burden shares?
         None but Thee, dear Lord, none but Thee.
         
-        3. When my feeble life is o\'er,
+        3. When my feeble life is o'er,
         Time for me will be no more;
-        Guide me gently, safely o\'er,
+        Guide me gently, safely o'er,
         To Thy kingdom shore, to Thy shore.",
     ],
     [
         'number' => "125",
         'title' => "The Message Of His Coming",
-        'lyrics' => "1. We\'re looking for His coming, in the clouds of heaven,
+        'lyrics' => "1. We're looking for His coming, in the clouds of heaven,
         Coming back to earth to catch away His own;
         Then may we all be ready, when midnight cry is given,
         To go and reign with Christ on His throne.
         
         CHORUS
         Gladly may we herald the message of His Blessed appearing,
-        Soon He\'s coming in glory, tell to one and all;
+        Soon He's coming in glory, tell to one and all;
         Then awake, ye saints of the Lord, why slumber when the end is nearing,
         But get ready for the final call.
         
-        2. We\'re longing for the glory that awaits the faithful,
+        2. We're longing for the glory that awaits the faithful,
         Who shall overcome, and every conflict win;
         Press ever bravely onward, the prize is life eternal
         To all who win the fight over sin.
         
-        3. We\'re praying for the advent of our blessed  Saviour,
+        3. We're praying for the advent of our blessed  Saviour,
         Who has promised life to all who trust His grace;
         His coming now is pending, the message being given.
-        And soon we\'ll see our Lord face to face.
+        And soon we'll see our Lord face to face.
         
         4. We see the signs appearing of His blessed coming,
         Lo, behold the fig leaves now becoming green;
@@ -3254,7 +3254,7 @@ class HymnSeeder extends Seeder
         His voice like the sound of slow waters,
         Came rippling through vessels of clay.
         
-        2. \'Tis the voice that brought forth creation
+        2. 'Tis the voice that brought forth creation
         And set all the stars in array,
         And speaks words of Life and of wisdom,
         In the midst of His people today.
@@ -3267,7 +3267,7 @@ class HymnSeeder extends Seeder
     [
         'number' => "127",
         'title' => "Are You Washed In Blood?",
-        'lyrics' => "1. Have you been to Jesus for the cleansing pow\'r?
+        'lyrics' => "1. Have you been to Jesus for the cleansing pow'r?
         Are you washed in the blood of the Lamb?
         Are you fully trusting in His grace this hour?
         Are you washed in the blood of the Lamb?
@@ -3279,7 +3279,7 @@ class HymnSeeder extends Seeder
         Are they white as snow?
         Are you washed in the blood of the Lamb?
         
-        2. Are you walking daily by the Savior\'s side?
+        2. Are you walking daily by the Savior's side?
         Are you washed in the blood of the Lamb?
         Do you rest each moment in the Crucified?
         Are you washed in the blood of the Lamb?
@@ -3291,7 +3291,7 @@ class HymnSeeder extends Seeder
         
         4. Lay aside the garments that are stained with sin, 
         And be washed in the blood of the Lamb,
-        There\'s a fountain flowing for the soul unclean,
+        There's a fountain flowing for the soul unclean,
         Oh, be washed in the blood of the Lamb.",
     ],
     [
@@ -3309,12 +3309,12 @@ class HymnSeeder extends Seeder
         The Bible tells me so.
         
         2. Jesus loves me! He who died,
-        Heaven\'s gates to open wide;
+        Heaven's gates to open wide;
         He will wash away my sin,
         Let His little child come in.
         
         3. Jesus loves me! Loves me still,
-        Though I\'m very weak and ill;
+        Though I'm very weak and ill;
         From His shining throne on high,
         Comes to watch me where I lie.",
     ],
@@ -3328,24 +3328,24 @@ class HymnSeeder extends Seeder
         
         CHORUS
         Are you in the Church triumphant?
-        Are you in the Saviour\'s Bride?
+        Are you in the Saviour's Bride?
         Come and be baptized into the Body,
         And forevermore abide.
         
         2. There is but one Church, Bride or Body,
-        And into it we\'re all baptized;
+        And into it we're all baptized;
         By the one, true, promised Holy Spirit;
-        Though by the world we\'re all despised.
+        Though by the world we're all despised.
         
         3. Every creed has claimed to be the Body,
-        But the \'plumb line\' proved untrue
+        But the 'plumb line' proved untrue
         All their dreams, for God has so determined
-        To bring His Son\'s true Bride to view.
+        To bring His Son's true Bride to view.
         
         4. Many thought that they were in the Body,
-        \'Till the Holy Ghost had come;
+        'Till the Holy Ghost had come;
         When the Word of God was opened to them,
-        They entered in, and yet there\'s room.
+        They entered in, and yet there's room.
         
         5. Those who died before the Holy Spirit
         Came upon us from on high,
@@ -3360,22 +3360,22 @@ class HymnSeeder extends Seeder
     [
         'number' => "130",
         'title' => "This Is Like Heaven To Me",
-        'lyrics' => "1. We find many people who can\'t understand
+        'lyrics' => "1. We find many people who can't understand
         Why we are so happy and free;
-        We\'ve crossed over Jordan to Canaan\'s fair land
+        We've crossed over Jordan to Canaan's fair land
         And this is like Heaven to me.
         
         CHORUS
         Oh, this is like Heaven to me,
         (Praise God!)
         Yes, this is like Heaven to me;
-        I\'ve crossed over Jordan to Canaan\'s fair land,
+        I've crossed over Jordan to Canaan's fair land,
         And this is like Heaven to me.
         
         2. Oh, when I get happy, I sing and I shout,
-        The devil don\'t believe It, I see;
-        But I\'m filled with the Spirit, there isn\'t a doubt,
-        And that\'s what\'s the matter with me.",
+        The devil don't believe It, I see;
+        But I'm filled with the Spirit, there isn't a doubt,
+        And that's what's the matter with me.",
     ],
     [
         'number' => "131",
@@ -3391,7 +3391,7 @@ class HymnSeeder extends Seeder
         Oh, if today God should call it away,
         What would you give in exchange for your soul?
         
-        2. Mercy is calling you, won\'t you give heed?
+        2. Mercy is calling you, won't you give heed?
         Must the dear Saviour still tenderly plead?
         Risk not your soul, it is precious indeed;
         What would you give in exchange for your soul?
@@ -3451,7 +3451,7 @@ class HymnSeeder extends Seeder
         
         3. How my heart doth rejoice since I made Him my choice,
         From the tempest to Him now I flee;
-        Now I lean on His arm I\'m secure from all harm,
+        Now I lean on His arm I'm secure from all harm,
         Since he reached down His hand for me, for me.
         
         4. Since the Lord gave me peace, heavenly joys never cease; 
@@ -3462,26 +3462,26 @@ class HymnSeeder extends Seeder
     [
         'number' => "134",
         'title' => "Bring Them In",
-        'lyrics' => "1. Hark! \'tis the Shepherd\'s voice I hear,
+        'lyrics' => "1. Hark! 'tis the Shepherd's voice I hear,
         Out in the desert dark and drear,
-        Calling the sheep who\'ve gone astray,
-        Far from the Shepherd\'s fold away.
+        Calling the sheep who've gone astray,
+        Far from the Shepherd's fold away.
         
         CHORUS
         Bring them in, bring them in,
         Bring them in from the fields of sin;
         Bring them in, bring them in,
-        Bring the wand\'ring ones to Jesus.
+        Bring the wand'ring ones to Jesus.
         
-        2. Who\'ll go and help this Shepherd kind,
-        Help Him the wand\'ring ones to find?
-        Who\'ll bring the lost ones to the fold.
-        Where they\'ll be sheltered from the cold?
+        2. Who'll go and help this Shepherd kind,
+        Help Him the wand'ring ones to find?
+        Who'll bring the lost ones to the fold.
+        Where they'll be sheltered from the cold?
         
         3. Out in the desert hear their cry,
         Out on the mountains wild and high;
-        Hark! \'tis the Master speaks to thee,
-        \'Go find My sheep where\'er they be.\'",
+        Hark! 'tis the Master speaks to thee,
+        'Go find My sheep where'er they be.'",
     ],
     [
         'number' => "135",
@@ -3489,7 +3489,7 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. O Lord my God! When I in awesome wonder.
         Consider all the worlds Thy hands have made;
         I see the stars, I hear the rolling thunder,
-        Thy pow\'r throughout the universe displayed.
+        Thy pow'r throughout the universe displayed.
         
         CHORUS
         Then sings my soul, my Saviour God to Thee;
@@ -3531,7 +3531,7 @@ class HymnSeeder extends Seeder
         Tongues of fire came down upon them,
         As the Lord said He would send.
         
-        3. Yes, this \'old-time\' power was given
+        3. Yes, this 'old-time' power was given
         To our fathers who were true;
         This is promised to believers,
         And we all may have it too.",
@@ -3540,9 +3540,9 @@ class HymnSeeder extends Seeder
         'number' => "137",
         'title' => "There Is Power In Blood",
         'lyrics' => "1. Would you be free from your burden of sin?
-        There\'s power in the blood, power in the blood;
-        Would you o\'er evil a victory win?
-        There\'s wonderful power in the blood.
+        There's power in the blood, power in the blood;
+        Would you o'er evil a victory win?
+        There's wonderful power in the blood.
         
         CHORUS
         There is power, power, wonder-working power
@@ -3551,27 +3551,27 @@ class HymnSeeder extends Seeder
         In the precious blood of the Lamb.
         
         2. Would you be free from your passion and pride?
-        There\'s power in the blood, power in the blood;
-        Come for a cleansing to Calvary\'s tide,
-        There\'s wonderful power in the blood.
+        There's power in the blood, power in the blood;
+        Come for a cleansing to Calvary's tide,
+        There's wonderful power in the blood.
         
         3. Would you be whiter, much whiter than snow?
-        There\'s power in the blood, power in the blood;
-        Sin\'s stains are lost in its life-giving flow,
-        There\'s wonderful power in the blood.
+        There's power in the blood, power in the blood;
+        Sin's stains are lost in its life-giving flow,
+        There's wonderful power in the blood.
         
         4. Would you do service for Jesus your King?
-        There\'s power in the blood, power in the blood;
+        There's power in the blood, power in the blood;
         Would you live daily, His praises to sing?
-        There\'s wonderful power in the blood.",
+        There's wonderful power in the blood.",
     ],
     [
         'number' => "138",
         'title' => "The Solid Rock",
         'lyrics' => "1. My hope is built on nothing less
-        Than Jesus\' blood and righteousness;
+        Than Jesus' blood and righteousness;
         I dare not trust the sweetest frame,
-        But wholly lean on Jesus\' name.
+        But wholly lean on Jesus' name.
         
         CHORUS
         On Christ, the solid Rock, I stand;
@@ -3596,7 +3596,7 @@ class HymnSeeder extends Seeder
     [
         'number' => "139",
         'title' => "He Abides",
-        'lyrics' => "1. I\'m rejoicing night and day,
+        'lyrics' => "1. I'm rejoicing night and day,
         As I walk the pilgrim way,
         For the hand of God in all my life I see,
         And the reason of my bliss,
@@ -3607,7 +3607,7 @@ class HymnSeeder extends Seeder
         He abides,
         He abides,
         Hallelujah, He abides with me!
-        I\'m rejoicing night and day,
+        I'm rejoicing night and day,
         As I walk the narrow way,
         For the Comforter abides with me.
         
@@ -3620,13 +3620,13 @@ class HymnSeeder extends Seeder
         
         3. He is with me everywhere,
         And He knows my every care,
-        I\'m as happy as a bird and just as free;
+        I'm as happy as a bird and just as free;
         For the Spirit has control,
         Jesus satisfies my soul,
         Since the Comforter abides with me!
         
-        4. There\'s no thirsting for the things
-        Of the world, they\'ve taken wings;
+        4. There's no thirsting for the things
+        Of the world, they've taken wings;
         Long ago I gave them up, and instantly
         All my night was turned to day,
         All my burdens rolled away,
@@ -3690,9 +3690,9 @@ class HymnSeeder extends Seeder
         This is all my righteousness,
         Nothing but the blood of Jesus.
         
-        5. Now by this I\'ll overcome,
+        5. Now by this I'll overcome,
         Nothing but the blood of Jesus;
-        Now by this I\'ll reach my home,
+        Now by this I'll reach my home,
         Nothing but the blood of Jesus.
         
         6. Glory! glory! thus I sing,
@@ -3709,12 +3709,12 @@ class HymnSeeder extends Seeder
         Jesus, the light of the world.
         
         CHORUS
-        We\'ll walk in the light, beautiful light,
+        We'll walk in the light, beautiful light,
         Come where the dewdrops of mercy are bright;
         Shine all around us by day and by night,
         Jesus, the light of the world.
         
-        2. Hear the Savior\'s earnest call,
+        2. Hear the Savior's earnest call,
         Jesus, the light of the world;
         Send the Gospel truth to all,
         Jesus, the light of the world.
@@ -3733,26 +3733,26 @@ class HymnSeeder extends Seeder
         'number' => "143",
         'title' => "When We See Christ",
         'lyrics' => "1. Oft times the day seems long, our trials hard to bear;
-        We\'re tempted to complain, to murmur and despair;
+        We're tempted to complain, to murmur and despair;
         But Christ will soon appear, to catch His bride away,
-        All tears forever over, in God\'s eternal day.
+        All tears forever over, in God's eternal day.
         
         CHORUS
         It will be worth it all, when we see Jesus;
-        Life\'s trials will seem so small,
+        Life's trials will seem so small,
         when we see Christ;
         One glimpse of His dear face, all sorrow will erase,
         So bravely run the race till we see Christ.
         
         2. Sometimes the sky looks dark, with not a ray of light;
-        We\'re tossed and driven on, no human help in sight;
+        We're tossed and driven on, no human help in sight;
         But there is One in heaven, who knows Our deepest care,
         Let Jesus solve your problem, just go to Him in prayer.
         
-        3. Life\'s day will soon be o\'er, all storms forever past;
-        We\'ll cross the great divide, to glory safe at last;
-        We\'ll share the joys of heaven, a harp, a home, A crown;
-        The tempter will be banished, we\'ll lay our burden down.",
+        3. Life's day will soon be o'er, all storms forever past;
+        We'll cross the great divide, to glory safe at last;
+        We'll share the joys of heaven, a harp, a home, A crown;
+        The tempter will be banished, we'll lay our burden down.",
     ],
     [
         'number' => "144",
@@ -3761,7 +3761,7 @@ class HymnSeeder extends Seeder
         To a world of sinners revealed;
         Blessed be the dear Son of God;
         Only by His stripes we are healed.
-        Though I\'ve wandered far from His fold,
+        Though I've wandered far from His fold,
         Bringing to my heart pain and woe,
         Wash me in the blood of the Lamb,
         And I shall be whiter than snow.
@@ -3783,22 +3783,22 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "145",
-        'title' => "All Hail Jesus\' Name",
-        'lyrics' => "1. All hail the pow\'r of Jesus\' name!
+        'title' => "All Hail Jesus' Name",
+        'lyrics' => "1. All hail the pow'r of Jesus' name!
         Let angels prostrate fall;
         Bring forth the royal diadem,
         And crown Him Lord of all;
         Bring forth the royal diadem,
         And crown Him Lord of all.
         
-        2. Ye seed of Israel\'s chosen race,
+        2. Ye seed of Israel's chosen race,
         Ye ransomed from the fall;
         Hail Him, who saves you by His grace,
         And crown Him Lord of all;
         Hail Him, who saves you by his grace,
         And crown Him Lord of all.
         
-        3. Sinners, whose love can ne\'er forget
+        3. Sinners, whose love can ne'er forget
         The wormwood and the gall,
         Go, spread your trophies at His feet,
         And crown Him Lord of all;
@@ -3814,9 +3814,9 @@ class HymnSeeder extends Seeder
         
         5. O that with yonder sacred throng
         We at His feet may fall;
-        We\'ll join the everlasting song,
+        We'll join the everlasting song,
         And crown Him Lord of all;
-        We\'ll join the everlasting song,
+        We'll join the everlasting song,
         And crown him Lord of all.",
     ],
     [
@@ -3842,12 +3842,12 @@ class HymnSeeder extends Seeder
         3. Well might the sun in darkness hide,
         And shut his glories in.
         When Christ, the mighty Maker, died
-        For man, the creature\'s sin.
+        For man, the creature's sin.
         
-        4. But drops of grief can ne\'er repay
+        4. But drops of grief can ne'er repay
         The debt of love I owe;
         Here, Lord, I give myself away,
-        \'Tis all that I can do!",
+        'Tis all that I can do!",
     ],
     [
         'number' => "147",
@@ -3860,46 +3860,46 @@ class HymnSeeder extends Seeder
         CHORUS
         Oh, who do you say I am, and whence do you say I came,
         Do you know the Father, and can you tell His Name?
-        In Jesus dwells the fullness of the Godhead, don\'t you see;
+        In Jesus dwells the fullness of the Godhead, don't you see;
         Jesus is the great I AM, and the Lord of lords is He.
         
         2. I AM was before old Abraham,
-        \'He rejoiced to see My day.\'
+        'He rejoiced to see My day.'
         When Jesus spoke these precious words,
         They stoned Him right away.
-        \'Why do you stone Me?\' Jesus said, in a holy sweet command.
-        \'Because you say you\'re the great I AM,
-        we believe you\'re just a man.\'
+        'Why do you stone Me?' Jesus said, in a holy sweet command.
+        'Because you say you're the great I AM,
+        we believe you're just a man.'
         
         3. It was on the Day of Pentecost, oh, how the fire did fall;
         The Holy Ghost descended and filled them one and all.
         Then Peter told the multitude,
-        \'Repent of all your sins.\'
-        About three thousand souls were buried in Jesus\' precious Name.",
+        'Repent of all your sins.'
+        About three thousand souls were buried in Jesus' precious Name.",
     ],
     [
         'number' => "148",
         'title' => "Almost Persuaded",
-        'lyrics' => "1. \'Almost persuaded\' now to believe;
-        \'Almost persuaded\' Christ to receive;
-        Seems now some soul to say, \'Go, Spirit, go Thy way;
-        Some more convenient day, on Thee I\'ll call.\'
+        'lyrics' => "1. 'Almost persuaded' now to believe;
+        'Almost persuaded' Christ to receive;
+        Seems now some soul to say, 'Go, Spirit, go Thy way;
+        Some more convenient day, on Thee I'll call.'
         
         CHORUS
-        \'Almost persuaded,\' come, come today;
-        \'Almost persuaded,\' turn not away;
-        Jesus invites you here, Angels are ling\'ring near,
-        Prayers rise from hearts so dear; O wand\'rer, come.
+        'Almost persuaded,' come, come today;
+        'Almost persuaded,' turn not away;
+        Jesus invites you here, Angels are ling'ring near,
+        Prayers rise from hearts so dear; O wand'rer, come.
         
-        2. \'Almost persuaded,\' harvest is past!
-        \'Almost persuaded,\' doom comes at last!
-        \'Almost\' cannot avail; \'Almost\' is but to fail!
-        Sad, sad, that bitter wail: \'Almost - but lost!\'",
+        2. 'Almost persuaded,' harvest is past!
+        'Almost persuaded,' doom comes at last!
+        'Almost' cannot avail; 'Almost' is but to fail!
+        Sad, sad, that bitter wail: 'Almost - but lost!'",
     ],
     [
         'number' => "149",
         'title' => "No Disappointment",
-        'lyrics' => "1. There\'s no disappointment in heaven,
+        'lyrics' => "1. There's no disappointment in heaven,
         No weariness, sorrow or pain;
         No hearts that are bleeding and broken,
         No song with a minor refrain.
@@ -3909,31 +3909,31 @@ class HymnSeeder extends Seeder
         With never a sob nor a sigh.
         
         CHORUS
-        I\'m bound for that beautiful city
+        I'm bound for that beautiful city
         My Lord has prepared for His own;
         Where all the redeemed of all ages
-        Sing \'Glory!\' around the white throne;
+        Sing 'Glory!' around the white throne;
         Sometimes I grow homesick for heaven,
         And the glories I there shall behold;
         What a joy that will be when my Saviour I see,
         In that beautiful city of gold!
         
-        2. We\'ll never pay rent for our mansion,
+        2. We'll never pay rent for our mansion,
         The taxes will never come due;
         Our garments will never grow threadbare,
         But always be fadeless and new.
-        We\'ll never be hungry nor thirsty,
+        We'll never be hungry nor thirsty,
         Nor languish in poverty there.
         For all the rich bounties of heaven
         His sanctified children will share.
         
-        3. There\'ll never be crape on the doorknob,
+        3. There'll never be crape on the doorknob,
         No funeral train in the sky;
         No graves on the hillsides of glory.
         For there we shall nevermore die.
         The old will be young there forever.
         Transformed in a moment of time;
-        Immortal we\'ll stand in His likeness.
+        Immortal we'll stand in His likeness.
         The stars and the sun to outshine.",
     ],
     [
@@ -3957,8 +3957,8 @@ class HymnSeeder extends Seeder
         Let cheerful anthems fill His house,
         While to that sacred shrine I move.
         
-        3. \'Tis done, the great transaction\'s done!
-        I am my Lord\'s and He is mine;
+        3. 'Tis done, the great transaction's done!
+        I am my Lord's and He is mine;
         He drew me, and I followed on.
         Charmed to confess the voice divine.",
     ],
@@ -3971,29 +3971,29 @@ class HymnSeeder extends Seeder
         Which cleansed and made them clean;
         It is burning now within my heart,
         All glory to His name!
-        I\'m so glad that I can say I\'m one of them.
+        I'm so glad that I can say I'm one of them.
         
         CHORUS
         One of them, one of them.
-        I am glad that I can say I\'m one of them;
+        I am glad that I can say I'm one of them;
         One of them, one of them,
-        I\'m so glad that I can say I\'m one of them.
+        I'm so glad that I can say I'm one of them.
         
         2. Though these people may not learned be,
         Nor boast of Worldly fame,
         They have all received their Pentecost,
-        Baptized in Jesus\' name;
+        Baptized in Jesus' name;
         And are telling now, both far and wide,
         His power is yet the same,
-        I\'m so glad that I can say I\'m one of them.
+        I'm so glad that I can say I'm one of them.
         
         3. They were gathered in the upper room,
         All praying in His name,
         They were baptized with the Holy Ghost,
-        And pow\'r for service came;
+        And pow'r for service came;
         Now what He did for them that day
-        He\'ll do for you the same,
-        I\'m so glad that I can say I\'m one of them.
+        He'll do for you the same,
+        I'm so glad that I can say I'm one of them.
         
         4. Come, my brother, seek this blessing
         That will cleanse your heart from sin,
@@ -4001,33 +4001,33 @@ class HymnSeeder extends Seeder
         And will keep the soul aflame:
         It is burning now within my heart,
         All glory to His name,
-        I\'m so glad that I can say I\'m one of them.",
+        I'm so glad that I can say I'm one of them.",
     ],
     [
         'number' => "152",
-        'title' => "I\'ll Be Listening",
+        'title' => "I'll Be Listening",
         'lyrics' => "1. When the Saviour calls I will answer,
         When He calls for me I will hear;
         When the Saviour calls I will answer,
-        I\'ll be somewhere list\'ning for my name.
+        I'll be somewhere list'ning for my name.
         
         CHORUS
-        I\'ll be somewhere list\'ning,
-        I\'ll be somewhere list\'ning,
-        I\'ll be somewhere list\'ning for my name;
-        I\'ll be somewhere list\'ning,
-        I\'ll be somewhere list\'ning,
-        I\'ll be somewhere list\'ning for my name.
+        I'll be somewhere list'ning,
+        I'll be somewhere list'ning,
+        I'll be somewhere list'ning for my name;
+        I'll be somewhere list'ning,
+        I'll be somewhere list'ning,
+        I'll be somewhere list'ning for my name.
         
         2. If my heart is right when He calls me,
         If my heart is right I will hear;
         If my heart is right when He calls me,
-        I\'ll be somewhere list\'ning for my name.
+        I'll be somewhere list'ning for my name.
         
         3. If my robe is white when He calls me,
         If my robe is white I will hear;
         If my robe is white when He calls me,
-        I\'ll be somewhere list\'ning for my name.",
+        I'll be somewhere list'ning for my name.",
     ],
     [
         'number' => "153",
@@ -4035,34 +4035,34 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. Upon our journey here below we meet with pain and loss;
         Sometimes there is a crown of thorns, sometimes the heavy cross.
         The dreary road to Calvary, the bitter goad and sting,
-        But what\'s inside those gates of pearl will be worth everything.
+        But what's inside those gates of pearl will be worth everything.
         
         CHORUS
-        When we\'re inside the gates of pearl,
-        We\'ll learn a lot of things,
-        We\'ll have a harp that\'s made of gold,
+        When we're inside the gates of pearl,
+        We'll learn a lot of things,
+        We'll have a harp that's made of gold,
         Perhaps a thousand strings;
-        We\'ll sing and shout and dance about,
+        We'll sing and shout and dance about,
         The Lamb will dry our tears;
-        We\'ll have a grand homecoming week,
+        We'll have a grand homecoming week,
         The first ten thousand years.
         
         2. The shadows now begin to fall, the time is drawing nigh,
         When Christ our Lord shall come again like lightning from the sky.
-        And while we wait and suffer here, praise God, we\'ll shout and sing.
+        And while we wait and suffer here, praise God, we'll shout and sing.
         For one glimpse through those gates of pearl will be worth everything.
         
-        3. The precious blood of God\'s own Son has saved and sanctified.
+        3. The precious blood of God's own Son has saved and sanctified.
         A wondrous people for His name and they Are called the bride.
         Though here neglected and despised, one day the Lord will bring
-        His chosen ones within the gates, and that\'s worth everything.",
+        His chosen ones within the gates, and that's worth everything.",
     ],
     [
         'number' => "154",
         'title' => "Just As I Am",
         'lyrics' => "1. Just as I am, without one plea,
         But that Thy blood was shed for me,
-        And that Thou bidd\'st me come to Thee,
+        And that Thou bidd'st me come to Thee,
         O Lamb of God, I come! I come!
         
         2. Just as I am, and waiting not
@@ -4083,7 +4083,7 @@ class HymnSeeder extends Seeder
     [
         'number' => "155",
         'title' => "Peace In The Valley",
-        'lyrics' => "1. Well, I\'m tired and so weary, but I must go along;
+        'lyrics' => "1. Well, I'm tired and so weary, but I must go along;
         Till the Lord comes and calls me away, oh, yes;
         Well the morning is bright, and the Lamb is the Light;
         And the night, night is as fair as the day, oh, yes.
@@ -4091,24 +4091,24 @@ class HymnSeeder extends Seeder
         CHORUS
         There will be peace in the valley for me some day;
         There will be peace in the valley for me, oh, Lord, I pray;
-        There\'ll be no sadness, no sorrow, no trouble I\'ll see;
+        There'll be no sadness, no sorrow, no trouble I'll see;
         There will be peace in the valley for me.
         
-        2. There the flow\'rs will be blooming, and the grass will be green;
+        2. There the flow'rs will be blooming, and the grass will be green;
         And the skies will be clear and serene, oh, yes;
         Well the sun ever beams, in this valley of dreams;
         And no clouds there will ever be seen, oh, yes.
         
         3. Well, the bear will be gentle, and the wolf will be tame;
         And the lion shall lay down by the lamb, oh, yes;
-        Well the beast from the wild, shall be led by a lit\'le child;
-        And I\'ll be changed, changed from this creature that I am, oh, yes.",
+        Well the beast from the wild, shall be led by a lit'le child;
+        And I'll be changed, changed from this creature that I am, oh, yes.",
     ],
     [
         'number' => "156",
         'title' => "Great is the lord",
         'lyrics' => "1. There is a Name I love to hear, it falls like music on my ear,
-        It\'s the Name of Jesus Christ the Lord;
+        It's the Name of Jesus Christ the Lord;
         He came from the Father in Heaven above,
         He died on the cross just to show us His love;
         Jesus, yes, Jesus is His Name.
@@ -4120,33 +4120,33 @@ class HymnSeeder extends Seeder
         Jesus, yes, Jesus is His Name.
         
         2. He is the dear Saviour of men, He gave His own life just to free us from sin,
-        It\'s the Name of Jesus Christ the Lord;
+        It's the Name of Jesus Christ the Lord;
         The wonderful Counselor, the Man from Galilee,
         He calmed the angry waters and He walked on the sea;
         Jesus, yes, Jesus is His Name.",
     ],
     [
         'number' => "157",
-        'title' => "I\'ve Anchored In Jesus",
-        'lyrics' => "1. Upon life\'s boundless ocean where mighty billows roll,
-        I\'ve fixed my hope in Jesus, blest anchor of my soul;
-        When trials fierce assail me as storms are gath\'ring o\'er,
+        'title' => "I've Anchored In Jesus",
+        'lyrics' => "1. Upon life's boundless ocean where mighty billows roll,
+        I've fixed my hope in Jesus, blest anchor of my soul;
+        When trials fierce assail me as storms are gath'ring o'er,
         I rest upon His mercy and trust Him more.
         
         CHORUS
-        I\'ve anchored in Jesus, the storms of life I\'ll brave.
-        I\'ve anchored in Jesus, I fear no wind or wave;
-        I\'ve anchored in Jesus, for He hath pow\'r to save,
-        I\'ve anchored in the Rock of Ages.
+        I've anchored in Jesus, the storms of life I'll brave.
+        I've anchored in Jesus, I fear no wind or wave;
+        I've anchored in Jesus, for He hath pow'r to save,
+        I've anchored in the Rock of Ages.
         
         2. He keeps my soul from evil and gives me blessed peace;
         His voice has stilled the waters and bid their tumult cease.
-        My pilot and deliv\'rer to Him I all confide,
-        For always when I need Him, He\'s at my side.
+        My pilot and deliv'rer to Him I all confide,
+        For always when I need Him, He's at my side.
         
-        3. He is my Friend and Savior, in Him my anchor\'s cast,
+        3. He is my Friend and Savior, in Him my anchor's cast,
         He drives away my sorrows and shields me from the blast;
-        By faith I\'m looking upward beyond life\'s troubled sea,
+        By faith I'm looking upward beyond life's troubled sea,
         There I behold a haven prepared for me.",
     ],
     [
@@ -4154,7 +4154,7 @@ class HymnSeeder extends Seeder
         'title' => "Beyond The Sunset",
         'lyrics' => "1. Beyond the sunset, O blissful morning,
         When with our Saviour heaven is begun.
-        Earth\'s toiling ended, O glorious dawning;
+        Earth's toiling ended, O glorious dawning;
         Beyond the sunset, when day is done.
         
         2. Beyond the sunset no clouds will gather,
@@ -4168,8 +4168,8 @@ class HymnSeeder extends Seeder
         Will be my portion on that fair shore.
         
         4. Beyond the sunset, O glad reunion,
-        With our dear loved ones who\'ve gone before.
-        In that fair homeland we\'ll know no parting,
+        With our dear loved ones who've gone before.
+        In that fair homeland we'll know no parting,
         Beyond the sunset forevermore.",
     ],
     [
@@ -4181,46 +4181,46 @@ class HymnSeeder extends Seeder
         His coffers are full, He has riches untold.
         
         CHORUS
-        I\'m a child of the King!
+        I'm a child of the King!
         A child of the King!
         With Jesus my Savior,
-        I\'m a child of the King!
+        I'm a child of the King!
         
-        2. My Father\'s own Son, the Savior of men,
-        Once wandered o\'er earth as the poorest of them;
+        2. My Father's own Son, the Savior of men,
+        Once wandered o'er earth as the poorest of them;
         But now He is reigning forever on high,
-        And will give me a home in heav\'n by and by.
+        And will give me a home in heav'n by and by.
         
         3. I once was an outcast, stranger on earth,
         A sinner by choice, an alien by birth!
-        But I\'ve been adopted, my name\'s written down,
+        But I've been adopted, my name's written down,
         An heir to a mansion, a robe, and a crown!
         
         4. A tent or a cottage, why should I care?
-        They\'re building a palace for me over there!
+        They're building a palace for me over there!
         Though exiled from home, yet still I may sing;
-        All glory to God, I\'m a child of the King!",
+        All glory to God, I'm a child of the King!",
     ],
     [
         'number' => "160",
-        'title' => "Hold To God\'s Hand",
+        'title' => "Hold To God's Hand",
         'lyrics' => "1. Time is filled with swift transition.
         Naught of earth unmoved can stand,
         Build your hopes on things eternal.
-        Hold to God\'s unchanging hand!
+        Hold to God's unchanging hand!
         
         CHORUS
-        Hold to God\'s unchanging hand!
-        Hold to God\'s unchanging hand!
+        Hold to God's unchanging hand!
+        Hold to God's unchanging hand!
         Build your hopes on things eternal,
-        Hold to God\'s unchanging hand!
+        Hold to God's unchanging hand!
         
         2. Trust in Him who will not leave you,
         Whatsoever years may bring,
         If by earthly friends forsaken,
         Still more closely to Him cling!
         
-        3. Covet not this world\'s vain riches,
+        3. Covet not this world's vain riches,
         That so rapidly decay,
         Seek to gain the heavenly treasures.
         They will never pass away!
@@ -4233,40 +4233,40 @@ class HymnSeeder extends Seeder
     [
         'number' => "161",
         'title' => "The Day Of Redemption",
-        'lyrics' => "1. Nations are breaking, Israel\'s awaking,
+        'lyrics' => "1. Nations are breaking, Israel's awaking,
         The signs that the prophets foretold;
         The Gentile days numbered, With horrors encumbered;
         Eternity soon will unfold.
         
         CHORUS
         The day of redemption is near,
-        Men\'s hearts are failing for fear;
+        Men's hearts are failing for fear;
         Be filled with the Spirit,
         Your lamps trimmed and clear,
         Look up! Your redemption is near.
         
-        2. The fig tree is growing; Jerusalem\'s restoring
+        2. The fig tree is growing; Jerusalem's restoring
         Her national life, long dethroned;
-        Today she is calling, her latter rain\'s falling.
-        \'Return, O dispersed, to your own.\'
+        Today she is calling, her latter rain's falling.
+        'Return, O dispersed, to your own.'
         
-        3. Heaven\'s powers are shaking,
+        3. Heaven's powers are shaking,
         And many are mistaking
-        God\'s meaning to be of the sky;
-        God\'s Church is the power that\'s shaking this hour; 
+        God's meaning to be of the sky;
+        God's Church is the power that's shaking this hour; 
         The day of redemption is nigh.
         
         4. False prophets are lying.
-        God\'s Truth they\'re denying,
+        God's Truth they're denying,
         That Jesus the Christ is our God;
-        Though this generation spurns God\'s revelation,
-        We\'ll walk where the apostles have trod.",
+        Though this generation spurns God's revelation,
+        We'll walk where the apostles have trod.",
     ],
     [
         'number' => "162",
         'title' => "Only Trust Him",
         'lyrics' => "1. Come, every soul by sin oppressed,
-        There\'s mercy with the Lord,
+        There's mercy with the Lord,
         And He will surely give you rest,
         By trusting in His Word.
         
@@ -4303,16 +4303,16 @@ class HymnSeeder extends Seeder
         Living, He loved me; dying, He saved me;
         Buried, He carried my sins far away;
         Rising, He justified freely forever:
-        One day He\'s coming -oh, glorious day!
+        One day He's coming -oh, glorious day!
         
-        2. One day they led Him up Calvary\'s mountain,
+        2. One day they led Him up Calvary's mountain,
         One day they nailed Him to die on the tree;
         Suffering anguish, despised and rejected:
         Bearing our sins, my Redeemer is He!
         
         3. One day they left Him alone in the garden,
         One day He rested, from suffering free;
-        Angels came down o\'er His tomb to keep vigil;
+        Angels came down o'er His tomb to keep vigil;
         Hope of the hopeless, my Saviour is He!
         
         4. One day the grave could conceal Him no longer,
@@ -4341,23 +4341,23 @@ class HymnSeeder extends Seeder
         
         2. If you get there before I do,
         Coming for to carry me home;
-        Tell all my friends I\'m a-coming too,
+        Tell all my friends I'm a-coming too,
         Coming for to carry me home.",
     ],
     [
         'number' => "165",
         'title' => "When They Ring The Bells",
-        'lyrics' => "1. There\'s a land beyond the river,
+        'lyrics' => "1. There's a land beyond the river,
         That we call the sweet forever,
-        And we only reach that shore by faith\'s decree;
-        One by one we\'ll gain the portals,
+        And we only reach that shore by faith's decree;
+        One by one we'll gain the portals,
         There to dwell with the immortals,
         When they ring the golden bells for you and me.
         
         CHORUS
-        Don\'t you hear the bells now ringing?
-        Don\'t you hear the angels singing?
-        \'Tis the glory hallelujah Jubilee.
+        Don't you hear the bells now ringing?
+        Don't you hear the angels singing?
+        'Tis the glory hallelujah Jubilee.
         In that far-off sweet forever,
         Just beyond the shining river,
         When they ring the golden bells for you and me.
@@ -4365,7 +4365,7 @@ class HymnSeeder extends Seeder
         2. We shall know no sin or sorrow,
         In the haven of tomorrow.
         When our barque shall sail beyond the silver sea;
-        We shall only know the blessing Of our Father\'s sweet caressing,
+        We shall only know the blessing Of our Father's sweet caressing,
         When they ring the golden bells for you and me.
         
         3. When our days shall know their number,
@@ -4381,17 +4381,17 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. Sing the wondrous love of Jesus,
         Sing his mercy and his grace;
         In the mansions, bright and blessed,
-        He\'ll prepare for us a place.
+        He'll prepare for us a place.
         
         CHORUS
         When we all get to heaven,
         What a day of rejoicing that will be!
         When we all see Jesus.
-        We\'ll sing and shout the victory.
+        We'll sing and shout the victory.
         
         2. While we walk the pilgrim pathway,
         Clouds will overspread the sky;
-        But when trav\'ling days are over,
+        But when trav'ling days are over,
         Not a shadow, not a sigh.
         
         3. Let us then be true and faithful,
@@ -4400,7 +4400,7 @@ class HymnSeeder extends Seeder
         Will the toils of life repay.
         
         4. Onward to the prize before us!
-        Soon his beauty we\'ll behold;
+        Soon his beauty we'll behold;
         Soon the pearly gates will open,
         We shall tread the streets of gold.",
     ],
@@ -4408,12 +4408,12 @@ class HymnSeeder extends Seeder
         'number' => "167",
         'title' => "The Old Rugged Cross",
         'lyrics' => "1. On a hill far away stood an old rugged cross,
-        The emblem of suff\'ring and shame,
+        The emblem of suff'ring and shame,
         And I love that old cross where the Dearest and Best,
         For a world of lost sinners was slain.
         
         CHORUS
-        So I\'ll cherish the old rugged cross,
+        So I'll cherish the old rugged cross,
         Till my trophies at last I lay down;
         I will cling to the old rugged cross,
         And exchange it some day for a crown.
@@ -4425,13 +4425,13 @@ class HymnSeeder extends Seeder
         
         3. In the old rugged cross, stained with blood so divine,
         A wondrous beauty I see.
-        For \'twas on that old cross Jesus suffered and died,
+        For 'twas on that old cross Jesus suffered and died,
         To pardon and sanctify me.
         
         4. To the old rugged cross I will ever be true,
         Its shame and reproach gladly bear;
-        Then He\'ll call me some day to my home far away,
-        Where His glory forever I\'ll share.",
+        Then He'll call me some day to my home far away,
+        Where His glory forever I'll share.",
     ],
     [
         'number' => "168",
@@ -4439,23 +4439,23 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. I can hear my Saviour calling,
         I can hear my Saviour calling,
         I can hear my Saviour calling,
-        \'Take thy cross, and follow, follow Me.\'
+        'Take thy cross, and follow, follow Me.'
         
         CHORUS
         Where He leads me I will follow,
         Where He leads me I will follow,
         Where He leads me I will follow,
-        I\'ll go with Him, with Him all the way.
+        I'll go with Him, with Him all the way.
         
-        2. I\'ll go with Him through the garden,
-        I\'ll go with Him through the garden,
-        I\'ll go with Him through the garden,
-        I\'ll go with Him, with Him all the way.
+        2. I'll go with Him through the garden,
+        I'll go with Him through the garden,
+        I'll go with Him through the garden,
+        I'll go with Him, with Him all the way.
         
-        3. I\'ll go with Him through the judgment,
-        I\'ll go with Him through the judgment,
-        I\'ll go with Him through the judgment,
-        I\'ll go with Him, with Him all the way.
+        3. I'll go with Him through the judgment,
+        I'll go with Him through the judgment,
+        I'll go with Him through the judgment,
+        I'll go with Him, with Him all the way.
         
         4. He will give me grace and glory,
         He will give me grace and glory,
@@ -4476,7 +4476,7 @@ class HymnSeeder extends Seeder
         Saving me, keeping me from all sin and shame,
         Wonderful is my Redeemer, praise His name!
         
-        2. Once a slave, now I\'m free, free from condemnation,
+        2. Once a slave, now I'm free, free from condemnation,
         Jesus gives liberty and a full salvation;
         Now the sins of the past have been all forgiven,
         And my name is inscribed on the book of heaven.
@@ -4506,7 +4506,7 @@ class HymnSeeder extends Seeder
         Where could I go but to the Lord?
         
         3. Life here is grand with friends I love so dear,
-        Comfort I get from God\'s own word;
+        Comfort I get from God's own word;
         Yet when I face the chilling hand of death,
         Where could I go but to the Lord?",
     ],
@@ -4516,7 +4516,7 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. Far away in the depth of my spirit tonight
         Rolls a melody sweeter than psalm;
         In celestial-like strains it unceasingly falls
-        O\'er my soul like an infinite calm.
+        O'er my soul like an infinite calm.
         
         CHORUS
         Peace! Peace! Wonderful peace,
@@ -4530,8 +4530,8 @@ class HymnSeeder extends Seeder
         While the years of eternity roll.
         
         3. I am resting tonight in this wonderful peace,
-        Resting sweetly in Jesus\' control;
-        For I\'m kept from all danger by night and by day,
+        Resting sweetly in Jesus' control;
+        For I'm kept from all danger by night and by day,
         And His glory is flooding my soul.
         
         4. And methinks when I rise to that City of peace,
@@ -4564,35 +4564,35 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "173",
-        'title' => "I Bowed And Cried, \'Holy\'",
+        'title' => "I Bowed And Cried, 'Holy'",
         'lyrics' => "1. I dreamed I went to that city called glory,
         So bright and so fair,
         When I entered the gate I cried,
-        \'Holy,\' the angels all met me there;
+        'Holy,' the angels all met me there;
         They showed me from mansion to mansion,
         And oh, the sights I saw,
-        But I said, \'I want to see Jesus,
-        The One who died for all.\'
+        But I said, 'I want to see Jesus,
+        The One who died for all.'
         
         CHORUS
         Then I bowed on my knees and cried,
-        \'Holy, Holy, Holy,\'
+        'Holy, Holy, Holy,'
         I clapped my hands and sang,
-        \'Glory, Glory to the Son of God.\'
+        'Glory, Glory to the Son of God.'
         
         2. I thought when I entered that city,
         My friends knew me well.
         They showed me all through heaven,
-        The scenes are too num\'rous to tell;
+        The scenes are too num'rous to tell;
         They showed me Abraham, Isaac, Jacob,
         Mark, Luke, and Timothy,
-        But I said, \'I want to give praise,
-        To the One who died for me.\'
+        But I said, 'I want to give praise,
+        To the One who died for me.'
         
         3. I thought when I saw my Saviour,
         Oh! Glory to God!
         I just fell right down before Him,
-        Singing, \'Praise to the name of the Lord;\'
+        Singing, 'Praise to the name of the Lord;'
         I bowed down and worshipped Jehovah,
         My friend of Calvary,
         For I wanted to give praise to Jesus,
@@ -4601,8 +4601,8 @@ class HymnSeeder extends Seeder
     [
         'number' => "174",
         'title' => "When The Saints March In",
-        'lyrics' => "1. I\'m a pilgrim and a stranger
-        Wand\'ring through this world of sin,
+        'lyrics' => "1. I'm a pilgrim and a stranger
+        Wand'ring through this world of sin,
         On my way to that fair city,
         When the Saints go marching in.
         
@@ -4612,50 +4612,50 @@ class HymnSeeder extends Seeder
         Lord, I want to be in that number
         When the saints go marching in.
         
-        2. Oh, I know I\'ll see my Saviour
+        2. Oh, I know I'll see my Saviour
         If my life is free from sin,
-        Heaven\'s doors will open for me
+        Heaven's doors will open for me
         When the Saints go marching in.
         
-        3. When we gather \'round the Throne
+        3. When we gather 'round the Throne
         And the gates are closed within,
-        I\'ll be shouting \'Glory, Glory\'
+        I'll be shouting 'Glory, Glory'
         When the Saints go marching in.
         
-        4. I\'m waiting for the chariot
-        To swing low and I\'ll step in,
-        On the clouds I\'ll ride to Heaven
+        4. I'm waiting for the chariot
+        To swing low and I'll step in,
+        On the clouds I'll ride to Heaven
         When the Saints go marching in.",
     ],
     [
         'number' => "175",
-        'title' => "I\'d Rather Be Christian",
-        'lyrics' => "1. In this world I\'ve tried most everything,
-        And I\'m happy now to say
+        'title' => "I'd Rather Be Christian",
+        'lyrics' => "1. In this world I've tried most everything,
+        And I'm happy now to say
         There is nothing like religion
         In the good old-fashioned way;
         I am walking in the old-time way,
         And I want the world to know
-        That I\'d rather be an old-time Christian
+        That I'd rather be an old-time Christian
         Than anything I know.
         
         CHORUS
-        I\'d rather be an old-time Christian
+        I'd rather be an old-time Christian
         Than anything I know.
-        There\'s nothing like an old-time Christian
+        There's nothing like an old-time Christian
         With a Christian love to show;
-        I\'m walking in the grand old highway,
-        And I\'m telling everywhere I go,
-        That I\'d rather be an old-time Christian
+        I'm walking in the grand old highway,
+        And I'm telling everywhere I go,
+        That I'd rather be an old-time Christian
         Than anything I know.
         
-        2. There are many things I\'d like to be
+        2. There are many things I'd like to be
         As my journey I pursue,
         I have longed to be a leader
         Like a mortal man would do;
         I would like to be a millionaire,
         With a million to bestow,
-        But I\'d rather be an old-time Christian
+        But I'd rather be an old-time Christian
         Than anything I know.
         
         3. All the world is bright since I got right.
@@ -4664,7 +4664,7 @@ class HymnSeeder extends Seeder
         Since the Saviour brought me out;
         I will tell the world both far and near
         As I travel here below.
-        That I\'d rather be an oldtime Christian
+        That I'd rather be an oldtime Christian
         Than anything I know.",
     ],
     [
@@ -4702,7 +4702,7 @@ class HymnSeeder extends Seeder
         CHORUS
         So the sign of the fire by night,
         And the sign of the cloud by day,
-        Hovering o\'er, just before,
+        Hovering o'er, just before,
         As they journey on their way,
         Shall a guide and a leader be,
         Till the wilderness be past.
@@ -4714,41 +4714,41 @@ class HymnSeeder extends Seeder
         But the sign of their God was ever near,
         Thus their fainting hearts to cheer.
         
-        3. All the days of their wand\'rings they were fed.
+        3. All the days of their wand'rings they were fed.
         To the land of the promise they were led;
         By the hand of the Lord in guidance sure,
-        They were brought to Canaan\'s shore.",
+        They were brought to Canaan's shore.",
     ],
     [
         'number' => "178",
-        'title' => "I Won\'t Cross Alone",
+        'title' => "I Won't Cross Alone",
         'lyrics' => "1. When I come to the river at ending of day,
         When the last winds of sorrow have blown;
-        There\'ll be somebody waiting to show me the way,
-        I won\'t have to cross Jordan alone.
+        There'll be somebody waiting to show me the way,
+        I won't have to cross Jordan alone.
         
         CHORUS
-        I won\'t have to cross Jordan alone,
+        I won't have to cross Jordan alone,
         Jesus died all my sins to atone;
-        When the darkness I see, He\'ll be waiting for me,
-        I won\'t have to cross Jordan alone.
+        When the darkness I see, He'll be waiting for me,
+        I won't have to cross Jordan alone.
         
-        2. Oftentimes I\'m forsaken, and weary and sad,
+        2. Oftentimes I'm forsaken, and weary and sad,
         When it seems that my friends have all gone;
         There is one thought that cheers me and makes my heart glad,
-        I won\'t have to cross Jordan alone.
+        I won't have to cross Jordan alone.
         
         3. Though the billows of sorrow and trouble may sweep,
         Christ the Saviour will care for His own;
         Till the end of the journey, my soul He will keep,
-        I won\'t have to cross Jordan alone.",
+        I won't have to cross Jordan alone.",
     ],
     [
         'number' => "179",
         'title' => "Softly And Tenderly",
         'lyrics' => "1. Softly and tenderly Jesus is calling,
         Calling for you and for me,
-        See on the portals He\'s waiting and watching,
+        See on the portals He's waiting and watching,
         Watching for you and for me.
         
         CHORUS
@@ -4764,7 +4764,7 @@ class HymnSeeder extends Seeder
         
         3. Time is now fleeting, the moments are passing,
         Passing from you and from me;
-        Shadows are gathering, death\'s night is coming,
+        Shadows are gathering, death's night is coming,
         Coming for you and for me.
         
         4. Oh! For the wonderful love He has promised,
@@ -4794,7 +4794,7 @@ class HymnSeeder extends Seeder
         Only let me walk with Thee.
         
         3. Lead me through the vale of shadows,
-        Bear me o\'er life\'s fitful sea;
+        Bear me o'er life's fitful sea;
         Then the gate of life eternal
         May I enter, Lord, with Thee.
         Close to Thee, close to Thee,
@@ -4805,86 +4805,86 @@ class HymnSeeder extends Seeder
     [
         'number' => "181",
         'title' => "Got Any Rivers?",
-        'lyrics' => "1. \'Be of good courage,\' God spake unto Joshua,
-        When o\'er the river God pointed the way;
+        'lyrics' => "1. 'Be of good courage,' God spake unto Joshua,
+        When o'er the river God pointed the way;
         Jordan uncrossable!
         Things seemed impossible,
         Waters divide as they march and obey.
         
         CHORUS
         Got any rivers you think are uncrossable?
-        Got any mountains you can\'t tunnel through?
+        Got any mountains you can't tunnel through?
         God specializes in things thought impossible,
         And He will do what no other power can do.
         
         2. Battles to win! They would meet with their obstacles,
-        Jericho\'s walls, too, must fall to the ground.
+        Jericho's walls, too, must fall to the ground.
         God never failed;
         He stood back of His promises,
         Walls had to crumble as they marched around.
         
         3. God is the same and His Word is dependable,
-        He\'ll make a way through the waters for you;
-        Life\'s situations by Him are amendable.
+        He'll make a way through the waters for you;
+        Life's situations by Him are amendable.
         Mountains and hills He will part for you too.",
     ],
     [
         'number' => "182",
         'title' => "Where We Never Grow Old",
         'lyrics' => "1. I have heard of a land on the far away strand,
-        \'Tis a beautiful home of the soul;
+        'Tis a beautiful home of the soul;
         Built by Jesus on high, there we never shall die,
-        \'Tis a land where we never grow old.
+        'Tis a land where we never grow old.
         
         CHORUS
         Never grow old, never grow old,
-        In a land where we\'ll never grow old;
+        In a land where we'll never grow old;
         Never grow old, never grow old,
-        In a land where we\'ll never grow old.
+        In a land where we'll never grow old.
         
-        2. In that beautiful home where we\'ll never-more roam,
+        2. In that beautiful home where we'll never-more roam,
         We shall be in the sweet by and by;
         Happy praise to the King, through eternity sing,
-        \'Tis a land where we never shall die.
+        'Tis a land where we never shall die.
         
         3. When our work here is done and the life-crown is won.
-        And our troubles and trials are o\'er,
+        And our troubles and trials are o'er,
         All our sorrow will end, and our voices will blend,
-        With the loved ones who\'ve gone on before.",
+        With the loved ones who've gone on before.",
     ],
     [
         'number' => "183",
         'title' => "Lift Him Up",
         'lyrics' => "1. How to reach the masses, men of every birth?
         For an answer Jesus gave a key,
-        \'And I, if I be lifted up from the earth,
-        Will draw all men unto me.\'
+        'And I, if I be lifted up from the earth,
+        Will draw all men unto me.'
         
         CHORUS
         Lift Him up, lift Him up,
         Still He speaks from eternity,
-        \'And I, if I be lifted up from the earth,
-        Will draw all men unto me.\'
+        'And I, if I be lifted up from the earth,
+        Will draw all men unto me.'
         
         2. O the world is hungry for the living bread,
         Lift the Saviour up for them to see;
         Trust Him, and do not doubt the words that
-        He said, \'I\'ll draw all men unto me.\'
+        He said, 'I'll draw all men unto me.'
         
-        3. Don\'t exalt the preacher, don\'t exalt the pew,
+        3. Don't exalt the preacher, don't exalt the pew,
         Preach the Gospel simple, full and free;
         Prove Him and you will find that promise is true,
-        \'I\'ll draw all men unto me.\'
+        'I'll draw all men unto me.'
         
         4. Lift Him up by living as a Christian ought,
         Let the world in you the Saviour see,
         Then men will gladly follow Him who once taught,
-        \'I\'ll draw all men unto me.\'",
+        'I'll draw all men unto me.'",
     ],
     [
         'number' => "184",
         'title' => "Beulah Land",
-        'lyrics' => "1. I\'ve reached the land of corn and wine,
+        'lyrics' => "1. I've reached the land of corn and wine,
         And all its riches freely mine;
         Here shines undimmed one blissful day,
         For all my night has passed away.
@@ -4900,40 +4900,40 @@ class HymnSeeder extends Seeder
         2. My Savior comes and walks with me,
         And sweet communion here have we;
         He gently leads me by His hand,
-        For this is Heaven\'s borderland.
+        For this is Heaven's borderland.
         
         3. A sweet perfume upon the breeze
         Is borne from ever vernal trees,
-        And flow\'rs, that never fading grow,
+        And flow'rs, that never fading grow,
         Where streams of life forever flow.
         
         4. The zephyrs seem to float to me,
-        Sweet sounds of Heaven\'s melody,
+        Sweet sounds of Heaven's melody,
         As angels with the white-robed throng
         Join in the sweet Redemption song.",
     ],
     [
         'number' => "185",
         'title' => "The Lord Brought Me Out",
-        'lyrics' => "1. I\'m so glad that the Lord brought me out;
-        I\'m so glad that the Lord brought me out;
+        'lyrics' => "1. I'm so glad that the Lord brought me out;
+        I'm so glad that the Lord brought me out;
         If it had not been for Jesus, oh where would I be?
-        I\'m so glad that the Lord brought me out.
+        I'm so glad that the Lord brought me out.
         
-        2. I\'ve been happy since the Lord brought me out;
-        I\'ve been happy since the Lord brought me out;
+        2. I've been happy since the Lord brought me out;
+        I've been happy since the Lord brought me out;
         If it had not been for Jesus, oh where would I be?
-        I\'m so glad that the Lord brought me out.
+        I'm so glad that the Lord brought me out.
         
-        2. Aren\'t you glad that the Lord brought you out?
-        Aren\'t you glad that the Lord brought you out?
+        2. Aren't you glad that the Lord brought you out?
+        Aren't you glad that the Lord brought you out?
         If it had not been for Jesus, oh where would I be?
-        I\'m so glad that the Lord brought me out.
+        I'm so glad that the Lord brought me out.
         
-        3. I\'ve been singing since the Lord brought me out,
-        I\'ve been singing since the Lord brought me out;
+        3. I've been singing since the Lord brought me out,
+        I've been singing since the Lord brought me out;
         If it had not been for Jesus, oh where would I be?
-        I\'m so glad that the Lord brought me out.",
+        I'm so glad that the Lord brought me out.",
     ],
     [
         'number' => "186",
@@ -4946,16 +4946,16 @@ class HymnSeeder extends Seeder
         CHORUS
         Gathering sheaves, beautiful sheaves,
         Gathering sheaves, beautiful sheaves;
-        Praise the Lord, we\'re on our way
+        Praise the Lord, we're on our way
         to that land of endless day,
         Gathering sheaves, beautiful sheaves.
         
         2. On the mountain, hill or plain we will harvest in the grain,
         Gathering sheaves, beautiful sheaves;
-        Yes, we\'ll labor far and near, never falter, never fear,
+        Yes, we'll labor far and near, never falter, never fear,
         Gathering sheaves, beautiful sheaves.
         
-        3. We will sing and we will pray, and our Master\'s voice obey,
+        3. We will sing and we will pray, and our Master's voice obey,
         Gathering sheaves, beautiful sheaves;
         As we go in foreign lands, doing what our Lord commands,
         Gathering sheaves, beautiful sheaves.",
@@ -4985,8 +4985,8 @@ class HymnSeeder extends Seeder
         Who long had law and grace defied.
         
         4. And now He takes me to His heart, a son,
-        He asks me not to fill a servant\'s place;
-        The \'far-off country\' wand\'rings all are done,
+        He asks me not to fill a servant's place;
+        The 'far-off country' wand'rings all are done,
         Wide open are His arms of grace.",
     ],
     [
@@ -5001,7 +5001,7 @@ class HymnSeeder extends Seeder
         Oh how I love Him! How I adore Him!
         My breath, my sunshine, my all in all!
         The great Creator became my Saviour,
-        And all God\'s fullness dwelleth in Him.
+        And all God's fullness dwelleth in Him.
         
         2. What condescension, bringing us redemption;
         That in the dead of night, not one faint hope in sight;
@@ -5011,26 +5011,26 @@ class HymnSeeder extends Seeder
         3. Without reluctance, flesh and blood His substance,
         He took the form of man, revealed the hidden plan.
         O glorious mystery, Sacrifice of Calvary,
-        And now I know Thou wert the great \'I AM.\'",
+        And now I know Thou wert the great 'I AM.'",
     ],
     [
         'number' => "189",
-        'title' => "I\'ll Meet You",
-        'lyrics' => "1. I\'ll meet you in the morning, by the bright river side,
+        'title' => "I'll Meet You",
+        'lyrics' => "1. I'll meet you in the morning, by the bright river side,
         When all sorrow has drifted away;
-        I\'ll be standing at the portals, when the gates open wide,
-        At the close of life\'s long, dreary day.
+        I'll be standing at the portals, when the gates open wide,
+        At the close of life's long, dreary day.
         
         CHORUS
-        I\'ll meet you in the morning with a \'How do you do,\'
-        And we\'ll sit down by the river and with rapture \'auld\' acquaintance renew,
-        You\'ll know me in the morning, by the smiles that I wear,
+        I'll meet you in the morning with a 'How do you do,'
+        And we'll sit down by the river and with rapture 'auld' acquaintance renew,
+        You'll know me in the morning, by the smiles that I wear,
         When I meet you in the morning, in the city that is built foursquare.
         
         2. I will meet you in the morning, in the sweet by and by,
         And exchange the old cross for a crown;
         There will be no disappointments and nobody shall die,
-        In that land, e\'er the sun goeth down.
+        In that land, e'er the sun goeth down.
         
         3. I will meet you in the morning, at the end of the way,
         On the streets of that city of gold;
@@ -5040,31 +5040,31 @@ class HymnSeeder extends Seeder
     [
         'number' => "190",
         'title' => "Watching You",
-        'lyrics' => "1. All along on the road to the soul\'s true abode,
-        There\'s an Eye watching you;
+        'lyrics' => "1. All along on the road to the soul's true abode,
+        There's an Eye watching you;
         Every step that you take, this great Eye is awake,
-        There\'s an Eye watching you.
+        There's an Eye watching you.
         
         CHORUS
         Watching you, watching you,
         Every day mind the course you pursue;
         Watching you, watching you,
-        There\'s an all-seeing Eye watching you.
+        There's an all-seeing Eye watching you.
         
-        2. As you make life\'s great flight, keep the pathway of right,
-        There\'s an Eye watching you;
+        2. As you make life's great flight, keep the pathway of right,
+        There's an Eye watching you;
         God will warn not to go in the path of the foe,
-        There\'s an Eye watching you.
+        There's an Eye watching you.
         
         3. Fix your mind on the goal, that sweet home of the soul,
-        There\'s an Eye watching you;
+        There's an Eye watching you;
         Never turn from the way to the kingdom of day,
-        There\'s an Eye watching you.",
+        There's an Eye watching you.",
     ],
     [
         'number' => "191",
         'title' => "Past The Curtain Of Time",
-        'lyrics' => "1. There\'s a curtain that\'s drawn between earth and Heaven,
+        'lyrics' => "1. There's a curtain that's drawn between earth and Heaven,
         And just beyond lies a beautiful clime
         Where the evils of this life no longer can touch me;
         Lord, let me look past the curtain of time.
@@ -5075,12 +5075,12 @@ class HymnSeeder extends Seeder
         It would strengthen my faith and would banish all fear;
         Lord, let me look past the curtain of time.
         
-        2. I\'m helpless, alone, and I want to see Jesus,
+        2. I'm helpless, alone, and I want to see Jesus,
         And hear the sweet harbor bells chime,
         Where my friends and dear loved ones are waiting for me;
         Lord, let me look past the curtain of time.
         
-        3. I\'m so homesick and blue, and I want to see Jesus,
+        3. I'm so homesick and blue, and I want to see Jesus,
         I would like to hear those sweet harbor bells chime;
         It would brighten my path and would vanish All fear;
         Lord, let me look past the curtain of time.",
@@ -5090,36 +5090,36 @@ class HymnSeeder extends Seeder
         'title' => "Honey In The Rock",
         'lyrics' => "1. O my brother, do you know the Saviour,
         Who is wondrous, kind and true?
-        He\'s the \'Rock of your salvation!\'
-        There\'s Honey in the Rock for you.
+        He's the 'Rock of your salvation!'
+        There's Honey in the Rock for you.
         
         CHORUS
-        Oh, there\'s Honey in the Rock, my brother.
-        There\'s Honey in the Rock for you;
+        Oh, there's Honey in the Rock, my brother.
+        There's Honey in the Rock for you;
         Leave your sins for the blood to cover,
-        There\'s Honey in the Rock for you.
+        There's Honey in the Rock for you.
         
-        2. Have you \'tasted that the Lord is gracious?\'
-        Do you walk in the way that\'s new?
+        2. Have you 'tasted that the Lord is gracious?'
+        Do you walk in the way that's new?
         Have you drank from the living Fountain?
-        There\'s Honey in the Rock for you.
+        There's Honey in the Rock for you.
         
         3. Do you pray unto God the Father,
-        \'What wilt thou have me to do?\'
+        'What wilt thou have me to do?'
         Never fear He will surely answer;
-        There\'s Honey in the Rock for you.
+        There's Honey in the Rock for you.
         
         4. Then go out through the streets and byways,
         Preach the word to the many or few;
         Say to every fallen brother,
-        There\'s Honey in the Rock for you.",
+        There's Honey in the Rock for you.",
     ],
     [
         'number' => "193",
         'title' => "The Unveiled Christ",
         'lyrics' => "1. Once our blessed Christ of beauty,
         Was veiled off from human view;
-        But through suff\'ring, death and sorrow,
+        But through suff'ring, death and sorrow,
         He has rent the veil in two.
         
         CHORUS
@@ -5180,7 +5180,7 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "195",
-        'title' => "He\'s The Lord Of Glory",
+        'title' => "He's The Lord Of Glory",
         'lyrics' => "1. Behold what manner of Man is this
         Who stills the raging sea;
         He heals the sick, the lame, the halt,
@@ -5191,7 +5191,7 @@ class HymnSeeder extends Seeder
         What manner of man is He!
         
         CHORUS
-        He\'s the Lord of Glory,
+        He's the Lord of Glory,
         He is the great I AM;
         The Alpha and Omega,
         The beginning and the end;
@@ -5214,8 +5214,8 @@ class HymnSeeder extends Seeder
         'title' => "I Will Praise Him",
         'lyrics' => "1. When I saw the cleansing fountain
         Open wide for all my sin,
-        I obeyed the Spirit\'s wooing
-        When He said, \'Wilt thou be clean?\'
+        I obeyed the Spirit's wooing
+        When He said, 'Wilt thou be clean?'
         
         CHORUS
         I will praise Him, I will praise Him,
@@ -5228,21 +5228,21 @@ class HymnSeeder extends Seeder
         My ambitions, plans, and wishes,
         At my feet in ashes lay.
         
-        3. Then God\'s fire upon the altar
+        3. Then God's fire upon the altar
         Of my heart was set aflame;
         I shall never cease to praise Him,
         Glory! glory to His name!
         
         4. Blessed be the name of Jesus!
-        I\'m so glad He took me in;
-        He\'s forgiven my transgressions,
+        I'm so glad He took me in;
+        He's forgiven my transgressions,
         He has cleansed my heart from sin.",
     ],
     [
         'number' => "197",
-        'title' => "There\'s A Great Day Coming",
-        'lyrics' => "1. There\'s a great day coming, a great day coming,
-        There\'s a great day coming by and by,
+        'title' => "There's A Great Day Coming",
+        'lyrics' => "1. There's a great day coming, a great day coming,
+        There's a great day coming by and by,
         When the saints and the sinners shall be parted right and left,
         Are you ready for that day to come?
         
@@ -5252,36 +5252,36 @@ class HymnSeeder extends Seeder
         Are you ready? Are you ready?
         For the judgment day?
         
-        2. There\'s a bright day coming, a bright day coming,
-        There\'s a bright day coming by and by,
+        2. There's a bright day coming, a bright day coming,
+        There's a bright day coming by and by,
         But its brightness shall only come to them that love the Lord,
         Are you ready for that day to come?
         
-        3. There\'s a sad day coming, a sad day coming,
-        There\'s a sad day coming by and by,
-        When the sinner shall hear his doom, \'Depart, I know ye not,\'
+        3. There's a sad day coming, a sad day coming,
+        There's a sad day coming by and by,
+        When the sinner shall hear his doom, 'Depart, I know ye not,'
         Are you ready for that day to come?",
     ],
     [
         'number' => "198",
-        'title' => "He\'s Coming Soon",
+        'title' => "He's Coming Soon",
         'lyrics' => "1. In these, the closing days of time,
         What joy the glorious hope affords,
         That soon - oh, wondrous truth sublime!
         He shall reign. King of kings and Lord of lords.
         
         CHORUS
-        He\'s coming soon. He\'s coming soon;
+        He's coming soon. He's coming soon;
         With joy we welcome His returning;
         It may be morn, it may be night or noon,
-        We know He\'s coming soon.
+        We know He's coming soon.
         
         2. The signs around, in earth and air,
         Or painted on the starlit sky,
-        God\'s faithful witnesses declare
+        God's faithful witnesses declare
         That the coming of the Saviour draweth nigh.
         
-        3. The dead in Christ who \'neath us lie,
+        3. The dead in Christ who 'neath us lie,
         In countless numbers, all shall rise
         When through the portals of the sky
         He shall come to prepare our Paradise.
@@ -5318,15 +5318,15 @@ class HymnSeeder extends Seeder
         Take it to the Lord in prayer.
         Do thy friends despise, forsake thee?
         Take it to the Lord in prayer;
-        In His arms He\'ll take and shield thee,
+        In His arms He'll take and shield thee,
         Thou wilt find a solace there.",
     ],
     [
         'number' => "200",
-        'title' => "I\'m Bound For Promise Land",
-        'lyrics' => "1. On Jordan\'s stormy banks I stand,
+        'title' => "I'm Bound For Promise Land",
+        'lyrics' => "1. On Jordan's stormy banks I stand,
         And cast a wishful eye,
-        Toward Canaan\'s fair and happy land,
+        Toward Canaan's fair and happy land,
         Where my possessions lie.
         
         CHORUS
@@ -5335,19 +5335,19 @@ class HymnSeeder extends Seeder
         O who will come and go with me?
         I am bound for the promised land.
         
-        2. O\'er all those wide extended plains
+        2. O'er all those wide extended plains
         Shines one eternal day;
-        There God\'s own Son forever reigns,
+        There God's own Son forever reigns,
         And scatters night away.
         
-        3. No chilling winds, nor pois\'nous breath,
+        3. No chilling winds, nor pois'nous breath,
         Can reach that healthful shore;
         Sickness and sorrow, pain and death,
         Are feared and felt no more.
         
         4. When shall I reach that happy place,
         And be forever blest!
-        When shall I see my Father\'s face,
+        When shall I see my Father's face,
         And in His bosom rest?",
     ],
     [
@@ -5371,7 +5371,7 @@ class HymnSeeder extends Seeder
         
         3. All glory to the dying Lamb!
         I now believe in Jesus;
-        I love the blessed Saviour\'s name,
+        I love the blessed Saviour's name,
         I love the name of Jesus.
         
         4. His name dispels my guilt and fear,
@@ -5406,15 +5406,15 @@ class HymnSeeder extends Seeder
         4. O how the world to evil allures me!
         O how my heart is tempted to sin!
         I must tell Jesus, and He will help me
-        Over the world the vict\'ry to win.",
+        Over the world the vict'ry to win.",
     ],
     [
         'number' => "203",
         'title' => "Nothing Between",
         'lyrics' => "1. Nothing between my soul and the Saviour,
-        Naught of this world\'s delusive dream:
+        Naught of this world's delusive dream:
         I have renounced all sinful pleasure,
-        Jesus is mine, there\'s nothing between.
+        Jesus is mine, there's nothing between.
         
         CHORUS
         Nothing between my soul and the Saviour,
@@ -5425,17 +5425,17 @@ class HymnSeeder extends Seeder
         2. Nothing between like worldly pleasure;
         Habits of life, though harmless they seem,
         Must not my heart from Him ever sever;
-        He is my all, there\'s nothing between.
+        He is my all, there's nothing between.
         
         3. Nothing between, like pride or station;
         Self or friends shall not intervene;
         Though it may cost me much tribulation,
-        I am resolved, there\'s nothing between.
+        I am resolved, there's nothing between.
         
-        4. Nothing between, e\'en many hard trials.
+        4. Nothing between, e'en many hard trials.
         Though the whole world against me convene;
         Watching with prayer and much self-denial,
-        I\'ll triumph at last, with nothing between.",
+        I'll triumph at last, with nothing between.",
     ],
     [
         'number' => "204",
@@ -5453,7 +5453,7 @@ class HymnSeeder extends Seeder
         leads me through the Promised Land,
         What a day, glorious day that will be.
         
-        2. There\'ll be no sorrow there, no more burdens to bear,
+        2. There'll be no sorrow there, no more burdens to bear,
         No more sickness, no pain, no more parting over there;
         And forever I will be with the One who died for me,
         What a day, glorious day that will be.",
@@ -5464,7 +5464,7 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. Jesus, keep me near the cross,
         There a precious fountain,
         Free to all, a healing stream,
-        Flows from Calv\'ry\'s mountain.
+        Flows from Calv'ry's mountain.
         
         CHORUS
         In the cross, in the cross,
@@ -5480,9 +5480,9 @@ class HymnSeeder extends Seeder
         3. Near the cross! O lamb of God,
         Bring its scenes before me;
         Help me walk from day to day,
-        With its shadows o\'er me.
+        With its shadows o'er me.
         
-        4. Near the cross I\'ll watch and wait,
+        4. Near the cross I'll watch and wait,
         Hoping, trusting, ever.
         Till I reach the golden strand,
         Just beyond the river.",
@@ -5519,8 +5519,8 @@ class HymnSeeder extends Seeder
     [
         'number' => "207",
         'title' => "I See A Crimson Stream",
-        'lyrics' => "1. On Calvary\'s hill of sorrow
-        Where sin\'s demands were paid,
+        'lyrics' => "1. On Calvary's hill of sorrow
+        Where sin's demands were paid,
         And rays of hope for tomorrow
         Across our path were laid.
         
@@ -5533,10 +5533,10 @@ class HymnSeeder extends Seeder
         2. Today no condemnation
         Abides to turn away
         My soul from His salvation,
-        He\'s in my heart to stay.
+        He's in my heart to stay.
         
         3. When gloom and sadness whisper
-        You\'ve sinned, no use to pray;
+        You've sinned, no use to pray;
         I look away to Jesus
         And He tells me to say:
         
@@ -5548,70 +5548,70 @@ class HymnSeeder extends Seeder
     [
         'number' => "208",
         'title' => "Come To The Feast",
-        'lyrics' => "1. \'All things are ready,\' come to the feast!
+        'lyrics' => "1. 'All things are ready,' come to the feast!
         Come, for the table now is spread;
         Ye famishing, ye weary, come,
         And thou shalt be richly fed.
         
         CHORUS
         Hear the invitation,
-        Come, \'whosoever will;\'
+        Come, 'whosoever will;'
         Praise God for full salvation
-        For \'whosoever will.\'
+        For 'whosoever will.'
         
-        2. \'All things are ready,\' come to the feast!
+        2. 'All things are ready,' come to the feast!
         Come, for the door is open wide;
         A place of honor is reserved
-        For you at the Master\'s side.
+        For you at the Master's side.
         
-        3. \'All things are ready,\' come to the feast!
+        3. 'All things are ready,' come to the feast!
         Come, while He waits to welcome thee;
         Delay not while this day is thine,
         Tomorrow may never be.
         
-        4. \'All things are ready,\' come to the feast!
+        4. 'All things are ready,' come to the feast!
         Leave every care and worldly strife;
         Come, feast upon the love of God,
         And drink everlasting life.",
     ],
     [
         'number' => "209",
-        'title' => "Lord, I\'m Coming Home",
-        'lyrics' => "1. I\'ve wandered far away from God,
-        Now I\'m coming home;
-        The paths of sin too long I\'ve trod,
-        Lord, I\'m coming home.
+        'title' => "Lord, I'm Coming Home",
+        'lyrics' => "1. I've wandered far away from God,
+        Now I'm coming home;
+        The paths of sin too long I've trod,
+        Lord, I'm coming home.
         
         CHORUS
         Coming home, coming home,
         Nevermore to roam;
         Open wide Thine arms of love,
-        Lord, I\'m coming home.
+        Lord, I'm coming home.
         
-        2. I\'ve wasted many precious years,
-        Now I\'m coming home;
+        2. I've wasted many precious years,
+        Now I'm coming home;
         I now repent with bitter tears,
-        Lord, I\'m coming home.
+        Lord, I'm coming home.
         
-        3. I\'m tired of sin and straying, Lord,
-        Now I\'m coming home;
-        I\'ll trust Thy love, believe Thy Word,
-        Lord, I\'m coming home.
+        3. I'm tired of sin and straying, Lord,
+        Now I'm coming home;
+        I'll trust Thy love, believe Thy Word,
+        Lord, I'm coming home.
         
         4. My soul is sick, my heart is sore,
-        Now I\'m coming home;
+        Now I'm coming home;
         My strength renew, my hope restore,
-        Lord, I\'m coming home.
+        Lord, I'm coming home.
         
         5. My only hope, my only plea.
-        Now I\'m coming home;
+        Now I'm coming home;
         That Jesus died, and died for me.
-        Lord, I\'m coming home.
+        Lord, I'm coming home.
         
         6. I need His cleansing blood, I know,
-        Now I\'m coming home;
+        Now I'm coming home;
         O wash me whiter than the snow,
-        Lord, I\'m coming home.",
+        Lord, I'm coming home.",
     ],
     [
         'number' => "210",
@@ -5629,12 +5629,12 @@ class HymnSeeder extends Seeder
         
         2. If you hasten off the glory,
         Linger near the Eastern Gate,
-        For I\'m coming in the morning,
-        So you\'ll not have long to wait.
+        For I'm coming in the morning,
+        So you'll not have long to wait.
         
         3. Keep your lamps all trimmed and burning.
         For the Bridegroom watch and wait,
-        He\'ll be with us at the meeting,
+        He'll be with us at the meeting,
         Just inside the Eastern Gate.
         
         4. O the joys of that glad meeting
@@ -5646,9 +5646,9 @@ class HymnSeeder extends Seeder
         'number' => "211",
         'title' => "Jesus Paid It All",
         'lyrics' => "1. I hear the Savior say,
-        \'Thy strength indeed is small,
+        'Thy strength indeed is small,
         Child of weakness, watch and pray,
-        Find in Me thine all in all.\'
+        Find in Me thine all in all.'
         
         CHORUS
         Jesus paid it all.
@@ -5657,14 +5657,14 @@ class HymnSeeder extends Seeder
         He washed it white as snow.
         
         2. Lord, now indeed I find
-        Thy pow\'r, and Thine alone,
-        Can change the leper\'s spots,
+        Thy pow'r, and Thine alone,
+        Can change the leper's spots,
         And melt the heart of stone.
         
         3. Since nothing good have I
         Whereby Thy grace to claim,
-        I\'ll wash my garments white
-        In the blood of Calv\'ry\'s Lamb.",
+        I'll wash my garments white
+        In the blood of Calv'ry's Lamb.",
     ],
     [
         'number' => "212",
@@ -5683,14 +5683,14 @@ class HymnSeeder extends Seeder
         And dwell in peace at home?
         
         CHORUS
-        We\'ll work till Jesus comes,
-        We\'ll work till Jesus comes,
-        We\'ll work till Jesus comes,
-        And we\'ll be gathered home!
+        We'll work till Jesus comes,
+        We'll work till Jesus comes,
+        We'll work till Jesus comes,
+        And we'll be gathered home!
         
         2. No tranquil joys on earth I know,
         No peaceful, sheltering dome;
-        This world\'s a wilderness of woe,
+        This world's a wilderness of woe,
         This world is not my home.
         
         3. To Jesus Christ I fled for rest;
@@ -5698,9 +5698,9 @@ class HymnSeeder extends Seeder
         And lean for succor on His breast
         Till He conduct me home?
         
-        4. I sought at once my Saviour\'s side,
+        4. I sought at once my Saviour's side,
         No more my steps shall roam;
-        With Him I\'ll brave death\'s chilling tide
+        With Him I'll brave death's chilling tide
         And reach my heavenly home.",
     ],
     [
@@ -5708,13 +5708,13 @@ class HymnSeeder extends Seeder
         'title' => "The Windows Of Heaven",
         'lyrics' => "1. The windows of Heaven are open,
         The blessings are falling tonight,
-        There\'s joy, joy, joy in my heart,
+        There's joy, joy, joy in my heart,
         For Jesus makes everything right;
         
         2. I gave Him my old tattered garment,
         He gave me a robe of pure white,
-        I\'m feasting today on the Manna,
-        And that\'s why I\'m happy tonight.",
+        I'm feasting today on the Manna,
+        And that's why I'm happy tonight.",
     ],
     [
         'number' => "215",
@@ -5740,7 +5740,7 @@ class HymnSeeder extends Seeder
         Old-time singing, gladness bringing,
         From that lovely land somewhere.
         
-        4. As I travel on life\'s pathway,
+        4. As I travel on life's pathway,
         Know not what the years may hold;
         As I ponder, hope grows fonder,
         Precious memories flood my soul.
@@ -5750,40 +5750,40 @@ class HymnSeeder extends Seeder
         I remember scenes so precious
         That can never pass away.
         
-        6. I\'ve heard the Message and Its signal
-        That day\'s end is near at hand,
+        6. I've heard the Message and Its signal
+        That day's end is near at hand,
         But I remember that He promised
-        He\'d return for those who\'d stand.
+        He'd return for those who'd stand.
         
         7. Precious memories, glorious meetings
         Across this land from sea to sea
-        Where I heard the prophet\'s Message
+        Where I heard the prophet's Message
         That brought Life and hope to me.
         
         8. Precious memories in this storehouse
         Where the Food was laid away,
-        We\'ve returned to where he stored It,
+        We've returned to where he stored It,
         Spiritual Food against this day.",
     ],
     [
         'number' => "216",
         'title' => "The End Time",
-        'lyrics' => "1. I look and see earth\'s sorrowing picture,
+        'lyrics' => "1. I look and see earth's sorrowing picture,
         The hoarding mobs for selfish gain;
         Their toil of hand for ease and comfort,
         Can they not see, their doom is sealed,
-        It\'s all in vain.
+        It's all in vain.
         
         CHORUS
-        The end is here, it\'s now at hand,
+        The end is here, it's now at hand,
         The Bride is gathering; the world is failing;
-        Israel\'s awak\'ning; nations are breaking\'
+        Israel's awak'ning; nations are breaking'
         Our prophet taught us, we believe the end is here.
         
         2. Sirs, this is the time! Our prophet spoke of,
         The Angel came with a Shout,
         The mountain shook as His Voice cried out,
-        \'Time is no more.\'
+        'Time is no more.'
         Loud and clear the Shout went forth.
         
         3. Have you considered the end-time Message?
@@ -5795,8 +5795,8 @@ class HymnSeeder extends Seeder
         'number' => "217",
         'title' => "It Is No Secret",
         'lyrics' => "1. It is no secret what God can do;
-        What He\'s done for others, He\'ll do for you.
-        With arms wide open, He\'ll pardon you,
+        What He's done for others, He'll do for you.
+        With arms wide open, He'll pardon you,
         It is no secret what God can do.
         
         2. It is no secret, I believe the Word;
@@ -5810,9 +5810,9 @@ class HymnSeeder extends Seeder
         It is no secret I follow him.
         
         4. It is no secret of who he is,
-        He is a prophet, I\'m convinced of this:
+        He is a prophet, I'm convinced of this:
         The seventh angel, a son of man,
-        The Elijah promised in God\'s great plan.",
+        The Elijah promised in God's great plan.",
     ],
     [
         'number' => "218",
@@ -5820,17 +5820,17 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. When I consider the works of my God,
         The moon and the stars, the path that He trod.
         The sheep and the oxen, the beast of the field,
-        All of these wonders make me know that He\'s real.
+        All of these wonders make me know that He's real.
         
         CHORUS
         How great is our God! How great is His Word!
-        He\'s the greatest one that ever was heard.
+        He's the greatest one that ever was heard.
         He rolled back the waters of the mighty Red Sea.
-        And He said, \'I will lead you.
+        And He said, 'I will lead you.
         
         2. He used our prophet in many a way
         To show forth His greatness in this our day.
-        He never changes; He\'s always the same,
+        He never changes; He's always the same,
         So worship and praise Him and love His dear Name.",
     ],
     [
@@ -5838,17 +5838,17 @@ class HymnSeeder extends Seeder
         'title' => "So Just Be Faithful",
         'lyrics' => "1. In these days of trials so near the end,
         When Christ from Glory doth now descend,
-        Men\'s hearts are failing and filled with fear,
+        Men's hearts are failing and filled with fear,
         We know the end time is surely here.
         
         CHORUS
         So just be faithful, believe His Word;
         Stay with the Message that you have heard;
-        List\' to His prophet, his Message heed;
+        List' to His prophet, his Message heed;
         Walk in the Light where His star doth lead.
         
         2. In every church age a star did shine,
-        To help God\'s people a Truth to find;
+        To help God's people a Truth to find;
         In this last church age a star shines bright,
         So friend receive It, walk in the Light.
         
@@ -5859,7 +5859,7 @@ class HymnSeeder extends Seeder
         
         4. His Word of promise he gave the Bride,
         From his White Charger the prophet cried,
-        \'Yet one more time shall I ride this trail\'
+        'Yet one more time shall I ride this trail'
         THUS SAITH THE LORD can never fail.",
     ],
     [
@@ -5870,7 +5870,7 @@ class HymnSeeder extends Seeder
         The fellowship of kindred minds
         Is like to that above.
         
-        2. Before our Father\'s throne,
+        2. Before our Father's throne,
         We pour our ardent prayers;
         Our fears, our hopes, our aims are one,
         Our comforts and our cares.
@@ -5889,29 +5889,29 @@ class HymnSeeder extends Seeder
         'number' => "221",
         'title' => "God Be With You",
         'lyrics' => "1. God be with you till we meet again!
-        By His counsels\' guide, uphold you,
+        By His counsels' guide, uphold you,
         With His sheep securely fold you;
         God be with you till we meet again!
         
         CHORUS
-        Till we meet! Till we meet\'
-        Till we meet at Jesus\' feet;
+        Till we meet! Till we meet'
+        Till we meet at Jesus' feet;
         Till we meet! Till we meet!
         God be with you till we meet again!
         
         2. God be with you till we meet again!
-        \'Neath His wings securely hide you,
+        'Neath His wings securely hide you,
         Daily manna still provide you;
         God be with you till we meet again!
         
         3. God be with you till we meet again!
-        When life\'s perils thick confound you,
+        When life's perils thick confound you,
         Put His arms unfailing round you;
         God be with you till we meet again!
         
         4. God be with you till we meet again!
-        Keep love\'s banner floating o\'er you,
-        Smite death\'s threat\'ning wave before you;
+        Keep love's banner floating o'er you,
+        Smite death's threat'ning wave before you;
         God be with you till we meet again!",
     ],
     [
@@ -5920,7 +5920,7 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. Take the name of Jesus with you,
         Child of sorrow and of woe;
         It will joy and comfort give you,
-        Take it, then, where\'er you go.
+        Take it, then, where'er you go.
         
         CHORUS
         Precious name, O how sweet!
@@ -5940,7 +5940,7 @@ class HymnSeeder extends Seeder
         
         4. At the name of Jesus bowing,
         Falling prostrate at His feet,
-        King of kings in Heaven we\'ll crown Him,
+        King of kings in Heaven we'll crown Him,
         When our journey is complete.",
     ],
     [
@@ -5954,27 +5954,27 @@ class HymnSeeder extends Seeder
         CHORUS
         We have an anchor that keeps the soul
         Steadfast and sure while the billows roll,
-        Fasten\'d to the Rock which cannot move
-        Grounded firm and deep in the Saviour\'s Love.
+        Fasten'd to the Rock which cannot move
+        Grounded firm and deep in the Saviour's Love.
         
-        2. It is safely moor\'d, \'twill the storm withstand,
-        For \'tis well secured by the Saviour\'s hand,
-        And the cables, pass\'d from His heart to mine,
-        Can defy the blast, thro\' strength divine.
+        2. It is safely moor'd, 'twill the storm withstand,
+        For 'tis well secured by the Saviour's hand,
+        And the cables, pass'd from His heart to mine,
+        Can defy the blast, thro' strength divine.
         
         3. It will firmly hold in the straits of fear,
         When the breakers have told the reef is near;
-        Tho\' the tempest rave, and the wild winds blow
-        Not an angry wave shall our barque o\'erflow.
+        Tho' the tempest rave, and the wild winds blow
+        Not an angry wave shall our barque o'erflow.
         
         4. It will surely hold in the floods of death,
         When the waters cold chill our latest breath;
         On the rising tide it can never fail,
         While our hopes abide within the veil!
         
-        5. When our eyes behold, thro\' the gathering night,
+        5. When our eyes behold, thro' the gathering night,
         The city of gold, our harbour bright,
-        We shall anchor fast by the heav\'nly shore,
+        We shall anchor fast by the heav'nly shore,
         With the storms all past for evermore.",
     ],
     [
@@ -5991,7 +5991,7 @@ class HymnSeeder extends Seeder
         Oh, it was wonderful - blest be His name!
         Seeking for me! For me!
         
-        2. Jesus my Saviour, on Calvary\'s tree,
+        2. Jesus my Saviour, on Calvary's tree,
         Paid the great debt, and my soul He set free,
         Oh, it was wonderful - how could it be?
         Dying for me! For me!
@@ -6002,7 +6002,7 @@ class HymnSeeder extends Seeder
         Dying for me! For me!
         
         3. Jesus, my Saviour, the same as of old,
-        While I was wand\'ring afar from the fold,
+        While I was wand'ring afar from the fold,
         Gently and long did He plead with my soul,
         Calling for me! For me!
         ...
@@ -6036,13 +6036,13 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. Naught have I gotten but what I received;
         Grace hath bestowed it since I have believed,
         Boasting excluded, pride I abase;
-        I\'m only a sinner saved by grace!
+        I'm only a sinner saved by grace!
         
         CHORUS
         Only a sinner saved by grace!
         Only a sinner saved by grace!
         This is my story - to God be the glory,
-        I\'m only a sinner saved by grace.
+        I'm only a sinner saved by grace.
         
         2. Once I was foolish, and sin ruled my heart,
         Causing my footsteps from God to depart;
@@ -6051,13 +6051,13 @@ class HymnSeeder extends Seeder
         
         3. Tears unavailing, no merit had I;
         Mercy had saved me, or else I must die;
-        Sin had alarm\'d me, fearing God\'s face;
-        But now I\'m a sinner saved by grace!
+        Sin had alarm'd me, fearing God's face;
+        But now I'm a sinner saved by grace!
         
         4. Suffer a sinner, whose heart overflows,
         Loving His Saviour, to tell what he knows;
         Once more to tell it, would I embrace?
-        I\'m only a sinner saved by grace.",
+        I'm only a sinner saved by grace.",
     ],
     [
         'number' => "226",
@@ -6076,11 +6076,11 @@ class HymnSeeder extends Seeder
         2. Enough for me that Jesus saves,
         This ends my fear and doubt;
         A sinful soul I come to Him,
-        He\'ll never cast me out.
+        He'll never cast me out.
         
         3. My heart is leaning on the Word,
         The written Word of God;
-        Salvation by my Saviour\'s name,
+        Salvation by my Saviour's name,
         Salvation through His blood.
         
         4. My great physician heals the sick,
@@ -6110,12 +6110,12 @@ class HymnSeeder extends Seeder
         3. Jesus for your choice is waiting;
         Tarry not, at once decide!
         While the spirit now is striving,
-        Yield and seek the Saviour\'s side.
+        Yield and seek the Saviour's side.
         
         4. Cease of fitness to be thinking;
         Do not longer try to feel;
         It is trusting and not feeling,
-        That will be the Spirit\'s seal.
+        That will be the Spirit's seal.
         
         4. Let your will to God be given,
         Trust in Christ atoning blood;
@@ -6176,8 +6176,8 @@ class HymnSeeder extends Seeder
         Bountiful Man of Calvary!
         
         4. Comfort of all my earthly way,
-        Jesus, I\'ll meet Thee some sweet day;
-        Centre of glory, Thee I\'ll see,
+        Jesus, I'll meet Thee some sweet day;
+        Centre of glory, Thee I'll see,
         Wonderful Man of Calvary!",
     ],
     [
@@ -6261,12 +6261,12 @@ class HymnSeeder extends Seeder
         
         3. More about Jesus in His Word,
         Holding communion wit`h my Lord,
-        Hearing His voice in ev\'ry line,
+        Hearing His voice in ev'ry line,
         Making each faithful saying mine.
         
         4. More about Jesus on His throne,
         Riches in glory all His own;
-        More of His kingdom\'s sure increase;
+        More of His kingdom's sure increase;
         More of His coming, Prince of Peace.",
     ],
     [
@@ -6283,7 +6283,7 @@ class HymnSeeder extends Seeder
         Cleansed and made holy, humble and lowly,
         Right in the sight of God.
         
-        2. Hast thou dominion o\'er self and o\'er sin?
+        2. Hast thou dominion o'er self and o'er sin?
         Is thy heart right with God?
         Over all evil without and within?
         Is thy heart right with God?
@@ -6293,12 +6293,12 @@ class HymnSeeder extends Seeder
         Does Jesus rule in the temple within?
         Is thy heart right with God?
         
-        4. Are all thy pow\'rs under Jesus\' control?
+        4. Are all thy pow'rs under Jesus' control?
         Is thy heart right with God?
         Does He each moment abides in thy soul?
         Is thy heart right with God?
         
-        5. Art thou now walking in heaven\'s pure light?
+        5. Art thou now walking in heaven's pure light?
         Is thy heart right with God?
         Is thy soul wearing the garment of white?
         Is thy heart right with God?",
@@ -6308,7 +6308,7 @@ class HymnSeeder extends Seeder
         'title' => "Burn, Burn, Holy Spirit",
         'lyrics' => "1. Burn, burn, Holy Spirit, burn in me
         Set my soul on fire
-        Fill me with the Holy Ghost and God\'s full desire,
+        Fill me with the Holy Ghost and God's full desire,
         Make me like the Christ of old
         Healing and raising the dead
         Give me the power that Jesus had
@@ -6318,7 +6318,7 @@ class HymnSeeder extends Seeder
         'number' => "234",
         'title' => "It Shall Flow Like A River",
         'lyrics' => "1. It shall flow like a river; it shall fall like the rain,
-        It shall rise as the dawning in glory o\'er the land,
+        It shall rise as the dawning in glory o'er the land,
         For the knowledge of the Lord shall fill all the earth,
         And the Spirit of the Lord shall fall.",
     ],
@@ -6328,40 +6328,40 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. Oh, spread the tidings round,
         Wherever man is found,
         Wherever human hearts and human woes abound;
-        Let ev\'ry Christian tongue proclaim the joyful sound;
-        \'The Comforter has come!\'
+        Let ev'ry Christian tongue proclaim the joyful sound;
+        'The Comforter has come!'
         
         CHORUS
         The Comforter has come,
         The Comforter has come!
         The Holy Ghost from heaven,
-        The Father\'s promise giv\'n;
+        The Father's promise giv'n;
         Oh, spread the tidings round wherever man is found,
         The Comforter has come!
         
         2. The long, long night is past,
         The morning breaks at last;
-        And hush\'d the dreadful wall and fury of the blast,
-        As o\'er the golden hills the days advances fast!
-        \'The Comforter has come!\'
+        And hush'd the dreadful wall and fury of the blast,
+        As o'er the golden hills the days advances fast!
+        'The Comforter has come!'
         
         3. Lo, the great King of kings,
         With healing in His wings,
-        To ev\'ry captive soul a full deliv\'rance brings;
-        And thro\' the vacant cells the song of triumph rings;
-        \'The Comforter has come!\'
+        To ev'ry captive soul a full deliv'rance brings;
+        And thro' the vacant cells the song of triumph rings;
+        'The Comforter has come!'
         
         4. O boundless love divine!
         How shall this tongue of mine
-        To wond\'ring mortals tell the matchless grace divine
+        To wond'ring mortals tell the matchless grace divine
         That I, a child of hell, should in His image shine!
-        \'The Comforter has come!\'
+        'The Comforter has come!'
         
         5. Sing till the echoes fly,
         Above the vaulted sky,
         And all the saints above to all below reply,
-        In strains of endless love, the song that ne\'er will die;
-        \'The Comforter has come!\'",
+        In strains of endless love, the song that ne'er will die;
+        'The Comforter has come!'",
     ],
     [
         'number' => "236",
@@ -6369,18 +6369,18 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. When Jesus comes to reward His servants,
         Whether it be noon or night,
         Faithful to Him will He find us watching,
-        With our lamps all trimm\'d and bright?
+        With our lamps all trimm'd and bright?
         
         CHORUS
         Oh, can we say we are ready, brother,
-        Ready for the soul\'s bright home?
+        Ready for the soul's bright home?
         Say, will He find you and me still watching
         Waiting, waiting, when the Lord shall come?
         
         2. If at the dawn of the early morning,
         He shall call us one by one,
         When to the Lord we restore our talents
-        Will He answer thee, \'Well done\'?
+        Will He answer thee, 'Well done'?
         
         3. Have we been true to the trust He left us?
         Do we seek to do our best?
@@ -6418,7 +6418,7 @@ class HymnSeeder extends Seeder
         (repeat 3 times)
         His banner over me is love.
         
-        4. I am my Beloved\'s and He is mine
+        4. I am my Beloved's and He is mine
         His banner over me is love,
         (repeat 3 times)
         His banner over me is love.",
@@ -6427,31 +6427,31 @@ class HymnSeeder extends Seeder
         'number' => "238",
         'title' => "A Song To Cheer Us",
         'lyrics' => "1. Let us sing a song that will cheer us by the way,
-        In a little while we\'re going home,
+        In a little while we're going home,
         For the night will end in the everlasting day,
-        In a little while we\'re going home.
+        In a little while we're going home.
         
         CHORUS
         In a little while... In a little while...
-        We shall cross the billow\'s foam;
+        We shall cross the billow's foam;
         We shall meet at last,
         When the stormy winds are past,
-        In a little while we\'re going home.
+        In a little while we're going home.
         
         2. We will do the work that our hands may find to do,
-        In a little while we\'re going home;
+        In a little while we're going home;
         And the grace of God will our daily strength renew,
-        In a little while we\'re going home.
+        In a little while we're going home.
         
         3. We will smooth the path for some weary wayworm feet,
-        In a little while we\'re going home;
+        In a little while we're going home;
         O may loving hearts spread around an influence sweet!
-        In a little while we\'re going home.
+        In a little while we're going home.
         
-        4. There\'s a rest beyond, there\'s relief from ev\'ry care,
-        In a little while we\'re going home;
+        4. There's a rest beyond, there's relief from ev'ry care,
+        In a little while we're going home;
         And no tears shall fall in that city bright and fair,
-        In a little while we\'re going home.",
+        In a little while we're going home.",
     ],
     [
         'number' => "239",
@@ -6495,19 +6495,19 @@ class HymnSeeder extends Seeder
     [
         'number' => "240",
         'title' => "I Am Determined",
-        'lyrics' => "1. I am determined; I\'ve made up my mind
-        I\'ll serve the Lord
-        I\'ve left this world and its pleasures behind.
-        I\'ll serve the Lord
-        I\'ll follow wherever He leadeth,
-        I\'ll pasture wherever He feedeth,
-        I am determined, I\'ve made up my mind,
-        I\'ll serve the Lord.",
+        'lyrics' => "1. I am determined; I've made up my mind
+        I'll serve the Lord
+        I've left this world and its pleasures behind.
+        I'll serve the Lord
+        I'll follow wherever He leadeth,
+        I'll pasture wherever He feedeth,
+        I am determined, I've made up my mind,
+        I'll serve the Lord.",
     ],
     [
         'number' => "241",
-        'title' => "There\'s A Call Comes Ringing",
-        'lyrics' => "1. There\'s a call comes ringing o\'er the restless wave,
+        'title' => "There's A Call Comes Ringing",
+        'lyrics' => "1. There's a call comes ringing o'er the restless wave,
         Send the Light! Send the Light!
         There are souls to rescue; there are souls to save,
         Send the Light! Send the Light!
@@ -6518,14 +6518,14 @@ class HymnSeeder extends Seeder
         Send the Light and let its radiant beams
         Light the world for evermore.
         
-        2. We have heard the Macedonian\'s call to-day,
+        2. We have heard the Macedonian's call to-day,
         Send the Light! Send the Light!
-        And a golden off\'ring at the cross we lay
+        And a golden off'ring at the cross we lay
         Send the Light! Send the Light!
         
-        3. Let us pray that grace may ev\'rywhere abound,
+        3. Let us pray that grace may ev'rywhere abound,
         Send the Light! Send the Light!
-        And a Christ-like Spirit ev\'rywhere be found,
+        And a Christ-like Spirit ev'rywhere be found,
         Send the Light! Send the Light!
         
         4. Let us not grow weary in the work of love
@@ -6554,7 +6554,7 @@ class HymnSeeder extends Seeder
         4. Take my silver and my gold,
         Not a mite would I withhold;
         Take my intellect, and use
-        Ev\'ry power as Thou shalt choose.
+        Ev'ry power as Thou shalt choose.
         
         5. Take my will and make it Thine,
         It shall be longer mine;
@@ -6569,32 +6569,32 @@ class HymnSeeder extends Seeder
     [
         'number' => "243",
         'title' => "Message From The Lord",
-        'lyrics' => "1. I\'ve a message from the Lord, hallelujah!
-        The message unto you I\'ll give,
-        \'Tis recorded in His word, hallelujah!
-        It is only that you \'look and live\'
+        'lyrics' => "1. I've a message from the Lord, hallelujah!
+        The message unto you I'll give,
+        'Tis recorded in His word, hallelujah!
+        It is only that you 'look and live'
         
         CHORUS
         Look and live, my brother live,
         Look to Jesus now and live,
-        \'Tis recorded in His word, hallelujah!
+        'Tis recorded in His word, hallelujah!
         It is only that you look and live.
         
-        2. I\'ve a message full of love, hallelujah!
+        2. I've a message full of love, hallelujah!
         A message, O my friend, for you,
-        \'Tis a message from above, hallelujah!
-        Jesus said it, and I know \'tis true.
+        'Tis a message from above, hallelujah!
+        Jesus said it, and I know 'tis true.
         
         3. Life is offered unto you, hallelujah!
         Eternal life your soul shall have,
-        If you\'ll only look to Him, hallelujah!
+        If you'll only look to Him, hallelujah!
         Look to Jesus, who alone can save.",
     ],
     [
         'number' => "244",
         'title' => "God Is Here",
         'lyrics' => "1. God is here! And that to bless us
-        With the Spirit\'s quickening power;
+        With the Spirit's quickening power;
         See, the cloud already bending,
         Waits to drop the grateful shower.
         
@@ -6622,7 +6622,7 @@ class HymnSeeder extends Seeder
     [
         'number' => "245",
         'title' => "Count Your Blessings",
-        'lyrics' => "1. When upon life\'s billows you are tempest tossed,
+        'lyrics' => "1. When upon life's billows you are tempest tossed,
         When you are discouraged, thinking all is lost,
         Count your many blessings name them one by one,
         And it will surprise you what the Lord hath done.
@@ -6646,7 +6646,7 @@ class HymnSeeder extends Seeder
         4. So amid the conflict, whether great or small,
         Do not be discouraged, God is over all,
         Count your many blessings, angels will attend,
-        Help and comfort give you to your journey\'s end.",
+        Help and comfort give you to your journey's end.",
     ],
     [
         'number' => "246",
@@ -6686,7 +6686,7 @@ class HymnSeeder extends Seeder
         3. When the Bridegroom cometh by and by,
         When the Bridegroom cometh by and by,
         Will your wearied heart rejoice?
-        At the sound of Jesus\' voice,
+        At the sound of Jesus' voice,
         When the Bridegroom cometh by and by.
         
         4. When the Bridegroom cometh by and by,
@@ -6711,9 +6711,9 @@ class HymnSeeder extends Seeder
         'number' => "248",
         'title' => "It May Be At Morn",
         'lyrics' => "1. It may be at morn, when the day is awaking,
-        When sunlight thro\' darkness and shadow is breaking,
+        When sunlight thro' darkness and shadow is breaking,
         That Jesus will come in the fullness of glory
-        To receive from the world \'His own\'
+        To receive from the world 'His own'
         
         CHORUS
         O Lord Jesus, how long?
@@ -6725,22 +6725,22 @@ class HymnSeeder extends Seeder
         2. It may be at midday, it may be at twilight,
         It may be, perchance, that the blackness of midnight
         Will burst into light in the blaze of glory,
-        When Jesus receive \'His own\'
+        When Jesus receive 'His own'
         
-        3. While hosts cry Hosanna from heav\'n descending
+        3. While hosts cry Hosanna from heav'n descending
         With glorified saints and the angels attending,
         With grace on His brow, like a halo of glory
-        Will Jesus receive \'His own\'
+        Will Jesus receive 'His own'
         
         4. Oh, joy! Oh, delight; should we go, without dying;
         No sickness, no sadness, no dread, and no crying;
-        Caught up thro\' the clouds with our Lord into glory,
-        When Jesus receives \'His own\'",
+        Caught up thro' the clouds with our Lord into glory,
+        When Jesus receives 'His own'",
     ],
     [
         'number' => "249",
-        'title' => "Lord, I\'m Coming To Thee",
-        'lyrics' => "1. Lord, I\'m coming now to Thee,
+        'title' => "Lord, I'm Coming To Thee",
+        'lyrics' => "1. Lord, I'm coming now to Thee,
         Lay Thy nail scarred hand on me,
         Let Thy healing virtue flow
         And I shall be made whole.",
@@ -6754,7 +6754,7 @@ class HymnSeeder extends Seeder
         For the cross on Calvary!
         
         CHORUS
-        Yes, I\'ll sing the wondrous story
+        Yes, I'll sing the wondrous story
         Of the Christ who died for me
         Sing it with the saints in glory
         Gathered by the crystal sea!
@@ -6769,14 +6769,14 @@ class HymnSeeder extends Seeder
         Sight was gone and fears possessed me;
         But He freed me from them all!
         
-        4. Days of darkness still come o\'er me;
-        Sorrow\'s paths I often tread;
+        4. Days of darkness still come o'er me;
+        Sorrow's paths I often tread;
         But the Saviour still is with me,
-        By His hand I\'m safely led.
+        By His hand I'm safely led.
         
         5. He will keep me till the river
         Rolls its waters at my feet;
-        Then He\'ll bear me safely over,
+        Then He'll bear me safely over,
         Where the loved ones I shall meet.",
     ],
     [
@@ -6788,17 +6788,17 @@ class HymnSeeder extends Seeder
         Watch and pray.
         
         2. Principalities and powers
-        Must\'ring their unseen array,
+        Must'ring their unseen array,
         Wait for thy unguarded hours;
         Watch and pray.
         
         3. Gird thy heavenly armour on;
-        Wear it ever\' night and day;
+        Wear it ever' night and day;
         Ambushed lies the evil one;
         Watch and pray.
         
-        4. Hear the victors who o\'ercame,
-        Still they mark each warrior\'s way;
+        4. Hear the victors who o'ercame,
+        Still they mark each warrior's way;
         All with one sweet voice exclaim,
         Watch and pray.
         
@@ -6849,38 +6849,38 @@ class HymnSeeder extends Seeder
         'number' => "253",
         'title' => "It Pays To Serve Jesus",
         'lyrics' => "1. It pays to serve Jesus - I speak from my heart;
-        He\'ll always be with us, if we do our part;
-        There\'s naught in this wide world can pleasure afford,
-        There\'s peace and contentment in serving the Lord.
+        He'll always be with us, if we do our part;
+        There's naught in this wide world can pleasure afford,
+        There's peace and contentment in serving the Lord.
         
         CHORUS
         I love Him far better than in days of yore,
-        I\'ll serve Him more truly than ever before,
-        I\'ll do as He bids me whatever the cost,
-        I\'ll be a true soldier; I\'ll die at my post.
+        I'll serve Him more truly than ever before,
+        I'll do as He bids me whatever the cost,
+        I'll be a true soldier; I'll die at my post.
         
-        2. And oft when I\'m tempted to turn from the track,
+        2. And oft when I'm tempted to turn from the track,
         I think of my Saviour - my mind wanders back
-        To the place where they nailed Him on Calvary\'s tree,
-        I hear a voice saying, \'I suffered for thee.\'
+        To the place where they nailed Him on Calvary's tree,
+        I hear a voice saying, 'I suffered for thee.'
         
         3. A place I remember where I was set free,
-        \'Twas where I found pardon - a haven to me;
+        'Twas where I found pardon - a haven to me;
         There Jesus spoke sweetly to my weary soul,
         My sins were forgiven, He made my heart whole.
         
         4. How rich is the blessing the world cannot give,
-        I\'m satisfied fully for Jesus to live;
-        Tho\' friends may forsake me and trial arise
+        I'm satisfied fully for Jesus to live;
+        Tho' friends may forsake me and trial arise
         I am trusting in Jesus, His love never dies.
         
         5. There is no one like Jesus can cheer me to-day,
-        His love and His kindness can ne\'er fade away;
+        His love and His kindness can ne'er fade away;
         In winter, in summer, in sunshine and rain,
         His love and affection are always the same.
         
         6. Will you have this blessing that Jesus bestows?
-        A free, full Salvation from sin\'s bitter throes!
+        A free, full Salvation from sin's bitter throes!
         O come to the Saviour, to Calvary flee,
         The fountain is opened, is flowing for thee.",
     ],
@@ -6918,10 +6918,10 @@ class HymnSeeder extends Seeder
         To do the will of Jesus, this is rest.
         
         3. Peace, perfect peace, with sorrows surging round?
-        On Jesus\' bosom naught but calm is found.
+        On Jesus' bosom naught but calm is found.
         
         4. Peace, perfect peace, with loved ones far away?
-        In Jesus\' keeping we are safe, and they.
+        In Jesus' keeping we are safe, and they.
         
         5. Peace, perfect peace, our future all unknown?
         Jesus we know, and He is on the throne.
@@ -6929,14 +6929,14 @@ class HymnSeeder extends Seeder
         6. Peace, perfect peace, death shadowing us and ours?
         Jesus has vanquished death and all its powers.
         
-        7. It is enough earth\'s struggles soon shall cease,
-        And Jesus calls us to heaven\'s perfect peace.",
+        7. It is enough earth's struggles soon shall cease,
+        And Jesus calls us to heaven's perfect peace.",
     ],
     [
         'number' => "256",
         'title' => "A Channel Of Blessing",
         'lyrics' => "1. Is your life a channel of blessing?
-        Is the love of God flowing thro\' you?
+        Is the love of God flowing thro' you?
         Are you telling the lost of the Saviour?
         Are you ready is service to do?
         
@@ -6981,7 +6981,7 @@ class HymnSeeder extends Seeder
         He the ransom freely gave.
         
         3. I will praise my dear Redeemer,
-        His triumphant power I\'ll tell,
+        His triumphant power I'll tell,
         How the victory He giveth,
         Over sin, and death, and hell!
         
@@ -6994,27 +6994,27 @@ class HymnSeeder extends Seeder
         'number' => "258",
         'title' => "Tell It Far And Wide",
         'lyrics' => "1. Tell it! Let the people hear it.
-        \'Jesus saves from sin!\'
+        'Jesus saves from sin!'
         Let the breezes bear the message,
-        \'Jesus makes men clean;
-        That He shed His blood to save us!\'
+        'Jesus makes men clean;
+        That He shed His blood to save us!'
         Tell if far and wide,
-        \'In no other is redemption save the crucified!\'
+        'In no other is redemption save the crucified!'
         
         CHORUS
         Tell if far and wide,
         Tell it far and wide.
-        \'In no other is redemption,
-        Save the crucified!\'
+        'In no other is redemption,
+        Save the crucified!'
         
         2. Tell it to the lone and weary,
         To the blithe and gay;
         To the aged with their burdens,
         To the child at play;
-        \'There is free and full Salvation!\'
+        'There is free and full Salvation!'
         Hear the blessed word,
         There is mercy and true healing
-        In the Saviour\'s blood!
+        In the Saviour's blood!
         
         3. Free the mercy, full the pardon,
         Jesus died to give!
@@ -7028,15 +7028,15 @@ class HymnSeeder extends Seeder
     [
         'number' => "259",
         'title' => "No Friend Like Jesus",
-        'lyrics' => "1. There\'s not a friend like the lowly Jesus.
+        'lyrics' => "1. There's not a friend like the lowly Jesus.
         No, not one! No, not one!
-        None else can heal all our soul\'s diseases
+        None else can heal all our soul's diseases
         No, not one! No, not one!
         
         CHORUS
         Jesus knows all about our struggle,
         He will guide till the day is done.
-        There\'s not a friend like the lowly Jesus,
+        There's not a friend like the lowly Jesus,
         No, not one! No, not one!
         
         2. No friend like Him is so high and holy,
@@ -7044,7 +7044,7 @@ class HymnSeeder extends Seeder
         And yet no friend is so meek and lowly,
         No, not one! No, not one!
         
-        3. There\'s not an hour that He is not near us,
+        3. There's not an hour that He is not near us,
         No, not one! No, not one!
         No night so dark but His love can cheer us,
         No, not one! No, not one!
@@ -7054,7 +7054,7 @@ class HymnSeeder extends Seeder
         Or sinner find that He would not take him?
         No, not one! No, not one!
         
-        5. Was e\'er a gift like the Saviour given?
+        5. Was e'er a gift like the Saviour given?
         No, not one! No, not one!
         Will He refuse us a home in heaven?
         No, not one! No, not one!",
@@ -7110,15 +7110,15 @@ class HymnSeeder extends Seeder
         2. Tell me the story slowly,
         That I may take it in
         That wonderful redemption,
-        God\'s remedy for sin.
+        God's remedy for sin.
         Tell me the story often,
         For I forget so soon!
-        The \'early dew\' of morning
+        The 'early dew' of morning
         Has passed away at noon.
         
         3. Tell me the story softly,
         With earnest tones, and grave;
-        Remember! I\'m the sinner
+        Remember! I'm the sinner
         Whom Jesus came to save.
         Tell me story always,
         If you would really be
@@ -7127,12 +7127,12 @@ class HymnSeeder extends Seeder
         
         4. Tell me the same old story,
         When you have cause to fear
-        That this world\'s empty glory
+        That this world's empty glory
         Is costing me too dear
-        Yes, and when the world\'s glory
+        Yes, and when the world's glory
         Is drawing on my soul,
         Tell me the old, old story,
-        \'Christ Jesus makes thee whole\'",
+        'Christ Jesus makes thee whole'",
     ],
     [
         'number' => "262",
@@ -7154,7 +7154,7 @@ class HymnSeeder extends Seeder
         
         CHORUS
         Trust and obey;
-        For there\'s no other way
+        For there's no other way
         To be happy in Jesus,
         But to trust and obey.
         
@@ -7181,7 +7181,7 @@ class HymnSeeder extends Seeder
         
         5. Then in fellowship sweet,
         We will sit at His feet,
-        Or we\'ll walk by His side in the way;
+        Or we'll walk by His side in the way;
         What He says we will do,
         Where He sends we will go,
         Never fear, only trust and obey.",
@@ -7191,7 +7191,7 @@ class HymnSeeder extends Seeder
         'title' => "Make Me More Like Thee",
         'lyrics' => "1. Make me more like Thee, Jesus,
         Make me more like Thee.
-        Give me a heart that\'s filled with love,
+        Give me a heart that's filled with love,
         And make me more like Thee.",
     ],
     [
@@ -7225,27 +7225,27 @@ class HymnSeeder extends Seeder
         My Lord and I.
         
         4. So up into the mountains
-        Of heaven\'s cloudless light,
+        Of heaven's cloudless light,
         Or away into the valleys
         Of darkness or of night,
         Though round as tempests gather,
         And storms are raging high,
-        We\'ll travel on together.
+        We'll travel on together.
         My Lord and I.
         
-        5. And when the journey\'s ended,
+        5. And when the journey's ended,
         In rest and peace at last,
         When every thought or danger
         And weariness is past,
         In the kingdom of the future,
         In the glory by and by,
-        We\'ll live and reign together,
+        We'll live and reign together,
         My Lord and I.",
     ],
     [
         'number' => "266",
         'title' => "A Friend For Little Children",
-        'lyrics' => "1. There\'s a Friend for little children
+        'lyrics' => "1. There's a Friend for little children
         Above the bright blue sky,
         A Friend that never changes,
         Whose love will never die;
@@ -7254,25 +7254,25 @@ class HymnSeeder extends Seeder
         This Friend is always worthy
         The precious Name He bears.
         
-        2. There\'s a rest for little children
+        2. There's a rest for little children
         Above the bright blue sky
         Who love the blessed Saviour
         And to His Father cry;
-        A rest from ev\'ry trouble,
+        A rest from ev'ry trouble,
         From sin and danger free;
-        There ev\'ry little pilgrim
+        There ev'ry little pilgrim
         Shall rest eternally.
         
-        3. There\'s a home for little children
+        3. There's a home for little children
         Above the bright blue sky
         Where Jesus reigns in glory,
         A home of peace and joy;
         No home on earth is like it,
         Nor can with it compare,
-        For ev\'ryone is happy,
+        For ev'ryone is happy,
         Nor can be happier there.
         
-        4. There\'s a crown for little children
+        4. There's a crown for little children
         Above the bright blue sky,
         And all who look to Jesus
         Shall wear it by and by;
@@ -7281,7 +7281,7 @@ class HymnSeeder extends Seeder
         On all who love the Saviour,
         And walk with Him below.
         
-        5. There\'s a song for little children
+        5. There's a song for little children
         Above the bright blue sky,
         And a harp of sweetest music
         For their hymn of victory;
@@ -7295,11 +7295,11 @@ class HymnSeeder extends Seeder
         'title' => "Babe Of Bethlehem",
         'lyrics' => "1. Have you ever heard the story?
         Of the babe of Bethlehem,
-        Who was worshipp\'d by the angels
+        Who was worshipp'd by the angels
         And the wise and holy men,
         How He taught the learned doctors
         In the temple far away?
-        Oh, I\'m glad, so glad to tell you,
+        Oh, I'm glad, so glad to tell you,
         He is just the same to-day.
         
         CHORUS
@@ -7315,7 +7315,7 @@ class HymnSeeder extends Seeder
         On the waves of Galilee;
         How the waves in angry motion
         Quickly would his will obey!
-        Oh, I\'m glad, so glad to tell you,
+        Oh, I'm glad, so glad to tell you,
         He is just the same to-day.
         
         3. Have you ever heard of Jesus?
@@ -7325,14 +7325,14 @@ class HymnSeeder extends Seeder
         Cruel thorns His forehead piercing
         As His Spirit passed away!
         This He did for you, my brother,
-        And He\'s just the same to-day.",
+        And He's just the same to-day.",
     ],
     [
         'number' => "268",
         'title' => "Courage Brother",
         'lyrics' => "1. Courage brother! Do not stumble,
         Though thy path be dark as night;
-        There\'s a star to guide the humble,
+        There's a star to guide the humble,
         Trust in God, and do the right.
         
         2. Let the road be rough and dreary,
@@ -7409,7 +7409,7 @@ class HymnSeeder extends Seeder
         CHORUS
         Room for Jesus, King of glory,
         Hasten now, His word obey!
-        Swing the heart\'s door widely open,
+        Swing the heart's door widely open,
         Bid Him enter while you may.
         
         2. Room for pleasure, room for business,
@@ -7423,9 +7423,9 @@ class HymnSeeder extends Seeder
         To-morrow you may call in vain!
         
         4. Room and time now give to Jesus,
-        Soon will pass God\'s day of grace;
+        Soon will pass God's day of grace;
         Soon thy heart left cold and silent,
-        And thy Saviour\'s pleading cease.",
+        And thy Saviour's pleading cease.",
     ],
     [
         'number' => "271",
@@ -7438,7 +7438,7 @@ class HymnSeeder extends Seeder
         CHORUS
         Whosoever will! Whosoever will!
         Send the proclamation over vale and hill;
-        \'Tis the loving Father calls the wanderer home,
+        'Tis the loving Father calls the wanderer home,
         Whosoever will may come!
         
         2. Whosoever cometh need not delay,
@@ -7448,7 +7448,7 @@ class HymnSeeder extends Seeder
         
         3. Whosoever will! The promise is secure,
         Whosoever will, for ever shall endure;
-        Whosoever will - \'tis life for evermore
+        Whosoever will - 'tis life for evermore
         Whosoever will may come.",
     ],
     [
@@ -7468,11 +7468,11 @@ class HymnSeeder extends Seeder
         Hear the voice that entreats you,
         Oh, return ye unto God!
         
-        3. He\'ll forgive your transgressions,
+        3. He'll forgive your transgressions,
         And remember them no more;
         Look unto me ye people,
         Saith the Lord your God;
-        He\'ll forgive your transgressions,
+        He'll forgive your transgressions,
         And remember them no more.",
     ],
     [
@@ -7508,14 +7508,14 @@ class HymnSeeder extends Seeder
         When sorrows, like sea billows roll;
         Whatever my lot,
         Thou hast taught me to say,
-        \'It is well, it is well with my soul.\'
+        'It is well, it is well with my soul.'
         
         CHORUS
         It is well... with my soul...
         It is well, it is well with my soul.
         
         2. If Satan should buffet,
-        Tho\' trials should come,
+        Tho' trials should come,
         Let this blest assurance control.
         Christ hath regarded My helpless estate,
         And hath shed His own blood for my soul.
@@ -7532,7 +7532,7 @@ class HymnSeeder extends Seeder
         for in death as in life
         Thou wilt whisper Thy peace to my soul.
         
-        5. But Lord, \'tis for Thee,
+        5. But Lord, 'tis for Thee,
         For Thy coming we wait,
         The sky, not the grave, is our goal;
         Oh, the shout of the angel!
@@ -7571,7 +7571,7 @@ class HymnSeeder extends Seeder
         Youth and beauty passed away,
         Oh, you have not long to stay,
         Be in time!
-        While God\'s Spirit bids you come,
+        While God's Spirit bids you come,
         Sinner, do no longer roam,
         Lest you seal your hopeless doom,
         Be in time!
@@ -7599,14 +7599,14 @@ class HymnSeeder extends Seeder
         'title' => "One Above Others",
         'lyrics' => "1. One there is above all others,
         Oh, how He loves!
-        His love is beyond a brother\'s
+        His love is beyond a brother's
         Oh, how He loves!
         Earthly friends may fail or leave us,
         One day soothe, the next day grieve us,
-        But this friend will ne\'er deceive us,
+        But this friend will ne'er deceive us,
         Oh, how He loves!
         
-        2. \'Tis eternal life to know Him,
+        2. 'Tis eternal life to know Him,
         Oh, how He loves!
         Think, oh think, how much we owe Him,
         Oh, how He loves!
@@ -7617,7 +7617,7 @@ class HymnSeeder extends Seeder
         
         3. We have found a friend in Jesus,
         Oh, how He loves!
-        \'Tis His great delight to bless us,
+        'Tis His great delight to bless us,
         oh, how He loves!
         How our hearts delight to hear Him
         Bid us dwell in safety near Him!
@@ -7628,19 +7628,19 @@ class HymnSeeder extends Seeder
         Oh, how He loves!
         Backward shall our foes be driven,
         Oh, how He loves!
-        Best of blessings He\'ll provide us,
-        Nought but good shall e\'er betide us,
+        Best of blessings He'll provide us,
+        Nought but good shall e'er betide us,
         Safe to glory He will guide us,
         Oh, how He loves!",
     ],
     [
         'number' => "279",
         'title' => "Stranger At The Door",
-        'lyrics' => "1. There\'s a stranger at the door, Let Him in
+        'lyrics' => "1. There's a stranger at the door, Let Him in
         He has been there oft before, Let Him in
         Let Him in, ere He is gone,
         Let Him in, the Holy one,
-        Jesus Christ the Father\'s Son, Let Him in.
+        Jesus Christ the Father's Son, Let Him in.
         
         2. Open now to Him your heart, Let Him in,
         If you wait He will depart, Let Him in;
@@ -7656,7 +7656,7 @@ class HymnSeeder extends Seeder
         
         4. Now admit the heavenly Guest, Let Him in;
         He will make for you a feast, Let Him in;
-        He\'ll speak your sins forgiven,
+        He'll speak your sins forgiven,
         And when earth ties all are riven,
         He will take you home to heaven, Let Him in.",
     ],
@@ -7691,31 +7691,31 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "281",
-        'title' => "Who Is On The Lord\'s Side",
-        'lyrics' => "1. Who is on the Lord\'s side?
+        'title' => "Who Is On The Lord's Side",
+        'lyrics' => "1. Who is on the Lord's side?
         Who will serve the King?
         Who will be His helper;
         Other lives to bring?
-        Who will leave the world\'s side?
+        Who will leave the world's side?
         Who will face the foe?
-        Who is on the Lord\'s side?
+        Who is on the Lord's side?
         Who for Him will go?
         By thy call of mercy,
         By thy grace divine,
-        We are on the Lord\'s side,
+        We are on the Lord's side,
         Saviour, we are Thine!
         
         2. Not for weight of glory,
         Nor for crown and palm,
         Enter we the army,
-        Raise the warrior\'s psalm;
+        Raise the warrior's psalm;
         But for the love that claimeth
         Lives for whom He died;
         He whom Jesus nameth
         Must be on His side!
         By thy love constraining,
         By thy grace divine,
-        We are on the Lord\'s side,
+        We are on the Lord's side,
         Saviour, we are Thine!
         
         3. Jesus, thou hast bought us,
@@ -7728,12 +7728,12 @@ class HymnSeeder extends Seeder
         Thou hast made us free.
         By thy grand redemption,
         By thy grace divine,
-        We are on the Lord\'s side,
+        We are on the Lord's side,
         Saviour, we are Thine!
         
         4. Fierce may be the conflict,
         Strong may be the foe;
-        But the King\'s own army
+        But the King's own army
         None can overthrow;
         Round His standard ranging,
         Victory is secure,
@@ -7741,7 +7741,7 @@ class HymnSeeder extends Seeder
         Makes the triumph sure,
         Joyfully enlisting,
         By thy grace divine,
-        We are on the Lord\'s side,
+        We are on the Lord's side,
         Saviour, we are Thine!",
     ],
     [
@@ -7767,16 +7767,16 @@ class HymnSeeder extends Seeder
         I shall see the light at last,
         When I get home;
         Light from heaven streaming,
-        O\'er my pathway beaming,
+        O'er my pathway beaming,
         Ever guides me onward,
         Till I get home.
         
-        3. I shall see my Saviour\'s face,
+        3. I shall see my Saviour's face,
         When I get home;
         Sing again of saving grace,
         When I get home;
         I shall stand before Him;
-        Gladly I\'ll adore Him;
+        Gladly I'll adore Him;
         Ever to be with Him,
         When I get home!",
     ],
@@ -7785,8 +7785,8 @@ class HymnSeeder extends Seeder
         'title' => "Come To The Saviour",
         'lyrics' => "1. Come to the Saviour, make no delay,
         Here in His word He has shown us the way;
-        Here in our midst He\'s standing to-day,
-        Tenderly saying, \'Come!\'
+        Here in our midst He's standing to-day,
+        Tenderly saying, 'Come!'
         
         CHORUS
         Joyful, joyful will the meeting be,
@@ -7794,15 +7794,15 @@ class HymnSeeder extends Seeder
         And we shall gather, Saviour, with Thee,
         In our eternal home.
         
-        2. \'Suffer the children\' Oh, hear His voice!
+        2. 'Suffer the children' Oh, hear His voice!
         Let every heart leap forth and rejoice;
         And let us freely make Him our choice,
         Do not delay, but come.
         
-        3. Think once again, He\'s with us to-day;
+        3. Think once again, He's with us to-day;
         Heed now is blest command and obey;
         Hear now is accents tenderly say,
-        \'Will you, my children, come?\'",
+        'Will you, my children, come?'",
     ],
     [
         'number' => "284",
@@ -7818,18 +7818,18 @@ class HymnSeeder extends Seeder
         
         2. Many are choosing Christ to-day,
         Turning from all their sins away;
-        Heav\'n shall their happy portion be,
+        Heav'n shall their happy portion be,
         Where will you spend eternity?
         
         3. Leaving the strait and narrow way,
         Going the downward road to-day,
         Sad will their final ending be -
-        Lost thro\' a long eternity!
+        Lost thro' a long eternity!
         
         4. Repent, believe this very hour,
-        Trust in the Saviour\'s grace and power,
+        Trust in the Saviour's grace and power,
         Then will your joyous answer be,
-        Sav\'d thro\' a long eternity!",
+        Sav'd thro' a long eternity!",
     ],
     [
         'number' => "285",
@@ -7845,17 +7845,17 @@ class HymnSeeder extends Seeder
         There my burdened soul found liberty,
         At Calvary.
         
-        2. By God\'s word at last my sin I learned
-        Then I trembled at the law I\'d spurned,
+        2. By God's word at last my sin I learned
+        Then I trembled at the law I'd spurned,
         Till my guilty soul, imploring, turned
         To Calvary.
         
-        3. Now I\'ve given to Jesus ev\'rything,
+        3. Now I've given to Jesus ev'rything,
         Now I gladly own Him as my King,
         Now my raptures soul can only sing
         Of Calvary.
         
-        4. Oh! The love that drew salvation\'s plan
+        4. Oh! The love that drew salvation's plan
         Oh! The grace that brought it down to man
         Oh! The mighty gulf that God did span
         At Calvary.",
@@ -7866,7 +7866,7 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. Whither, pilgrims are you going,
         Going each with staff in hand?
         We are going on a journey,
-        Going at our King\'s command,
+        Going at our King's command,
         Over hills and plains, and valleys,
         We are going to His palace,
         We are going to His palace,
@@ -7875,8 +7875,8 @@ class HymnSeeder extends Seeder
         2. Tell us, pilgrims, what you hope for?
         In that far-off better land!
         Spotless robes and crowns of glory,
-        From a Saviour\'s loving hand.
-        We shall drink of life\'s clear river,
+        From a Saviour's loving hand.
+        We shall drink of life's clear river,
         We shall dwell with God for ever,
         We shall dwell with God for ever,
         In the bright, that better land.
@@ -7910,16 +7910,16 @@ class HymnSeeder extends Seeder
         
         3. Oh, precious Jesus, how lovely thou art!
         Come, and abiding, rule in my heart;
-        Break ev\'ry fetter, Thy face let me see.
+        Break ev'ry fetter, Thy face let me see.
         Then thou shalt ever be precious to me.",
     ],
     [
         'number' => "288",
-        'title' => "The Hollow Of God\'s Hand",
+        'title' => "The Hollow Of God's Hand",
         'lyrics' => "1. I am safe, whatever may betide me;
         I am safe, whoever may deride me;
         I am safe, as long as I confide me;
-        In the hollow of God\'s hand!
+        In the hollow of God's hand!
         
         CHORUS
         In the hollow, hollow of His hand,
@@ -7927,10 +7927,10 @@ class HymnSeeder extends Seeder
         I am safe while God Himself doth hold me,
         In the hollow of His hand!
         
-        2. What tho\' fierce the stormy blast roar round me;
-        What tho\' sore life\'s trials oft confound me;
+        2. What tho' fierce the stormy blast roar round me;
+        What tho' sore life's trials oft confound me;
         I am safe, for naught of ill can wound me
-        In the hollow of God\'s hand!
+        In the hollow of God's hand!
         
         3. Everlasting arms of love enfold me
         Words of peace the voice divine has told me;
@@ -7964,7 +7964,7 @@ class HymnSeeder extends Seeder
         Jesus is mine.
         Welcome, oh, loved and blest,
         Welcome, sweet scenes of rest,
-        Welcome, my Saviour\'s breast. Jesus is mine.",
+        Welcome, my Saviour's breast. Jesus is mine.",
     ],
     [
         'number' => "290",
@@ -7972,7 +7972,7 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. All over the world the Spirit is moving,
         All over the world as the prophet said
         It would be.
-        All over the world there\'s a mighty revelation
+        All over the world there's a mighty revelation
         Of the glory of the Lord
         As the waters cover the sea!
         ..
@@ -7989,7 +7989,7 @@ class HymnSeeder extends Seeder
         Jesus my Saviour I met
         O, what a tender compassionate Friend
         He met the needs of my heart
-        Shadows dispelling with joy I\'m telling
+        Shadows dispelling with joy I'm telling
         He made all the darkness depart.
         
         CHORUS
@@ -8000,19 +8000,19 @@ class HymnSeeder extends Seeder
         Heaven came down and glory filled my soul.
         
         2. Born of the Spirit with life from above
-        Into God\'s family divine,
-        Justified fully through Calvary\'s love,
+        Into God's family divine,
+        Justified fully through Calvary's love,
         O what a standing is mine,
         And the transaction so quickly was made,
         When as a sinner I came,
         Took of the offer He did proffer,
         He saved me, o praise His dear Name.
         
-        3. Now I\'ve a hope that will surely endure,
+        3. Now I've a hope that will surely endure,
         After the passing of time,
         I have a future in heaven for sure,
         There are those mansions sublime,
-        And it\'s because of that wonderful day,
+        And it's because of that wonderful day,
         When at the cross I believed,
         Riches eternal and blessing supernal,
         From His precious hand I will receive.",
@@ -8030,7 +8030,7 @@ class HymnSeeder extends Seeder
         I lift it up, Lord,
         Come and quench this thirsting of my soul.
         Bread of heaven,
-        Feed me \'til I want no more,
+        Feed me 'til I want no more,
         Fill my cup, fill it up and make me whole.
         
         2. As the hart pants for the water,
@@ -8064,19 +8064,19 @@ class HymnSeeder extends Seeder
         This child can face uncertain days,
         Because He lives!
         
-        3. And then one day I\'ll cross the river,
-        I\'ll fight life\'s final war and pass,
+        3. And then one day I'll cross the river,
+        I'll fight life's final war and pass,
         And then as death gives way to victory,
-        I\'ll see the light of glory and I\'ll know He lives.",
+        I'll see the light of glory and I'll know He lives.",
     ],
     [
         'number' => "294",
-        'title' => "There\'s Never Been A Day",
-        'lyrics' => "1. There\'s never been a day
+        'title' => "There's Never Been A Day",
+        'lyrics' => "1. There's never been a day
         Like this day to me,
-        There\'s never been a day
+        There's never been a day
         Like this day I see,
-        There\'s never been a light
+        There's never been a light
         That shines so bright
         Like this day, this glorious day.",
     ],
@@ -8153,7 +8153,7 @@ class HymnSeeder extends Seeder
         King of kings, Lord of lords,
         Bright morning star;
         And throughout eternity
-        I\'m going to praise Him
+        I'm going to praise Him
         And forevermore, I will reign with Him.",
     ],
     [
@@ -8195,7 +8195,7 @@ class HymnSeeder extends Seeder
         
         2. Silent night, Holy night,
         Shepherds quake at the sight,
-        Wise men ponder heaven\'s bright star,
+        Wise men ponder heaven's bright star,
         Angels singing their Hallelujah!
         Christ the Saviour is born,
         Christ the Saviour is born.
@@ -8221,12 +8221,12 @@ class HymnSeeder extends Seeder
         I am so glad that Jesus loves me,
         Jesus loves even me.
         
-        2. Tho\' I forget Him and wandered away,
+        2. Tho' I forget Him and wandered away,
         Still He doth love me wherever I stray,
         Back to His dear loving arms would I feel,
         When I remember that Jesus loves me.
         
-        3. O if there\'s only one song I can sing,
+        3. O if there's only one song I can sing,
         When in His beauty I see the great King,
         This shall my song in eternity be;
         O what a wonder that Jesus loves me.",
@@ -8235,40 +8235,40 @@ class HymnSeeder extends Seeder
         'number' => "302",
         'title' => "This World Is Not My Home",
         'lyrics' => "1. This world is not my home
-        I\'m just a\'passing through
+        I'm just a'passing through
         My treasures are laid up
         Somewhere beyond the blue.
         The angels beckon me
-        From heaven\'s open door
-        And I can\'t feel at home
+        From heaven's open door
+        And I can't feel at home
         In this world anymore.
         
         CHORUS
         O Lord you know,
         I have no friend like you
-        If heaven\'s not my home
+        If heaven's not my home
         Then Lord what will I do?
         The angels beckon me
-        From heaven\'s open door
-        And I can\'t feel at home
+        From heaven's open door
+        And I can't feel at home
         In this world anymore.
         
-        2. They\'re all expecting me
-        And that\'s one thing I know
+        2. They're all expecting me
+        And that's one thing I know
         I fixed it up with Jesus
         Many years ago.
-        I know He\'ll see me through
-        Tho\' I am weak and poor
-        And I can\'t feel at home
+        I know He'll see me through
+        Tho' I am weak and poor
+        And I can't feel at home
         In this world anymore.
         
         3. Just over in the gloryland,
-        We\'ll live eternally;
+        We'll live eternally;
         The saints on every hand
-        Are shouting \'victory\'.
+        Are shouting 'victory'.
         The songs of sweetest praise
-        Drift back from heaven\'s shore
-        And I can\'t feel at home
+        Drift back from heaven's shore
+        And I can't feel at home
         In this world anymore.",
     ],
     [
@@ -8281,7 +8281,7 @@ class HymnSeeder extends Seeder
         
         CHORUS
         Up from the grave He arose,
-        With a mighty triumph o\'er His foes;
+        With a mighty triumph o'er His foes;
         He arose a victor from the dark domain,
         And He lives forever with His saints to reign,
         He arose, He arose Hallelujah,
@@ -8302,25 +8302,25 @@ class HymnSeeder extends Seeder
         'title' => "I Know The Lord Will Make A Way",
         'lyrics' => "1. I know the Lord will make a way for me.
         I know the Lord will make a way for me.
-        If I walk in heaven\'s light,
+        If I walk in heaven's light,
         Shun the wrong and do the right.
         I know the Lord will make a way for me.
         
         2. The Saviour bids me live for Him always
         The Saviour bids me live for Him always
-        If I walk in heaven\'s light,
+        If I walk in heaven's light,
         Shun the wrong and do the right.
         I know the Lord will make a way for me.
         
         3. The Lord has said go tell the word to all
         The Lord has said go tell the word to all
-        If I walk in heaven\'s light,
+        If I walk in heaven's light,
         Shun the wrong and do the right.
         I know the Lord will make a way for me.
         
-        4. Won\'t it be grand to hear Him say \'well done?\'
-        Won\'t it be grand to hear Him say \'well done?\'
-        If I walk in heaven\'s light,
+        4. Won't it be grand to hear Him say 'well done?'
+        Won't it be grand to hear Him say 'well done?'
+        If I walk in heaven's light,
         Shun the wrong and do the right.
         I know the Lord will make a way for me.",
     ],
@@ -8359,7 +8359,7 @@ class HymnSeeder extends Seeder
         4. Stand up, stand up for Jesus,
         The strife will not be long,
         This day the noise of battle,
-        The next the victor\'s song.
+        The next the victor's song.
         To him that overcometh,
         A crown of life shall be,
         He with the King of glory,
@@ -8368,10 +8368,10 @@ class HymnSeeder extends Seeder
     [
         'number' => "306",
         'title' => "The Original Life",
-        'lyrics' => "1. God\'s attributes were manifested
+        'lyrics' => "1. God's attributes were manifested
         To His Bride in this last age.
         We have caught the revelation
-        By the last prophet\'s message.
+        By the last prophet's message.
         And we know who we are
         And what we are raised up for,
         Praise the Lord, for the Original Life.
@@ -8388,7 +8388,7 @@ class HymnSeeder extends Seeder
         And our names are seen within,
         Redeemed and perfect without sin.
         Yes, we are anointed and inspired
-        By our God, Who\'s the Original Life.
+        By our God, Who's the Original Life.
         
         3. Our eyes of understanding
         He has opened up at last.
@@ -8396,15 +8396,15 @@ class HymnSeeder extends Seeder
         Who were chained down in the past.
         True Jubilee has sounded
         And we have responded
-        To our God, Who\'s the Original Life.
+        To our God, Who's the Original Life.
         
         4. We are called unto adoption
         Full authority and power.
         Sleeping saints will wake and join us
         For translation in this hour.
-        Gentiles\' days soon will be over
+        Gentiles' days soon will be over
         Glory, hallelujah!
-        To our God, Who\'s the Original Life.",
+        To our God, Who's the Original Life.",
     ],
     [
         'number' => "307",
@@ -8412,17 +8412,17 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. My Jesus, I love Thee, I know Thou art mine,
         For Thee all the follies of sin I resign;
         My gracious Redeemer, my Saviour art Thou;
-        If ever I love Thee, my Jesus, \'tis now.
+        If ever I love Thee, my Jesus, 'tis now.
         
         2. I love Thee because Thou art first loved me
-        And purchased my pardon on Calvary\'s tree;
+        And purchased my pardon on Calvary's tree;
         I love Thee for wearing the thorns on Thy brow;
-        If ever I love Thee, my Jesus \'tis now.
+        If ever I love Thee, my Jesus 'tis now.
         
         3. In mansions of glory and endless delight,
-        I\'ll ever adore Thee in heaven so bright;
-        I\'ll sing with the glittering crown on my brow;
-        If ever I loved Thee, my Jesus, \'tis now.",
+        I'll ever adore Thee in heaven so bright;
+        I'll sing with the glittering crown on my brow;
+        If ever I loved Thee, my Jesus, 'tis now.",
     ],
     [
         'number' => "308",
@@ -8440,11 +8440,11 @@ class HymnSeeder extends Seeder
         
         3. We are members of His body.
         We are objects of His love.
-        We\'re partakers of His holiness
+        We're partakers of His holiness
         We are citizens of heaven above.
         
-        4. We\'re partakers of His suffering;
-        We\'re partakers of His grace.
+        4. We're partakers of His suffering;
+        We're partakers of His grace.
         We shall meet Him to be like Him
         We shall see Him face to face.
         
@@ -8460,33 +8460,33 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "309",
-        'title' => "I Don\'t Know What I\'d Do",
-        'lyrics' => "1. I don\'t know what I\'d do,
-        I don\'t know what I\'d do,
-        I don\'t know what I\'d do without the Lord;
+        'title' => "I Don't Know What I'd Do",
+        'lyrics' => "1. I don't know what I'd do,
+        I don't know what I'd do,
+        I don't know what I'd do without the Lord;
         When I look around and see,
         All that He has done for me,
-        I don\'t know what I\'d do without the Lord.
+        I don't know what I'd do without the Lord.
         
         2. Without Him I can do nothing,
-        Without Him I\'d surely fail;
+        Without Him I'd surely fail;
         Without Him I would be drifting,
         Like a ship without a sail.
         
-        3. So I\'ll ask Him to be my pilot,
+        3. So I'll ask Him to be my pilot,
         His word my compass and guide;
-        Till I\'ve anchored safely in glory,
-        For without Him I\'d drift with the tide.
+        Till I've anchored safely in glory,
+        For without Him I'd drift with the tide.
         
         4. Jesus, my Jesus,
         Do you know Him today?
-        Please don\'t turn Him away, Oh,
+        Please don't turn Him away, Oh,
         Jesus, my Jesus,
         Without Him how lost I would be.",
     ],
     [
         'number' => "310",
-        'title' => "He\'s The Lord Of Glory",
+        'title' => "He's The Lord Of Glory",
         'lyrics' => "1. Behold what manner of man is this,
         Who stills the raging sea.
         He heals the sick, the lame, the halt,
@@ -8497,13 +8497,13 @@ class HymnSeeder extends Seeder
         What manner of man is He?
         
         CHORUS
-        He \'s the Lord of glory
-        He is the great \'I AM\'
+        He 's the Lord of glory
+        He is the great 'I AM'
         The Alpha and Omega,
         The beginning and the end.
         His name is Wonderful
         The Prince of Peace is He
-        He\'s the everlasting Father
+        He's the everlasting Father
         Throughout eternity.
         
         2. Behold what manner of man is this,
@@ -8517,10 +8517,10 @@ class HymnSeeder extends Seeder
         
         3. Behold what manner of man is this,
         Who speaks to the lame and halt.
-        He says \'Thy sins be forgiven thee,
-        Take up thy bed and walk\'
+        He says 'Thy sins be forgiven thee,
+        Take up thy bed and walk'
         He stands as the mighty healer now
-        And cries \'Come unto me\'
+        And cries 'Come unto me'
         Behold what manner of man is this
         What manner of man is He?
         
@@ -8537,7 +8537,7 @@ class HymnSeeder extends Seeder
         Who sits on His heavenly throne.
         He rules and reigns from heaven above
         His beloved and His own.
-        He\'s the Lion of the tribe of Judah,
+        He's the Lion of the tribe of Judah,
         The Root of David is He.
         Behold what manner of man is this
         What manner of man is He?",
@@ -8545,19 +8545,19 @@ class HymnSeeder extends Seeder
     [
         'number' => "311",
         'title' => "My Sins Are Gone",
-        'lyrics' => "1. You ask me why I\'m happy
-        So I\'ll just tell you why,
+        'lyrics' => "1. You ask me why I'm happy
+        So I'll just tell you why,
         Because my sins are gone;
         And when I meet the scoffers
         Who ask me where they are,
         I say, my sins are gone.
         
         CHORUS
-        They\'re underneath the Blood,
+        They're underneath the Blood,
         On the Cross of Calvary,
         As far removed as darkness is from dawn;
-        In the sea of God\'s forgetfulness,
-        That\'s good enough for me,
+        In the sea of God's forgetfulness,
+        That's good enough for me,
         Praise God, my sins are gone.
         
         2. I was at the old-time altar
@@ -8565,17 +8565,17 @@ class HymnSeeder extends Seeder
         And now my sins are gone;
         The Lord took full possession,
         the devil did depart,
-        I\'m glad my sins are gone.
+        I'm glad my sins are gone.
         
         3. When Satan comes to tempt me
         And tries to make me doubt,
         I say, my sins are gone;
         You got me into trouble,
         But Jesus got me out,
-        I\'m glad my sins are gone.
+        I'm glad my sins are gone.
         
-        4. I\'m living now for Jesus,
-        I\'m happy night and day,
+        4. I'm living now for Jesus,
+        I'm happy night and day,
         Because my sins are gone;
         My soul is filled with music,
         With all my heart I say,
@@ -8593,24 +8593,24 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "312",
-        'title' => "Let\'s Talk About Jesus",
-        'lyrics' => "1. Let\'s talk about Jesus,
+        'title' => "Let's Talk About Jesus",
+        'lyrics' => "1. Let's talk about Jesus,
         The King of kings is He,
         The Lord of lords supreme,
         Through all eternity.
         The Great I AM, the Way,
         The Truth, the Life the Door,
-        Let\'s talk about Jesus more and more.
+        Let's talk about Jesus more and more.
         
-        2. Let\'s talk about Jesus,
+        2. Let's talk about Jesus,
         Let all the world proclaim.
-        The pow\'r and majesty
+        The pow'r and majesty
         Of such a wondrous Name.
         The Babe of Bethlehem,
         The Bright and Morning Star,
-        Let\'s sing His praises near and far.
+        Let's sing His praises near and far.
         
-        3. Let\'s talk about Jesus,
+        3. Let's talk about Jesus,
         The Bread of Life is He,
         The Saviour of the world,
         The Man of Galilee.
@@ -8618,7 +8618,7 @@ class HymnSeeder extends Seeder
         The Mighty God is He,
         The well of Living Water free.
         
-        4. Let\'s talk about Jesus,
+        4. Let's talk about Jesus,
         The Prince of Peace is He,
         The Great Physician too,
         Down through all history.
@@ -8626,7 +8626,7 @@ class HymnSeeder extends Seeder
         The Rose of Sharon fair,
         The Shepherd of such tender care.
         
-        5. Let\'s talk about Jesus,
+        5. Let's talk about Jesus,
         The Rock of Ages He,
         The Lamb for sinners slain,
         That Man of Calvary.
@@ -8644,24 +8644,24 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "313",
-        'title' => "Thank God I\'m Free",
+        'title' => "Thank God I'm Free",
         'lyrics' => "1. For a long time I travelled
         Down a long lonely road;
         My heart was so heavy, in sin I sank low.
         Then I heard about Jesus,
         What a wonderful hour;
-        I\'m so glad that I found out
+        I'm so glad that I found out
         He could bring me out
         Through His saving power!
         
         CHORUS
-        Thank God I\'m free, free, free
+        Thank God I'm free, free, free
         From this world of sin,
-        Washed in the blood of Jesus\'
-        I\'ve been born again
-        Hallelujah I\'m saved, saved, saved
+        Washed in the blood of Jesus'
+        I've been born again
+        Hallelujah I'm saved, saved, saved
         By His wonderful grace!
-        I\'m so glad that I found out
+        I'm so glad that I found out
         He could bring me out
         And show me the way.
         
@@ -8670,7 +8670,7 @@ class HymnSeeder extends Seeder
         Like a blind man whom God
         Gave back His sight!
         Like a poor wretched beggar,
-        That\'s found fortune and fame.
+        That's found fortune and fame.
         He could bring me out
         Thro His Holy Name!",
     ],
@@ -8714,15 +8714,15 @@ class HymnSeeder extends Seeder
         
         2. He paid a debt at Calvary,
         He cleansed my soul and set me free,
-        I\'m glad that Jesus did all my sins erase.
+        I'm glad that Jesus did all my sins erase.
         I now can sing a brand new song,
         Amazing grace all day long,
         Christ Jesus paid a debt
         That I could never pay.
         
-        3. One day He\'s coming back for me,
+        3. One day He's coming back for me,
         To live with Him eternally,
-        Won\'t it be glory to see Him on that day!
+        Won't it be glory to see Him on that day!
         I then will sing a brand new song,
         Amazing grace all day long
         Christ Jesus paid a debt
@@ -8737,14 +8737,14 @@ class HymnSeeder extends Seeder
         Of mortal ills prevailing.
         For still our ancient foe
         Doth seek to work us woe -
-        His craft and pow\'r are great,
+        His craft and pow'r are great,
         And, armed with cruel hate,
         On earth is not his equal.
         
         2. Did we in our own strength confide
         Our striving would be losing,
         Were not the right Man on our side,
-        The Man of God\'s own choosing.
+        The Man of God's own choosing.
         Dost ask who that may be?
         Christ Jesus, it is He -
         Lord Sabaoth His name,
@@ -8761,14 +8761,14 @@ class HymnSeeder extends Seeder
         For lo! His doom is sure -
         One little word shall fell him.
         
-        4. That word above all earthly pow\'rs -
+        4. That word above all earthly pow'rs -
         No thanks to them - abideth;
         The Spirit and the gifts are ours
         Thru Him who with us sideth.
         Let goods and kindred go
         This mortal life also;
         The body they may kill:
-        God\'s truth abideth still -
+        God's truth abideth still -
         His kingdom is forever.",
     ],
     [
@@ -8789,14 +8789,14 @@ class HymnSeeder extends Seeder
         All, all is well.
         Happy still in God confiding,
         Fruitful if in Christ abiding,
-        Holy through the Spirit\'s guiding
+        Holy through the Spirit's guiding
         All must be well.
         
         3. We expect a bright tomorrow
         All will be well;
         Faith can sing through days of sorrow
         All, all is well,
-        On our Father\'s love relying,
+        On our Father's love relying,
         Jesus every need supplying,
         Or in living, or in dying,
         All must be well.",
@@ -8805,22 +8805,22 @@ class HymnSeeder extends Seeder
         'number' => "319",
         'title' => "Lord, Lord, Lord",
         'lyrics' => "1. Lord, Lord, Lord,
-        You\'ve surely been good to me;
+        You've surely been good to me;
         (repeat 3 times)
         You have done what this world could not do.
         
         2. You saved my soul when I was lost
-        You\'ve surely been good to me;
+        You've surely been good to me;
         (repeat 3 times)
         You have done what this world could not do.
         
         3. You filled me with the Holy Ghost,
-        You\'ve surely been good to me;
+        You've surely been good to me;
         (repeat 3 times)
         You have done what this world could not do.
         
         4. You healed my body when I was sick,
-        You\'ve surely been good to me;
+        You've surely been good to me;
         (repeat 3 times)
         You have done what this world could not do.",
     ],
@@ -8841,11 +8841,11 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. I get so thrilled with Jesus
         Every moment of the day.
         I get so thrilled with Jesus
-        He\'s the truth, the life, the way.
+        He's the truth, the life, the way.
         I get so thrilled with Jesus
         He satisfies my longing soul.
         I get so thrilled with Jesus
-        He\'s the One who makes me whole.",
+        He's the One who makes me whole.",
     ],
     [
         'number' => "322",
@@ -8867,7 +8867,7 @@ class HymnSeeder extends Seeder
         Give me oil in my lamp I pray.
         Give me oil in my lamp
         Keep me burning,
-        Keep me burning \'til the break of day.
+        Keep me burning 'til the break of day.
         Sing Hosannah! Sing Hosannah!
         Sing Hosannah to the King of Kings!
         Sing Hosannah!
@@ -8877,11 +8877,11 @@ class HymnSeeder extends Seeder
     [
         'number' => "324",
         'title' => "Joybells In My Heart",
-        'lyrics' => "1. I\'ve got the joybells in my heart,
-        I\'ve got the joybells in my heart.
-        I\'ll sing His praises,
+        'lyrics' => "1. I've got the joybells in my heart,
+        I've got the joybells in my heart.
+        I'll sing His praises,
         Through all the ages,
-        I\'ve got the joybells in my heart.",
+        I've got the joybells in my heart.",
     ],
     [
         'number' => "325",
@@ -8938,11 +8938,11 @@ class HymnSeeder extends Seeder
         
         3. Take this whole world but give me Jesus,
         (repeat 2 times)
-        I won\'t turn back, I won\'t turn back.
+        I won't turn back, I won't turn back.
         
         4. I have started for the kingdom,
         (repeat 3 times)
-        I won\'t turn back, I won\'t turn back.
+        I won't turn back, I won't turn back.
         
         5. Though none go with me, still will I follow,
         (repeat 3 times)
@@ -8953,34 +8953,34 @@ class HymnSeeder extends Seeder
         'title' => "Until Then",
         'lyrics' => "1. My heart can sing when I pause to remember,
         A heartache here  is but a stepping stone,
-        Along the trail that\'s winding always upward,
+        Along the trail that's winding always upward,
         This troubled world is not my final home.
         
         CHORUS
         But until then, my heart will go on singing,
-        Until then, with joy I\'ll carry on.
+        Until then, with joy I'll carry on.
         Until the day mine eyes behold the city
         Until the day God calls me home.
         
         2. The things of earth will dim and lose their value,
-        If we recall, they\'re borrowed for awhile
+        If we recall, they're borrowed for awhile
         And things of earth that cause the heart to tremble
         Remember there, will only bring a smile.
         
         3. This weary world with all its toil and struggle,
         May take its toll of misery and strife,
         The soul of man is like a waiting falcon
-        When it\'s released it\'s destined for the sky.",
+        When it's released it's destined for the sky.",
     ],
     [
         'number' => "329",
         'title' => "Joy To The World",
         'lyrics' => "1. Joy to the world! the Lord is come;
         Let earth receive her King;
-        Let ev\'ry heart prepare Him room,
-        And heav\'n and nature sing,
-        And heav\'n and nature sing,
-        And heav\'n, and heav\'n and nature sing.
+        Let ev'ry heart prepare Him room,
+        And heav'n and nature sing,
+        And heav'n and nature sing,
+        And heav'n, and heav'n and nature sing.
         
         2. Joy to the earth! the Savior reigns;
         Let men their songs employ;
@@ -9005,13 +9005,13 @@ class HymnSeeder extends Seeder
         Wake the immortal strain!
         Angels with rapture announce it,
         Shepherds with wonder received it;
-        Sinner, O won\'t you receive it?
+        Sinner, O won't you receive it?
         Wonderful story of love!
         
         REFRAIN. Wonderful, wonderful, wonderful
         Wonderful, story of love!
         
-        2. The saints who\'ve slept on before us
+        2. The saints who've slept on before us
         Are waiting to rise that day
         And we who are living and yet remain
         Changed in a moment of time
@@ -9059,12 +9059,12 @@ class HymnSeeder extends Seeder
         With Christ in the vessel, I smile at the storm.
         
         2. Though dark be my way, since He is my guide,
-        \'Tis mine to obey, \'tis Thine to provide;
+        'Tis mine to obey, 'tis Thine to provide;
         Though cisterns be broken and creatures all fail,
         The word He hath spoken shall surely prevail.
         
         3. His love in time past forbids me to think
-        He\'ll leave me at last in trouble to sink,
+        He'll leave me at last in trouble to sink,
         While each Ebenezer I have in review,
         Confirms His good pleasure to help me quite through.
         
@@ -9075,8 +9075,8 @@ class HymnSeeder extends Seeder
         
         5. Since all that I meet shall work for my good,
         The bitter is sweet, the medicine food;
-        Though painful at present, \'twill cease before long,
-        And then, O how pleasant the conqueror\'s song.",
+        Though painful at present, 'twill cease before long,
+        And then, O how pleasant the conqueror's song.",
     ],
     [
         'number' => "333",
@@ -9103,7 +9103,7 @@ class HymnSeeder extends Seeder
         'number' => "334",
         'title' => "Nearer, My God, To Thee",
         'lyrics' => "1. Nearer, my God, to Thee; nearer to Thee!
-        E\'en though it be a cross that raiseth me;
+        E'en though it be a cross that raiseth me;
         Still all my song shall be,
         Nearer, my God, to Thee,
         Nearer, my God, to Thee,
@@ -9111,7 +9111,7 @@ class HymnSeeder extends Seeder
         
         2. Though like the wanderer, the sun gone down
         Darkness be over me, my rest a stone,
-        Yet in my dreams I\'d be,
+        Yet in my dreams I'd be,
         Nearer, my God, to Thee,
         Nearer, my God, to Thee,
         Nearer to Thee!
@@ -9124,7 +9124,7 @@ class HymnSeeder extends Seeder
         Nearer to Thee!
         
         4. Then, with my waking thoughts, bright with Thy praise,
-        Out of my stony griefs, Bethel I\'ll raise;
+        Out of my stony griefs, Bethel I'll raise;
         So by my woes to be,
         Nearer, my God, to Thee,
         Nearer, my God, to Thee,
@@ -9142,21 +9142,21 @@ class HymnSeeder extends Seeder
         'title' => "The Goodness Of Jesus",
         'lyrics' => "1. When I think of the goodness of Jesus,
         And all He has done for me.
-        Then my soul cries out, \'Hallelujah,
-        Praise God for saving me.\'",
+        Then my soul cries out, 'Hallelujah,
+        Praise God for saving me.'",
     ],
     [
         'number' => "336",
         'title' => "Oh My Loving Brother",
         'lyrics' => "1. Oh the judgment day is coming
-        What an awful day \'twill be,
+        What an awful day 'twill be,
         Christ forever is my refuge
         Rock of ages cleft for me.
         
         CHORUS
         Oh, my loving brother,
-        When the world\'s on fire,
-        Don\'t you want God\'s bosom
+        When the world's on fire,
+        Don't you want God's bosom
         To be your pillow,
         Hide me over in the Rock of ages
         Rock of ages cleft for me.
@@ -9167,38 +9167,38 @@ class HymnSeeder extends Seeder
         Shall forever pass away.
         
         3. Poor lost sinners will be crying,
-        For the home they\'ll never see,
+        For the home they'll never see,
         But the ransomed will be singing
         Rock of ages, cleft for me.",
     ],
     [
         'number' => "337",
-        'title' => "I\'ve Been Changed",
-        'lyrics' => "1. I\'ve been to the water,
-        And I\'ve been baptized,
-        I\'ve been washed in the blood of the Lamb;
-        I\'ve been changed from the creature
+        'title' => "I've Been Changed",
+        'lyrics' => "1. I've been to the water,
+        And I've been baptized,
+        I've been washed in the blood of the Lamb;
+        I've been changed from the creature
         That I once was,
         And redeemed is now my name.
         
         CHORUS
-        I\'ve been changed, I\'ve been reborn,
+        I've been changed, I've been reborn,
         All my life has been rearranged;
         What a difference it makes
         When the Lord has His way
         All my life, praise God, has been changed.
         
-        2. Tho\' my sins were as scarlet
-        They\'re white as snow,
+        2. Tho' my sins were as scarlet
+        They're white as snow,
         I was bound but today I am free;
         I was lost in the darkness
-        But now I\'m found,
+        But now I'm found,
         I was blind but now I see.
         
         3. When at last in His presence
         I stand above,
         He will wipe every tear from my eyes;
-        And I\'ll thank Him for giving
+        And I'll thank Him for giving
         A wretch like me,
         A new home beyond the sky.",
     ],
@@ -9221,52 +9221,52 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "339",
-        'title' => "I\'ll Fly Away",
-        'lyrics' => "1. Some glad morning when this life is o\'er
-        I\'ll fly away,
-        To a home on God\'s celestial shore,
-        I\'ll fly away.
+        'title' => "I'll Fly Away",
+        'lyrics' => "1. Some glad morning when this life is o'er
+        I'll fly away,
+        To a home on God's celestial shore,
+        I'll fly away.
         
         CHORUS
-        I\'ll fly away, O glory, I\'ll fly away;
+        I'll fly away, O glory, I'll fly away;
         When I die, hallelujah by and by,
-        I\'ll fly away.
+        I'll fly away.
         
         2. When the shadows of this life have grown,
-        I\'ll fly away.
+        I'll fly away.
         Like a bird from prison bars has flown,
-        I\'ll fly away.
+        I'll fly away.
         
         3. Just a few more weary days and then,
-        I\'ll fly away;
+        I'll fly away;
         To a land where joys shall never end,
-        I\'ll fly away.",
+        I'll fly away.",
     ],
     [
         'number' => "340",
-        'title' => "\'Tis So Sweet To Trust In Jesus",
-        'lyrics' => "1. \'Tis so sweet to trust in Jesus,
+        'title' => "'Tis So Sweet To Trust In Jesus",
+        'lyrics' => "1. 'Tis so sweet to trust in Jesus,
         Just to take Him at all His word;
         Just to rest upon His promise;
-        Just to know, \'Thus Saith The Lord.\'
+        Just to know, 'Thus Saith The Lord.'
         
         CHORUS
         Jesus, Jesus, how I trust Him!
-        How I\'ve proved Him o\'er and o\'er
+        How I've proved Him o'er and o'er
         Jesus, Jesus, precious Jesus!
         O! for grace to trust Him more.
         
         2. O! how sweet to trust in Jesus,
         Just to trust His cleansing blood;
         Just in simple faith to plunge me,
-        \'Neath the healing, cleansing flood!
+        'Neath the healing, cleansing flood!
         
-        3. Yes, \'tis sweet to trust in Jesus,
+        3. Yes, 'tis sweet to trust in Jesus,
         Just from sin and self to cease;
         Just from Jesus simple taking,
         Life and rest, and joy, and peace.
         
-        4. I\'m so glad I learned to trust Thee,
+        4. I'm so glad I learned to trust Thee,
         Precious Jesus, Saviour, Friend,
         And I know that Thou art with me,
         Wilt be with me to the end.",
@@ -9275,19 +9275,19 @@ class HymnSeeder extends Seeder
         'number' => "341",
         'title' => "For A Thousand Tongues To Sing",
         'lyrics' => "1. Oh, for a thousand tongues to sing
-        My great Redeemer\'s praise,
+        My great Redeemer's praise,
         The glories of my God and King,
         The triumph of His grace.
         
         2. My gracious Master and my God,
         Assist me to proclaim,
-        To spread thro\' all the earth abroad,
+        To spread thro' all the earth abroad,
         The honours of thy Name.
         
         3. Jesus! The Name that charms our fear,
         That bids our sorrow cease;
-        \'Tis music in the sinners ears,
-        \'Tis life, and health and peace.
+        'Tis music in the sinners ears,
+        'Tis life, and health and peace.
         
         4. He breaks the powers of cancelled sin,
         He sets the prisoner free,
@@ -9316,11 +9316,11 @@ class HymnSeeder extends Seeder
         2. Be joyful, for He is the Lord,
         On earth and in heaven supreme,
         He fashions and rules by His word;
-        The \'mighty\' and \'strong\' to redeem.
+        The 'mighty' and 'strong' to redeem.
         
         3. What though in the conflict for right,
         Your enemies almost prevail!
-        God\'s armies, just bid from your sight,
+        God's armies, just bid from your sight,
         Are more than the foes which assail.
         
         4. Though darkness surround you by day,
@@ -9332,23 +9332,23 @@ class HymnSeeder extends Seeder
         'number' => "343",
         'title' => "Victory Ahead",
         'lyrics' => "1. When the host of Israel, led by God,
-        Round the walls of Jericho softly\' trod;
-        Trusting in the Lord, they felt the conq\'rors tread\'
+        Round the walls of Jericho softly' trod;
+        Trusting in the Lord, they felt the conq'rors tread'
         By faith they saw the Victory ahead.
         
         CHORUS
         Victory ahead! Victory ahead!
-        Thru\' the blood of Jesus, Victory ahead;
-        Trusting in the Lord, I hear the conq\'rors tread,
+        Thru' the blood of Jesus, Victory ahead;
+        Trusting in the Lord, I hear the conq'rors tread,
         By faith I see the victory ahead.
         
-        2. David with a shepherd\'s sling and five stones,
+        2. David with a shepherd's sling and five stones,
         Met the giant on the field all alone;
         Trusting in the Lord, he knew what God had said,
         By faith he saw the victory ahead.
         
         3. Daniel prayed unto the Lord thrice each day,
-        Then unto the lion\'s den led the way;
+        Then unto the lion's den led the way;
         Trusting in the Lord, he did not fear or dread,
         By faith he saw the victory ahead.
         
@@ -9357,15 +9357,15 @@ class HymnSeeder extends Seeder
         Trusting in the Lord, I reckoned I was dead,
         By faith I see the victory ahead.
         
-        5. When like those who\'ve gone before to that land,
-        By death\'s river cold and dark I shall stand;
+        5. When like those who've gone before to that land,
+        By death's river cold and dark I shall stand;
         Trusting in the Lord, I will not fear or dread,
         By faith I see the victory ahead.",
     ],
     [
         'number' => "344",
-        'title' => "Father Don\'t Let Me Down",
-        'lyrics' => "1. Father don\'t let me down
+        'title' => "Father Don't Let Me Down",
+        'lyrics' => "1. Father don't let me down
         I want to be your own
         When my faith is weak
         Hold me by your hand
@@ -9418,7 +9418,7 @@ class HymnSeeder extends Seeder
         Happiness is the Lord.
         
         2. Happiness is to be given
-        Living a life that\'s worth living
+        Living a life that's worth living
         Taking a trip that leads to heaven
         Happiness is the Lord (3ce).",
     ],
@@ -9432,7 +9432,7 @@ class HymnSeeder extends Seeder
         
         CHORUS
         Believe it, O sinner, believe it,
-        Receive the glad message - \'tis true;
+        Receive the glad message - 'tis true;
         Trust now in the crucified Saviour,
         Salvation He offers for you.
         
@@ -9446,36 +9446,36 @@ class HymnSeeder extends Seeder
         For Christ in His present redemption
         The power of sin shall destroy.
         
-        4. Accept now God\'s offer of mercy
+        4. Accept now God's offer of mercy
         To Jesus, Oh hasten today;
         For He will receive him that cometh
         And never will turn him away.",
     ],
     [
         'number' => "348",
-        'title' => "\'Whosoever Will\'",
-        'lyrics' => "1. \'Whosoever will heareth,\'
+        'title' => "'Whosoever Will'",
+        'lyrics' => "1. 'Whosoever will heareth,'
         Shout, shout the sound!
         Spread the blessing tidings
         All the world around,
         Tell the joyful news wherever man is found,
-        \'whosoever will may come\'
+        'whosoever will may come'
         
         CHORUS
-        \'Whosoever will, whosoever will!\'
+        'Whosoever will, whosoever will!'
         Send the proclamation over vale and hill;
-        \'Tis a loving father calls the wand\'rer home:
-        \'whosoever will may come\'
+        'Tis a loving father calls the wand'rer home:
+        'whosoever will may come'
         
         2. Whosoever cometh, need not delay,
         Now the door is open, enter while you may;
         Jesus is the true, the only living way;
-        \'whosoever will may come.\'
+        'whosoever will may come.'
         
-        3. \'whosoever will\', the promise is secure,
-        \'whosoever will\', forever must endure;
-        \'Whosoever will,\' tis life forever more;
-        \'Whosoever will may come.\'",
+        3. 'whosoever will', the promise is secure,
+        'whosoever will', forever must endure;
+        'Whosoever will,' tis life forever more;
+        'Whosoever will may come.'",
     ],
     [
         'number' => "349",
@@ -9483,7 +9483,7 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. Faith of our fathers! Living still
         In spite of dungeon, fire and sword:
         O how our heart beat high with joy
-        When e\'er we hear that glorious word!
+        When e'er we hear that glorious word!
         
         CHORUS
         Faith of our fathers! Holy faith
@@ -9491,7 +9491,7 @@ class HymnSeeder extends Seeder
         
         2. Our fathers chained in prisons dark,
         Were still in heart and conscience free;
-        How sweet will be their children\'s fate,
+        How sweet will be their children's fate,
         If they, like them, could die for thee!
         
         3. Faith of our fathers! We will love
@@ -9545,19 +9545,19 @@ class HymnSeeder extends Seeder
         Be like Jesus, all day long!
         I would be like Jesus.
         
-        2. He has broken ev\'ry fetter,
+        2. He has broken ev'ry fetter,
         I would be like Jesus;
         That my soul may serve Him better,
         I would be like Jesus.
         
         3. All the way from earth to glory,
         I would be like Jesus;
-        Telling o\'er and o\'er the story,
+        Telling o'er and o'er the story,
         I would be like Jesus.
         
         4. That in heaven I may meet Him
         I would be like Jesus;
-        That His word \'well done\' may greet me,
+        That His word 'well done' may greet me,
         I would be like Jesus.",
     ],
     [
@@ -9575,9 +9575,9 @@ class HymnSeeder extends Seeder
         Which wert, and art, and evermore shall be!
         
         3. Holy, holy, holy! Tho the darkness hide Thee,
-        Tho\' the eye of sinful man Thy glory may not see,
+        Tho' the eye of sinful man Thy glory may not see,
         Only Thou art Holy; there is none beside Thee
-        Perfect in pow\'r, in love and purity!
+        Perfect in pow'r, in love and purity!
         
         4. Holy, holy, holy! Lord God Almighty
         All Thy work shall praise Thy name,
@@ -9591,16 +9591,16 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. Anywhere with Jesus I can safely go;
         Anywhere He leads me in this world below;
         Anywhere without Him dearest joys would fade;
-        Anywhere with Jesus I\'m not afraid.
+        Anywhere with Jesus I'm not afraid.
         
         CHORUS
         Anywhere! Anywhere!
         Fear I cannot know;
         Anywhere with Jesus I can safely go.
         
-        2. Anywhere with Jesus I\'m not alone;
+        2. Anywhere with Jesus I'm not alone;
         Other friends may fail me, He is still my own;
-        Tho\' His hand may lead me over dreary ways,
+        Tho' His hand may lead me over dreary ways,
         Anywhere with Jesus is a house of praise.
         
         3. Anywhere with Jesus over land and sea,
@@ -9609,18 +9609,18 @@ class HymnSeeder extends Seeder
         Anywhere with Jesus when He points the way.
         
         4. Anywhere with Jesus I can go to sleep
-        When dark\'ing shadows round about me creep,
+        When dark'ing shadows round about me creep,
         Knowing I shall waken never more to roam,
         Anywhere with Jesus will be home sweet home.",
     ],
     [
         'number' => "354",
-        'title' => "He\'s Changing Me",
-        'lyrics' => "1. From glory to glory He\'s changing me,
+        'title' => "He's Changing Me",
+        'lyrics' => "1. From glory to glory He's changing me,
         Changing me, changing me.
         His likeness and image to perfect in me.
         The love of God shown to the world.
-        For He\'s changing, changing me,
+        For He's changing, changing me,
         From earthly things to the heavenly.
         His likeness and image to perfect in me,
         The love of God shown to the world.",
@@ -9649,7 +9649,7 @@ class HymnSeeder extends Seeder
         2. I sing abut my Saviour everywhere go,
         Everywhere I go, everywhere I go;
         I sing about my Saviour everywhere I go
-        For there\'s joy, joy in my soul.",
+        For there's joy, joy in my soul.",
     ],
     [
         'number' => "356B",
@@ -9674,7 +9674,7 @@ class HymnSeeder extends Seeder
         To wrestlers with the troubled sea.
         
         4. Oh, fill me with Thy fullness Lord
-        Until my very heart o\'erflow
+        Until my very heart o'erflow
         In kindly thought and glowing word
         Thy love to tell, Thy praise to show.
         
@@ -9707,16 +9707,16 @@ class HymnSeeder extends Seeder
         I will see you in the rapture,
         I will see you at the meeting in the air...
         There with our blessed Saviour
-        We\'ll live and reign forever;
-        I\'ll see you in the rapture some sweet day.
+        We'll live and reign forever;
+        I'll see you in the rapture some sweet day.
         
         2. If we never meet again on this earth
         My precious friend,
         If to God you have been true
         and lived above all sin;
-        Then for us there\'ll be a greeting,
+        Then for us there'll be a greeting,
         For there is going to be a meeting
-        I\'ll see you in the rapture some sweet day.
+        I'll see you in the rapture some sweet day.
         
         3. To my loved ones let me say,
         There will surely come a day,
@@ -9724,7 +9724,7 @@ class HymnSeeder extends Seeder
         and catch His bride away;
         So get ready now to meet Him and
         with Hallelujah greet Him;
-        I\'ll see you in the rapture some sweet day.",
+        I'll see you in the rapture some sweet day.",
     ],
     [
         'number' => "359",
@@ -9769,9 +9769,9 @@ class HymnSeeder extends Seeder
         'title' => "Safe In The Arms Of Jesus",
         'lyrics' => "1. Safe in the arms of Je-sus
         Safe on His gen-tle breast,
-        There by His love o\'er-shadowed,
+        There by His love o'er-shadowed,
         Sweet-ly my soul shall rest.
-        Hark! \'tis the voice of an-gels,
+        Hark! 'tis the voice of an-gels,
         Borne in a song to me,
         O-ver the field of glory
         O-ver the jasper sea.
@@ -9779,24 +9779,24 @@ class HymnSeeder extends Seeder
         CHORUS
         Safe in the arms of Je-sus
         Safe on His gen-tle breast,
-        There by His love o\'er-shadowed,
+        There by His love o'er-shadowed,
         Sweet-ly my soul shall rest.
         
         2. Safe in the arms of Je-sus,
         Safe from cor-rod-ing care,
-        Safe from the world\'s temptations,
+        Safe from the world's temptations,
         Sin can-not harm me there,
         Free from the blight of sor-row
         Free from my doubts and fears;
         On-ly a few more tri-als,
         On-ly a few more tears.
         
-        3. Jesus my heart\'s dear re-fuge,
+        3. Jesus my heart's dear re-fuge,
         Je-sus has died for me;
         Firm on the rock of A-ges,
         Ev-er my trust shall be
         Here let me wait with  patience,
-        Wait till the night is o\'er
+        Wait till the night is o'er
         Wait till I see the mor-ning
         Break on the gold-en shore.
         
@@ -9806,7 +9806,7 @@ class HymnSeeder extends Seeder
         'number' => "361",
         'title' => "Alleluia! Alleluia! Alleluia!",
         'lyrics' => "1. Alleluia! Alleluia! Alleluia!
-        The strife is o\'er, the battle done;
+        The strife is o'er, the battle done;
         The victory of life is won;
         The song of triumph has begun,
         Alleluia!
@@ -9822,19 +9822,19 @@ class HymnSeeder extends Seeder
         Alleluia!
         
         4. He breaks the age bound chains of hell;
-        The bars from heaven\'s high portals fell,
+        The bars from heaven's high portals fell,
         Let hymns of praise His triumph tell;
         Alleluia!
         
         5. Lord, by the stripes which wounded Thee,
-        From death\'s dread sting Thy servants free,
+        From death's dread sting Thy servants free,
         That we may live, and sing to Thee,
         Alleluia!",
     ],
     [
         'number' => "362",
         'title' => "Jesus Shall Reign",
-        'lyrics' => "1. Jesus shall reign where\'er the sun,
+        'lyrics' => "1. Jesus shall reign where'er the sun,
         Does his successive journeys run;
         His kingdom spread from shore to shore
         Till moons shall wax and wore no more.
@@ -9867,8 +9867,8 @@ class HymnSeeder extends Seeder
         When other helpers fail, and comforts flee,
         Help of the helpless, oh, abide with me!
         
-        2. Swift to its close ebbs out life\'s little day;
-        Earth\'s joys grow dim, its glories pass away;
+        2. Swift to its close ebbs out life's little day;
+        Earth's joys grow dim, its glories pass away;
         Change and decay in all around I see;
         O Thou, who changest not, abide with me!
         
@@ -9878,18 +9878,18 @@ class HymnSeeder extends Seeder
         Come, Friend of sinners, thus abide with me!
         
         4. I need Thy presence every passing hour;
-        What but Thy grace can foil the tempter\'s power?
+        What but Thy grace can foil the tempter's power?
         Who like Thyself my guide and safe can be?
         Through cloud and sunshine, oh, abide with me!
         
         5. I fear no foe, with Thee at hand to bless:
         Ills have no weight, and tears, no bitterness:
-        Where is death\'s sting? Where, grave, thy victory?
+        Where is death's sting? Where, grave, thy victory?
         I triumph still, if Thou abide with me.
         
         6. Be Thou Thyself before my closing eyes;
         Shine through the gloom, and point me to the skies;
-        Heaven\'s morning breaks and earth\'s vain shadows flee;
+        Heaven's morning breaks and earth's vain shadows flee;
         In life, in death, O Lord, abide with me!",
     ],
     [
@@ -9906,7 +9906,7 @@ class HymnSeeder extends Seeder
         Ever faithful ever sure.
         
         3. He with all commanding might,
-        Fill\'d the new-made world with light
+        Fill'd the new-made world with light
         For His mercies aye endure,
         Ever faithful ever sure.
         
@@ -9935,7 +9935,7 @@ class HymnSeeder extends Seeder
         'title' => "I Want To Be Like Jesus",
         'lyrics' => "1. I want to be like Jesus,
         So lowly and so meek;
-        For no one mark\'d an angry word,
+        For no one mark'd an angry word,
         That ever heard Him speak.
         
         2. I want to be like Jesus,
@@ -9951,14 +9951,14 @@ class HymnSeeder extends Seeder
         4. I want to be like Jesus,
         Engaged in doing good;
         So that of me it may be said,
-        \'He hath done what he could\'
+        'He hath done what he could'
         
         5. I want to be like Jesus,
         Who sweetly said to all,
-        \'Let little children come to Me\'
+        'Let little children come to Me'
         I would obey the call.
         
-        6. But oh I\'m not like Jesus,
+        6. But oh I'm not like Jesus,
         As any one may see;
         O gentle Saviour, send Thy grace,
         And make me like Thee.",
@@ -9968,11 +9968,11 @@ class HymnSeeder extends Seeder
         'title' => "Sinners Turn, Why Will Ye Die?",
         'lyrics' => "1. Sinners Jesus will receive;
         Sound this word of grace to all
-        Who the heav\'nly pathway leave,
+        Who the heav'nly pathway leave,
         All who linger, all who fall.
         
         CHORUS
-        Sing it o\'er and o\'er again,
+        Sing it o'er and o'er again,
         Christ receive-eth sinful men
         Make the message clear and plain
         Christ receiveth sinful men.
@@ -9984,13 +9984,13 @@ class HymnSeeder extends Seeder
         
         3. Now my heart condemns me not;
         Pure by His grace I stand;
-        He who cleans\'d me from all spot,
+        He who cleans'd me from all spot,
         Satisfied its hast demand.
         
         4. Christ receieveth sinful men,
         Even me with all my sin,
-        Purg\'d from ev\'ry spot and stain,
-        Heav\'n with Him I enter in.",
+        Purg'd from ev'ry spot and stain,
+        Heav'n with Him I enter in.",
     ],
     [
         'number' => "367",
@@ -10001,7 +10001,7 @@ class HymnSeeder extends Seeder
         So freely spilt for me.
         
         2. A heart resigned, submissive, meek,
-        My dear redeemer\'s throne;
+        My dear redeemer's throne;
         Where only Christ is heard to speak,
         Where Jesus reigns alone.
         
@@ -10028,32 +10028,32 @@ class HymnSeeder extends Seeder
         Destitute, despised, forsaken,
         Thou from hence my all shall be:
         Perish every fond ambition,
-        All I\'ve sought, or hoped, or known;
+        All I've sought, or hoped, or known;
         Yet how rich is my condition
         God and heaven are still my own
         
         2. Man may trouble and distress me;
-        \'Twill but drive me to Thy breast;
+        'Twill but drive me to Thy breast;
         Life with trials hard may press me;
         Heaven will bring me sweeter rest;
-        Oh, \'tis not in grief to harm me,
+        Oh, 'tis not in grief to harm me,
         While Thy love is left to me:
-        Oh, \'twere not in joy to charm me,
-        Were that joy unmix\'d with Thee.
+        Oh, 'twere not in joy to charm me,
+        Were that joy unmix'd with Thee.
         
         3. Take my soul, Thy full salvation:
-        Rise o\'er sin, and fear, and care;
+        Rise o'er sin, and fear, and care;
         Joy to find in every station
         Something still to do or bear;
         Think what Spirit dwells within thee;
-        What a father\'s smile is thine;
+        What a father's smile is thine;
         What a Saviour died to win thee;
         Child of heaven, shouldest thou repine?
         
         4. Haste then on from grace to glory,
-        Arm\'d by faith, and wing\'d by prayer;
-        Heaven\'s eternal day\'s before thee;
-        God\'s own hand shall guide thee there.
+        Arm'd by faith, and wing'd by prayer;
+        Heaven's eternal day's before thee;
+        God's own hand shall guide thee there.
         Soon shall close thy earthly mission,
         Swift shall pass thy pilgrim days;
         Hope soon change to glad fruition,
@@ -10075,26 +10075,26 @@ class HymnSeeder extends Seeder
         Heaven is my home
         Short is my pilgrimage
         Heaven is my home
-        And time\'s wild wintry blast
+        And time's wild wintry blast
         Soon will be overpast,
         I shall reach home at last
         Heaven is my home.
         
-        3. There at my Saviour\'s side,
+        3. There at my Saviour's side,
         Heaven is my home
         I shall be glorified
         Heaven is my home
         Where all the saints of God,
-        After life\'s weary road
+        After life's weary road
         Have their divine abode
         There is my home.
         
-        4. Therefore I\'ll murmur not
+        4. Therefore I'll murmur not
         Heaven is my home
-        Whate\'er my earthly lot
+        Whate'er my earthly lot
         Heaven is my home
         For I shall surely stand
-        There at my Lord\'s right hand
+        There at my Lord's right hand
         Heaven is my Fatherland
         Heaven is my home.",
     ],
@@ -10106,7 +10106,7 @@ class HymnSeeder extends Seeder
         When they feel they are despondent;
         The Saviour will appear.
         
-        2. When father Abra\'m took his knife
+        2. When father Abra'm took his knife
         God implored him to stop,
         With that ram standing a far-off
         His child it should replace.
@@ -10136,13 +10136,13 @@ class HymnSeeder extends Seeder
         
         CHORUS
         Tell it to Jesus, Tell it to Jesus
-        He is a friend that\'s well known;
+        He is a friend that's well known;
         You have no other such a friend oh brother,
         Tell it to Jesus a-lone.
         
         2. Do the tears flow down your cheeks un-bid-den?
         Tell it to Jesus, Tell it to Jesus,
-        Have you sins that to men\'s eyes are hid-den
+        Have you sins that to men's eyes are hid-den
         Tell it to Jesus alone.
         
         3. Do you fear the gathering clouds of sorrow?
@@ -10152,7 +10152,7 @@ class HymnSeeder extends Seeder
         
         4. Are you troubled at the thought of dy-ing?
         Tell it to Jesus, Tell it to Jesus,
-        For Christ\'s coming king-dom are you sigh-ing?
+        For Christ's coming king-dom are you sigh-ing?
         Tell it to Jesus alone.",
     ],
     [
@@ -10162,7 +10162,7 @@ class HymnSeeder extends Seeder
         Hear my cry, hear my cry
         Trembling to Thine arms I fly
         O save me at Thy cross,
-        I have sinn\'d but Thou hast died,
+        I have sinn'd but Thou hast died,
         In Thy mercy let me hide;
         
         CHORUS
@@ -10171,7 +10171,7 @@ class HymnSeeder extends Seeder
         Now blessed redeemer,
         O save me at the cross.
         
-        2. Tho\' I perish I will pray,
+        2. Tho' I perish I will pray,
         I will pray, I will pray
         Thou of life the living way
         O save me at the cross
@@ -10189,20 +10189,20 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "373",
-        'title' => "Holy Matrimony-Eden\'s Blessing",
-        'lyrics' => "1. The voice that breathed o\'er Eden,
+        'title' => "Holy Matrimony-Eden's Blessing",
+        'lyrics' => "1. The voice that breathed o'er Eden,
         That earliest wedding day,
         The primal marriage blessing,
-        It hath not pass\'d away.
+        It hath not pass'd away.
         
         2. For dower of blessed children,
-        For love and faith\'s sweet sake,
+        For love and faith's sweet sake,
         For high mysterious union
         Which nought on earth may break
         
         3. Be present, Heavenly Father,
         To give away this bride,
-        As Eve Thou gav\'st to Adam
+        As Eve Thou gav'st to Adam
         Out of his own pierced side.
         
         4. Be present here, Emmanuel,
@@ -10215,13 +10215,13 @@ class HymnSeeder extends Seeder
         As Thou, for Christ the Bridegroom,
         The heavenly spouse dost seal.
         
-        6. Oh spread Thy pure wing o\'er them,
+        6. Oh spread Thy pure wing o'er them,
         Thy overshadowing love,
         While one in Thee for ever
         They seek Thy rest above.
         
         7. Till to the home of gladness
-        With Christ\'s own bride they rise
+        With Christ's own bride they rise
         And cast their crowns before Thee
         In perfect sacrifice.",
     ],
@@ -10232,7 +10232,7 @@ class HymnSeeder extends Seeder
         Hear my cry, hear my cry
         Trembling to Thine arms I fly
         O save me at Thy cross,
-        I have sinn\'d but Thou hast died,
+        I have sinn'd but Thou hast died,
         In Thy mercy let me hide;
         
         CHORUS
@@ -10241,7 +10241,7 @@ class HymnSeeder extends Seeder
         Now blessed redeemer,
         O save me at the cross.
         
-        2. Tho\' I perish I will pray,
+        2. Tho' I perish I will pray,
         I will pray, I will pray
         Thou of life the living way
         O save me at the cross
@@ -10290,11 +10290,11 @@ class HymnSeeder extends Seeder
         'title' => "Sinners, Jesus Will Receive",
         'lyrics' => "1. Sinners Jesus will receive;
         Sound this word of grace to all
-        Who the heav\'nly pathway leave,
+        Who the heav'nly pathway leave,
         All who linger, all who fall
         
         CHORUS
-        Sing it o\'er and o\'er again,
+        Sing it o'er and o'er again,
         Christ receive-eth sinful men
         Make the message clear and plain
         Christ receiveth sinful men.
@@ -10306,13 +10306,13 @@ class HymnSeeder extends Seeder
         
         3. Now my heart condemns me not;
         Pure before the law I stand;
-        He who cleans\'d me from all spot,
+        He who cleans'd me from all spot,
         Satisfied its hast demand.
         
         4. Christ receieveth sinful men,
         Even me with all my sin,
-        Purg\'d from ev\'ry spot and stain,
-        Heav\'n with Him I enter in.",
+        Purg'd from ev'ry spot and stain,
+        Heav'n with Him I enter in.",
     ],
     [
         'number' => "377",
@@ -10342,7 +10342,7 @@ class HymnSeeder extends Seeder
         'title' => "Come To The Morning Prayer",
         'lyrics' => "1. Come to the Morning Prayer,
         Come let us kneel and pray;
-        Prayer is the Christian pilgrim\'s staff
+        Prayer is the Christian pilgrim's staff
         To walk with God all day.
         
         2. At noon beneath thy Rock
@@ -10353,7 +10353,7 @@ class HymnSeeder extends Seeder
         3. At eve shut the door,
         Round the home-altar pray,
         And finding there the house of God,
-        At heaven\'s gate close the day.
+        At heaven's gate close the day.
         
         4. When midnight seals our eyes,
         Let each in spirit say,
@@ -10364,14 +10364,14 @@ class HymnSeeder extends Seeder
         'number' => "379",
         'title' => "Jesus Is Coming Again",
         'lyrics' => "1. Jesus is coming sing the glad word,
-        Coming for those He redeem\'d by His blood,
+        Coming for those He redeem'd by His blood,
         Coming to reign as the glorified Lord,
         Jesus is coming again.
         
         CHORUS
         Jesus is coming is coming again
         Jesus is coming again
-        Shout the glad tidings o\'er mountain and plain
+        Shout the glad tidings o'er mountain and plain
         Jesus is coming again.
         
         2. Jesus is coming the dead shall arise,
@@ -10396,9 +10396,9 @@ class HymnSeeder extends Seeder
         Jesus saves Jesus saves
         Spread the tidings all a-round:
         Jesus saves Jesus saves
-        Bear the news to ev\'ry land,
+        Bear the news to ev'ry land,
         Climb the steeps and cross the waves
-        On-ward! \'tis our Lord\'s command,
+        On-ward! 'tis our Lord's command,
         Jesus saves Jesus saves.
         
         2. Waft it on the rolling tide;
@@ -10414,9 +10414,9 @@ class HymnSeeder extends Seeder
         Jesus saves Jesus saves
         By His death and endless life;
         Jesus saves Jesus saves
-        Sing it softly thro\' the gloom,
+        Sing it softly thro' the gloom,
         When the heart for mercy craves;
-        Sing in triumph o\'er the tomb,
+        Sing in triumph o'er the tomb,
         Jesus saves Jesus saves.
         
         4. Give the winds a mighty voice,
@@ -10433,8 +10433,8 @@ class HymnSeeder extends Seeder
         'title' => "I Gave My Life For Thee",
         'lyrics' => "1. I gave my life to thee,
         My precious blood I shed,
-        That thou might\'st ransom\'d be
-        And quicken\'d from the dead,
+        That thou might'st ransom'd be
+        And quicken'd from the dead,
         I gave my life for thee;
         What hast thou given for me?
         
@@ -10445,18 +10445,18 @@ class HymnSeeder extends Seeder
         I spend long years for thee
         Hast thou spent one for me?
         
-        3. My Father\'s home of light,
+        3. My Father's home of light,
         My rainbow circled throne,
         I left for earthly night,
         For wanderings sad and lone
         I left it all for thee;
         Hast thou left aught for Me?
         
-        4. I suffer\'d much for thee,
+        4. I suffer'd much for thee,
         More than thy tongue can tell,
         Of bitterest agony,
         To rescue thee from hell,
-        I suffer\'d much for thee;
+        I suffer'd much for thee;
         What canst thou bear for me?
         
         5. And I have brought to thee,
@@ -10479,14 +10479,14 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. Hark my soul it is the Lord;
         Tis thy Saviour hear His word;
         Jesus speaks, and speaks to thee;
-        Say, poor sinner, lov\'st thou Me.
+        Say, poor sinner, lov'st thou Me.
         
-        2. I deliver\'d thee when bound,
-        And when bleeding, heal\'d thy wound;
+        2. I deliver'd thee when bound,
+        And when bleeding, heal'd thy wound;
         Sought thee wandering, set thee right,
-        Turn\'d thy darkness into light.
+        Turn'd thy darkness into light.
         
-        3. Can a woman\'s tender care
+        3. Can a woman's tender care
         Cease towards the child she bare
         Yes, she may forgetful be,
         Yet will I remember thee.
@@ -10499,7 +10499,7 @@ class HymnSeeder extends Seeder
         5. Thou shall see My glory soon,
         When the work of grace is done;
         Partner of My throne shall be,
-        Say, poor sinner lov\'st thou Me.
+        Say, poor sinner lov'st thou Me.
         
         6. Lord, it is my chief complaint
         That my love is cold and faint;
@@ -10510,34 +10510,34 @@ class HymnSeeder extends Seeder
         'number' => "383",
         'title' => "Conquerors And Overcomers",
         'lyrics' => "1. Conquerors and overcomers now are we
-        Thro\' the precious blood of Christ we\'ve victory,
+        Thro' the precious blood of Christ we've victory,
         If the Lord be for us, we can never fail,
-        Nothing \'gainst His mighty pow\'r can e\'er prevail.
+        Nothing 'gainst His mighty pow'r can e'er prevail.
         
         CHORUS
         Conquerors are we, through the blood of Jesus
         God will give us victory, through the blood of Jesus
-        Thro\' the lamb for sinners slain,
+        Thro' the lamb for sinners slain,
         Yet who lives and reigns again
         More than conquerors are we,
         More than conquerors are we.
         
-        2. In the name of Israel\'s God we\'ll onward press
+        2. In the name of Israel's God we'll onward press
         Overcoming sin and all unrighteousness,
         Not to us, but unto him the praise shall be
         For salvation and for blood brought victory.
         
-        3. Unto him that overcometh shall be pow\'r
-        Here to eat of hidden manna sent from heav\'n
+        3. Unto him that overcometh shall be pow'r
+        Here to eat of hidden manna sent from heav'n
         Over yonder he the victors palm shall bear
         And a robe of white and golden crown shall wear.",
     ],
     [
         'number' => "384",
         'title' => "Saved By Grace Alone",
-        'lyrics' => "1. Grace \'tis a charming sound
+        'lyrics' => "1. Grace 'tis a charming sound
         Harmonious to the ear;
-        Heav\'n with the ech-o shall re-sound,
+        Heav'n with the ech-o shall re-sound,
         And all the earth shall hear,
         
         CHORUS
@@ -10546,19 +10546,19 @@ class HymnSeeder extends Seeder
         Jesus died for all mankind;
         And Jesus died for me.
         
-        2. \'Twas grace that wrote my name
-        In life\'s eternal book;
-        \'Twas grace that gave me to the lamb,
+        2. 'Twas grace that wrote my name
+        In life's eternal book;
+        'Twas grace that gave me to the lamb,
         Who all my sorrow took.
         
         3. Grace thought my wandering feet
-        To tread the heav\'n road
+        To tread the heav'n road
         And new supplies each hour I meet;
         While pressing on to God.
         
         4. Grace thought my soul to pray
-        And made my eyes o\'erflow;
-        \'Tis grace has kept me to this day
+        And made my eyes o'erflow;
+        'Tis grace has kept me to this day
         And will not let me go.
         
         5. Oh, let Thy grace inspire
@@ -10604,7 +10604,7 @@ class HymnSeeder extends Seeder
         'title' => "Jerusalem On High",
         'lyrics' => "1. Jerusalem  on high
         My song and city is
-        My home when\'er I die,
+        My home when'er I die,
         The centre of my bliss;
         
         CHORUS
@@ -10619,9 +10619,9 @@ class HymnSeeder extends Seeder
         3. The patriarchs of old
         There from their travels cease;
         The prophets there behold
-        Their long\'d for Prince of Peace;
+        Their long'd for Prince of Peace;
         
-        4. The Lamb\'s apostles there
+        4. The Lamb's apostles there
         I might with joy behold,
         The harpers I might hear
         Harping on harps of gold;
@@ -10629,10 +10629,10 @@ class HymnSeeder extends Seeder
         5. The bleeding martrs they
         Within those court are found,
         Clothed in pure array
-        Their scars with glory crown\'d
+        Their scars with glory crown'd
         
         6. Ah, woe is me, that I
-        In Kedar\'s tents here stay
+        In Kedar's tents here stay
         No place like that on high
         Lord thither guide my way.",
     ],
@@ -10720,7 +10720,7 @@ class HymnSeeder extends Seeder
         4. When clothed in His brightness, transported I rise
         To meet Him in clouds of the sky,
         His perfect salvation, His wonderful love,
-        I\'ll shout with the millions on high.",
+        I'll shout with the millions on high.",
     ],
     [
         'number' => "390",
@@ -10742,7 +10742,7 @@ class HymnSeeder extends Seeder
         I can never, never lose my way.
         
         3. Let me love Thee more and more,
-        Till this fleeting, fleeting life is o\'er;
+        Till this fleeting, fleeting life is o'er;
         Till my soul is lost in love,
         In a brighter, brighter world above.",
     ],
@@ -10755,7 +10755,7 @@ class HymnSeeder extends Seeder
         Who through life has been my Guide?
         Heavenly peace, divinest comfort,
         Here by faith in Him to dwell!
-        For I know whate\'er befall me,
+        For I know whate'er befall me,
         Jesus doeth all things well.
         
         2. All the way my Saviour leads me;
@@ -10770,7 +10770,7 @@ class HymnSeeder extends Seeder
         3. All the way my Saviour leads me;
         Oh, the fullness of His love!
         Perfect rest to me is promised
-        In my Father\'s house above.
+        In my Father's house above.
         When my spirit, clothed immortal,
         Wings its flight to realms of day,
         This my song through endless ages-
@@ -10796,7 +10796,7 @@ class HymnSeeder extends Seeder
         3. When I tread the verge of Jordan,
         Bid my anxious fears subside;
         Bear me through the swelling current,
-        Land me safe on Canaan\'s side:
+        Land me safe on Canaan's side:
         Songs of praises
         I will ever give to Thee!",
     ],
@@ -10823,7 +10823,7 @@ class HymnSeeder extends Seeder
         
         3. Waiting will not safe me!
         Helpless, guilty, lost, I lie;
-        In my ear is Mercy\'s cry;
+        In my ear is Mercy's cry;
         If I wait I can but die:
         Waiting will not save me!
         
@@ -10864,8 +10864,8 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "395",
-        'title' => "The Church\'s One Foundation",
-        'lyrics' => "1. The church\'s one foundation
+        'title' => "The Church's One Foundation",
+        'lyrics' => "1. The church's one foundation
         Is Jesus Christ her Lord;
         She is His new creation
         By water and the Word:
@@ -10875,7 +10875,7 @@ class HymnSeeder extends Seeder
         And for her life He died.
         
         2. Elect from every nation,
-        Yet one o\'er all the earth;
+        Yet one o'er all the earth;
         Her charter of salvation-
         One Lord, one faith, one birth;
         One holy Name, she blesses,
@@ -10888,11 +10888,11 @@ class HymnSeeder extends Seeder
         By schisms rent asunder,
         By heresies distrest:
         Yet saints their watch are keeping,
-        Their cry goes up, \'How long?\'
+        Their cry goes up, 'How long?'
         And soon the night of weeping
         Shall be the morn of song.
         
-        4. \'Mid toil and tribulation,
+        4. 'Mid toil and tribulation,
         And tumults of her war,
         She waits the consummation
         Of peace forevermore;
@@ -10924,8 +10924,8 @@ class HymnSeeder extends Seeder
         
         2. What do you hope, dear brother?
         To gain by a further delay?
-        There\'s no one to save you but Jesus;
-        There\'s no other way but His way.
+        There's no one to save you but Jesus;
+        There's no other way but His way.
         
         3. Do you not feel, dear brother,
         His spirit now striving within?
@@ -10935,7 +10935,7 @@ class HymnSeeder extends Seeder
         4. Why do you wait, dear brother?
         The harvest is passing away;
         Your Saviour is longing to bless you:
-        There\'s danger and death in delay.",
+        There's danger and death in delay.",
     ],
     [
         'number' => "397",
@@ -10943,16 +10943,16 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. Far and near the fields are teeming
         With the waves of ripened grain;
         Far and near their gold is gleaming
-        O\'er the sunny slope and plain.
+        O'er the sunny slope and plain.
         
         2. Lord, we pray Thee, send forth reapers!
         Hear us, while to Thee we cry;
         Send them now the sheaves to gather,
         Ere the harvest-time pass by.
         
-        3. Send them forth with morn\'s first beaming,
-        Send them in the noontide\'s glare;
-        When the sun\'s last rays are gleaming,
+        3. Send them forth with morn's first beaming,
+        Send them in the noontide's glare;
+        When the sun's last rays are gleaming,
         Bid them gather everywhere.
         
         4. Hasten now, the grain is bending,
@@ -11005,15 +11005,15 @@ class HymnSeeder extends Seeder
         
         2. If I were a voice, a consoling voice,
         I would fly on the wings of the air,
-        The homes of sorrow and guilt I\'d seek,
-        And calm and truthful words I\'d speak,
+        The homes of sorrow and guilt I'd seek,
+        And calm and truthful words I'd speak,
         To save them from despair.
-        I would fly, I would fly o\'er the crowded town,
+        I would fly, I would fly o'er the crowded town,
         And drop like the happy sunlight down
         Into the hearts of suffering men,
         And teach them to look up again:
         I would fly, I would fly,
-        I would fly o\'er the crowded town.
+        I would fly o'er the crowded town.
         
         3. If I were a voice, a convincing voice,
         I would travel with the wind,
@@ -11023,15 +11023,15 @@ class HymnSeeder extends Seeder
         I would fly, I would fly on the thunder-crash,
         And into their blinded bosoms flash:
         Then with their evil thoughts subdued,
-        I\'d teach them Christian brotherhood:
+        I'd teach them Christian brotherhood:
         I would fly, I would fly,
         I would fly on the thunder-crash.
         
         4. If I were a voice, an immortal voice,
         I would fly the earth around;
         And wherever man to his idols bowed,
-        I\'d publish in notes both long and loud
-        The Gospel\'s joyful sound.
+        I'd publish in notes both long and loud
+        The Gospel's joyful sound.
         I would fly, I would fly on the wings of day,
         Proclaiming peace on my world-wide way,
         Bidding the saddened earth rejoice -
@@ -11099,9 +11099,9 @@ class HymnSeeder extends Seeder
         Where the King in all His splendour we shall soon behold,
         Glory to God, Hallelujah!
         
-        4. There we\'ll shout redeeming mercy in a glad new song,
+        4. There we'll shout redeeming mercy in a glad new song,
         Glory to God, Hallelujah!
-        There we\'ll sing the praise of Jesus with the blood - washed throng,
+        There we'll sing the praise of Jesus with the blood - washed throng,
         Glory to God, Hallelujah!",
     ],
     [
@@ -11150,12 +11150,12 @@ class HymnSeeder extends Seeder
         'title' => "Ancient Words",
         'lyrics' => "1. Holy words long preserved
         For our walk in this world
-        They resound with God\'s own heart
+        They resound with God's own heart
         Oh, let the ancient words impart
         
         2. Words of Life, words of Hope
         Give us strength, help us cope In this world,
-        Where e\'er we roam
+        Where e'er we roam
         Ancient words will guide us home
         
         3. Ancient words ever true
@@ -11170,7 +11170,7 @@ class HymnSeeder extends Seeder
         
         5. Holy words long preserved
         For our walk in this world
-        They resound with God\'s own heart
+        They resound with God's own heart
         Oh let the ancient words impart",
     ],
     [
@@ -11219,10 +11219,10 @@ class HymnSeeder extends Seeder
         
         2. Great Redeemer, Lord and Master,
         Light of all eternal days;
-        Let the saints of ev\'ry nation
+        Let the saints of ev'ry nation
         Sing Thy just and endless praise!
         
-        3. From the throne of heaven\'s glory
+        3. From the throne of heaven's glory
         To the cross of sin and shame.
         Thou didst come to die a ransom
         Guilty sinners to reclaim!
@@ -11235,7 +11235,7 @@ class HymnSeeder extends Seeder
     [
         'number' => "406",
         'title' => "Let Other See Jesus In You",
-        'lyrics' => "1. While passing thro\' this world of sin,
+        'lyrics' => "1. While passing thro' this world of sin,
         And others your life shall view. 
         Be clean and pure without, within; 
         Let others see Jesus in you.
@@ -11246,8 +11246,8 @@ class HymnSeeder extends Seeder
         Keep telling the story, be faithful and true,
         Let others see Jesus in you.
         
-        2. Your life\'s a book before their eyes,
-        They\'re reading it thro\' and thro\'
+        2. Your life's a book before their eyes,
+        They're reading it thro' and thro'
         Say, does it point them to the skies,
         Do others see Jesus in you?
         
@@ -11301,7 +11301,7 @@ class HymnSeeder extends Seeder
         Now wash me, and I shall be whiter than snow.
         
         2. Lord Jesus, let nothing unholy remain,
-        Apply Thine own blood and extract ev\'ry stain;
+        Apply Thine own blood and extract ev'ry stain;
         To get this blest cleansing, I all things forego
         Now wash me, and I shall be whiter than snow.
         
@@ -11317,7 +11317,7 @@ class HymnSeeder extends Seeder
         
         5. Lord Jesus, Thou seest I patiently wait,
         Come now, and within me a new heart create;
-        To those who have sought Thee, Thou never saidst \'No,\'
+        To those who have sought Thee, Thou never saidst 'No,'
         Now wash me, and I shall be whiter than snow.
         
         6. The blessing by faith, I receive from above;
@@ -11327,26 +11327,26 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "409",
-        'title' => "I\'d Rather Have Jesus",
-        'lyrics' => "1. I\'d rather have Jesus than silver or gold;
-        I\'d rather be His than have riches untold;
-        I\'d rather have Jesus than houses or lands;
-        I\'d rather be led by His nail-pierced hand
+        'title' => "I'd Rather Have Jesus",
+        'lyrics' => "1. I'd rather have Jesus than silver or gold;
+        I'd rather be His than have riches untold;
+        I'd rather have Jesus than houses or lands;
+        I'd rather be led by His nail-pierced hand
         
         REFRAIN. Than to be the king of a vast domain
-        And be held in sin\'s dread sway;
-        I\'d rather have Jesus than anything
+        And be held in sin's dread sway;
+        I'd rather have Jesus than anything
         This world affords today.
         
-        2. I\'d rather have Jesus than men\'s applause;
-        I\'d rather be faithful to His dear cause;
-        I\'d rather have Jesus than worldwide fame;
-        I\'d rather be true to His holy name
+        2. I'd rather have Jesus than men's applause;
+        I'd rather be faithful to His dear cause;
+        I'd rather have Jesus than worldwide fame;
+        I'd rather be true to His holy name
         
-        3. He\'s fairer than lilies of rarest bloom;
-        He\'s sweeter than honey from out the comb;
-        He\'s all that my hungering spirit needs;
-        I\'d rather have Jesus and let Him lead",
+        3. He's fairer than lilies of rarest bloom;
+        He's sweeter than honey from out the comb;
+        He's all that my hungering spirit needs;
+        I'd rather have Jesus and let Him lead",
     ],
     [
         'number' => "410",
@@ -11425,10 +11425,10 @@ class HymnSeeder extends Seeder
         3. Confide in His Word, His promises so sure;
         In Christ they are yea and amen;
         Though earth pass away, they ever shall endure,
-        \'Tis written o\'er and o\'er again.
+        'Tis written o'er and o'er again.
         
         4. Abide in the Lord, secure in His control,
-        \'Tis life everlasting begun;
+        'Tis life everlasting begun;
         To pluck from His hand the weakest, trembling soul,
         It never, never can be done!",
     ],
@@ -11445,15 +11445,15 @@ class HymnSeeder extends Seeder
         Savior, dear Savior,
         I know Thou art mine.
         
-        2. Thou art the sinner\'s friend,
+        2. Thou art the sinner's friend,
         So I Thy friendship claim,
         A sinner saved by grace,
         When Thy sweet message came.
         
         3. My hardened heart was touched;
-        Thy pard\'ning voice I heard;
+        Thy pard'ning voice I heard;
         And joy and peace came in
-        While list\'ning to Thy word.
+        While list'ning to Thy word.
         
         4. So let me sing Thy praise,
         So let me call Thee mine.
@@ -11467,7 +11467,7 @@ class HymnSeeder extends Seeder
         Waiting for Thy gracious word,
         Longing for Thy voice that cheereth
         Master, let it now be heard.
-        I am list\'ning, Lord, for Thee;
+        I am list'ning, Lord, for Thee;
         What hast Thou to say to me?
         
         2. Often through my heart is pealing
@@ -11542,7 +11542,7 @@ class HymnSeeder extends Seeder
         
         2. Sing, choirs of angels,
         Sing in exultation;-
-        Sing, all ye citizens of heav\'n above!
+        Sing, all ye citizens of heav'n above!
         Glory to God,-
         Glory in the highest;
         Oh, come, let us adore him;
@@ -11552,7 +11552,7 @@ class HymnSeeder extends Seeder
         
         3. Yea, Lord, we greet thee,
         Born this happy morning;-
-        Jesus, to thee be all glory giv\'n.
+        Jesus, to thee be all glory giv'n.
         Son of the Father,
         Now in flesh appearing;
         Oh, come, let us adore him;
@@ -11573,7 +11573,7 @@ class HymnSeeder extends Seeder
         Oh, how pray-ing rests the wea-ry!
         Prayer will change the night to day.
         So, when life gets dark and drea-ry,
-        Don\'t for-get to pray.
+        Don't for-get to pray.
         
         2. When your heart was filled with anger,
         Did you think to pray?
@@ -11614,7 +11614,7 @@ class HymnSeeder extends Seeder
         Your anchor holds and grips the solid rock.
         
         CHORUS
-        This rock is Jesus, Yes, He\'s the One,
+        This rock is Jesus, Yes, He's the One,
         This rock is Jesus, the only One;
         Be very sure, be very sure,
         Your anchor holds and grips the solid rock.
@@ -11626,7 +11626,7 @@ class HymnSeeder extends Seeder
         
         3. In times like these, I have a Saviour,
         In times like these, I have an anchor,
-        I\'m very sure, I\'m very sure,
+        I'm very sure, I'm very sure,
         My anchor holds and grips the solid rock.
         
         4.",
@@ -11642,13 +11642,13 @@ class HymnSeeder extends Seeder
         CHORUS
         Glory, glory, hallelujah,
         Blessed be His holy name!
-        He\'s the Great Emancipator,
-        That\'s the song of the Redeemed!
+        He's the Great Emancipator,
+        That's the song of the Redeemed!
         
         2. Like a lost lamb I was drifting
         O so helpless and alone,
         But the seeking Shepherd found me,
-        Led me to my Father\'s home.",
+        Led me to my Father's home.",
     ],
     [
         'number' => "421",
@@ -11660,26 +11660,26 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "422",
-        'title' => "Don\'t Lose Your Vision Of Jesus",
+        'title' => "Don't Lose Your Vision Of Jesus",
         'lyrics' => "1. As I travel along, through this pilgrim land,
         there are heartaches, and burdens to bear,
         but with a vision of Jesus, and heaven in view,
         my cross is much lighter to bear
         
         CHORUS
-        Don\'t lose your vision of Jesus,
+        Don't lose your vision of Jesus,
         keep your eyes ever on Him,
         many friends and loved ones have lost their way
         when they lost their vision of Him
         
         2. I remember the time, I remember the place,
         when Jesus so sweetly came in,
-        how He took all my burdens, I\'d carried so long,
+        how He took all my burdens, I'd carried so long,
         when first I had a vision of Him
         
-        3. Don\'t ever look back, on eartly woes,
-        there\'s nothing, in this world of sin,
-        Oh don\'t ever look back, just keep pressing on,
+        3. Don't ever look back, on eartly woes,
+        there's nothing, in this world of sin,
+        Oh don't ever look back, just keep pressing on,
         lest you lose, your vision of Him",
     ],
     [
@@ -11701,28 +11701,28 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "425",
-        'title' => "I\'m A New Creation",
+        'title' => "I'm A New Creation",
         'lyrics' => "1. Hallelujah, He redeemed me,
-        I\'ve been born again to win,
+        I've been born again to win,
         I thank God He justified me
         Of His fullness have we all received of Him.
         
         CHORUS
-        I\'m a new creation,
-        I\'m a brand new man.
+        I'm a new creation,
+        I'm a brand new man.
         Old things are passed away,
-        I\'ve been born again.
+        I've been born again.
         More than a conqueror
-        That\'s what I am,
-        I\'m a new creation
-        I\'m a brand new man!",
+        That's what I am,
+        I'm a new creation
+        I'm a brand new man!",
     ],
     [
         'number' => "426",
         'title' => "Keep Me True",
         'lyrics' => "1. Keep me true, Lord Jesus, keep me true,
         Keep me true, Lord Jesus, keep me true.
-        There\'s a race that I must run,
+        There's a race that I must run,
         There are victories to be won,
         Give me power, every hour, to be true.",
     ],
@@ -11756,7 +11756,7 @@ class HymnSeeder extends Seeder
         Omnipotent Father of mercy and grace
         Thou art welcome in this place.
         
-        2. Lord in Thy presence, There\'s healing divine;
+        2. Lord in Thy presence, There's healing divine;
         No other power can save, Lord, but Thine.
         Holy Spirit Thou art welcome in this place,
         Thou art welcome in this place.
@@ -11864,11 +11864,11 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "439",
-        'title' => "We\'ve Got The Power",
-        'lyrics' => "1. We\'ve got the power, in the Name of Jesus.
-        We\'ve got the power, in the Name of the Lord.
+        'title' => "We've Got The Power",
+        'lyrics' => "1. We've got the power, in the Name of Jesus.
+        We've got the power, in the Name of the Lord.
         Though Satan rages, we shall not be defeated,
-        We\'ve got the power, in the Name of the Lord",
+        We've got the power, in the Name of the Lord",
     ],
     [
         'number' => "440",
@@ -11894,12 +11894,12 @@ class HymnSeeder extends Seeder
     [
         'number' => "442",
         'title' => "In His Presence",
-        'lyrics' => "1. In His presence there\'s fullness of joy.
+        'lyrics' => "1. In His presence there's fullness of joy.
         At His right hand, pleasures forevermore.
         O what fellowship divine
         I am His and He is mine,
         In the presence of the Lord
-        There\'s fullness of joy.",
+        There's fullness of joy.",
     ],
     [
         'number' => "443",
@@ -11917,9 +11917,9 @@ class HymnSeeder extends Seeder
         'number' => "444",
         'title' => "Jesus, The Sweetest Name",
         'lyrics' => "1. Jesus is the sweetest name I know,
-        And He\'s just the same
+        And He's just the same
         As His lovely name.
-        That\'s the reason why I love him so,
+        That's the reason why I love him so,
         For Jesus is the sweetest name I know.",
     ],
     [
@@ -11938,9 +11938,9 @@ class HymnSeeder extends Seeder
         'number' => "446",
         'title' => "Never Failed",
         'lyrics' => "1. Never failed me yet, never failed me yet,
-        Jesus\' love never failed me yet;
-        This one thing I know, that where e\'er I go,
-        Jesus\' love never failed me yet.",
+        Jesus' love never failed me yet;
+        This one thing I know, that where e'er I go,
+        Jesus' love never failed me yet.",
     ],
     [
         'number' => "447",
@@ -11985,8 +11985,8 @@ class HymnSeeder extends Seeder
         Overcoming power
         To keep the devil away.
         Overcoming power
-        So we\'ll become the Word.
-        That\'s when we\'ll leave this sinful earth
+        So we'll become the Word.
+        That's when we'll leave this sinful earth
         And go to meet the Lord.",
     ],
     [
@@ -12006,7 +12006,7 @@ class HymnSeeder extends Seeder
         And His wonderful love,
         Oh, I can almost see the lights of home.
         
-        2. And sometimes when I\'m burdened,
+        2. And sometimes when I'm burdened,
         And my cross seems hard to bear.
         And old Satan, he tries to dim my view,
         Well I just look unto Jesus,
@@ -12015,13 +12015,13 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "453",
-        'title' => "I\'m Looking For A City",
-        'lyrics' => "1. I\'m looking for a city,
+        'title' => "I'm Looking For A City",
+        'lyrics' => "1. I'm looking for a city,
         The one not made by hands,
-        I\'m looking over Jordan,
+        I'm looking over Jordan,
         I see the promised land, The waters will be parted
-        And I\'ll be on my way,
-        As we\'re crossing over Jordan I can say:
+        And I'll be on my way,
+        As we're crossing over Jordan I can say:
         
         CHORUS
         Now I have that everlasting joy within,
@@ -12030,17 +12030,17 @@ class HymnSeeder extends Seeder
         He made me fully whole,
         With that everlasting joy within my soul.
         
-        2. I\'m drinking from the fountain
+        2. I'm drinking from the fountain
         That floweth from on high,
         A well of blessed waters
         That never shall run dry,
-        I\'m feasting on God\'s manna,
-        I\'m praying day by day,
+        I'm feasting on God's manna,
+        I'm praying day by day,
         And that everlasting joy is here to stay.
         
-        3. I\'ve heard the prophet\'s message,
-        I\'ve placed it in my heart,
-        I\'ve got the revelation
+        3. I've heard the prophet's message,
+        I've placed it in my heart,
+        I've got the revelation
         That never shall depart,
         The Rapture is upon us,
         The stage is set to go.
@@ -12051,37 +12051,37 @@ class HymnSeeder extends Seeder
         'title' => "It Is Love",
         'lyrics' => "1. There is something in my soul
         Which keeps the shadows all away;
-        It is love, my Saviour\'s love!
-        Something lightens ev\'ry burden,
+        It is love, my Saviour's love!
+        Something lightens ev'ry burden,
         Gives me gladness day by day,
-        It is love, my saviour\'s love.
+        It is love, my saviour's love.
         
         CHORUS
         O the precious love of Jesus,
         How it thrills my ransomed soul!
-        More and more I\'ll sing its praises
+        More and more I'll sing its praises
         While the happy ages roll.
         
         2. When the tempter tries to win me
         Something keeps me true and strong;
-        It is love, my Saviour\'s love!
+        It is love, my Saviour's love!
         Something makes my life a blessing
         To the needy in the throng,
-        It is love, my Saviour\'s love.
+        It is love, my Saviour's love.
         
         3. When misfortune overtakes me
         Something calms my troubled breast;
-        It is love, my Saviour\'s love!
+        It is love, my Saviour's love!
         Something draws my soul to heaven,
         That sweet land of peace and rest.
-        It is love, my Saviour\'s love.
+        It is love, my Saviour's love.
         
         4. Soul astray and bowed in sorrow,
         Something waits for you today;
-        It is love, my Saviour\'s love!
+        It is love, my Saviour's love!
         It would give you peace and comfort,
         Make your burdens roll away,
-        it is love, my Saviour\'s love.",
+        it is love, my Saviour's love.",
     ],
     [
         'number' => "455",
@@ -12094,23 +12094,23 @@ class HymnSeeder extends Seeder
         CHORUS
         He SET me free, yes, He set me free.
         He broke the bonds of prison for me.
-        I\'m glory bound my Jesus to see,
+        I'm glory bound my Jesus to see,
         For glory to God, He set me free.
         
         2. Now I am climbing higher each day,
         Darkness of night has drifted away.
         My feet are planted on higher ground,
-        And glory to God, I\'m homeward bound.
+        And glory to God, I'm homeward bound.
         
         3. Good-bye to sin and things that confound,
         Naught of this world shall turn me around,
-        Daily I\'m working, I\'m praying too,
-        And glory to God, I\'m going through.",
+        Daily I'm working, I'm praying too,
+        And glory to God, I'm going through.",
     ],
     [
         'number' => "456",
         'title' => "All In All",
-        'lyrics' => "1. Of Jesus love I\'m singing
+        'lyrics' => "1. Of Jesus love I'm singing
         I praise Him every day;
         He is my All in All, All in All.
         He frees my soul from bondage,
@@ -12124,7 +12124,7 @@ class HymnSeeder extends Seeder
         All in All, All in All,
         Jesus is my All in All.
         
-        2. He\'s patient and so tender,
+        2. He's patient and so tender,
         So loving and so kind;
         He is my All in All, All in All.
         Another Friend so faithful
@@ -12134,7 +12134,7 @@ class HymnSeeder extends Seeder
         3. In time of need no other
         To me can prove so dear;
         He is my All in All, All in All.
-        He hears me tho\' I whisper,
+        He hears me tho' I whisper,
         To help me he is near;
         Jesus is my All in All.",
     ],
@@ -12177,7 +12177,7 @@ class HymnSeeder extends Seeder
         
         CHORUS
         Deeper in that holy life
-        \'Til I\'m lost with Christ in God.
+        'Til I'm lost with Christ in God.
         Hidden with my blessed Lord
         While I walk this earthly sod.
         
@@ -12189,9 +12189,9 @@ class HymnSeeder extends Seeder
         3. Daily must I seek to please Him
         Whether it bring joy or pain.
         I shall know then just how blessed
-        Is the worth of Heav\'nly gain.
+        Is the worth of Heav'nly gain.
         
-        4. Deeper, \'til at last in Glory
+        4. Deeper, 'til at last in Glory
         In His likeness I shall come.
         Where the saints of all the ages
         Shall receive their welcome home.",
@@ -12200,7 +12200,7 @@ class HymnSeeder extends Seeder
         'number' => "459",
         'title' => "He Touched Me",
         'lyrics' => "1. Shackled by a heavy burden
-        \'Neath a load of guilt and shame,
+        'Neath a load of guilt and shame,
         Then the hand of Jesus touched me,
         And now I am no longer the same.
         
@@ -12214,7 +12214,7 @@ class HymnSeeder extends Seeder
         2. Since I met this blessed Saviour,
         Since He cleansed and made me whole,
         I shall never cease to praise Him,
-        I\'ll shout it while eternity rolls.",
+        I'll shout it while eternity rolls.",
     ],
     [
         'number' => "460",
@@ -12259,10 +12259,10 @@ class HymnSeeder extends Seeder
         Let Him have His way with thee.
         
         CHORUS
-        His pow\'r can make you what you ought to be,
+        His pow'r can make you what you ought to be,
         His blood can cleanse your heart and make you free:
         His love can fill your soul,
-        And you will see \'twas best for Him
+        And you will see 'twas best for Him
         To have His way with Thee.
         
         2. Would you have Him make you free, and follow at His call?
@@ -12277,16 +12277,16 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "463",
-        'title' => "I\'m Longing For Jesus To Come",
-        'lyrics' => "1. I\'m longing for that glorious day
+        'title' => "I'm Longing For Jesus To Come",
+        'lyrics' => "1. I'm longing for that glorious day
         When Jesus shall come back,
         I long to see His blessed face.
-        When all the saints thro\' all the ages
+        When all the saints thro' all the ages
         Shall be gathered home
         The ones who trusted in His grace
         
         CHORUS
-        I\'m longing for Jesus to come back
+        I'm longing for Jesus to come back
         I long for Jesus Christ my King
         To come and take me
         To my home beyond the skies,
@@ -12320,14 +12320,14 @@ class HymnSeeder extends Seeder
         'title' => "Land Of Milk And Honey",
         'lyrics' => "1. There is a land of milk and honey
         There is a land
-        Where we won\'t need money.
+        Where we won't need money.
         There is a land
         Shining with jasper.
         There we shall see our blessed Saviour.
         
         CHORUS
-        And that\'s the reason
-        We shout \'hallelujah\'
+        And that's the reason
+        We shout 'hallelujah'
         Praising the King across the river.
         That shining river
         Where the saints will gather
@@ -12355,7 +12355,7 @@ class HymnSeeder extends Seeder
         Jesus paid the price of redemption
         On the cross of Calvary.
         So every day my heart will praise Him
-        I know I\'ll never be the same
+        I know I'll never be the same
         All I want to do is love Him,
         Love His holy name.",
     ],
@@ -12363,24 +12363,24 @@ class HymnSeeder extends Seeder
         'number' => "467",
         'title' => "Born, Born, Born Again",
         'lyrics' => "1. Born, born, born again
-        Thank God I\'m born again,
+        Thank God I'm born again,
         Born, born, born again,
-        Thank God I\'m born again;
+        Thank God I'm born again;
         Born of the water
         And the Spirit and the blood
-        Thank God I\'m born again,
+        Thank God I'm born again,
         Born of the water
         And the Spirit and the blood
-        Thank God I\'m born again.",
+        Thank God I'm born again.",
     ],
     [
         'number' => "468",
         'title' => "Jesus Is Mine",
         'lyrics' => "1. Mine, mine, mine, Jesus is mine,
-        Mine when I\'m weary,
-        Mine when I\'m dreary;
+        Mine when I'm weary,
+        Mine when I'm dreary;
         Mine, mine, mine, Jesus is mine,
-        Mine all the time, oh yes, He\'s mine.",
+        Mine all the time, oh yes, He's mine.",
     ],
     [
         'number' => "469",
@@ -12392,18 +12392,18 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "470",
-        'title' => "I\'m In That Number",
-        'lyrics' => "1. I\'m in that number, I\'m in that number,
-        I\'m in that number robed in white;
-        I\'m in that number, I\'m in that number,
-        I\'m in that number robed in white.
+        'title' => "I'm In That Number",
+        'lyrics' => "1. I'm in that number, I'm in that number,
+        I'm in that number robed in white;
+        I'm in that number, I'm in that number,
+        I'm in that number robed in white.
         
         2. That blood-washed number,
         That blood-washed number,
-        I\'m in that number robed in white;
+        I'm in that number robed in white;
         That blood-washed number,
         That blood-washed number,
-        I\'m in that number robed in white.
+        I'm in that number robed in white.
         
         3. John saw that number,
         The blood-washed number,
@@ -12418,21 +12418,21 @@ class HymnSeeder extends Seeder
         'lyrics' => "1. I was glad when they said unto me,
         I was glad when they said unto me,
         I was glad when they said unto me,
-        \'Let us go into the house of the Lord.\'",
+        'Let us go into the house of the Lord.'",
     ],
     [
         'number' => "472",
         'title' => "Nobody But You, Lord",
         'lyrics' => "1. Nobody but you, Lord, nobody but you,
         Can keep me happy, can keep me true.
-        All through life\'s journey
-        You\'ll carry me through,
+        All through life's journey
+        You'll carry me through,
         Nobody but you, Lord, nobody but you.",
     ],
     [
         'number' => "473",
         'title' => "I Love My Jesus",
-        'lyrics' => "1. I love my Jesus, for He\'s my Saviour,
+        'lyrics' => "1. I love my Jesus, for He's my Saviour,
         And He has brought me unto the fountain;
         The blessed fountain of Living Water,
         The crystal fountain that never shall run",
@@ -12458,18 +12458,18 @@ class HymnSeeder extends Seeder
         'title' => "Victory",
         'lyrics' => "1. Victory, victory,
         Over all the powers of darkness, victory;
-        When the battle\'s in array,
+        When the battle's in array,
         Angels help us in the fray;
         And God fights for those who pray, victory.",
     ],
     [
         'number' => "477",
-        'title' => "We\'ll Not Leave Our...",
-        'lyrics' => "1. We\'ll not leave our little ones behind.
+        'title' => "We'll Not Leave Our...",
+        'lyrics' => "1. We'll not leave our little ones behind.
         For our Father has them in mind.
         Some are weak and some are feeble,
-        Others feel that they\'re not able.
-        We\'ll not leave a single one behind.",
+        Others feel that they're not able.
+        We'll not leave a single one behind.",
     ],
     [
         'number' => "478",
@@ -12487,20 +12487,20 @@ class HymnSeeder extends Seeder
         
         3. In saving you life, you will lose it,
         But by losing your life, you will find it,
-        Down in the ground that\'s where life is found,
+        Down in the ground that's where life is found,
         There a new life waits for you.",
     ],
     [
         'number' => "479",
         'title' => "The Saviour Of My Soul",
-        'lyrics' => "1. He\'s the Saviour of my soul
+        'lyrics' => "1. He's the Saviour of my soul
         My Jesus, my Jesus.
-        He\'s the Saviour of my soul
-        He\'s the Saviour of my soul.
+        He's the Saviour of my soul
+        He's the Saviour of my soul.
         
         2. Jesus, Jesus, Jesus, Jesus,
-        You\'re the Saviour of my soul.
-        You\'re the Saviour of my soul.",
+        You're the Saviour of my soul.
+        You're the Saviour of my soul.",
     ],
     [
         'number' => "480",
@@ -12531,7 +12531,7 @@ class HymnSeeder extends Seeder
         He is the mighty King,
         Master of everything,
         His Name is Wonderful, Jesus my Lord.
-        He\'s the great Shepherd,
+        He's the great Shepherd,
         The Rock of all ages,
         Almighty God is He.
         Bow down before Him,
@@ -12546,7 +12546,7 @@ class HymnSeeder extends Seeder
         Every day with Jesus,
         I love Him more and more.
         Jesus saves and keeps me
-        And He\'s the One I\'m waiting for.
+        And He's the One I'm waiting for.
         Every day with Jesus
         Is sweeter than the day before.",
     ],
@@ -12554,9 +12554,9 @@ class HymnSeeder extends Seeder
         'number' => "484",
         'title' => "He Cannot Fail",
         'lyrics' => "1. He cannot fail for He is God,
-        He cannot fail, He\'s pledged His word;
-        He cannot fail, He\'ll see you through;
-        He cannot fail, He\'ll answer you.",
+        He cannot fail, He's pledged His word;
+        He cannot fail, He'll see you through;
+        He cannot fail, He'll answer you.",
     ],
     [
         'number' => "485",
@@ -12583,40 +12583,40 @@ class HymnSeeder extends Seeder
     ],
     [
         'number' => "487",
-        'title' => "So Glad I\'m Yours, Lord",
-        'lyrics' => "1. So glad I\'m yours, Lord,
-        So glad I\'m yours.
+        'title' => "So Glad I'm Yours, Lord",
+        'lyrics' => "1. So glad I'm yours, Lord,
+        So glad I'm yours.
         So glad your mercy has followed me.
         So glad you found me and set me free
-        So glad I\'m yours, Lord, so glad I\'m yours.",
+        So glad I'm yours, Lord, so glad I'm yours.",
     ],
     [
         'number' => "488",
         'title' => "God Is Moving",
         'lyrics' => "1. God is moving by His Spirit,
-        Moving o\'er all the earth.
+        Moving o'er all the earth.
         Signs and wonders when God moveth
         Move, Oh Lord, in me.",
     ],
     [
         'number' => "489",
         'title' => "River Of Life",
-        'lyrics' => "1. There\'s a river of life flowing out from me;
+        'lyrics' => "1. There's a river of life flowing out from me;
         Makes the lame to walk
         And the blind to see.
         Opens prison doors,
         Sets the captives free,
-        There\'s a river of life
+        There's a river of life
         Flowing out from me.",
     ],
     [
         'number' => "490",
-        'title' => "There\'s Never Been A Day",
-        'lyrics' => "1. There\'s never been a day
+        'title' => "There's Never Been A Day",
+        'lyrics' => "1. There's never been a day
         Like this day to me,
-        There\'s never been a day
+        There's never been a day
         Like this day I see,
-        There\'s never been a light
+        There's never been a light
         That shines so bright
         As this day, this glorious day.",
     ],
@@ -12642,7 +12642,7 @@ class HymnSeeder extends Seeder
         I can never tell His love for me;
         For it passeth human measure,
         Like a deep unfathomed sea,
-        \'Tis redeeming love in Christ my Saviour,
+        'Tis redeeming love in Christ my Saviour,
         In my soul the heavenly joys begin;
         And I live for Jesus only since the fullness of His love shone in.",
     ],
@@ -12678,22 +12678,22 @@ class HymnSeeder extends Seeder
         'number' => "495",
         'title' => "He Lifted Me Out",
         'lyrics' => "1. He lifted me out of the deep miry clay,
-        He planted my feet on the King\'s highway,
+        He planted my feet on the King's highway,
         And that is the reason I sing and I shout,
         For Jesus came down and lifted me out.",
     ],
     [
         'number' => "496",
-        'title' => "He\'ll Say \'Peace, Peace\'",
-        'lyrics' => "1. Then He\'ll say \'Peace, peace,
+        'title' => "He'll Say 'Peace, Peace'",
+        'lyrics' => "1. Then He'll say 'Peace, peace,
         Peace unto my lovely Bride.
         Shalom, Shalom,
         For a new day has broken.
         From this sick and dying world
-        To God\'s life and immortality.\'
+        To God's life and immortality.'
         All we can hear from His Throne
-        Is \'Good morning, good morning
-        To my Bride.\'",
+        Is 'Good morning, good morning
+        To my Bride.'",
     ],
     [
         'number' => "497",
@@ -12725,27 +12725,27 @@ class HymnSeeder extends Seeder
         He lifted me up I know.
         He reached down His hand
         And lifted me up
-        And that\'s why I love Him so.
+        And that's why I love Him so.
         
         2. O glory to God He lifted me up
         He lifted me up I know.
         He reached down His hand
         And lifted me up
-        And that\'s why I love Him so.",
+        And that's why I love Him so.",
     ],
     [
         'number' => "499",
-        'title' => "I\'m Going Up",
-        'lyrics' => "1. I\'m going up, I\'m going up
-        I\'m going up in the first resurrection.
-        I\'m going up, I\'m going up
-        I\'m going up to meet the Lord.
-        They\'ll be coming from the East,
+        'title' => "I'm Going Up",
+        'lyrics' => "1. I'm going up, I'm going up
+        I'm going up in the first resurrection.
+        I'm going up, I'm going up
+        I'm going up to meet the Lord.
+        They'll be coming from the East,
         Coming from the West,
         Coming from the North,
-        They\'ll be coming from the South.
-        I\'m going up, I\'m going up
-        I\'m going up to meet the Lord.",
+        They'll be coming from the South.
+        I'm going up, I'm going up
+        I'm going up to meet the Lord.",
     ],
     [
         'number' => "500",
