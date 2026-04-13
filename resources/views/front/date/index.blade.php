@@ -19,6 +19,13 @@
                                 <th class="bg-gray font-bold h3 text-danger"> 
                                      Excel Dates  </th>
                             </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <p class="text-muted text-wrap text-capitalize">
+                                        Upload only the Date Column That you want to convert
+                                    </p>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     
