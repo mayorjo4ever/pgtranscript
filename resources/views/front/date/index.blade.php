@@ -17,7 +17,7 @@
                             <tr>
                                 <th class="bg-gray w-30"> What To Upload :  </th>
                                 <th class="bg-gray font-bold h3 text-danger"> 
-                                     Excel Data To Convert Dates   </th>
+                                     Excel Dates  </th>
                             </tr>
                         </tbody>
                     </table>
