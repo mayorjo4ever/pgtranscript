@@ -27,7 +27,7 @@
                              <img class="img img-thumbnail" src="{{asset('img/data/date-conversion.png')}}" />
                              <img class="img img-thumbnail" src="{{asset('img/data/excel.png')}}" width="80" height="80" />
                          </p>                         
-                         <form method="post" action="{{ url('admin/download-clean-dates') }}" 
+                         <form method="post" action="{{ url('download-clean-dates') }}" 
                                 class=""  enctype="multipart/form-data">
                               @csrf
                               <div class="input-group">
