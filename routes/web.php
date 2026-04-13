@@ -210,6 +210,7 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
      });       
     });
   });
+
   Route::get('/downloads/passports-signatures', [DownloadController::class, 'download'])
        ->name('downloads.bulk');
   
@@ -220,7 +221,10 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
     Route::post('/webhook', [TelegramBotController::class, 'webhook'])
         ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
    });
-  
+
+
+  Route::get('/date-conversion', [DateController::class, 'index']);
+
 /**
 Route::get('/dashboard', function () {
     return view('dashboard');
