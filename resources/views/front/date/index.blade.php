@@ -23,8 +23,7 @@
                                 <td colspan="2">
                                     <p class="text-dark text-wrap text-capitalize">
                                         Upload only the Date Column That you want to convert, the 
-                                        system will automatically convert the dates to a clean format and make it available for download. 
-                                        You can then copy the clean dates and paste them back to your original excel file.
+                                        system will automatically convert the dates to a clean format and make it available for download.                                       
                                     </p>
                                 </td>
                             </tr>
