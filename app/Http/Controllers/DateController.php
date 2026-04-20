@@ -21,7 +21,7 @@ class DateController extends Controller
         return view('front.date.index',compact('page_info'));
     }
 
-    public function downloadCleanDates(Request $request){
+    public function download(Request $request){
       $file = $request->file('file'); // from Dropzone
         ob_end_clean(); // clear any stray output buffer
         ob_start();

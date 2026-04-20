@@ -225,7 +225,8 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
 
 
   Route::get('/date-conversion', [DateController::class, 'index']);
-  Route::post('download-clean-dates','DateController@downloadCleanDates');
+  Route::post('download-clean-dates', [DateController::class, 'download']);
+  
 
 /**
 Route::get('/dashboard', function () {

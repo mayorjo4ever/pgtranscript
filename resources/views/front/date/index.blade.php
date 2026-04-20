@@ -43,15 +43,11 @@
                                 <button type="submit" class="btn btn-primary m-2" btn-lg>Upload</button>
                               </div>
                           </form>
-                    </x-admin.card>
-                    
+                    </x-admin.card>                    
                     
                 </x-admin.card>
-           </div> <!--./ col-md-12 --> 
-            
+           </div> <!--./ col-md-12 -->             
            
-       </div><!-- ./ row -->      
-       
+       </div><!-- ./ row -->             
 </div>
-
 @endsection
