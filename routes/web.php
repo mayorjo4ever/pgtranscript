@@ -188,7 +188,9 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         # $report = TranscriptReport::where('regno','05/66MF075')->get();             
         
         //$data = CertificateData::where('regno','11/66MC067')->get(); 
-        $data = CertificateData::find(8354); 
+        $data = CertificateData::where('id',8354)->delete(); 
+        if($data) : echo "Data Deleted"; endif; 
+        
         // $data->update(['approve_date_id'=>104,'year'=>'2014']);
 
         print "<pre>"; 
