@@ -6,6 +6,7 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\DateController;
 use App\Models\TranscriptReport;
 use App\Models\TranscriptsRequest;
+use App\Models\CertificateData;
 use App\Services\GoogleSheetService;
 use Illuminate\Support\Facades\Route;
 
