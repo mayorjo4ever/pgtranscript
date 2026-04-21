@@ -187,8 +187,8 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         # $printout = TranscriptPrintout::where('regno','05/66MF075')->get(); 
         # $report = TranscriptReport::where('regno','05/66MF075')->get();             
         
-        $data = CertificateData::where('regno','11/66MC067')->get(); 
-        // $data = CertificateData::find(7372); 
+        //$data = CertificateData::where('regno','11/66MC067')->get(); 
+        $data = CertificateData::find(8354); 
         // $data->update(['approve_date_id'=>104,'year'=>'2014']);
 
         print "<pre>"; 
@@ -201,7 +201,7 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         #
         
         # $req = TranscriptsRequest::where('regno','17/AM68002')->get();
-        
+        /*
         # TranscriptsRequest::where('regno','14/25PC196')->update(['reference_number'=>'B261ADMBAT']);
         $req = TranscriptsRequest::find(3579);
         $req->update(['regno'=>'17/68AM002']);
@@ -210,7 +210,7 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         # $report = TranscriptReport::where('regno','14/25PC196_error')->update(['regno'=>'14/25PC196']); 
         # $report = TranscriptReport::where('regno','14/25PC196')->get(); #->update(['regno'=>'14/25PC196_error']); 
         # print_r($report->toarray()); 
-            
+        */  
                   
      });       
     });
