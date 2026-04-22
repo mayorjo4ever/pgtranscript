@@ -9,6 +9,7 @@ use App\Models\TranscriptsRequest;
 use App\Models\CertificateData;
 use App\Services\GoogleSheetService;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BotController; 
 
 
 //Route::get('/', function () {
