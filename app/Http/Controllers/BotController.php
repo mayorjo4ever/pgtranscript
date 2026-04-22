@@ -34,4 +34,19 @@ class BotController extends Controller
             ]
         ]);
     }
+
+    public function trades()
+        {
+            return \App\Models\Trade::latest()
+                ->limit(20)
+                ->get()
+                ->map(function ($trade) {
+                    return [
+                        'side' => strtoupper($trade->side),
+                        'price' => (float) $trade->price,
+                        'amount' => (float) $trade->amount,
+                        'created_at' => $trade->created_at->format('Y-m-d H:i:s'),
+                    ];
+                });
+        }
 }
