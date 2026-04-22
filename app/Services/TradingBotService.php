@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Trade;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Log;
 
 class TradingBotService
 {
