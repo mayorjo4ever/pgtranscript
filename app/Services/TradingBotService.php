@@ -476,7 +476,7 @@ public function getMarketSummary(): array
         ];
     }
 
-    private function getBtcBalance(): float
+    public function getBtcBalance(): float
         {
             $balances = $this->bitget->getBalances();
 
