@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\DatabaseSeeder;
+use Illuminate\Database\Seeder;
+
 use App\Models\Hymn;
 
 class HymnSeeder extends Seeder
