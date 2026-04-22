@@ -37,7 +37,7 @@ class ImportTrades extends Command
                 'symbol' => $data['symbol'],
                 'side' => strtolower($data['side']),
                 'price' => (float) $data['price'],
-                'amount' => (float) $data['amount'],
+                'quantity' => (float) $data['quantity'],
                 'created_at' => $data['created_at'] ?? now(),
                 'updated_at' => now(),
             ]);
