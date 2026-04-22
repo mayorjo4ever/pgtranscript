@@ -17,10 +17,10 @@ class TradingBotService
     
    public function handle(): void
     {
-        \Log::info("🤖 Bot running");
+        Log::info("🤖 Bot running");
 
         if (!Setting::isBotEnabled()) {
-            \Log::info('Bot disabled');
+            Log::info('Bot disabled');
             return;
         }
 
@@ -35,7 +35,7 @@ class TradingBotService
         );
 
         if (empty($prices) || !$currentPrice) {
-            \Log::warning('Invalid market data');
+            Log::warning('Invalid market data');
             return;
         }
 
@@ -57,20 +57,20 @@ class TradingBotService
         $usdt = collect($balances['data'] ?? [])
             ->firstWhere('coin', 'USDT')['available'] ?? 0;
 
-        \Log::info("BTC Balance: {$btcBalance}");
-        \Log::info("USDT Balance: {$usdt}");
+        Log::info("BTC Balance: {$btcBalance}");
+        Log::info("USDT Balance: {$usdt}");
         
         // ==========================================================
         // 🔴 MODE 1: WE HAVE BTC → ONLY SELL LOGIC
         // ==========================================================
         if ($btcBalance > 0.00001) {
 
-            \Log::info('📊 SELL MODE ACTIVE');
+            Log::info('📊 SELL MODE ACTIVE');
 
             $lastTrade = Trade::where('side', 'buy')->latest()->first();
 
             if (!$lastTrade) {
-                \Log::warning('No BUY trade found');
+                Log::warning('No BUY trade found');
                 return;
             }
 
@@ -84,7 +84,7 @@ class TradingBotService
 
             $profitPercent = (($currentPrice - $entry) / $entry) * 100;
 
-            \Log::info('Position status', [
+            Log::info('Position status', [
                 'entry' => $entry,
                 'current' => $currentPrice,
                 'profit%' => round($profitPercent, 3),
@@ -102,17 +102,17 @@ class TradingBotService
             );
 
             if (!$shouldSell) {
-                \Log::info('Holding position');
+                Log::info('Holding position');
                 return; // 🚫 STOP HERE — NO BUY
             }
 
             // 🚫 Extra safety (avoid dust / invalid orders)
             if ($safeAmount <= 0) {
-                \Log::warning('Invalid sell amount');
+                Log::warning('Invalid sell amount');
                 return;
             }
 
-            \Log::info('🔴 SELL SIGNAL CONFIRMED');
+            Log::info('🔴 SELL SIGNAL CONFIRMED');
 
             $this->executeTrade('sell', $safeAmount, $currentPrice);
 
@@ -122,7 +122,7 @@ class TradingBotService
         // ==========================================================
         // 🟢 MODE 2: NO BTC → ONLY BUY LOGIC
         // ==========================================================
-        \Log::info('🟢 BUY MODE ACTIVE');
+        Log::info('🟢 BUY MODE ACTIVE');
 
         $shouldBuy = (
             $rsi < 40 &&
@@ -132,11 +132,11 @@ class TradingBotService
         );
 
         if (!$shouldBuy) {
-            \Log::info('No buy signal');
+            Log::info('No buy signal');
             return;
         }
 
-        \Log::info('🟢 BUY SIGNAL');
+        Log::info('🟢 BUY SIGNAL');
 
         // ===============================
         // 💵 TRADE SIZE (FIXED LOGIC)
@@ -146,7 +146,7 @@ class TradingBotService
 
         // 🚫 balance check
         if ($usdt < ($minBuyUsd + $buffer)) {
-            \Log::warning('Balance too low for configured minimum buy', [
+            Log::warning('Balance too low for configured minimum buy', [
                 'balance' => $usdt,
                 'required' => $minBuyUsd + $buffer
             ]);
@@ -169,7 +169,7 @@ class TradingBotService
         $tradeValue = min($tradeValue, $usdt);
 
         // 🔍 debug log
-        \Log::info('TRADE SIZE FIXED', [
+        Log::info('TRADE SIZE FIXED', [
             'usdt' => $usdt,
             'minBuyUsd' => $minBuyUsd,
             'maxRisk' => $maxRisk,
@@ -195,13 +195,13 @@ class TradingBotService
         while ($attempt < $maxRetries) {
             $attempt++;
 
-            \Log::info("Attempt {$attempt}", compact('side', 'amount'));
+            Log::info("Attempt {$attempt}", compact('side', 'amount'));
 
             $response = $this->safeApiCall(
                 fn() => $this->bitget->placeOrder('BTCUSDT', $side, $amount, $price)
             );
 
-            \Log::info('API RESPONSE', $response ?? []);
+            Log::info('API RESPONSE', $response ?? []);
 
             if ($response && ($response['code'] ?? '') === '00000') {
 
@@ -227,7 +227,7 @@ class TradingBotService
             }
 
             if (($response['code'] ?? '') === '45110') {
-                \Log::warning('Minimum amount error');
+                Log::warning('Minimum amount error');
                 return false;
             }
 
@@ -317,7 +317,7 @@ class TradingBotService
         try {
             return $callback();
         } catch (\Throwable $e) {
-            \Log::error($e->getMessage());
+            Log::error($e->getMessage());
             return null;
         }
     }
@@ -329,14 +329,14 @@ class TradingBotService
 
     private function notify(string $message, string $type = 'info'): void
     {
-        \Log::info($message);
+        Log::info($message);
 
         // if (!in_array($type, ['trade', 'error', 'alert','info'])) return;
 
         try {
             app(\App\Services\TelegramService::class)->send($message);
         } catch (\Exception $e) {
-            \Log::error('Telegram failed');
+            Log::error('Telegram failed');
         }
     }
     // protected function notify(string $message, string $type = 'info'): void
@@ -344,7 +344,7 @@ class TradingBotService
     //     try {
     //         app(\App\Services\TelegramService::class)->send($message);
     //     } catch (\Exception $e) {
-    //         \Log::error('Telegram failed', [
+    //         Log::error('Telegram failed', [
     //             'error' => $e->getMessage()
     //         ]);
     //     }
@@ -484,7 +484,7 @@ public function getMarketSummary(): array
                 ->firstWhere('coin', 'BTC'); // ✅ EXACT MATCH
 
             if (!$btc) {
-                \Log::warning('BTC not found in balance', $balances['data']);
+                Log::warning('BTC not found in balance', $balances['data']);
                 return 0;
             }
 
@@ -499,19 +499,19 @@ public function getMarketSummary(): array
             $price = $bitget->getBtcPrice();
 
             if (!$price) {
-                \Log::warning('No price available, skipping sell');
+                Log::warning('No price available, skipping sell');
                 return;
             }
 
             // OPTIONAL: prevent instant sell after buy
             if ($this->recentlyBought()) {
-                \Log::info('Recently bought, skipping sell');
+                Log::info('Recently bought, skipping sell');
                 return;
             }
 
             // OPTIONAL: simple profit check (very important)
             if (!$this->isProfitable($price)) {
-                \Log::info('Not profitable yet, skipping sell', [
+                Log::info('Not profitable yet, skipping sell', [
                     'price' => $price
                 ]);
                 return;
@@ -543,7 +543,7 @@ public function getMarketSummary(): array
         {
             $bitget = app(\App\Services\BitgetService::class);
 
-            \Log::info('Placing SELL order', [
+            Log::info('Placing SELL order', [
                 'amount' => $btcAmount,
                 'price' => $price
             ]);
@@ -556,7 +556,7 @@ public function getMarketSummary(): array
                 'type' => 'market', // or limit
             ]);
 
-            \Log::info('Sell response', $response);
+            Log::info('Sell response', $response);
         }
 
         protected function storeTrade(string $side, float $price, float $amount, $orderId = null): void
@@ -573,14 +573,14 @@ public function getMarketSummary(): array
                     // 'source' => 'local',
                 ]);
 
-                \Log::info('Trade saved', [
+                Log::info('Trade saved', [
                     'side' => $side,
                     'price' => $price,
                     'amount' => $amount
                 ]);
 
             } catch (\Exception $e) {
-                \Log::error('Failed to save trade', [
+                Log::error('Failed to save trade', [
                     'error' => $e->getMessage()
                 ]);
             }
