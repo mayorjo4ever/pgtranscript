@@ -9,65 +9,60 @@ use App\Models\Setting;
 class BotController extends Controller
 {
     public function status()
-    {
-        $bot = app(\App\Services\TradingBotService::class);
+{
+    $bot = app(\App\Services\TradingBotService::class);
 
-        $summary = $bot->getMarketSummary();
-        $lastTrade = Trade::latest()->first();
-        $btcBalance = $bot->getBtcBalance();
+    $summary = $bot->getMarketSummary();
+    $lastBuy = Trade::where('side', 'buy')->latest()->first();
+    $btcBalance = $bot->getBtcBalance();
 
-        $targetPercent = Setting::get('bot_target_profit', 2);
+    $targetPercent = Setting::get('bot_target_profit', 2);
 
-        $account = $bot->getAccountSummary();
-        $btcBalance = $account['btc'];
-        // ===============================
-        // 🎯 TARGET PRICE
-        // ===============================
-        $targetPrice = null;
-        if ($lastTrade && $lastTrade->side === 'buy') {
-            $targetPrice = $lastTrade->price * (1 + $targetPercent / 100);
-        }
-
-        // ===============================
-        // 🧠 MODE
-        // ===============================
-        $mode = 'wait';
-        if ($btcBalance > 0.00001) {
-            $mode = 'sell';
-        } elseif ($lastTrade && $lastTrade->side === 'sell') {
-            $mode = 'buy';
-        }
-
-        // ===============================
-        // 💰 PROFIT CALCULATION
-        // ===============================
-        $profitPercent = 0;
-        if ($lastTrade && $lastTrade->side === 'buy' && $summary['price']) {
-            $profitPercent = (($summary['price'] - $lastTrade->price) / $lastTrade->price) * 100;
-        }
-
-        // ===============================
-        // 🧠 BOT REASONING
-        // ===============================
-        $reason = $bot->getDecisionReason();
-
-        return response()->json([
-            'price' => (float) ($summary['price'] ?? 0),
-            'rsi' => (float) ($summary['rsi'] ?? 0),
-            'mode' => $mode,
-            'btc_balance' => $btcBalance,
-            'profit_percent' => round($profitPercent, 2),
-            'reason' => $reason,
-
-            'last_trade' => $lastTrade,
-            'target_price' => $targetPrice,
-
-            'settings' => [
-                'target_profit' => $targetPercent,
-                'min_buy' => Setting::get('bot_min_buy_usd', 5),
-            ]
-        ]);
+    // ===============================
+    // 🎯 TARGET PRICE
+    // ===============================
+    $targetPrice = null;
+    if ($lastBuy) {
+        $targetPrice = $lastBuy->price * (1 + $targetPercent / 100);
     }
+
+    // ===============================
+    // 🧠 MODE (FIXED)
+    // ===============================
+    if ($btcBalance > 0.00001) {
+        $mode = 'sell';
+    } elseif ($lastBuy) {
+        $mode = 'wait';
+    } else {
+        $mode = 'buy';
+    }
+
+    // ===============================
+    // 💰 PROFIT
+    // ===============================
+    $profitPercent = 0;
+
+    if ($lastBuy && ($summary['price'] ?? 0)) {
+        $profitPercent = (($summary['price'] - $lastBuy->price) / $lastBuy->price) * 100;
+    }
+
+    return response()->json([
+        'price' => (float) ($summary['price'] ?? 0),
+        'rsi' => (float) ($summary['rsi'] ?? 0),
+
+        'mode' => $mode,
+        'reason' => $bot->getDecisionReason(),
+
+        'last_trade' => $lastBuy, // ✅ ONLY BUY
+        'target_price' => $targetPrice,
+        'profit_percent' => round($profitPercent, 2),
+
+        'settings' => [
+            'target_profit' => $targetPercent,
+            'min_buy' => Setting::get('bot_min_buy_usd', 5),
+        ]
+    ]);
+}
 
     public function trades()
     {
@@ -95,12 +90,14 @@ class BotController extends Controller
     // ===============================
     // 📈 PRICE HISTORY (FOR CHART)
     // ===============================
-    public function chart()
-    {
-        $bot = app(\App\Services\TradingBotService::class);
+        public function chart()
+        {
+            $prices = app(\App\Services\TradingBotService::class)->getPrices();
 
-        return response()->json(
-            $bot->getPrices() // array of prices
-        );
-    }
+            if (empty($prices)) {
+                return response()->json([0]); // prevent crash
+            }
+
+            return response()->json($prices);
+        }   
 }
