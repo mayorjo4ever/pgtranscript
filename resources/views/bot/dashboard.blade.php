@@ -72,6 +72,31 @@
 
   </div>
 
+  <div class="row mt-4">
+
+  <!-- 📈 CHART -->
+  <div class="col-md-8">
+    <div class="card shadow">
+      <div class="card-body">
+        <h5>BTC Live Chart</h5>
+        <canvas id="chart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🧠 BOT REASON -->
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-body">
+        <h5>Bot Decision</h5>
+        <p id="reason">Loading...</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
   <!-- TRADE TABLE -->
   <div class="row mt-4">
     <div class="col-12">
@@ -99,6 +124,8 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
 
     async function loadDashboard() {
@@ -123,7 +150,7 @@
 
                 document.getElementById('entry').innerText = entry.toFixed(2);
                 document.getElementById('target').innerText = data.target_price ? data.target_price.toFixed(2) : '-';
-                document.getElementById('profit').innerText = profit.toFixed(2);
+                document.getElementById('profit').innerText =   data.profit_percent.toFixed(2);
             }
 
             // ✅ MODE
@@ -182,6 +209,40 @@ async function saveSettings() {
         loadTrades();
     }, 8000);
 
+
+    let chart;
+
+    document.getElementById('reason').innerText = data.reason;
+
+    async function loadChart() {
+        const res = await fetch('/api/bot/chart');
+        const prices = await res.json();
+
+        const labels = prices.map((_, i) => i);
+
+        if (chart) chart.destroy();
+
+        chart = new Chart(document.getElementById('chart'), {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [{
+                    label: 'BTC Price',
+                    data: prices,
+                    borderWidth: 2,
+                    tension: 0.3
+                }]
+            }
+        });
+    }
+
+    let lastMode = null;
+
+    if (lastMode !== data.mode && data.mode === 'sell') {
+        alert('🔴 SELL SIGNAL TRIGGERED');
+    }
+
+    lastMode = data.mode;
 loadDashboard();
 loadTrades();
 </script>

@@ -622,4 +622,25 @@ public function getMarketSummary(): array
                 'progress' => max(0, min(100, $progress)),
             ];
         }
+
+        public function getDecisionReason()
+        {
+            $prices = $this->getPrices();
+
+            if (empty($prices)) return 'No market data';
+
+            $rsi = $this->calculateRSI($prices);
+            $ma10 = $this->movingAverage($prices, 10);
+            $ma50 = $this->movingAverage($prices, 50);
+
+            if ($rsi < 40 && $ma10 > $ma50) {
+                return "BUY: RSI low ({$rsi}), uptrend confirmed";
+            }
+
+            if ($rsi > 70) {
+                return "SELL: RSI high ({$rsi}), overbought";
+            }
+
+            return "WAIT: No strong signal";
+        }
 }
