@@ -101,59 +101,45 @@
 
 <script>
 
-    let isEditing = false;
-    document.getElementById('targetProfit').addEventListener('focus', () => isEditing = true);
-    document.getElementById('minBuy').addEventListener('focus', () => isEditing = true);
+    async function loadDashboard() {
+        try {
+            const res = await fetch('/api/bot/status');
+            const data = await res.json();
 
-    document.getElementById('targetProfit').addEventListener('blur', () => isEditing = false);
-    document.getElementById('minBuy').addEventListener('blur', () => isEditing = false);
+            document.getElementById('price').innerText = '$' + Number(data.price).toFixed(2);
+            document.getElementById('rsi').innerText = Number(data.rsi).toFixed(2);
 
-async function loadDashboard() {
-    const res = await fetch('/api/bot/status');
-    const data = await res.json();
+            // ✅ SETTINGS (only when not editing)
+            if (!isEditing) {
+                document.getElementById('targetProfit').value = data.settings.target_profit ?? 2;
+                document.getElementById('minBuy').value = data.settings.min_buy ?? 5;
+            }
 
-    document.getElementById('price').innerText = '$' + data.price.toFixed(2);
-    document.getElementById('rsi').innerText = data.rsi.toFixed(2);
-    
-    const res = await fetch('/api/bot/status');
-    const data = await res.json();
+            // ✅ POSITION
+            if (data.last_trade) {
+                const entry = parseFloat(data.last_trade.price);
+                const current = data.price;
+                const profit = ((current - entry) / entry) * 100;
 
-    if (!isEditing) {
-        document.getElementById('targetProfit').value = data.settings.target_profit ?? 2;
-        document.getElementById('minBuy').value = data.settings.min_buy ?? 5;
+                document.getElementById('entry').innerText = entry.toFixed(2);
+                document.getElementById('target').innerText = data.target_price ? data.target_price.toFixed(2) : '-';
+                document.getElementById('profit').innerText = profit.toFixed(2);
+            }
+
+            // ✅ MODE
+            const modeEl = document.getElementById('mode');
+            modeEl.innerText = data.mode.toUpperCase();
+
+            modeEl.style.fontWeight = 'bold';
+
+            if (data.mode === 'buy') modeEl.style.color = 'green';
+            else if (data.mode === 'sell') modeEl.style.color = 'red';
+            else modeEl.style.color = 'orange';
+
+        } catch (e) {
+            console.error('Dashboard error:', e);
+        }
     }
-    
-    if (data.last_trade) {
-        const entry = parseFloat(data.last_trade.price);
-        const current = data.price;
-        const profit = ((current - entry) / entry) * 100;
-
-        document.getElementById('entry').innerText = entry.toFixed(2);
-        document.getElementById('target').innerText = data.target_price?.toFixed(2) || '-';
-        document.getElementById('profit').innerText = profit.toFixed(2);
-    }
-    
-    document.getElementById('targetProfit').value = data.settings.target_profit ?? 2;
-    document.getElementById('minBuy').value = data.settings.min_buy ?? 5;
-
-    const modeEl = document.getElementById('mode');
-
-        modeEl.innerText = data.mode.toUpperCase();
-
-        modeEl.style.fontWeight = 'bold';
-
-        if (data.mode === 'buy') {
-            modeEl.style.color = 'green';
-        }
-        if (data.mode === 'sell') {
-            modeEl.style.color = 'red';
-        }
-        if (data.mode === 'wait') {
-            modeEl.style.color = 'orange';
-        }
-
-}
-
 
 async function loadTrades() {
     const res = await fetch('/api/bot/trades');
@@ -188,10 +174,13 @@ async function saveSettings() {
     alert('Saved');
 }
 
-setInterval(() => {
-    loadDashboard();
-    loadTrades();
-}, 5000);
+    setInterval(() => {
+        loadDashboard();
+    }, 5000);
+
+    setInterval(() => {
+        loadTrades();
+    }, 8000);
 
 loadDashboard();
 loadTrades();
