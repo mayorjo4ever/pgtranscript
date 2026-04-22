@@ -631,6 +631,24 @@ public function getMarketSummary(): array
                 ];
             }
 
+
+            public function getUsdtBalance(): float
+        {
+            try {
+                $balances = $this->bitget->getBalances();
+
+                return (float) collect($balances['data'] ?? [])
+                    ->firstWhere('coin', 'USDT')['available'] ?? 0;
+
+            } catch (\Exception $e) {
+                \Log::error('USDT balance fetch failed', [
+                    'error' => $e->getMessage()
+                ]);
+
+                return 0;
+            }
+        }
+
         public function getDecisionReason()
         {
             $prices = $this->getPrices();
