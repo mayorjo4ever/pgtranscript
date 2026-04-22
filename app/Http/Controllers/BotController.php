@@ -18,6 +18,8 @@ class BotController extends Controller
 
         $targetPercent = Setting::get('bot_target_profit', 2);
 
+        $account = $bot->getAccountSummary();
+        $btcBalance = $account['btc'];
         // ===============================
         // 🎯 TARGET PRICE
         // ===============================

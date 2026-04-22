@@ -623,6 +623,14 @@ public function getMarketSummary(): array
             ];
         }
 
+        public function getAccountSummary(): array
+            {
+                return [
+                    'btc' => $this->getBtcBalance(),
+                    'usdt' => $this->getUsdtBalance(),
+                ];
+            }
+
         public function getDecisionReason()
         {
             $prices = $this->getPrices();
