@@ -1,4 +1,5 @@
 <x-admin.cssloader></x-admin.cssloader>
+
 <div class="container mt-4">
 
   <div class="row">
@@ -8,9 +9,9 @@
       <div class="card shadow">
         <div class="card-body">
           <h5>Bot Status</h5>
-          <h3 id="price">$0</h3>
-          <p>RSI: <span id="rsi"></span></p>
-          <p>Mode: <span id="mode"></span></p>
+          <h3 id="price">--</h3>
+          <p>RSI: <span id="rsi">--</span></p>
+          <p>Mode: <span id="mode">WAIT</span></p>
         </div>
       </div>
     </div>
@@ -20,9 +21,9 @@
       <div class="card shadow">
         <div class="card-body">
           <h5>Position</h5>
-          <p>Entry: $<span id="entry"></span></p>
-          <p>Target: $<span id="target"></span></p>
-          <p>Profit: <span id="profit"></span>%</p>
+          <p>Entry: $<span id="entry">--</span></p>
+          <p>Target: $<span id="target">--</span></p>
+          <p>Profit: <span id="profit">--</span>%</p>
         </div>
       </div>
     </div>
@@ -31,40 +32,22 @@
     <div class="col-md-4">
       <div class="card shadow">
         <div class="card-body">
- 
-      <h5 class="mb-3">Bot Settings</h5>
 
-      <!-- Target Profit -->
-      <div class="form-group mb-3">
-        <label for="targetProfit" class="form-label">
-          Target Profit (%)
-        </label>
-        <input 
-          id="targetProfit"
-          type="number"
-          step="0.1"
-          class="form-control"
-          placeholder="e.g 2"
-        >
-      </div>
+          <h5 class="mb-3">Bot Settings</h5>
 
-            <!-- Min Buy -->
-            <div class="form-group mb-3">
-                <label for="minBuy" class="form-label">
-                Minimum Buy Amount (USDT)
-                </label>
-                <input 
-                id="minBuy"
-                type="number"
-                step="0.1"
-                class="form-control"
-                placeholder="e.g 5"
-                >
-            </div>
+          <div class="form-group mb-3">
+            <label>Target Profit (%)</label>
+            <input id="targetProfit" type="number" class="form-control">
+          </div>
 
-            <button onclick="saveSettings()" class="btn btn-primary w-100">
-                Save Settings
-            </button> 
+          <div class="form-group mb-3">
+            <label>Minimum Buy (USDT)</label>
+            <input id="minBuy" type="number" class="form-control">
+          </div>
+
+          <button onclick="saveSettings()" class="btn btn-primary w-100">
+            Save Settings
+          </button>
 
         </div>
       </div>
@@ -72,32 +55,30 @@
 
   </div>
 
+  <!-- CHART + REASON -->
   <div class="row mt-4">
 
-  <!-- 📈 CHART -->
-  <div class="col-md-8">
-    <div class="card shadow">
-      <div class="card-body">
-        <h5>BTC Live Chart</h5>
-        <canvas id="chart"></canvas>
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-body">
+          <h5>BTC Live Chart</h5>
+          <canvas id="chart"></canvas>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- 🧠 BOT REASON -->
-  <div class="col-md-4">
-    <div class="card shadow">
-      <div class="card-body">
-        <h5>Bot Decision</h5>
-        <p id="reason">Loading...</p>
+    <div class="col-md-4">
+      <div class="card shadow">
+        <div class="card-body">
+          <h5>Bot Decision</h5>
+          <p id="reason">Loading...</p>
+        </div>
       </div>
     </div>
+
   </div>
 
-</div>
-
-
-  <!-- TRADE TABLE -->
+  <!-- TRADES -->
   <div class="row mt-4">
     <div class="col-12">
       <div class="card shadow">
@@ -124,99 +105,82 @@
 
 </div>
 
+<!-- CHART JS -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+let chart;
+let isEditing = false;
+let lastMode = null;
 
-    async function loadDashboard() {
-        try {
-            const res = await fetch('/api/bot/status');
-            const data = await res.json();
+// ===============================
+// 📊 DASHBOARD
+// ===============================
+async function loadDashboard() {
+    try {
+        const res = await fetch('/api/bot/status');
+        const data = await res.json();
 
-            document.getElementById('price').innerText = '$' + Number(data.price).toFixed(2);
-            document.getElementById('rsi').innerText = Number(data.rsi).toFixed(2);
+        // PRICE
+        document.getElementById('price').innerText =
+            data.price ? '$' + Number(data.price).toFixed(2) : '--';
 
-            // ✅ SETTINGS (only when not editing)
-            if (!isEditing) {
-                document.getElementById('targetProfit').value = data.settings.target_profit ?? 2;
-                document.getElementById('minBuy').value = data.settings.min_buy ?? 5;
-            }
+        // RSI
+        document.getElementById('rsi').innerText =
+            data.rsi ? Number(data.rsi).toFixed(2) : '--';
 
-            // ✅ POSITION
-            if (data.last_trade) {
-                const entry = parseFloat(data.last_trade.price);
-                const current = data.price;
-                const profit = ((current - entry) / entry) * 100;
+        // MODE
+        const modeEl = document.getElementById('mode');
+        modeEl.innerText = data.mode ? data.mode.toUpperCase() : 'WAIT';
 
-                document.getElementById('entry').innerText = entry.toFixed(2);
-                document.getElementById('target').innerText = data.target_price ? data.target_price.toFixed(2) : '-';
-                document.getElementById('profit').innerText =   data.profit_percent.toFixed(2);
-            }
+        if (data.mode === 'buy') modeEl.style.color = 'green';
+        else if (data.mode === 'sell') modeEl.style.color = 'red';
+        else modeEl.style.color = 'orange';
 
-            // ✅ MODE
-            const modeEl = document.getElementById('mode');
-            modeEl.innerText = data.mode.toUpperCase();
-
-            modeEl.style.fontWeight = 'bold';
-
-            if (data.mode === 'buy') modeEl.style.color = 'green';
-            else if (data.mode === 'sell') modeEl.style.color = 'red';
-            else modeEl.style.color = 'orange';
-
-        } catch (e) {
-            console.error('Dashboard error:', e);
+        // 🔔 SELL ALERT
+        if (lastMode !== data.mode && data.mode === 'sell') {
+            alert('🔴 SELL SIGNAL TRIGGERED');
         }
+        lastMode = data.mode;
+
+        // SETTINGS
+        if (!isEditing) {
+            document.getElementById('targetProfit').value = data.settings.target_profit ?? 2;
+            document.getElementById('minBuy').value = data.settings.min_buy ?? 5;
+        }
+
+        // POSITION
+        if (data.last_trade) {
+            const entry = parseFloat(data.last_trade.price);
+            const current = data.price;
+
+            const profit = ((current - entry) / entry) * 100;
+
+            document.getElementById('entry').innerText = entry.toFixed(2);
+            document.getElementById('target').innerText =
+                data.target_price ? data.target_price.toFixed(2) : '--';
+            document.getElementById('profit').innerText =
+                data.profit_percent ?? profit.toFixed(2);
+        }
+
+        // 🧠 BOT REASON
+        document.getElementById('reason').innerText =
+            data.reason ?? 'No signal';
+
+    } catch (e) {
+        console.error(e);
     }
-
-async function loadTrades() {
-    const res = await fetch('/api/bot/trades');
-    const trades = await res.json();
-
-    let html = '';
-    
-
-    trades.forEach(t => {
-        html += `
-        <tr>
-            <td>${t.side.toUpperCase()}</td>
-            <td>$${parseFloat(t.price).toFixed(2)}</td>
-            <td>${t.amount}</td>
-            <td>${t.created_at}</td>
-        </tr>`;
-    });
-
-    document.getElementById('trades').innerHTML = html;
 }
 
-async function saveSettings() {
-    await fetch('/api/bot/settings', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            bot_target_profit: document.getElementById('targetProfit').value,
-            bot_min_buy_usd: document.getElementById('minBuy').value
-        })
-    });
-
-    alert('Saved');
-}
-
-    setInterval(() => {
-        loadDashboard();
-    }, 5000);
-
-    setInterval(() => {
-        loadTrades();
-    }, 8000);
-
-
-    let chart;
-
-    document.getElementById('reason').innerText = data.reason;
-
-    async function loadChart() {
+// ===============================
+// 📈 CHART
+// ===============================
+async function loadChart() {
+    try {
         const res = await fetch('/api/bot/chart');
         const prices = await res.json();
+
+        if (!prices || prices.length === 0) return;
 
         const labels = prices.map((_, i) => i);
 
@@ -234,17 +198,71 @@ async function saveSettings() {
                 }]
             }
         });
+
+    } catch (e) {
+        console.error('Chart error', e);
     }
+}
 
-    let lastMode = null;
+// ===============================
+// 📜 TRADES
+// ===============================
+async function loadTrades() {
+    const res = await fetch('/api/bot/trades');
+    const trades = await res.json();
 
-    if (lastMode !== data.mode && data.mode === 'sell') {
-        alert('🔴 SELL SIGNAL TRIGGERED');
-    }
+    let html = '';
 
-    lastMode = data.mode;
+    trades.forEach(t => {
+        html += `
+        <tr>
+            <td>${t.side}</td>
+            <td>$${parseFloat(t.price).toFixed(2)}</td>
+            <td>${t.amount}</td>
+            <td>${t.created_at}</td>
+        </tr>`;
+    });
+
+    document.getElementById('trades').innerHTML = html;
+}
+
+// ===============================
+// 💾 SETTINGS
+// ===============================
+async function saveSettings() {
+    await fetch('/api/bot/settings', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            bot_target_profit: document.getElementById('targetProfit').value,
+            bot_min_buy_usd: document.getElementById('minBuy').value
+        })
+    });
+
+    alert('Saved');
+}
+
+// ===============================
+// 🧠 INPUT CONTROL
+// ===============================
+document.getElementById('targetProfit').addEventListener('focus', () => isEditing = true);
+document.getElementById('minBuy').addEventListener('focus', () => isEditing = true);
+
+document.getElementById('targetProfit').addEventListener('blur', () => isEditing = false);
+document.getElementById('minBuy').addEventListener('blur', () => isEditing = false);
+
+// ===============================
+// 🔁 INTERVALS
+// ===============================
+setInterval(loadDashboard, 4000);
+setInterval(loadTrades, 8000);
+setInterval(loadChart, 10000);
+
+// INITIAL LOAD
 loadDashboard();
 loadTrades();
+loadChart();
+
 </script>
 
 <x-admin.jsloader></x-admin.jsloader>

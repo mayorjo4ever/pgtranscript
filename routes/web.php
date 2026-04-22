@@ -238,5 +238,6 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
     Route::get('/api/bot/status', [BotController::class, 'status']);
     Route::get('/api/bot/trades', [BotController::class, 'trades']);
     Route::post('/api/bot/settings', [BotController::class, 'updateSettings']);
+    Route::get('/api/bot/chart', [BotController::class, 'chart']);
 
 ## require __DIR__.'/auth.php';
