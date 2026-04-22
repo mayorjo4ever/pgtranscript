@@ -18,6 +18,10 @@ class TradingBotService
    public function handle(): void
     {
         Log::info("🤖 Bot running");
+        if (!cache()->add('bot-running', true, 55)) {
+            Log::warning('Bot already running, skipping...');
+            return;
+        }
 
         if (!Setting::isBotEnabled()) {
             Log::info('Bot disabled');
