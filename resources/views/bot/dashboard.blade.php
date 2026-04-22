@@ -10,6 +10,7 @@
           <h5>Bot Status</h5>
           <h3 id="price">$0</h3>
           <p>RSI: <span id="rsi"></span></p>
+          <p>Mode: <span id="mode"></span></p>
         </div>
       </div>
     </div>
@@ -99,6 +100,14 @@
 </div>
 
 <script>
+
+    let isEditing = false;
+    document.getElementById('targetProfit').addEventListener('focus', () => isEditing = true);
+    document.getElementById('minBuy').addEventListener('focus', () => isEditing = true);
+
+    document.getElementById('targetProfit').addEventListener('blur', () => isEditing = false);
+    document.getElementById('minBuy').addEventListener('blur', () => isEditing = false);
+
 async function loadDashboard() {
     const res = await fetch('/api/bot/status');
     const data = await res.json();
@@ -106,7 +115,14 @@ async function loadDashboard() {
     document.getElementById('price').innerText = '$' + data.price.toFixed(2);
     document.getElementById('rsi').innerText = data.rsi.toFixed(2);
     
+    const res = await fetch('/api/bot/status');
+    const data = await res.json();
 
+    if (!isEditing) {
+        document.getElementById('targetProfit').value = data.settings.target_profit ?? 2;
+        document.getElementById('minBuy').value = data.settings.min_buy ?? 5;
+    }
+    
     if (data.last_trade) {
         const entry = parseFloat(data.last_trade.price);
         const current = data.price;
@@ -120,13 +136,31 @@ async function loadDashboard() {
     document.getElementById('targetProfit').value = data.settings.target_profit ?? 2;
     document.getElementById('minBuy').value = data.settings.min_buy ?? 5;
 
+    const modeEl = document.getElementById('mode');
+
+        modeEl.innerText = data.mode.toUpperCase();
+
+        modeEl.style.fontWeight = 'bold';
+
+        if (data.mode === 'buy') {
+            modeEl.style.color = 'green';
+        }
+        if (data.mode === 'sell') {
+            modeEl.style.color = 'red';
+        }
+        if (data.mode === 'wait') {
+            modeEl.style.color = 'orange';
+        }
+
 }
+
 
 async function loadTrades() {
     const res = await fetch('/api/bot/trades');
     const trades = await res.json();
 
     let html = '';
+    
 
     trades.forEach(t => {
         html += `

@@ -7,33 +7,49 @@ use Illuminate\Http\Request;
 class BotController extends Controller
 {
     public function status()
-    {
-        $bot = app(\App\Services\TradingBotService::class);
+{
+    $bot = app(\App\Services\TradingBotService::class);
 
-        $prices = $bot->getPrices();
-        $summary = $bot->getMarketSummary();
+    $summary = $bot->getMarketSummary();
+    $lastTrade = \App\Models\Trade::latest()->first();
 
-        $lastTrade = \App\Models\Trade::latest()->first();
+    $targetPercent = \App\Models\Setting::get('bot_target_profit', 2);
 
-        $targetPercent = \App\Models\Setting::get('bot_target_profit', 2);
+    $targetPrice = null;
 
-        $targetPrice = null;
-
-        if ($lastTrade && $lastTrade->side === 'buy') {
-            $targetPrice = $lastTrade->price * (1 + $targetPercent / 100);
-        }
-
-        return response()->json([
-            'price' => $summary['price'] ?? 0,
-            'rsi' => $summary['rsi'] ?? 0,
-            'last_trade' => $lastTrade,
-            'target_price' => $targetPrice,
-            'settings' => [
-                'target_profit' => $targetPercent,
-                'min_buy' => \App\Models\Setting::get('bot_min_buy_usd', 5),
-            ]
-        ]);
+    // ===============================
+    // 🎯 TARGET PRICE
+    // ===============================
+    if ($lastTrade && $lastTrade->side === 'buy') {
+        $targetPrice = $lastTrade->price * (1 + $targetPercent / 100);
     }
+
+    // ===============================
+    // 🧠 DETERMINE MODE (REAL LOGIC)
+    // ===============================
+    $btcBalance = $bot->getBtcBalance();
+    $mode = 'wait';
+
+    if ($btcBalance > 0.00001) {
+        $mode = 'sell'; // holding position
+    } elseif ($lastTrade && $lastTrade->side === 'sell') {
+        $mode = 'buy'; // ready for next entry
+    } else {
+        $mode = 'wait';
+    }
+
+    return response()->json([
+        'price' => $summary['price'] ?? 0,
+        'rsi' => $summary['rsi'] ?? 0,
+        'mode' => $mode, // ✅ NEW
+        'last_trade' => $lastTrade,
+        'target_price' => $targetPrice,
+        'settings' => [
+            'target_profit' => $targetPercent,
+            'min_buy' => \App\Models\Setting::get('bot_min_buy_usd', 5),
+        ]
+    ]);
+}
 
     public function trades()
         {
