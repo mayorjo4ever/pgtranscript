@@ -30,15 +30,40 @@
     <div class="col-md-4">
       <div class="card shadow">
         <div class="card-body">
+ 
+      <h5 class="mb-3">Bot Settings</h5>
 
-          <h5>Settings</h5>
+      <!-- Target Profit -->
+      <div class="form-group mb-3">
+        <label for="targetProfit" class="form-label">
+          Target Profit (%)
+        </label>
+        <input 
+          id="targetProfit"
+          type="number"
+          step="0.1"
+          class="form-control"
+          placeholder="e.g 2"
+        >
+      </div>
 
-          <input id="targetProfit" class="form-control mb-2" placeholder="Target Profit %" />
-          <input id="minBuy" class="form-control mb-2" placeholder="Min Buy USD" />
+            <!-- Min Buy -->
+            <div class="form-group mb-3">
+                <label for="minBuy" class="form-label">
+                Minimum Buy Amount (USDT)
+                </label>
+                <input 
+                id="minBuy"
+                type="number"
+                step="0.1"
+                class="form-control"
+                placeholder="e.g 5"
+                >
+            </div>
 
-          <button onclick="saveSettings()" class="btn btn-primary w-100">
-            Save
-          </button>
+            <button onclick="saveSettings()" class="btn btn-primary w-100">
+                Save Settings
+            </button> 
 
         </div>
       </div>
@@ -80,6 +105,7 @@ async function loadDashboard() {
 
     document.getElementById('price').innerText = '$' + data.price.toFixed(2);
     document.getElementById('rsi').innerText = data.rsi.toFixed(2);
+    
 
     if (data.last_trade) {
         const entry = parseFloat(data.last_trade.price);
@@ -90,9 +116,10 @@ async function loadDashboard() {
         document.getElementById('target').innerText = data.target_price?.toFixed(2) || '-';
         document.getElementById('profit').innerText = profit.toFixed(2);
     }
+    
+    document.getElementById('targetProfit').value = data.settings.target_profit ?? 2;
+    document.getElementById('minBuy').value = data.settings.min_buy ?? 5;
 
-    document.getElementById('targetProfit').value = data.settings.target_profit;
-    document.getElementById('minBuy').value = data.settings.min_buy;
 }
 
 async function loadTrades() {
@@ -135,4 +162,5 @@ setInterval(() => {
 loadDashboard();
 loadTrades();
 </script>
+
 <x-admin.jsloader></x-admin.jsloader>
