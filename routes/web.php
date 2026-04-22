@@ -229,7 +229,6 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
    });
 
-
   Route::get('/date-conversion', [DateController::class, 'index']);
   Route::post('download-clean-dates', [DateController::class, 'download']);
   

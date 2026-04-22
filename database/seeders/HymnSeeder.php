@@ -1,9 +1,9 @@
 <?php
 
-namespace DatabaseSeeders;
+namespace Database\Seeders;
 
-use IlluminateDatabaseSeeder;
-use AppModelsHymn;
+use Illuminate\DatabaseSeeder;
+use App\Models\Hymn;
 
 class HymnSeeder extends Seeder
 {

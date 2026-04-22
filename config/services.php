@@ -34,5 +34,12 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    
+    'bitget' => [
+        'key' => env('BITGET_API_KEY'),
+        'secret' => env('BITGET_SECRET_KEY'),
+        'passphrase' => env('BITGET_PASSPHRASE'),
+        'base_url' => env('BITGET_BASE_URL'),
+    ],
 
 ];

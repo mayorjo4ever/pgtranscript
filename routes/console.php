@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
+ use App\Services\TradingBotService;
+
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
@@ -19,6 +21,12 @@ Schedule::command('bible:send-daily-verse morning')
 Schedule::command('bible:send-daily-verse evening')
     ->dailyAt('18:00')
     ->timezone('Africa/Lagos'); // Adjust to your timezone
+
+   
+Artisan::command('bot:run', function () {
+    app(TradingBotService::class)->handle();
+})->describe('Run trading bot');
+
 
 //// Optional: Clean up inactive users weekly
 //Schedule::call(function () {
