@@ -38,6 +38,8 @@ class ImportTrades extends Command
                 'side' => strtolower($data['side']),
                 'price' => (float) $data['price'],
                 'quantity' => (float) $data['quantity'],
+                'order_id' => $data['order_id'],
+                'executed_at' => $data['executed_at'] ?? now(),
                 'created_at' => $data['created_at'] ?? now(),
                 'updated_at' => now(),
             ]);
