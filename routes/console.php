@@ -25,7 +25,7 @@ Schedule::command('bible:send-daily-verse evening')
    
 Artisan::command('bot:run', function () {
     app(TradingBotService::class)->handle();
-})->describe('Run trading bot');
+})->describe('Run trading bot')->everyMinute();
 
 
 //// Optional: Clean up inactive users weekly
