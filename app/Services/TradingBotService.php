@@ -28,6 +28,7 @@ class TradingBotService
             return;
         }
         // Setting::where('key', 'bot_target_profit')->update(['value' => 4]);
+        $this->notify("✅ Notification Message from Bot at " . now()->toDateTimeString());
         // ===============================
         // 📊 MARKET DATA
         // ===============================
