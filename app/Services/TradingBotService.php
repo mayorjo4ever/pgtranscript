@@ -238,7 +238,8 @@ class TradingBotService
             sleep(2);
         }
 
-        $this->notify("❌ {$side} FAILED", 'error');
+        $this->notify("❌ {$side} FAILED  \nPrice: {$price}\nAmount: {$amount}");        
+
         return false;
     }
 
