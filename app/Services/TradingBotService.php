@@ -641,7 +641,7 @@ public function getMarketSummary(): array
                     ->firstWhere('coin', 'USDT')['available'] ?? 0;
 
             } catch (\Exception $e) {
-                \Log::error('USDT balance fetch failed', [
+                Log::error('USDT balance fetch failed', [
                     'error' => $e->getMessage()
                 ]);
 

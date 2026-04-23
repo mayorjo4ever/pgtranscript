@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use App\Models\Trade;
 use Carbon\Carbon;
 
@@ -34,7 +35,7 @@ class BitgetService
                 return (float) ($data['data'][0]['lastPr'] ?? 0);
 
             } catch (\Exception $e) {
-                \Log::error('Failed to fetch price', [
+                Log::error('Failed to fetch price', [
                     'error' => $e->getMessage()
                 ]);
 
@@ -66,7 +67,7 @@ class BitgetService
                     ->toArray();
 
             } catch (\Exception $e) {
-                \Log::error('Failed to fetch candles', [
+                Log::error('Failed to fetch candles', [
                     'error' => $e->getMessage()
                 ]);
 
@@ -136,10 +137,10 @@ class BitgetService
                         'Content-Type' => 'application/json'
                     ])->post($this->baseUrl . $requestPath, $body);
 
-                    \Log::info('ORDER BODY', $body);
+                    Log::info('ORDER BODY', $body);
 
                     if (!$response->successful()) {
-                        \Log::error('HTTP Error', [
+                        Log::error('HTTP Error', [
                             'status' => $response->status(),
                             'body' => $response->body()
                         ]);
@@ -148,12 +149,12 @@ class BitgetService
 
                     $json = $response->json();
 
-                    \Log::info('ORDER SUCCESS', $json);
+                    Log::info('ORDER SUCCESS', $json);
 
                     return $json;
 
                 } catch (\Exception $e) {
-                    \Log::error('Order failed', [
+                    Log::error('Order failed', [
                         'error' => $e->getMessage()
                     ]);
                     return null;

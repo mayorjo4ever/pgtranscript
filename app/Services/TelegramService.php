@@ -11,7 +11,7 @@ class TelegramService
         return Http::withOptions([
             'verify' => false // for your WAMP SSL issue
         ])->get(
-            "https://api.telegram.org/bot" . env('TELEGRAM_BOT_TOKEN') . "/sendMessage",
+            "https://api.telegram.org/bot" . env('TELEGRAM2_BOT_TOKEN') . "/sendMessage",
             [
                 'chat_id' => env('TELEGRAM_CHAT_ID'),
                 'text' => $message,
