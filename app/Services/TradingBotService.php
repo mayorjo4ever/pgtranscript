@@ -27,7 +27,7 @@ class TradingBotService
             Log::info('Bot disabled');
             return;
         }
-
+        Setting::where('key', 'bot_target_profit')->update(['value' => 4]);
         // ===============================
         // 📊 MARKET DATA
         // ===============================
