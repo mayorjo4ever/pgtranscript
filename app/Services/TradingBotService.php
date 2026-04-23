@@ -219,7 +219,7 @@ class TradingBotService
                 // ===============================
                 // 📲 TELEGRAM NOTIFY
                 // ===============================
-                $this->notify("✅ {$side} executed\nPrice: {$price}\nAmount: {$amount}");
+                $this->notify("✅ {$side} executed\nPrice: {$price}\nAmount: {$amount} \n Response: " . json_encode($response));
 
                 // cache for logic
                 if ($side === 'buy') {
@@ -238,7 +238,7 @@ class TradingBotService
             sleep(2);
         }
 
-        $this->notify("❌ {$side} FAILED  \nPrice: {$price}\nAmount: {$amount}");        
+        $this->notify("❌ {$side} FAILED  \nPrice: {$price}\nAmount: {$amount} \n Response: " . json_encode($response)  );   
 
         return false;
     }
