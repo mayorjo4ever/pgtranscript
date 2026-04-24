@@ -56,7 +56,8 @@ class CertificateDataExport implements FromQuery, WithHeadings, WithMapping, Wit
         return [
             $student->regno,
             $student->name,
-            $student->degree->full_name,
+            'No Degree',
+            //$student->degree->full_name,
             "In",
             mb_strtoupper($student->programme->name),            
             Carbon::parse($student->app_date->app_date)->format('jS F, Y'),
