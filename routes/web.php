@@ -7,6 +7,8 @@ use App\Http\Controllers\DateController;
 use App\Models\TranscriptReport;
 use App\Models\TranscriptsRequest;
 use App\Models\CertificateData;
+use App\Models\TranscriptPrintout;
+use App\Models\Transcript;
 use App\Services\GoogleSheetService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BotController; 
@@ -184,7 +186,13 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         TranscriptReport::where('regno','05/66MF075')
                 ->update(['approve_date'=>'2011-12-30']); 
         */
-            
+        
+        $data = Transcript::where('regno','21/68EZ003')
+                    ->get(); 
+                    
+                // ->update(['approve_date'=>'2011-12-30']);
+
+
         # $printout = TranscriptPrintout::where('regno','05/66MF075')->get(); 
         # $report = TranscriptReport::where('regno','05/66MF075')->get();             
         
@@ -193,13 +201,13 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
             //             ->where('approve_date_id',280)
             //             ->delete(); 
 
-        $data = CertificateData::whereIn('regno',['14/56ED115',
-                    '12/67QV020',
-                    '21/68OJ013',                    
-                    '14/56ED115',                                      
-                    '18/68QY001'])
-                ->where('approve_date_id',280)
-                ->get();         
+        // $data = CertificateData::whereIn('regno',['14/56ED115',
+        //             '12/67QV020',
+        //             '21/68OJ013',                    
+        //             '14/56ED115',                                      
+        //             '18/68QY001'])
+        //         ->where('approve_date_id',280)
+        //         ->get();         
         
 
         // $data->update(['approve_date_id'=>104,'year'=>'2014']);
