@@ -59,7 +59,8 @@ class CertificateDataExport implements FromQuery, WithHeadings, WithMapping, Wit
             'No Degree',
             //$student->degree->full_name,
             "In",
-            mb_strtoupper($student->programme->name),            
+            'Programme Missing',
+            // mb_strtoupper($student->programme->name),            
             Carbon::parse($student->app_date->app_date)->format('jS F, Y'),
             $student->pix_name.".jpg",
         ];
