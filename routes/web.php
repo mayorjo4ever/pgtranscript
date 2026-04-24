@@ -189,10 +189,10 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         # $report = TranscriptReport::where('regno','05/66MF075')->get();             
         
         //$data = CertificateData::where('regno','11/66MC067')->get(); 
-     CertificateData::whereIn('id',[8351,8350,8353,8352])
-                ->where('approve_date_id',280)
-                ->delete(); 
-                
+            // CertificateData::whereIn('id',[8351,8350,8353,8352])
+            //             ->where('approve_date_id',280)
+            //             ->delete(); 
+
         $data = CertificateData::whereIn('regno',['14/56ED115',
                     '12/67QV020',
                     '21/68OJ013',                    
