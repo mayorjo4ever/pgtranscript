@@ -114,18 +114,26 @@ class HymnService
                    "━━━━━━━━━━━━━━━\n" .
                    "Enter another hymn number or search term";
 
-        // Split if too long
+        // Add inline button for adding note
+        $keyboard = app(KeyboardService::class)->hymnButtons($hymn->number);
+
         $chunks = str_split($message, 3500);
         foreach ($chunks as $index => $chunk) {
-            $this->telegram->sendMessage([
+            // Only add keyboard to last chunk
+            $params = [
                 'chat_id' => $chatId,
                 'text' => $chunk,
                 'parse_mode' => 'Markdown'
-            ]);
+            ];
+
+            if ($index === count($chunks) - 1) {
+                $params['reply_markup'] = $keyboard;
+            }
+
+            $this->telegram->sendMessage($params);
             
-            // Small delay between chunks to avoid rate limiting
             if ($index < count($chunks) - 1) {
-                usleep(100000); // 0.1 second
+                usleep(100000);
             }
         }
     }

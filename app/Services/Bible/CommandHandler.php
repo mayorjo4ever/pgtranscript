@@ -8,6 +8,70 @@ class CommandHandler
 {
     public function handle(array $update)
     {
+         // Handle callback queries (button clicks) FIRST
+         if (isset($update['callback_query'])) {
+        $callbackData = $update['callback_query']['data'];
+        
+        // Handle "Add Note" button clicks
+        if (str_starts_with($callbackData, 'addnote_')) {
+            $this->handleAddNoteCallback($update);
+            return;
+        }
+        
+        // Handle Bible navigation
+        app(BibleService::class)->handleCallback($update);
+        return;
+    }
+
+    // Handle text messages
+    $text = trim($update['message']['text'] ?? '');
+    $chatId = $update['message']['chat']['id'];
+
+    // Check if user is in "waiting for note" mode
+    $userMode = cache()->get("user_mode_{$chatId}");
+    if ($userMode === 'waiting_for_note') {
+        if ($text === '/cancel') {
+            cache()->forget("user_mode_{$chatId}");
+            cache()->forget("note_context_{$chatId}");
+            $this->telegram->sendMessage([
+                'chat_id' => $chatId,
+                'text' => '❌ Note cancelled.'
+            ]);
+            return;
+        }
+        
+        app(NotesService::class)->saveNote($update);
+        return;
+    }
+
+    // Handle /start command
+    if (str_starts_with($text, '/start')) {
+        cache()->forget("user_mode_{$chatId}");
+        app(ReferralService::class)->start($update);
+        return;
+    }
+
+    // Handle My Notes
+    if ($text === '📝 My Notes' || $text === '/mynotes') {
+        cache()->forget("user_mode_{$chatId}");
+        app(NotesService::class)->listNotes($update);
+        return;
+    }
+
+    // Handle View Note
+    if (str_starts_with($text, '/viewnote ')) {
+        $reference = trim(str_replace('/viewnote', '', $text));
+        app(NotesService::class)->viewNote($update, $reference);
+        return;
+    }
+
+    // Handle Delete Note
+    if (str_starts_with($text, '/deletenote ')) {
+        $reference = trim(str_replace('/deletenote', '', $text));
+        app(NotesService::class)->deleteNote($update, $reference);
+        return;
+    }
+
         // Handle callback queries (button clicks) FIRST
         if (isset($update['callback_query'])) {
             app(BibleService::class)->handleCallback($update);
@@ -138,6 +202,39 @@ class CommandHandler
                          "⚙️ *Settings:* /settings",
                 'parse_mode' => 'Markdown'
             ]);
+        }
+    }
+
+    private function handleAddNoteCallback($update)
+    {
+        $callbackData = $update['callback_query']['data'];
+        
+        // Answer callback first
+        app(TelegramService::class)->answerCallback([
+            'callback_query_id' => $update['callback_query']['id']
+        ]);
+        
+        // Parse callback data
+        // Format: addnote_bible_bookId_chapter_verse OR addnote_hymn_number
+        $parts = explode('_', $callbackData);
+        
+        if ($parts[1] === 'bible') {
+            // Bible note: addnote_bible_bookId_chapter_verse
+            $bookId = $parts[2];
+            $chapter = $parts[3];
+            $verse = $parts[4];
+            
+            // Get book name
+            $book = \DB::table('kjv_books')->where('id', $bookId)->first();
+            $reference = "{$book->name} {$chapter}:{$verse}";
+            
+            app(NotesService::class)->promptForNote($update, 'bible', $reference);
+        } elseif ($parts[1] === 'hymn') {
+            // Hymn note: addnote_hymn_number
+            $hymnNumber = $parts[2];
+            $reference = "Hymn {$hymnNumber}";
+            
+            app(NotesService::class)->promptForNote($update, 'hymn', $reference);
         }
     }
 }

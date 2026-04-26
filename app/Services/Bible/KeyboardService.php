@@ -5,7 +5,7 @@ use Telegram\Bot\Keyboard\Keyboard;
 
 class KeyboardService
 {
-     public function verseNavigation($bookId, $chapter, $verse)
+    public function verseNavigation($bookId, $chapter, $verse)
     {
         return Keyboard::make()
             ->inline()
@@ -22,6 +22,25 @@ class KeyboardService
                     'text' => 'Next ➡️',
                     'callback_data' => "next_{$bookId}_{$chapter}_{$verse}"
                 ])
+            ])
+            ->row([
+                Keyboard::inlineButton([
+                    'text' => '📝 Add Note',
+                    'callback_data' => "addnote_bible_{$bookId}_{$chapter}_{$verse}"
+                ])
+            ]);
+    }
+
+    
+    public function hymnButtons($hymnNumber)
+    {
+        return Keyboard::make()
+            ->inline()
+            ->row([
+                Keyboard::inlineButton([
+                    'text' => '📝 Add Note',
+                    'callback_data' => "addnote_hymn_{$hymnNumber}"
+                ])
             ]);
     }
 
@@ -31,9 +50,9 @@ class KeyboardService
             ->setResizeKeyboard(true)
             ->setOneTimeKeyboard(false)
             ->row(['📖 Read Bible', '🎵 Hymns'])
-            ->row(['👥 My Referrals', '📤 Invite Friends'])
-            ->row(['⚙️ Settings']);
-        }
+            ->row(['📝 My Notes', '👥 My Referrals'])
+            ->row(['📤 Invite Friends', '⚙️ Settings']);
+    }
         
    public function settingsMenu($dailyVerseEnabled)
     {
@@ -47,40 +66,3 @@ class KeyboardService
     }
 
 }
-
-/**
-namespace App\Services\Bible;
-
-use function GuzzleHttp\json_encode;
-
-class KeyboardService
-{
-    public function mainMenu()
-    {
-        return json_encode([
-            'keyboard' => [
-                [['text' => '📖 Search Verse']],
-                [['text' => '👥 My Referrals'], ['text' => '📤 Invite Friends']]
-            ],
-            'resize_keyboard' => true
-        ]);
-    }
-
-    public function verseNavigation($bookId, $chapter, $verse)
-    {
-        return json_encode([
-            'inline_keyboard' => [
-                [
-                    [
-                        'text' => '⬅️ Prev',
-                        'callback_data' => "prev_{$bookId}_{$chapter}_{$verse}"
-                    ],
-                    [
-                        'text' => '➡️ Next',
-                        'callback_data' => "next_{$bookId}_{$chapter}_{$verse}"
-                    ]
-                ]
-            ]
-        ]);
-    }
-}**/
