@@ -119,22 +119,18 @@ class HymnService
         $sections = $this->splitHymnIntoSections($hymn->lyrics);
 
         foreach ($sections as $index => $section) {
-            // Remove excessive indentation and clean up the text
-            $cleanedSection = $this->cleanupSection($section);
-            
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'text' => $cleanedSection,
-                'parse_mode' => 'Markdown'
+                'text' => $section
             ]);
 
-            // Delay between sections to avoid rate limiting
+            // Delay between sections
             if ($index < count($sections) - 1) {
-                usleep(300000); // 0.3 seconds between verses
+                usleep(300000); // 0.3 seconds
             }
         }
 
-        // Send footer with "Add Note" button after all verses
+        // Send footer with "Add Note" button
         $keyboard = app(KeyboardService::class)->hymnButtons($hymn->number);
         
         $footerMessage = "━━━━━━━━━━━━━━━\n" .
@@ -149,51 +145,49 @@ class HymnService
 
     private function splitHymnIntoSections($lyrics)
     {
-        // Split by double newlines or verse markers
         $sections = [];
-        
-        // First, split by common patterns
-        // Pattern 1: (1), (2), (3) - verse numbers
-        // Pattern 2: CHORUS, REFRAIN
-        // Pattern 3: Double newlines
-        
+        $currentSection = '';
         $lines = explode("\n", $lyrics);
-        $currentSection = [];
         
         foreach ($lines as $line) {
-            $trimmedLine = trim($line);
+            $trimmed = trim($line);
             
-            // Check if this is a new verse/chorus marker
-            if (preg_match('/^\((\d+)\)$/', $trimmedLine) || 
-                preg_match('/^(CHORUS|REFRAIN|BRIDGE)[:]*$/i', $trimmedLine)) {
-                
-                // Save previous section if it has content
-                if (!empty($currentSection)) {
-                    $sections[] = implode("\n", $currentSection);
-                    $currentSection = [];
+            // Check if this is a verse number like (1), (2), etc.
+            if (preg_match('/^\(\d+\)$/', $trimmed)) {
+                // Save previous section if it exists
+                if (!empty(trim($currentSection))) {
+                    $sections[] = trim($currentSection);
                 }
-                
-                // Start new section with the marker
-                $currentSection[] = $trimmedLine;
+                // Start new section with verse number
+                $currentSection = $trimmed;
             }
-            // Skip empty lines at the start of a section
-            elseif (empty($currentSection) && empty($trimmedLine)) {
-                continue;
+            // Check if this is CHORUS, REFRAIN, BRIDGE
+            elseif (preg_match('/^(CHORUS|REFRAIN|BRIDGE)[:]*$/i', $trimmed)) {
+                // Save previous section if it exists
+                if (!empty(trim($currentSection))) {
+                    $sections[] = trim($currentSection);
+                }
+                // Start new section with CHORUS/REFRAIN/BRIDGE
+                $currentSection = $trimmed;
             }
-            // Add line to current section
-            else {
-                $currentSection[] = $line;
+            // Regular line - add to current section
+            elseif (!empty($trimmed)) {
+                if (!empty($currentSection)) {
+                    $currentSection .= "\n" . $trimmed;
+                } else {
+                    $currentSection = $trimmed;
+                }
             }
         }
         
         // Add the last section
-        if (!empty($currentSection)) {
-            $sections[] = implode("\n", $currentSection);
+        if (!empty(trim($currentSection))) {
+            $sections[] = trim($currentSection);
         }
         
         return $sections;
     }
-
+ 
     private function cleanupSection($section)
     {
         // Remove excessive leading/trailing whitespace
