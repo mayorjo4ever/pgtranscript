@@ -153,7 +153,7 @@ class HymnService
             $trimmed = trim($line);
             
             // Check if this is a verse number like (1), (2), etc.
-            if (preg_match('/^\(\d+\)$/', $trimmed)) {
+            if (preg_match('/^\d+\.$/', $trimmed)) {
                 // Save previous section if it exists
                 if (!empty(trim($currentSection))) {
                     $sections[] = trim($currentSection);
