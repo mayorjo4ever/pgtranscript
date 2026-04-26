@@ -143,7 +143,7 @@ class HymnService
         ]);
     }
 
-    private function splitHymnIntoSections($lyrics)
+  private function splitHymnIntoSections($lyrics)
     {
         $sections = [];
         $currentSection = '';
@@ -152,8 +152,8 @@ class HymnService
         foreach ($lines as $line) {
             $trimmed = trim($line);
             
-            // Check if this is a verse number like (1), (2), etc.
-            if (preg_match('/^\d+\.$/', $trimmed)) {
+            // Check if this is a verse number like "1.", "2.", "3.", etc.
+            if (preg_match('/^(\d+)\.\s*$/', $trimmed)) {
                 // Save previous section if it exists
                 if (!empty(trim($currentSection))) {
                     $sections[] = trim($currentSection);
@@ -161,13 +161,22 @@ class HymnService
                 // Start new section with verse number
                 $currentSection = $trimmed;
             }
-            // Check if this is CHORUS, REFRAIN, BRIDGE
-            elseif (preg_match('/^(CHORUS|REFRAIN|BRIDGE)[:]*$/i', $trimmed)) {
+            // Check if this is CHORUS, REFRAIN, BRIDGE (with or without colon)
+            elseif (preg_match('/^(CHORUS|REFRAIN|BRIDGE)[:]*\s*$/i', $trimmed)) {
                 // Save previous section if it exists
                 if (!empty(trim($currentSection))) {
                     $sections[] = trim($currentSection);
                 }
                 // Start new section with CHORUS/REFRAIN/BRIDGE
+                $currentSection = $trimmed;
+            }
+            // Check if line starts with a verse number followed by content (e.g., "1. All to Jesus...")
+            elseif (preg_match('/^(\d+)\.\s+(.+)$/i', $trimmed, $matches)) {
+                // Save previous section if it exists
+                if (!empty(trim($currentSection))) {
+                    $sections[] = trim($currentSection);
+                }
+                // Start new section with this line
                 $currentSection = $trimmed;
             }
             // Regular line - add to current section
@@ -187,7 +196,8 @@ class HymnService
         
         return $sections;
     }
- 
+
+    
     private function cleanupSection($section)
     {
         // Remove excessive leading/trailing whitespace
