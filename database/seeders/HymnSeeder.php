@@ -9,6 +9,7 @@ use App\Models\Hymn;
 class HymnSeeder extends Seeder
 {
     public function run() {
+  
         $hymns = [
     [
         'number' => "1",

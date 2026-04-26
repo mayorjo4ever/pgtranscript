@@ -187,9 +187,9 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
                 ->update(['approve_date'=>'2011-12-30']); 
         */
         
-        $data = Transcript::where('regno','21/68EZ003')
+        $data = Transcript::where('regno','21/68FZ003')
                     ->get(); 
-                    
+
                 // ->update(['approve_date'=>'2011-12-30']);
 
 
