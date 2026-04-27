@@ -248,6 +248,11 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
    });
 
+  Route::post('/telegram2/webhook', [Telegram2Controller::class, 'webhook']);
+  # curl https://api.telegram.org/bot8090350435:AAElKslXmNgp0SZAmLb9q13GWRdPSlvmjhc/setWebhook?url=https://pgtranscript.unilorin.edu.ng/telegram2/webhook
+  
+
+
   Route::get('/date-conversion', [DateController::class, 'index']);
   Route::post('download-clean-dates', [DateController::class, 'download']);
   
