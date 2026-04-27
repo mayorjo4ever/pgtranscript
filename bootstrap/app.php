@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
             // Add CSRF exception for Telegram webhook
             $middleware->validateCsrfTokens(except: [
                 'bible/webhook',
+                'telegram2/webhook',  // Add this line
             ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
