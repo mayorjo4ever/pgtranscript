@@ -97,9 +97,30 @@ class Telegram2Controller extends Controller
     }
 
     private function send($chatId, $text)
-    {
-        $token = env('TELEGRAM2_BOT_TOKEN');
+        {
+            try {
+                $token = env('TELEGRAM_BOT_TOKEN');
 
-        file_get_contents("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chatId}&text=" . urlencode($text));
-    }
+                // ✅ sanitize message
+                $safeText = str_replace(
+                    ['_', '*', '[', ']', '(', ')'],
+                    '',
+                    $text
+                );
+
+                file_get_contents(
+                    "https://api.telegram.org/bot{$token}/sendMessage?" .
+                    http_build_query([
+                        'chat_id' => $chatId,
+                        'text' => $safeText
+                    ])
+                );
+
+            } catch (\Throwable $e) {
+                \Log::error('Telegram send failed', [
+                    'error' => $e->getMessage(),
+                    'text' => $text
+                ]);
+            }
+        }
 }
