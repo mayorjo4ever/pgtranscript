@@ -102,7 +102,7 @@ class Telegram2Controller extends Controller
     private function send($chatId, $text)
         {
             try {
-                $token = env('TELEGRAM_BOT_TOKEN');
+                $token = env('TELEGRAM2_BOT_TOKEN');
 
                 // ✅ sanitize message
                 $safeText = str_replace(
