@@ -17,30 +17,21 @@ class TradingBotService
     
    public function handle(): void
     {
-        Log::info("🤖 Bot running");
-        if (!cache()->add('bot-running', true, 55)) {
-            Log::warning('Bot already running, skipping...');
+        \Log::info("🤖 Bot running");
+
+        if (!Setting::get('bot_enabled', true)) {
+            \Log::info('Bot disabled');
             return;
         }
 
-        if (!Setting::isBotEnabled()) {
-            Log::info('Bot disabled');
-            return;
-        }
-        // Setting::where('key', 'bot_target_profit')->update(['value' => 4]);
-        // $this->notify("✅ Notification Message from Bot at " . now()->toDateTimeString());
         // ===============================
         // 📊 MARKET DATA
         // ===============================
         $prices = $this->getPrices();
         $currentPrice = $this->bitget->getPrice();
-        // 🎯 Target profit (configurable)
-        $targetPercent = (float) (
-            Setting::where('key', 'target_profit_percent')->value('value') ?? 2
-        );
 
         if (empty($prices) || !$currentPrice) {
-            Log::warning('Invalid market data');
+            \Log::warning('Invalid market data');
             return;
         }
 
@@ -50,143 +41,165 @@ class TradingBotService
         $rsi  = $this->calculateRSI($prices);
         $ma10 = $this->movingAverage($prices, 10);
         $ma50 = $this->movingAverage($prices, 50);
-
         $trendUp = $ma10 > $ma50;
 
         // ===============================
         // 💰 BALANCE
         // ===============================
-        $balances = $this->bitget->getBalances();
-        $btcBalance = $this->getBtcBalance();    
+        $btcBalance = $this->getBtcBalance();
+        $usdt = $this->getUsdtBalance();
 
-        $usdt = collect($balances['data'] ?? [])
-            ->firstWhere('coin', 'USDT')['available'] ?? 0;
+        \Log::info("Balances", [
+            'BTC' => $btcBalance,
+            'USDT' => $usdt
+        ]);
 
-        Log::info("BTC Balance: {$btcBalance}");
-        Log::info("USDT Balance: {$usdt}");
-        
+        // ===============================
+        // 🛑 COOLDOWN (ANTI OVERTRADING)
+        // ===============================
+        $lastTrade = Trade::latest()->first();
+
+        if ($lastTrade && now()->diffInSeconds($lastTrade->created_at) < 30) {
+            \Log::info('Cooldown active');
+            return;
+        }
+
         // ==========================================================
-        // 🔴 MODE 1: WE HAVE BTC → ONLY SELL LOGIC
+        // 🔴 SELL MODE (WE HOLD BTC)
         // ==========================================================
         if ($btcBalance > 0.00001) {
 
-            Log::info('📊 SELL MODE ACTIVE');
+            \Log::info('📊 SELL MODE ACTIVE');
 
-            $lastTrade = Trade::where('side', 'buy')->latest()->first();
+            $lastBuy = Trade::where('side', 'buy')->latest()->first();
 
-            if (!$lastTrade) {
-                Log::warning('No BUY trade found');
+            if (!$lastBuy) {
+                \Log::warning('No BUY trade found');
                 return;
             }
 
-            $entry = (float) $lastTrade->price;
-
-            // ✅ ALWAYS USE SAFE AMOUNT (avoid insufficient balance)
-            $safeAmount = $btcBalance * 0.98; // leave 2% for fees
-
-            // ✅ Apply exchange precision (BTC = 6 decimals safe)
-            $safeAmount = floor($safeAmount * 1000000) / 1000000;
+            $entry = (float) $lastBuy->price;
 
             $profitPercent = (($currentPrice - $entry) / $entry) * 100;
 
-            Log::info('Position status', [
+            // ===============================
+            // 📈 TRAILING LOGIC
+            // ===============================
+            $peak = Setting::get('peak_price', $currentPrice);
+
+            if ($currentPrice > $peak) {
+                Setting::set('peak_price', $currentPrice);
+                $peak = $currentPrice;
+            }
+
+            $dropFromPeak = (($peak - $currentPrice) / $peak) * 100;
+
+            \Log::info('Position', [
                 'entry' => $entry,
                 'current' => $currentPrice,
-                'profit%' => round($profitPercent, 3),
-                'rsi' => $rsi,
-                'btcBalance' => $btcBalance,
-                'sellAmount' => $safeAmount
+                'profit%' => round($profitPercent, 2),
+                'peak' => $peak,
+                'drop%' => round($dropFromPeak, 2)
             ]);
 
-            // ==========================================================
+            // ===============================
             // 🧠 SELL DECISION
-            // ==========================================================
+            // ===============================
             $shouldSell = (
-               $profitPercent >= $targetPercent ||
-                ($profitPercent > ($targetPercent / 2) && $rsi > 70)
+                $profitPercent >= Setting::get('bot_target_profit', 2) &&
+                $dropFromPeak >= 0.4
             );
 
             if (!$shouldSell) {
-                Log::info('Holding position');
-                return; // 🚫 STOP HERE — NO BUY
-            }
-
-            // 🚫 Extra safety (avoid dust / invalid orders)
-            if ($safeAmount <= 0) {
-                Log::warning('Invalid sell amount');
+                \Log::info('Holding position');
                 return;
             }
 
-            Log::info('🔴 SELL SIGNAL CONFIRMED');
+            // ===============================
+            // 🔴 EXECUTE SELL
+            // ===============================
+            $this->executeTrade('sell', $btcBalance, $currentPrice);
 
-            $this->executeTrade('sell', $safeAmount, $currentPrice);
+            Setting::set('last_sell_price', $currentPrice);
+            Setting::set('peak_price', 0); // reset
 
-            return; // 🚫 CRITICAL: never continue to BUY
+            $this->notify("🔴 SELL @ {$currentPrice} Profit: " . round($profitPercent, 2) . "%");
+
+            return;
         }
 
         // ==========================================================
-        // 🟢 MODE 2: NO BTC → ONLY BUY LOGIC
+        // 🟢 BUY MODE (NO BTC)
         // ==========================================================
-        Log::info('🟢 BUY MODE ACTIVE');
+        \Log::info('🟢 BUY MODE ACTIVE');
 
+        // ===============================
+        // 🧠 TRADE SCORING
+        // ===============================
+        $score = $this->getTradeScore($prices);
+
+        // ===============================
+        // 🛑 RE-ENTRY CONTROL
+        // ===============================
+        $lastSellPrice = (float) Setting::get('last_sell_price', 0);
+        $reentryDrop = Setting::get('bot_reentry_drop', 1); // %
+
+        $reentryPrice = $lastSellPrice * (1 - $reentryDrop / 100);
+        $priceDroppedEnough = $lastSellPrice == 0 || $currentPrice <= $reentryPrice;
+
+        // 🚫 NEVER BUY ABOVE LAST SELL
+        $neverBuyHigher = $lastSellPrice == 0 || $currentPrice < $lastSellPrice;
+
+        // ===============================
+        // 📉 STRONG PULLBACK FILTER
+        // ===============================
+        $strongPullback = $currentPrice < $ma10 * 0.995;
+
+        // ===============================
+        // 🧠 FINAL BUY DECISION
+        // ===============================
         $shouldBuy = (
-            $rsi < 40 &&
+            $score >= 5 &&
             $trendUp &&
-            $this->isPullback($prices) &&
-            $this->isMarketActive($prices)
+            $strongPullback &&
+            $priceDroppedEnough &&
+            $neverBuyHigher
         );
 
-        if (!$shouldBuy) {
-            Log::info('No buy signal');
-            return;
-        }
-
-        Log::info('🟢 BUY SIGNAL');
-
-        // ===============================
-        // 💵 TRADE SIZE (FIXED LOGIC)
-        // ===============================
-        $minBuyUsd = (float) Setting::get('bot_min_buy_usd', 5);
-        $buffer = 1;
-
-        // 🚫 balance check
-        if ($usdt < ($minBuyUsd + $buffer)) {
-            Log::warning('Balance too low for configured minimum buy', [
-                'balance' => $usdt,
-                'required' => $minBuyUsd + $buffer
-            ]);
-            return;
-        }
-
-        // 🎯 risk (only applies when balance is large enough)
-        $maxRisk = $usdt * 0.1;
-
-        // ✅ enforce minimum FIRST
-        if ($minBuyUsd > $maxRisk) {
-            // small balance → ignore risk, use minimum
-            $tradeValue = $minBuyUsd;
-        } else {
-            // normal case → apply risk safely
-            $tradeValue = min($maxRisk, $usdt);
-        }
-
-        // 🔐 final safety clamp
-        $tradeValue = min($tradeValue, $usdt);
-
-        // 🔍 debug log
-        Log::info('TRADE SIZE FIXED', [
-            'usdt' => $usdt,
-            'minBuyUsd' => $minBuyUsd,
-            'maxRisk' => $maxRisk,
-            'final' => $tradeValue
+        \Log::info('Buy Check', [
+            'score' => $score,
+            'trendUp' => $trendUp,
+            'pullback' => $strongPullback,
+            'reentryOK' => $priceDroppedEnough,
         ]);
 
-        // 🟢 use quoteSize
-        $amount = round($tradeValue, 2);
-    // ===============================
-    // 🟢 EXECUTE BUY
-    // ===============================
-        $this->executeTrade('buy', $amount, $currentPrice);
+        if (!$shouldBuy) {
+            \Log::info('No buy signal');
+            return;
+        }
+
+        // ===============================
+        // 💵 POSITION SIZING
+        // ===============================
+        $minBuy = Setting::get('bot_min_buy_usd', 5);
+
+        if ($usdt < $minBuy) {
+            \Log::warning('Insufficient USDT');
+            return;
+        }
+
+        $riskPercent = 0.03;
+        $tradeValue = max($usdt * $riskPercent, $minBuy);
+
+        // ===============================
+        // 🟢 EXECUTE BUY
+        // ===============================
+        $this->executeTrade('buy', $tradeValue, $currentPrice);
+
+        Setting::set('last_buy_price', $currentPrice);
+        Setting::set('peak_price', $currentPrice);
+
+        $this->notify("🟢 BUY @ {$currentPrice} (Score: {$score})");
     }
 
     // ===============================
