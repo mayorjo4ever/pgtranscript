@@ -17,10 +17,10 @@ class TradingBotService
     
    public function handle(): void
     {
-        \Log::info("🤖 Bot running");
+        Log::info("🤖 Bot running");
 
         if (!Setting::get('bot_enabled', true)) {
-            \Log::info('Bot disabled');
+            Log::info('Bot disabled');
             return;
         }
 
@@ -31,7 +31,7 @@ class TradingBotService
         $currentPrice = $this->bitget->getPrice();
 
         if (empty($prices) || !$currentPrice) {
-            \Log::warning('Invalid market data');
+            Log::warning('Invalid market data');
             return;
         }
 
@@ -49,7 +49,7 @@ class TradingBotService
         $btcBalance = $this->getBtcBalance();
         $usdt = $this->getUsdtBalance();
 
-        \Log::info("Balances", [
+        Log::info("Balances", [
             'BTC' => $btcBalance,
             'USDT' => $usdt
         ]);
@@ -60,7 +60,7 @@ class TradingBotService
         $lastTrade = Trade::latest()->first();
 
         if ($lastTrade && now()->diffInSeconds($lastTrade->created_at) < 30) {
-            \Log::info('Cooldown active');
+            Log::info('Cooldown active');
             return;
         }
 
@@ -69,12 +69,12 @@ class TradingBotService
         // ==========================================================
         if ($btcBalance > 0.00001) {
 
-            \Log::info('📊 SELL MODE ACTIVE');
+            Log::info('📊 SELL MODE ACTIVE');
 
             $lastBuy = Trade::where('side', 'buy')->latest()->first();
 
             if (!$lastBuy) {
-                \Log::warning('No BUY trade found');
+                Log::warning('No BUY trade found');
                 return;
             }
 
@@ -94,7 +94,7 @@ class TradingBotService
 
             $dropFromPeak = (($peak - $currentPrice) / $peak) * 100;
 
-            \Log::info('Position', [
+            Log::info('Position', [
                 'entry' => $entry,
                 'current' => $currentPrice,
                 'profit%' => round($profitPercent, 2),
@@ -111,7 +111,7 @@ class TradingBotService
             );
 
             if (!$shouldSell) {
-                \Log::info('Holding position');
+                Log::info('Holding position');
                 return;
             }
 
@@ -131,7 +131,7 @@ class TradingBotService
         // ==========================================================
         // 🟢 BUY MODE (NO BTC)
         // ==========================================================
-        \Log::info('🟢 BUY MODE ACTIVE');
+        Log::info('🟢 BUY MODE ACTIVE');
 
         // ===============================
         // 🧠 TRADE SCORING
@@ -166,7 +166,7 @@ class TradingBotService
             $neverBuyHigher
         );
 
-        \Log::info('Buy Check', [
+        Log::info('Buy Check', [
             'score' => $score,
             'trendUp' => $trendUp,
             'pullback' => $strongPullback,
@@ -174,7 +174,7 @@ class TradingBotService
         ]);
 
         if (!$shouldBuy) {
-            \Log::info('No buy signal');
+            Log::info('No buy signal');
             return;
         }
 
@@ -184,7 +184,7 @@ class TradingBotService
         $minBuy = Setting::get('bot_min_buy_usd', 5);
 
         if ($usdt < $minBuy) {
-            \Log::warning('Insufficient USDT');
+            Log::warning('Insufficient USDT');
             return;
         }
 
