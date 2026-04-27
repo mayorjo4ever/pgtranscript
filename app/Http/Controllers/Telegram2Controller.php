@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\TradingBotService;
 use App\Models\Setting;
 use App\Models\Trade;
+use Illuminate\Support\Facades\Log;
 
 class Telegram2Controller extends Controller
 {
@@ -15,6 +16,8 @@ class Telegram2Controller extends Controller
         $chatId = $request->input('message.chat.id');
 
         if (!$message) return response()->json(['ok' => true]);
+
+        Log::info("Webhook Called"); 
 
         $bot = app(TradingBotService::class);
 
