@@ -101,7 +101,7 @@ class ReferralService
 
         app(TelegramService::class)->sendPhoto([
             'chat_id' => $chatId,
-            'photo' => InputFile::create(public_path('images/bible.png')),    
+            'photo' => InputFile::create(public_path('images/bible.jpg')),    
             'caption' => $caption,
             'parse_mode' => 'Markdown',
             'reply_markup' => $keyboard
