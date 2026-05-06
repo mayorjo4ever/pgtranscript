@@ -107,7 +107,7 @@ class TradingBotService
             // ===============================
             $shouldSell = (
                 $profitPercent >= Setting::get('bot_target_profit', 2) &&
-                $dropFromPeak >= 0.4
+                $dropFromPeak >= 0.2
             );
 
             if (!$shouldSell) {
