@@ -122,12 +122,15 @@ use Illuminate\Support\Facades\Session;
               <ul class="navbar-nav ms-4">
                 
                 @can('import-new-transcript-request')
+                {{--  now permitted for all users --}}
+                @endcan
+                
                 <li class="nav-item">
                   <a class="nav-link text-white @if(Session::get('tab')=="import") active bg-primary @endif" href="{{url('admin/import-transcript-requests')}}">
                     <span class="nav-link-text ms-1">Import New Requests</span>&nbsp;&nbsp;
                     <i class="material-icons md-24 opacity-10">download</i>
                   </a>
-                </li> @endcan
+                </li> 
                 
                  <li class="nav-item">
                   <a class="nav-link text-white @if(Session::get('tab')=="transcript_search") active bg-primary @endif" href="{{url('admin/transcript-search')}}">

@@ -66,11 +66,12 @@
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
               <p class="mb-0"><span class="text-success text-sm">
-                     @can('import-new-transcript-request')
-                        <a href="{{url('admin/import-transcript-requests')}}" target="_blank">  Total New Requests </a>
-                     @else
-                        <a href="#" target="_blank"> Total New Requests </a>                     
+                     @can('import-new-transcript-request')  
+                     {{-- now permitted for all--}}
+                     <!-- <a href="#" target="_blank"> Total New Requests </a> -->
                      @endcan 
+                     <a href="{{url('admin/import-transcript-requests')}}" target="_blank">  Total New Requests </a>
+                     
                   </span></p>
             </div>
           </div>
