@@ -76,7 +76,7 @@
                                     </tr>
                                      <tr>
                                         <th>Degree Awarded:: </th>
-                                        <td><h3>{{$request->degree_awarded}} </h3> </td>
+                                        <td><h5>{{$request->degree_awarded}} </h5> </td>
                                     </tr>
                                      <tr>
                                         <th>Faculty:: </th>
