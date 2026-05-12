@@ -9,6 +9,11 @@
             
             <x-admin.card header="Import New Requests">
               @can('import-new-transcript-request')
+               
+              @else 
+                <!-- <h2 class="danger"> You Are Not Authorized To Import </h2> -->
+                @endcan
+
                <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                   <thead>
@@ -48,9 +53,7 @@
                   </tbody>
                 </table>
               </div>
-                @else 
-                <h2 class="danger"> You Are Not Authorized To Import </h2>
-                @endcan
+               
             </x-admin.card>
         </div><!-- ./ col-12 -->
      </div>
