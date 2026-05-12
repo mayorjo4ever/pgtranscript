@@ -88,7 +88,7 @@
                                     </tr>
                                      <tr>
                                         <th>REQUEST TYPE::</th>
-                                        <th>{{$request->request_purpose}}&nbsp;{{$request->request_type}}  </th>
+                                        <th><h5>{{$request->request_purpose}}&nbsp;{{$request->request_type}} </h5></th>
                                     </tr>
                                      <tr>
                                         <th>WES Reference No::</th>
