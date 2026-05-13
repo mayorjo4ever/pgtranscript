@@ -738,7 +738,7 @@ class TranscriptRequestController extends Controller
     public function memo_printing_phd($url) {
         $durl = base64_decode($url); # decode url
         $info = explode('|',$durl); # matricno, memo_id  
-        # print "<pre>"; # print_r($info); 
+        print "<pre>";  print_r($info);  die; 
        
         $memo = TranscriptCoverLetter::findorFail($info[1]);
         $transcript = TranscriptReport::where('regno',$info[0])
