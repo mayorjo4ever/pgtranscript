@@ -77,20 +77,25 @@
                             </p>
                           </div>
                         </div>
-                    
+<!--                          
+                          <div class="progress-wrapper">
+                                <span class="fa fa-spinner fa-spin"></span>
+                                <div class="progress"  style="height:15px">
+                                    <div class="progress-bar" style="width:{{$completed['progression']}}%;  height:100%;"></div>
+                                </div>
+                                <span class="progress-text font-weight-bold">{{$completed['progression']}}%</span>
+                            </div>-->
                       </td>
                                             
                       <td class="text-md-start">
                         <p class="text-md font-weight-bold mb-0">{{$completed['request_purpose']}} - {{$completed['request_type']}}</p>                       
                         <span class="text-secondary text-xs font-weight-bold"> {{$completed->degree_awarded}} </span><br/>     
-                          
-                          <?php $new_url = $completed->printout_url; 
-                          $url = $completed->printout_url->regno."|".$completed->printout->approve_date ??'';
+                         @if(!empty($completed->printout))
+                          <?php $url = $completed->printout->regno."|".$completed->printout->approve_date ??'';
                           $url .= "|".$completed->printout->id; ?>
                          {{-- $completed->printout->id."|".$completed->printout->regno."|".$completed->printout->approve_date ??''--}}
-                         <a href="{{url($new_url) }}" target="_blank" class="btn {{ ($completed->printout->print_count >0)?"btn-light":"btn-primary"}} "> PRINT {{ $completed->printout->type.' Transcript ' }}   [ {{ $completed->printout->print_count }} ]</a>
-                             <!-- <a href="{{url('admin/print-transcript/'.base64_encode($url))}}" target="_blank" class="btn {{ ($completed->printout->print_count >0)?"btn-light":"btn-primary"}} "> PRINT {{ $completed->printout->type.' Transcript ' }}   [ {{ $completed->printout->print_count }} ]</a> -->
-                          
+                             <a href="{{url('admin/print-transcript/'.base64_encode($url))}}" target="_blank" class="btn {{ ($completed->printout->print_count >0)?"btn-light":"btn-primary"}} "> PRINT {{ $completed->printout->type.' Transcript ' }}   [ {{ $completed->printout->print_count }} ]</a>
+                          @endif
                           
                            @if(!empty($completed->cover_letter))  
                            <br/>
