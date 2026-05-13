@@ -83,7 +83,7 @@
                       <td class="text-md-start">
                         <p class="text-md font-weight-bold mb-0">{{$completed['request_purpose']}} - {{$completed['request_type']}}</p>                       
                         <span class="text-secondary text-xs font-weight-bold"> {{$completed->degree_awarded}} </span><br/>     
-                         @if(!empty($completed->printout))
+                         @if($completed->printout !="")
                           <?php $new_url = $completed->printout_url; 
                           $url = $completed->printout_url->regno."|".$completed->printout->approve_date ??'';
                           $url .= "|".$completed->printout->id; ?>
