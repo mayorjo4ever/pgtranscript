@@ -688,7 +688,7 @@ class TranscriptRequestController extends Controller
                         'purpose'=>$request->purpose,'request_id'=>$request->request_id],
                         ['sec_id'=>$secretary->regno,                           
                           'dean_id'=>$dean->regno,
-                        'type'=>$request->transcript_type,
+                        'type'=>$info[3],
                         'author_id'=>Auth::id(),
                         'created_by'=>$admin->regno                    
                     ]);   
