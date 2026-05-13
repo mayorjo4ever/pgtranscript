@@ -19,7 +19,7 @@
         </button>  
 
         @can('delete-certificate-data')
-        <button onclick="delete_cert_names()" class="btn btn-danger pt-3 pb-3 btn-delete-cert ladda-button" data-style="expand-right"  disabled="">
+        <button onclick="delete_cert_data()" class="btn btn-danger pt-3 pb-3 btn-delete-cert ladda-button" data-style="expand-right" >
             Delete <span class="count-checks"></span>  Students
         </button>  
         @endcan
