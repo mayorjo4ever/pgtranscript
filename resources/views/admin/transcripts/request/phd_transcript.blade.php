@@ -70,7 +70,7 @@
                             
                             @if($student_request->reference_number !="")
                                <tr><td class="text-uppercase"> <label class="font-weight-bold mt-3 "> WES REF No:</label>  </td>
-                                 <td><input placeholder="NAME" name="wes_ref_no" id="wes_ref_no" value="{{-- $student_request->cover_letter->wes_ref_no ?? $student_request->reference_number --}}" type="text" class="mt-3 form-control-lg font-weight-bold w-90 text-uppercase" style="font-size: 1rem;" /></td>
+                                 <td><input placeholder="REF. No" name="wes_ref_no" id="wes_ref_no" value="{{ $student_request->reference_number??'' }}" type="text" class="mt-3 form-control-lg font-weight-bold w-90 text-uppercase" style="font-size: 1rem;" /></td>
                                </tr>
                             @endif
                             <tr><td class="text-uppercase"> <label class="font-weight-bold mt-3 "> Receiving Body </label>  </td>
