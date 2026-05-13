@@ -35,7 +35,8 @@ class AdminRolePermissionSeeder extends Seeder
             'view-admin-menu','create-admin','view-admin',
             'view-role','create-role',
             'view-online-admins','view-offline-admins',
-            'import-new-transcript-request'
+            'import-new-transcript-request',
+            'delete-certificate-data',
         ];
         
         foreach ($permissions as $permission) {

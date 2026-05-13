@@ -17,6 +17,12 @@
         <button onclick="definalize_cert_names()" class="btn btn-danger pt-3 pb-3 btn-reverse-cert ladda-button" data-style="expand-right"  disabled="">
             Reverse <span class="count-checks"></span>  Finalization
         </button>  
+
+        @can('delete-certificate-data')
+        <button onclick="delete_cert_names()" class="btn btn-danger pt-3 pb-3 btn-delete-cert ladda-button" data-style="expand-right"  disabled="">
+            Delete <span class="count-checks"></span>  Students
+        </button>  
+        @endcan
         
         <div class="form-check form-switch ps-0">
         <input class="form-check-input ms-auto " type="checkbox" name="toswap" value="1" checked >
