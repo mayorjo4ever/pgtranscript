@@ -24,6 +24,7 @@ class CertificateDataImport implements OnEachRow, WithHeadingRow, WithChunkReadi
         $r = $row->toArray();
         $current_approval = get_current_approve_date();
         $year = explode('-',$current_approval->app_date)[0];         
+        $author_id = Auth::id(); $admin = Admin::find($author_id);
 
         if (!isset($r['regno'])) return;
 
@@ -36,7 +37,9 @@ class CertificateDataImport implements OnEachRow, WithHeadingRow, WithChunkReadi
                 'raw_name' => $r['name'] ?? '',
                 'raw_programme' => $r['programme'] ?? '',
                 'approve_date_id' => $current_approval->id,
-                'degree_class'=> $r['degree_class'] ?? ''
+                'degree_class'=> $r['degree_class'] ?? '',
+                'branch' => $r['branch'] ?? '',
+                'created_by'=>$admin->regno
             ]);
             $this->updated++;
         } else {
@@ -46,7 +49,9 @@ class CertificateDataImport implements OnEachRow, WithHeadingRow, WithChunkReadi
                 'raw_programme' => $r['programme'] ?? '',
                 'approve_date_id' => $current_approval->id,
                 'year' => $year,
-                'degree_class'=> $r['degree_class'] ?? ''
+                'degree_class'=> $r['degree_class'] ?? '',
+                'branch' => $r['branch'] ?? '',
+                'created_by'=>$admin->regno
             ]);
             $this->inserted++;
         }
