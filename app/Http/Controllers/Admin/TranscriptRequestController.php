@@ -136,7 +136,7 @@ class TranscriptRequestController extends Controller
           if($request->has('search')):
            $param = $request->input('search'); 
            Session::put('transcript_search',$param);
-           $completeds = TranscriptsRequest::where('request_status','Treated')
+           $completeds = TranscriptsRequest::with('printout','cover_letter')->where('request_status','Treated')
                     ->where(DB::raw("CONCAT_WS(' ', surname, middle_name)"), 'LIKE', "%{$param}%")
                     ->orWhere('regno', 'LIKE', "%{$param}%")                   
                     ->orWhere('rrr', 'LIKE', "%{$param}%")
