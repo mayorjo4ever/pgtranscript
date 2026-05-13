@@ -188,8 +188,8 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
                 ->update(['approve_date'=>'2011-12-30']); 
         */
         
-        $data = Transcript::where('regno','21/68FZ003')
-                    ->get(); 
+        // $data = Transcript::where('regno','21/768FZ003')
+        //             ->get(); 
 
                 // ->update(['approve_date'=>'2011-12-30']);
 
@@ -202,13 +202,9 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
             //             ->where('approve_date_id',280)
             //             ->delete(); 
 
-        // $data = CertificateData::whereIn('regno',['14/56ED115',
-        //             '12/67QV020',
-        //             '21/68OJ013',                    
-        //             '14/56ED115',                                      
-        //             '18/68QY001'])
-        //         ->where('approve_date_id',280)
-        //         ->get();         
+        $data = CertificateData::where('regno','21/68FZ012')
+                ->where('approve_date_id',282)
+                ->get();         
         
 
         // $data->update(['approve_date_id'=>104,'year'=>'2014']);
