@@ -681,7 +681,17 @@ class TranscriptRequestController extends Controller
                         'author_id'=>$author_id,
                         'created_by'=>$admin->regno                    
                     ]);           
-           
+
+            $pid = TranscriptPrintout::updateOrCreate(
+                    ['regno'=>$request->regno,'approve_date'=>$request->approve_date,
+                        'purpose'=>$request->purpose,'request_id'=>$request->request_id],
+                        ['sec_id'=>$secretary->regno,                           
+                        'dean_id'=>$dean->regno,
+                        'type'=>$request->transcript_type,
+                        'author_id'=>Auth::id(),
+                        'created_by'=>$admin->regno                    
+                    ]);   
+                            
            $coverLetter = TranscriptCoverLetter::updateOrCreate(
                    ['regno'=>$request->regno,'name'=>$request->name,
                        'request_id'=>$request->request_id],
@@ -691,8 +701,21 @@ class TranscriptRequestController extends Controller
                     'created_by'=>$admin->regno]
            );
            
-          TranscriptsRequest::where('id',$request->request_id)
-                ->update(['request_status'=>'Treated','transcript_cover_letter_id'=>$coverLetter->id]);
+        // /print-phd-transcript/MTgvNjhHTDAwMnw0MjA=
+        /**
+          * $printout = TranscriptPrintout::where('request_id',$request_id)->first();
+          * $cover_letter = TranscriptCoverLetter::where('request_id',$request_id)->first();
+          *
+            *  <?php $url = base64_encode($printout->regno."|".$printout->approve_date."|".$printout->id);?>
+          *  <a href="{{url('admin/print-phd-transcript/'.$url)}}" target="_blank" class="btn btn-primary "> PRINT {{ $printout->type.' Transcript ' }}   [ {{ $printout->print_count }} ]</a>
+          *     <!-- include cover letter -->               
+        */
+         $printout_url = "admin/print-phd-transcript/" . base64_encode($request->regno."|".$request->approve_date."|".$pid->id); 
+         
+         TranscriptsRequest::where('id',$request->request_id)
+                ->update(['request_status'=>'Treated','transcript_cover_letter_id'=>$coverLetter->id,
+                'printout_url'=>$printout_url]);
+
            return redirect()->back()->with('success_message',$request->regno."'s Transcript Successfully Completed");
        }
        # 
