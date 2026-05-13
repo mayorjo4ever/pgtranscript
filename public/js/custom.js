@@ -299,7 +299,7 @@ $(function(){
                 //
                 $.ajax({
                 headers:{ 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content') },
-                url: `/admin/delete-certifacate-data`,
+                url: `/admin/delete-cert-data`,
                 method: 'POST',
                 data: {
                    students:students,                      
