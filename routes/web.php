@@ -122,6 +122,9 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
         Route::post('normalize-cert-names','CertificateController@normalize_cert_names'); 
         Route::post('finalize-cert-names','CertificateController@finalize_cert_names'); 
         Route::post('definalize-cert-names','CertificateController@definalize_cert_names'); 
+        Route::post('delete-cert-data','CertificateController@delete_cert_data')
+            ->middleware('permission:delete-certificate-data');
+
         Route::post('renamePassport','CertificateController@renamePassport'); 
         Route::post('modify-uploaded-cert-data','CertificateController@modify_uploaded_cert_data'); 
         Route::get('download-passports-zip', 'CertificateController@downloadPassportsZip');
