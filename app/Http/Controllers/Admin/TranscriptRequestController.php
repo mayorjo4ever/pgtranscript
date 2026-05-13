@@ -669,6 +669,7 @@ class TranscriptRequestController extends Controller
       if($request->isMethod('post')){    
            
            $secretary = TranscriptOfficial::where(['post'=>'secretary','is_current'=>1])->first();
+           $dean = TranscriptOfficial::where(['post'=>'dean','is_current'=>1])->first();
            $author_id = Auth('admin')->user()->id; $admin = Admin::find($author_id); 
            
          TranscriptReport::updateOrCreate(
@@ -686,7 +687,7 @@ class TranscriptRequestController extends Controller
                     ['regno'=>$request->regno,'approve_date'=>$request->approve_date,
                         'purpose'=>$request->purpose,'request_id'=>$request->request_id],
                         ['sec_id'=>$secretary->regno,                           
-                        'dean_id'=>$dean->regno,
+                          'dean_id'=>$dean->regno,
                         'type'=>$request->transcript_type,
                         'author_id'=>Auth::id(),
                         'created_by'=>$admin->regno                    
