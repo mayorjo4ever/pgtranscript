@@ -30,7 +30,7 @@ class TranscriptsRequest extends Model
         'bodies','last_viewer','last_viewed',
         'progression','mail_sent','sent_by',
         'date_sent','sent_count','last_sent_email',
-        'request_time_dt',
+        'request_time_dt','printout_url','memo_url'
     ];
     
      public function printout(){
