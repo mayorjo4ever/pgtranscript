@@ -172,10 +172,10 @@ $(function(){
         $('span.count-checks').text(countChecks);
         
         if(countChecks > 0) {
-            $(".btn-normalize-cert,.btn-generate-cert,.btn-finalize-cert,.btn-reverse-cert").prop('disabled',false); 
+            $(".btn-normalize-cert,.btn-generate-cert,.btn-finalize-cert,.btn-reverse-cert,.btn-delete-cert").prop('disabled',false); 
             
         } else {
-            $(".btn-normalize-cert,.btn-generate-cert,.btn-finalize-cert,.btn-reverse-cert").prop('disabled',true);
+            $(".btn-normalize-cert,.btn-generate-cert,.btn-finalize-cert,.btn-reverse-cert,.btn-delete-cert").prop('disabled',true);
         }
     }
     
@@ -253,6 +253,34 @@ $(function(){
                },
                type:'post',
                url:'/admin/definalize-cert-names',
+               data:{students:students},
+               beforeSend:function(){
+                    startLoader(btn);
+               },
+               success:function(resp){ // alert(resp);    
+                  stopLoader(btn);       
+                  showpop(resp.message,resp.type);
+                  load_student_by_programmes(cur_page); 
+               }, 
+                   error:function(jhx,textStatus,errorThrown){   stopLoader(btn);                                             
+                    checkStatus(jhx.status); 
+                   }
+           });
+    }
+
+    function delete_cert_data(){
+        // get ids of all selected students 
+        var students = []; var btn = ".btn-delete-cert";
+        var cur_page = $('input.cur_page').val(); 
+         $.each($("input[name='students[]']:checked"),function(){
+            students.push($(this).val());
+         });
+        $.ajax({
+               headers:{
+                 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')  
+               },
+               type:'post',
+               url:'/admin/delete-certificate-data',
                data:{students:students},
                beforeSend:function(){
                     startLoader(btn);
