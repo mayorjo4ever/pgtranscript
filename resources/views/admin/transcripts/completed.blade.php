@@ -85,11 +85,11 @@
                         <span class="text-secondary text-xs font-weight-bold"> {{$completed->degree_awarded}} </span><br/>     
                          @if(!empty($completed->printout))
                           <?php $new_url = $completed->printout_url; 
-                            $url = $completed->printout_url->regno."|".$completed->printout->approve_date ??'';
-                          ## $url .= "|".$completed->printout->id; ?>
+                          $url = $completed->printout_url->regno."|".$completed->printout->approve_date ??'';
+                          $url .= "|".$completed->printout->id; ?>
                          {{-- $completed->printout->id."|".$completed->printout->regno."|".$completed->printout->approve_date ??''--}}
-                             <a href="{{ url($new_url) }}" target="_blank" class="btn {{ ($completed->printout->print_count >0)?"btn-light":"btn-primary"}} "> PRINT {{ $completed->printout->type.' Transcript ' }}   [ {{ $completed->printout->print_count }} ]</a>
-                         <!-- <a href="{{url('admin/print-transcript/'.base64_encode($url))}}" target="_blank" class="btn {{ ($completed->printout->print_count >0)?"btn-light":"btn-primary"}} "> PRINT {{ $completed->printout->type.' Transcript ' }}   [ {{ $completed->printout->print_count }} ]</a> -->
+                         <a href="{{url($new_url) }}" target="_blank" class="btn {{ ($completed->printout->print_count >0)?"btn-light":"btn-primary"}} "> PRINT {{ $completed->printout->type.' Transcript ' }}   [ {{ $completed->printout->print_count }} ]</a>
+                             <!-- <a href="{{url('admin/print-transcript/'.base64_encode($url))}}" target="_blank" class="btn {{ ($completed->printout->print_count >0)?"btn-light":"btn-primary"}} "> PRINT {{ $completed->printout->type.' Transcript ' }}   [ {{ $completed->printout->print_count }} ]</a> -->
                           @endif
                           
                            @if(!empty($completed->cover_letter))  
