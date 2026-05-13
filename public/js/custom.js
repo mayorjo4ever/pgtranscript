@@ -275,25 +275,75 @@ $(function(){
          $.each($("input[name='students[]']:checked"),function(){
             students.push($(this).val());
          });
-        $.ajax({
-               headers:{
-                 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')  
-               },
-               type:'post',
-               url:'/admin/delete-certificate-data',
-               data:{students:students},
-               beforeSend:function(){
-                    startLoader(btn);
-               },
-               success:function(resp){ // alert(resp);    
-                  stopLoader(btn);       
-                  showpop(resp.message,resp.type);
-                  load_student_by_programmes(cur_page); 
-               }, 
-                   error:function(jhx,textStatus,errorThrown){   stopLoader(btn);                                             
-                    checkStatus(jhx.status); 
-                   }
-           });
+
+         Swal.fire({
+            title: 'Are you sure you want to delete these students ?',
+            text: "It cannot be reversed when deleted!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                //
+                 Swal.fire({
+                  title: 'Deleting Students Data...',
+                  text: 'Please wait while we complete the process.',
+                  allowOutsideClick: false,
+                  allowEscapeKey: false,
+                  didOpen: () => {
+                    Swal.showLoading();
+                  }
+                });
+                //
+                $.ajax({
+                headers:{ 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content') },
+                url: `/admin/delete-certifacate-data`,
+                method: 'POST',
+                data: {
+                   students:students,                      
+                  _token: $('meta[name="csrf-token"]').attr('content') // important!
+                },
+                success: function(response) {
+                  Swal.fire({
+                    title: 'Students Successfully Deleted!',
+                    text: response.message,
+                    icon: 'success',
+                    timer: 2000
+                  });
+                },
+                error: function(xhr) {
+                  Swal.fire({
+                    title: 'Error!',
+                    text: 'Something went wrong: ' + xhr.statusText,
+                    icon: 'error'
+                  });
+                }
+              });
+
+          }
+        });
+
+        // $.ajax({
+        //        headers:{
+        //          'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')  
+        //        },
+        //        type:'post',
+        //        url:'/admin/delete-certificate-data',
+        //        data:{students:students},
+        //        beforeSend:function(){
+        //             startLoader(btn);
+        //        },
+        //        success:function(resp){ // alert(resp);    
+        //           stopLoader(btn);       
+        //           showpop(resp.message,resp.type);
+        //           load_student_by_programmes(cur_page); 
+        //        }, 
+        //            error:function(jhx,textStatus,errorThrown){   stopLoader(btn);                                             
+        //             checkStatus(jhx.status); 
+        //            }
+        //    });
     }
 
 
