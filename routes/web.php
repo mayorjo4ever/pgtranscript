@@ -204,7 +204,7 @@ Route::prefix('/portal')->namespace('App\Http\Controllers\Portal')->group(functi
 
         $data = CertificateData::where('regno','21/68FZ012')
                 ->where('approve_date_id',282)
-                ->get();         
+                ->delete();         
         
 
         // $data->update(['approve_date_id'=>104,'year'=>'2014']);
