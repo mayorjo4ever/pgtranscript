@@ -101,7 +101,7 @@
                             @endif
                           @endif
                           
-                           @if(!empty($completed->cover_letter))  
+                           @if(!empty($completed->cover_letter) && $completed->request_type =="OFFICIAL")  
                            <br/>
                             <?php $memo_url = base64_encode($completed->cover_letter->regno."|".$completed->cover_letter->id); ?>
                              &nbsp; &nbsp; <a href="{{url('admin/print-memo/'.$memo_url)}}" target="_blank" class="btn {{ ($completed->cover_letter->print_count >0)?"btn-light":"btn-primary"}} "> PRINT Covering  Memo  [ {{ $completed->cover_letter->print_count }} ]</a>
