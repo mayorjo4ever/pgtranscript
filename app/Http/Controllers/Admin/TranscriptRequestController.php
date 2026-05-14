@@ -712,7 +712,7 @@ class TranscriptRequestController extends Controller
           *     <!-- include cover letter -->               
         */
          # $printout_url = 'admin/print-phd-transcript/' . base64_encode($request->regno."|".$request->approve_date."|".$pid->id); 
-         $printout_url = 'admin/print-phd-transcript/' . base64_encode($request->regno."|".$pid->id); 
+         $printout_url = 'admin/print-phd-transcript/' . base64_encode($request->regno."|".$coverLetter->id); 
          
          TranscriptsRequest::where('id',$request->request_id)
                 ->update(['request_status'=>'Treated','transcript_cover_letter_id'=>$coverLetter->id,
