@@ -130,7 +130,7 @@ class TranscriptRequestController extends Controller
                 ->where('request_status','Treated')
                 ->orderBy('updated_at','desc')
                 ->paginate(50);
-       # print "<pre>"; print_r($completeds->toarray()); die; 
+        print "<pre>"; print_r($completeds->toarray()); die; 
        if($request->isMethod('post')):
            # print "<pre>"; print_r($request->all()); die;           
           if($request->has('search')):
