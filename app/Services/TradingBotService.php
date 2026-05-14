@@ -377,6 +377,17 @@ class TradingBotService
         'sellCooldownPassed' => $sellCooldownPassed,
     ]);
 
+     $this->notify(
+        "🧠 BUY CHECK \n"
+        . "score: {$score}\n"
+        . "Score: {$score}"
+        . "trendUp: " . ($trendUp ? 'Yes' : 'No') . "\n"
+        . "pullback: " . ($strongPullback ? 'Yes' : 'No') . "\n"
+        . "canReenter: " . ($canReenter ? 'Yes' : 'No') . "\n"
+        . "sellCooldownPassed: " . ($sellCooldownPassed ? 'Yes' : 'No') . "\n"
+        );
+    
+
     if (!$shouldBuy) {
 
         Log::info('❌ No buy signal');
@@ -395,6 +406,9 @@ class TradingBotService
     if ($usdt < $minBuy) {
 
         Log::warning('Insufficient USDT');
+        $this->notify("❌ Insufficient USDT to buy. \n" . 
+        "Available: {$usdt} \n" .
+         "Required: {$minBuy}");
 
         return;
     }
