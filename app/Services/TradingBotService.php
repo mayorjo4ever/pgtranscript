@@ -16,192 +16,417 @@ class TradingBotService
     }
     
    public function handle(): void
-    {
-        Log::info("🤖 Bot running");
+{
+    Log::info("🤖 Bot running");
 
-        if (!Setting::get('bot_enabled', true)) {
-            Log::info('Bot disabled');
-            return;
-        }
+    // ==========================================================
+    // 🤖 BOT STATUS
+    // ==========================================================
+    if (!Setting::get('bot_enabled', true)) {
 
-        // ===============================
-        // 📊 MARKET DATA
-        // ===============================
-        $prices = $this->getPrices();
-        $currentPrice = $this->bitget->getPrice();
+        Log::info('Bot disabled');
 
-        if (empty($prices) || !$currentPrice) {
-            Log::warning('Invalid market data');
-            return;
-        }
-
-        // ===============================
-        // 🧠 INDICATORS
-        // ===============================
-        $rsi  = $this->calculateRSI($prices);
-        $ma10 = $this->movingAverage($prices, 10);
-        $ma50 = $this->movingAverage($prices, 50);
-        $trendUp = $ma10 > $ma50;
-
-        // ===============================
-        // 💰 BALANCE
-        // ===============================
-        $btcBalance = $this->getBtcBalance();
-        $usdt = $this->getUsdtBalance();
-
-        Log::info("Balances", [
-            'BTC' => $btcBalance,
-            'USDT' => $usdt
-        ]);
-
-        // ===============================
-        // 🛑 COOLDOWN (ANTI OVERTRADING)
-        // ===============================
-        $lastTrade = Trade::latest()->first();
-
-        if ($lastTrade && now()->diffInSeconds($lastTrade->created_at) < 30) {
-            Log::info('Cooldown active');
-            return;
-        }
-
-        // ==========================================================
-        // 🔴 SELL MODE (WE HOLD BTC)
-        // ==========================================================
-        if ($btcBalance > 0.00001) {
-
-            Log::info('📊 SELL MODE ACTIVE');
-
-            $lastBuy = Trade::where('side', 'buy')->latest()->first();
-
-            if (!$lastBuy) {
-                Log::warning('No BUY trade found');
-                return;
-            }
-
-            $entry = (float) $lastBuy->price;
-
-            $profitPercent = (($currentPrice - $entry) / $entry) * 100;
-
-            // ===============================
-            // 📈 TRAILING LOGIC
-            // ===============================
-            $peak = Setting::get('peak_price', $currentPrice);
-
-            if ($currentPrice > $peak) {
-                Setting::set('peak_price', $currentPrice);
-                $peak = $currentPrice;
-            }
-
-            $dropFromPeak = (($peak - $currentPrice) / $peak) * 100;
-
-            Log::info('Position', [
-                'entry' => $entry,
-                'current' => $currentPrice,
-                'profit%' => round($profitPercent, 2),
-                'peak' => $peak,
-                'drop%' => round($dropFromPeak, 2)
-            ]);
-
-            // ===============================
-            // 🧠 SELL DECISION
-            // ===============================
-            $shouldSell = (
-                $profitPercent >= Setting::get('bot_target_profit', 2) &&
-                $dropFromPeak >= 0.2
-            );
-
-            if (!$shouldSell) {
-                Log::info('Holding position');
-                return;
-            }
-
-            // ===============================
-            // 🔴 EXECUTE SELL
-            // ===============================
-            $this->executeTrade('sell', $btcBalance, $currentPrice);
-
-            Setting::set('last_sell_price', $currentPrice);
-            Setting::set('peak_price', 0); // reset
-
-            $this->notify("🔴 SELL @ {$currentPrice} Profit: " . round($profitPercent, 2) . "%");
-
-            return;
-        }
-
-        // ==========================================================
-        // 🟢 BUY MODE (NO BTC)
-        // ==========================================================
-        Log::info('🟢 BUY MODE ACTIVE');
-
-        // ===============================
-        // 🧠 TRADE SCORING
-        // ===============================
-        $score = $this->getTradeScore($prices);
-
-        // ===============================
-        // 🛑 RE-ENTRY CONTROL
-        // ===============================
-        $lastSellPrice = (float) Setting::get('last_sell_price', 0);
-        $reentryDrop = Setting::get('bot_reentry_drop', 1); // %
-
-        $reentryPrice = $lastSellPrice * (1 - $reentryDrop / 100);
-        $priceDroppedEnough = $lastSellPrice == 0 || $currentPrice <= $reentryPrice;
-
-        // 🚫 NEVER BUY ABOVE LAST SELL
-        $neverBuyHigher = $lastSellPrice == 0 || $currentPrice < $lastSellPrice;
-
-        // ===============================
-        // 📉 STRONG PULLBACK FILTER
-        // ===============================
-        $strongPullback = $currentPrice < $ma10 * 0.995;
-
-        // ===============================
-        // 🧠 FINAL BUY DECISION
-        // ===============================
-        $shouldBuy = (
-            $score >= 5 &&
-            $trendUp &&
-            $strongPullback &&
-            $priceDroppedEnough &&
-            $neverBuyHigher
-        );
-
-        Log::info('Buy Check', [
-            'score' => $score,
-            'trendUp' => $trendUp,
-            'pullback' => $strongPullback,
-            'reentryOK' => $priceDroppedEnough,
-        ]);
-
-        if (!$shouldBuy) {
-            Log::info('No buy signal');
-            return;
-        }
-
-        // ===============================
-        // 💵 POSITION SIZING
-        // ===============================
-        $minBuy = Setting::get('bot_min_buy_usd', 5);
-
-        if ($usdt < $minBuy) {
-            Log::warning('Insufficient USDT');
-            return;
-        }
-
-        $riskPercent = 0.03;
-        $tradeValue = max($usdt * $riskPercent, $minBuy);
-
-        // ===============================
-        // 🟢 EXECUTE BUY
-        // ===============================
-        $this->executeTrade('buy', $tradeValue, $currentPrice);
-
-        Setting::set('last_buy_price', $currentPrice);
-        Setting::set('peak_price', $currentPrice);
-
-        $this->notify("🟢 BUY @ {$currentPrice} (Score: {$score})");
+        return;
     }
 
+    // ==========================================================
+    // 📊 MARKET DATA
+    // ==========================================================
+    $prices = $this->getPrices();
+
+    $currentPrice = $this->bitget->getPrice();
+
+    if (empty($prices) || !$currentPrice) {
+
+        Log::warning('Invalid market data');
+
+        return;
+    }
+
+    // ==========================================================
+    // 🧠 INDICATORS
+    // ==========================================================
+    $rsi = $this->calculateRSI($prices);
+
+    $ma10 = $this->movingAverage($prices, 10);
+
+    $ma50 = $this->movingAverage($prices, 50);
+
+    $trendUp = $ma10 > $ma50;
+
+    // ==========================================================
+    // 💰 BALANCES
+    // ==========================================================
+    $btcBalance = (float) $this->getBtcBalance();
+
+    $usdt = (float) $this->getUsdtBalance();
+
+    Log::info('Balances', [
+        'BTC' => $btcBalance,
+        'USDT' => $usdt,
+    ]);
+
+    // ==========================================================
+    // 🛑 GLOBAL COOLDOWN
+    // ==========================================================
+    $lastTrade = Trade::latest()->first();
+
+    if (
+        $lastTrade &&
+        now()->diffInSeconds($lastTrade->created_at) < 60
+    ) {
+
+        Log::info('⏳ Cooldown active');
+
+        return;
+    }
+
+    // ==========================================================
+    // 🔴 SELL MODE
+    // ==========================================================
+    if ($btcBalance > 0.00001) {
+
+        Log::info('📊 SELL MODE ACTIVE');
+
+        // ==========================================================
+        // 🧾 LAST BUY
+        // ==========================================================
+        $lastBuy = Trade::where('side', 'buy')
+            ->latest()
+            ->first();
+
+        if (!$lastBuy) {
+
+            Log::warning('No BUY trade found');
+
+            return;
+        }
+
+        $entry = (float) $lastBuy->price;
+
+        $profitPercent = (
+            ($currentPrice - $entry) / $entry
+        ) * 100;
+
+        // ==========================================================
+        // 📈 PEAK TRACKING
+        // ==========================================================
+        $peakPrice = (float) Setting::get(
+            'peak_price',
+            $currentPrice
+        );
+
+        if ($currentPrice > $peakPrice) {
+
+            $peakPrice = $currentPrice;
+
+            Setting::set('peak_price', $peakPrice);
+        }
+
+        // ==========================================================
+        // 📉 DROP FROM PEAK
+        // ==========================================================
+        $dropFromPeak = (
+            ($peakPrice - $currentPrice) / $peakPrice
+        ) * 100;
+
+        // ==========================================================
+        // ⚙️ SETTINGS
+        // ==========================================================
+        $targetProfit = (float) Setting::get(
+            'bot_target_profit',
+            3
+        );
+
+        $stopLoss = (float) Setting::get(
+            'bot_stop_loss',
+            -2
+        );
+
+        $partialTaken = Setting::get(
+            'partial_profit_taken',
+            false
+        );
+
+        // ==========================================================
+        // 📊 POSITION LOG
+        // ==========================================================
+        Log::info('📈 Position', [
+            'entry' => round($entry, 2),
+            'current' => round($currentPrice, 2),
+            'profit%' => round($profitPercent, 2),
+            'peak' => round($peakPrice, 2),
+            'drop%' => round($dropFromPeak, 2),
+            'rsi' => round($rsi, 2),
+        ]);
+
+        // ==========================================================
+        // 🛑 LAYER 1 → STOP LOSS
+        // ==========================================================
+        if ($profitPercent <= $stopLoss) {
+
+            Log::warning('🛑 STOP LOSS TRIGGERED');
+
+            $this->notify(
+                "🛑 STOP LOSS\n"
+                . "Entry: {$entry}\n"
+                . "Current: {$currentPrice}\n"
+                . "Loss: " . round($profitPercent, 2) . "%"
+            );
+
+            $this->executeTrade(
+                'sell',
+                $btcBalance,
+                $currentPrice
+            );
+
+            Setting::set('peak_price', 0);
+
+            Setting::set('partial_profit_taken', false);
+
+            Setting::set('last_sell_price', $currentPrice);
+
+            return;
+        }
+
+        // ==========================================================
+        // 💰 LAYER 2 → PARTIAL TAKE PROFIT
+        // ==========================================================
+        if (
+            !$partialTaken &&
+            $profitPercent >= $targetProfit
+        ) {
+
+            Log::info('💰 PARTIAL PROFIT TAKEN');
+
+            // sell 70%
+            $sellAmount = round($btcBalance * 0.7, 8);
+
+            $this->notify(
+                "💰 PARTIAL SELL\n"
+                . "Profit: " . round($profitPercent, 2) . "%\n"
+                . "Sold: 70%"
+            );
+
+            $this->executeTrade(
+                'sell',
+                $sellAmount,
+                $currentPrice
+            );
+
+            Setting::set('partial_profit_taken', true);
+
+            Setting::set('last_sell_price', $currentPrice);
+
+            return;
+        }
+
+        // ==========================================================
+        // 📉 LAYER 3 → TRAILING EXIT
+        // ==========================================================
+        if (
+            $partialTaken &&
+            $profitPercent >= 1.5 &&
+            $dropFromPeak >= 0.3
+        ) {
+
+            Log::info('📉 TRAILING STOP EXIT');
+
+            $remainingBtc = (float) $this->getBtcBalance();
+
+            if ($remainingBtc > 0.00001) {
+
+                $this->notify(
+                    "📉 FINAL EXIT\n"
+                    . "Profit Locked: "
+                    . round($profitPercent, 2)
+                    . "%\n"
+                    . "Peak Drop: "
+                    . round($dropFromPeak, 2)
+                    . "%"
+                );
+
+                $this->executeTrade(
+                    'sell',
+                    $remainingBtc,
+                    $currentPrice
+                );
+            }
+
+            Setting::set('partial_profit_taken', false);
+
+            Setting::set('peak_price', 0);
+
+            Setting::set('last_sell_price', $currentPrice);
+
+            return;
+        }
+
+        // ==========================================================
+        // ⚠️ MOMENTUM WEAKNESS EXIT
+        // ==========================================================
+        if (
+            $profitPercent >= 2 &&
+            $rsi < 50
+        ) {
+
+            Log::info('⚠️ MOMENTUM EXIT');
+
+            $this->notify(
+                "⚠️ MOMENTUM EXIT\n"
+                . "Profit: "
+                . round($profitPercent, 2)
+                . "%\n"
+                . "RSI Weak"
+            );
+
+            $this->executeTrade(
+                'sell',
+                $btcBalance,
+                $currentPrice
+            );
+
+            Setting::set('partial_profit_taken', false);
+
+            Setting::set('peak_price', 0);
+
+            Setting::set('last_sell_price', $currentPrice);
+
+            return;
+        }
+
+        // ==========================================================
+        // ⏳ HOLD POSITION
+        // ==========================================================
+        Log::info('⏳ Holding position');
+
+        return;
+    }
+
+    // ==========================================================
+    // 🟢 BUY MODE
+    // ==========================================================
+    Log::info('🟢 BUY MODE ACTIVE');
+
+    // ==========================================================
+    // 🧠 TRADE SCORE
+    // ==========================================================
+    $score = $this->getTradeScore($prices);
+
+    // ==========================================================
+    // 🛑 RE-ENTRY PROTECTION
+    // ==========================================================
+    $lastSellPrice = (float) Setting::get(
+        'last_sell_price',
+        0
+    );
+
+    $reentryDrop = (float) Setting::get(
+        'bot_reentry_drop',
+        1.5
+    );
+
+    $reentryPrice = $lastSellPrice * (
+        1 - ($reentryDrop / 100)
+    );
+
+    $canReenter = (
+        $lastSellPrice == 0 ||
+        $currentPrice <= $reentryPrice
+    );
+
+    // ==========================================================
+    // ⏱️ SELL COOLDOWN
+    // ==========================================================
+    $lastSellTrade = Trade::where('side', 'sell')
+        ->latest()
+        ->first();
+
+    $sellCooldownPassed = true;
+
+    if ($lastSellTrade) {
+
+        $sellCooldownPassed =
+            now()->diffInMinutes(
+                $lastSellTrade->created_at
+            ) >= 15;
+    }
+
+    // ==========================================================
+    // 📉 PULLBACK FILTER
+    // ==========================================================
+    $strongPullback =
+        $currentPrice < ($ma10 * 0.995);
+
+    // ==========================================================
+    // 🧠 FINAL BUY DECISION
+    // ==========================================================
+    $shouldBuy = (
+        $score >= 5 &&
+        $trendUp &&
+        $strongPullback &&
+        $canReenter &&
+        $sellCooldownPassed
+    );
+
+    Log::info('🧠 BUY CHECK', [
+        'score' => $score,
+        'trendUp' => $trendUp,
+        'pullback' => $strongPullback,
+        'canReenter' => $canReenter,
+        'sellCooldownPassed' => $sellCooldownPassed,
+    ]);
+
+    if (!$shouldBuy) {
+
+        Log::info('❌ No buy signal');
+
+        return;
+    }
+
+    // ==========================================================
+    // 💵 POSITION SIZING
+    // ==========================================================
+    $minBuy = (float) Setting::get(
+        'bot_min_buy_usd',
+        5
+    );
+
+    if ($usdt < $minBuy) {
+
+        Log::warning('Insufficient USDT');
+
+        return;
+    }
+
+    $riskPercent = 0.03;
+
+    $tradeValue = max(
+        $usdt * $riskPercent,
+        $minBuy
+    );
+
+    // ==========================================================
+    // 🟢 EXECUTE BUY
+    // ==========================================================
+    $this->executeTrade(
+        'buy',
+        $tradeValue,
+        $currentPrice
+    );
+
+    Setting::set('last_buy_price', $currentPrice);
+
+    Setting::set('peak_price', $currentPrice);
+
+    Setting::set('partial_profit_taken', false);
+
+    $this->notify(
+        "🟢 BUY EXECUTED\n"
+        . "Price: {$currentPrice}\n"
+        . "Score: {$score}"
+    );
+}
     // ===============================
     // 💱 EXECUTE TRADE (SMART RETRY)
     // ===============================
