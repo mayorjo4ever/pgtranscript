@@ -11,7 +11,7 @@ class CertificateData extends Model
    protected $fillable = [
         'pix_name', 'filename','pix_path',
         'size','mime_type','regno','name',
-        'raw_name','raw_programme',
+        'raw_name','raw_programme','branch',
         'approve_date_id','degree_id',
         'year','programme_id','degree_class'         
     // if you want to associate with users
