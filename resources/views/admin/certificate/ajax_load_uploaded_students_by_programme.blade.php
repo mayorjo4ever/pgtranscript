@@ -100,10 +100,8 @@
                 {!!$student['record']['first_name']." ".$student['record']['middle_name']." ".strtoupper($student['record']['last_name'])."<br/> Phone: ".$student['record']['phone']."<br/> Programme: ".$student['record']['programme']!!}
             </td>
             <td><a data-bs-toggle="modal" data-bs-target="#update_regno_modal" href="#" onclick="setValues('{{$student['record']['regno']}}','.cert-regno'),setRef('{{$student['record']['id']}}')">{{$student['record']['regno']}} &nbsp; <span class="material-icons">edit</span> </a>
-            <br/> {{$student['record']['raw_programme']}} 
-            @if(trim($student['record']['branch']) != "")
-                <br/><span class="text-bold"> {{$student['record']['branch']}}  </span>
-            @endif
+            <br/> {{$student['record']['raw_programme']}}         
+                <br/><span class="text-bold"> {{$student['record']['branch']}}  </span>            
             </td>
             <td>{{$student['record']['raw_name']}}</td>                     
         </tr>
