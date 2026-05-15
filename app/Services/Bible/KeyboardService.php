@@ -22,26 +22,27 @@ class KeyboardService
                     'text' => 'Next ➡️',
                     'callback_data' => "next_{$bookId}_{$chapter}_{$verse}"
                 ])
-            ])
-            ->row([
-                Keyboard::inlineButton([
-                    'text' => '📝 Add Note',
-                    'callback_data' => "addnote_bible_{$bookId}_{$chapter}_{$verse}"
-                ])
             ]);
+            // ->row([
+            //     Keyboard::inlineButton([
+            //         'text' => '📝 Add Note',
+            //         'callback_data' => "addnote_bible_{$bookId}_{$chapter}_{$verse}"
+            //     ])
+            // ]);
     }
 
     
     public function hymnButtons($hymnNumber)
     {
-        return Keyboard::make()
-            ->inline()
-            ->row([
-                Keyboard::inlineButton([
-                    'text' => '📝 Add Note',
-                    'callback_data' => "addnote_hymn_{$hymnNumber}"
-                ])
-            ]);
+        return null; 
+        // Keyboard::make()
+        //     ->inline()
+        //     ->row([
+        //         Keyboard::inlineButton([
+        //             'text' => '📝 Add Note',
+        //             'callback_data' => "addnote_hymn_{$hymnNumber}"
+        //         ])
+        //     ]);
     }
 
     public function mainMenu()

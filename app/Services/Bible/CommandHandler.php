@@ -51,24 +51,37 @@ class CommandHandler
         return;
     }
 
-    // Handle My Notes
+    // Check if user is in "adding note" mode
+    $userMode = cache()->get("user_mode_{$chatId}");
+    if ($userMode === 'adding_note') {
+        app(NotesService::class)->handleNoteInput($update);
+        return;
+    }
+
+    // Handle Add Note
     if ($text === '📝 My Notes' || $text === '/mynotes') {
         cache()->forget("user_mode_{$chatId}");
         app(NotesService::class)->listNotes($update);
         return;
     }
 
+    // Handle Add New Note
+    if ($text === '/addnote') {
+        app(NotesService::class)->startAddingNote($update);
+        return;
+    }
+
     // Handle View Note
-    if (str_starts_with($text, '/viewnote ')) {
-        $reference = trim(str_replace('/viewnote', '', $text));
-        app(NotesService::class)->viewNote($update, $reference);
+    if (preg_match('/^\/viewnote\s+(\d+)$/i', $text, $matches)) {
+        $noteNumber = $matches[1];
+        app(NotesService::class)->viewNote($update, $noteNumber);
         return;
     }
 
     // Handle Delete Note
-    if (str_starts_with($text, '/deletenote ')) {
-        $reference = trim(str_replace('/deletenote', '', $text));
-        app(NotesService::class)->deleteNote($update, $reference);
+    if (preg_match('/^\/deletenote\s+(\d+)$/i', $text, $matches)) {
+        $noteNumber = $matches[1];
+        app(NotesService::class)->deleteNote($update, $noteNumber);
         return;
     }
 
