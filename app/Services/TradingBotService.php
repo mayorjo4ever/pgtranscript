@@ -25,7 +25,10 @@ class TradingBotService
     if (!Setting::get('bot_enabled', true)) {
 
         Log::info('Bot disabled');
-        $this->notify('⚠️ BOT DISABLED');
+        
+        Setting::set('bot_enabled',true);
+
+        $this->notify('⚠️ BOT RESET ON');
 
         return;
     }
