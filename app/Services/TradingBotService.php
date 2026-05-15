@@ -409,7 +409,6 @@ class TradingBotService
         $this->notify("❌ Insufficient USDT to buy. \n" . 
         "Available: {$usdt} \n" .
          "Required: {$minBuy}");
-
         return;
     }
 
