@@ -82,226 +82,258 @@ class TradingBotService
     }
 
     // ==========================================================
-    // 🔴 SELL MODE
+// 🔴 SELL MODE
+// ==========================================================
+if ($btcBalance > 0.00001) {
+
+    Log::info('📊 SELL MODE ACTIVE');
+
     // ==========================================================
-    if ($btcBalance > 0.00001) {
+    // 🧾 LAST BUY
+    // ==========================================================
+    $lastBuy = Trade::where('side', 'BUY')
+        ->latest()
+        ->first();
 
-        Log::info('📊 SELL MODE ACTIVE');
+    if (!$lastBuy) {
 
-        // ==========================================================
-        // 🧾 LAST BUY
-        // ==========================================================
-        $lastBuy = Trade::where('side', 'buy')
-            ->latest()
-            ->first();
-
-        if (!$lastBuy) {
-
-            Log::warning('No BUY trade found');
-
-            return;
-        }
-
-        $entry = (float) $lastBuy->price;
-
-        $profitPercent = (
-            ($currentPrice - $entry) / $entry
-        ) * 100;
-
-        // ==========================================================
-        // 📈 PEAK TRACKING
-        // ==========================================================
-        $peakPrice = (float) Setting::get(
-            'peak_price',
-            $currentPrice
-        );
-
-        if ($currentPrice > $peakPrice) {
-
-            $peakPrice = $currentPrice;
-
-            Setting::set('peak_price', $peakPrice);
-        }
-
-        // ==========================================================
-        // 📉 DROP FROM PEAK
-        // ==========================================================
-        $dropFromPeak = (
-            ($peakPrice - $currentPrice) / $peakPrice
-        ) * 100;
-
-        // ==========================================================
-        // ⚙️ SETTINGS
-        // ==========================================================
-        $targetProfit = (float) Setting::get(
-            'bot_target_profit',
-            3
-        );
-
-        $stopLoss = (float) Setting::get(
-            'bot_stop_loss',
-            -2
-        );
-
-        $partialTaken = Setting::get(
-            'partial_profit_taken',
-            false
-        );
-
-        // ==========================================================
-        // 📊 POSITION LOG
-        // ==========================================================
-        Log::info('📈 Position', [
-            'entry' => round($entry, 2),
-            'current' => round($currentPrice, 2),
-            'profit%' => round($profitPercent, 2),
-            'peak' => round($peakPrice, 2),
-            'drop%' => round($dropFromPeak, 2),
-            'rsi' => round($rsi, 2),
-        ]);
-
-        // ==========================================================
-        // 🛑 LAYER 1 → STOP LOSS
-        // ==========================================================
-        if ($profitPercent <= $stopLoss) {
-
-            Log::warning('🛑 STOP LOSS TRIGGERED');
-
-            $this->notify(
-                "🛑 STOP LOSS\n"
-                . "Entry: {$entry}\n"
-                . "Current: {$currentPrice}\n"
-                . "Loss: " . round($profitPercent, 2) . "%"
-            );
-
-            $this->executeTrade(
-                'sell',
-                $btcBalance,
-                $currentPrice
-            );
-
-            Setting::set('peak_price', 0);
-
-            Setting::set('partial_profit_taken', false);
-
-            Setting::set('last_sell_price', $currentPrice);
-
-            return;
-        }
-
-        // ==========================================================
-        // 💰 LAYER 2 → PARTIAL TAKE PROFIT
-        // ==========================================================
-        if (
-            !$partialTaken &&
-            $profitPercent >= $targetProfit
-        ) {
-
-            Log::info('💰 PARTIAL PROFIT TAKEN');
-
-            // sell 70%
-            $sellAmount = round($btcBalance * 0.7, 8);
-
-            $this->notify(
-                "💰 PARTIAL SELL\n"
-                . "Profit: " . round($profitPercent, 2) . "%\n"
-                . "Sold: 70%"
-            );
-
-            $this->executeTrade(
-                'sell',
-                $sellAmount,
-                $currentPrice
-            );
-
-            Setting::set('partial_profit_taken', true);
-
-            Setting::set('last_sell_price', $currentPrice);
-
-            return;
-        }
-
-        // ==========================================================
-        // 📉 LAYER 3 → TRAILING EXIT
-        // ==========================================================
-        if (
-            $partialTaken &&
-            $profitPercent >= 1.5 &&
-            $dropFromPeak >= 0.3
-        ) {
-
-            Log::info('📉 TRAILING STOP EXIT');
-
-            $remainingBtc = (float) $this->getBtcBalance();
-
-            if ($remainingBtc > 0.00001) {
-
-                $this->notify(
-                    "📉 FINAL EXIT\n"
-                    . "Profit Locked: "
-                    . round($profitPercent, 2)
-                    . "%\n"
-                    . "Peak Drop: "
-                    . round($dropFromPeak, 2)
-                    . "%"
-                );
-
-                $this->executeTrade(
-                    'sell',
-                    $remainingBtc,
-                    $currentPrice
-                );
-            }
-
-            Setting::set('partial_profit_taken', false);
-
-            Setting::set('peak_price', 0);
-
-            Setting::set('last_sell_price', $currentPrice);
-
-            return;
-        }
-
-        // ==========================================================
-        // ⚠️ MOMENTUM WEAKNESS EXIT
-        // ==========================================================
-        if (
-            $profitPercent >= 2 &&
-            $rsi < 50
-        ) {
-
-            Log::info('⚠️ MOMENTUM EXIT');
-
-            $this->notify(
-                "⚠️ MOMENTUM EXIT\n"
-                . "Profit: "
-                . round($profitPercent, 2)
-                . "%\n"
-                . "RSI Weak"
-            );
-
-            $this->executeTrade(
-                'sell',
-                $btcBalance,
-                $currentPrice
-            );
-
-            Setting::set('partial_profit_taken', false);
-
-            Setting::set('peak_price', 0);
-
-            Setting::set('last_sell_price', $currentPrice);
-
-            return;
-        }
-
-        // ==========================================================
-        // ⏳ HOLD POSITION
-        // ==========================================================
-        Log::info('⏳ Holding position');
+        Log::warning('No BUY trade found');
 
         return;
     }
+
+    $entry = (float) $lastBuy->price;
+
+    $profitPercent = (
+        ($currentPrice - $entry) / $entry
+    ) * 100;
+
+    // ==========================================================
+    // 📈 PEAK TRACKING
+    // ==========================================================
+    $peakPrice = (float) Setting::get(
+        'peak_price',
+        $currentPrice
+    );
+
+    if ($currentPrice > $peakPrice) {
+
+        $peakPrice = $currentPrice;
+
+        Setting::set('peak_price', $peakPrice);
+    }
+
+    // ==========================================================
+    // 📉 DROP FROM PEAK
+    // ==========================================================
+    $dropFromPeak = (
+        ($peakPrice - $currentPrice) / $peakPrice
+    ) * 100;
+
+    // ==========================================================
+    // ⚙️ SETTINGS
+    // ==========================================================
+    $targetProfit = (float) Setting::get(
+        'bot_target_profit',
+        3
+    );
+
+    $stopLoss = (float) Setting::get(
+        'bot_stop_loss',
+        -2
+    );
+
+    $partialTaken = filter_var(
+        Setting::get('partial_profit_taken', false),
+        FILTER_VALIDATE_BOOLEAN
+    );
+
+    // ==========================================================
+    // 📊 POSITION LOG
+    // ==========================================================
+    Log::info('📈 Position', [
+        'entry' => round($entry, 2),
+        'current' => round($currentPrice, 2),
+        'profit%' => round($profitPercent, 2),
+        'peak' => round($peakPrice, 2),
+        'drop%' => round($dropFromPeak, 2),
+        'rsi' => round($rsi, 2),
+        'partialTaken' => $partialTaken,
+    ]);
+
+    // ==========================================================
+    // 🛑 LAYER 1 → STOP LOSS
+    // ==========================================================
+    if ($profitPercent <= $stopLoss) {
+
+        Log::warning('🛑 STOP LOSS TRIGGERED');
+
+        $this->notify(
+            "🛑 STOP LOSS\n"
+            . "Entry: {$entry}\n"
+            . "Current: {$currentPrice}\n"
+            . "Loss: " . round($profitPercent, 2) . "%"
+        );
+
+        $this->executeTrade(
+            'sell',
+            $btcBalance,
+            $currentPrice
+        );
+
+        Setting::set('peak_price', 0);
+        Setting::set('partial_profit_taken', false);
+        Setting::set('last_sell_price', $currentPrice);
+
+        return;
+    }
+
+    // ==========================================================
+    // 🚀 FAILSAFE MAX PROFIT EXIT
+    // ==========================================================
+    if ($profitPercent >= 4) {
+
+        Log::info('🚀 MAX PROFIT AUTO EXIT');
+
+        $this->notify(
+            "🚀 MAX PROFIT EXIT\n"
+            . "Profit: " . round($profitPercent, 2) . "%\n"
+            . "Price: {$currentPrice}"
+        );
+
+        $this->executeTrade(
+            'sell',
+            $btcBalance,
+            $currentPrice
+        );
+
+        Setting::set('partial_profit_taken', false);
+        Setting::set('peak_price', 0);
+        Setting::set('last_sell_price', $currentPrice);
+
+        return;
+    }
+
+    // ==========================================================
+    // 💰 LAYER 2 → PARTIAL TAKE PROFIT
+    // ==========================================================
+    if (
+        !$partialTaken &&
+        $profitPercent >= $targetProfit
+    ) {
+
+        if ($btcBalance < 0.00005) {
+
+            Log::warning('BTC too small for partial sell');
+
+            return;
+        }
+
+        Log::info('💰 PARTIAL PROFIT TAKEN');
+
+        // sell 70%
+        $sellAmount = round($btcBalance * 0.7, 8);
+
+        $this->notify(
+            "💰 PARTIAL SELL\n"
+            . "Profit: " . round($profitPercent, 2) . "%\n"
+            . "Sold: 70%"
+        );
+
+        $this->executeTrade(
+            'sell',
+            $sellAmount,
+            $currentPrice
+        );
+
+        Setting::set('partial_profit_taken', true);
+
+        Setting::set('last_sell_price', $currentPrice);
+
+        return;
+    }
+
+    // ==========================================================
+    // 📉 LAYER 3 → TRAILING EXIT
+    // ==========================================================
+    if (
+        $partialTaken &&
+        $profitPercent >= 1.5 &&
+        $dropFromPeak >= 0.2
+    ) {
+
+        Log::info('📉 TRAILING STOP EXIT');
+
+        $remainingBtc = (float) $this->getBtcBalance();
+
+        if ($remainingBtc > 0.00001) {
+
+            $this->notify(
+                "📉 FINAL EXIT\n"
+                . "Profit Locked: "
+                . round($profitPercent, 2)
+                . "%\n"
+                . "Peak Drop: "
+                . round($dropFromPeak, 2)
+                . "%"
+            );
+
+            $this->executeTrade(
+                'sell',
+                $remainingBtc,
+                $currentPrice
+            );
+        }
+
+        Setting::set('partial_profit_taken', false);
+
+        Setting::set('peak_price', 0);
+
+        Setting::set('last_sell_price', $currentPrice);
+
+        return;
+    }
+
+    // ==========================================================
+    // ⚠️ MOMENTUM WEAKNESS EXIT
+    // ==========================================================
+    if (
+        $profitPercent >= 2 &&
+        $rsi < 50
+    ) {
+
+        Log::info('⚠️ MOMENTUM EXIT');
+
+        $this->notify(
+            "⚠️ MOMENTUM EXIT\n"
+            . "Profit: "
+            . round($profitPercent, 2)
+            . "%\n"
+            . "RSI Weak"
+        );
+
+        $this->executeTrade(
+            'sell',
+            $btcBalance,
+            $currentPrice
+        );
+
+        Setting::set('partial_profit_taken', false);
+
+        Setting::set('peak_price', 0);
+
+        Setting::set('last_sell_price', $currentPrice);
+
+        return;
+    }
+
+    // ==========================================================
+    // ⏳ HOLD POSITION
+    // ==========================================================
+    Log::info('⏳ Holding position');
+
+    return;
+}
 
     // ==========================================================
     // 🟢 BUY MODE
@@ -338,7 +370,7 @@ class TradingBotService
     // ==========================================================
     // ⏱️ SELL COOLDOWN
     // ==========================================================
-    $lastSellTrade = Trade::where('side', 'sell')
+    $lastSellTrade = Trade::where('side', 'SELL')
         ->latest()
         ->first();
 
@@ -845,7 +877,7 @@ public function getMarketSummary(): array
 
         public function getTargetAnalysis(): array
         {
-            $lastBuy = \App\Models\Trade::where('side', 'buy')->latest()->first();
+            $lastBuy = \App\Models\Trade::where('side', 'BUY')->latest()->first();
 
             if (!$lastBuy) {
                 return [];
