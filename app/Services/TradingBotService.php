@@ -15,6 +15,9 @@ class TradingBotService
         $this->bitget = $bitget;
     }
     
+    /**
+     * Core Automation Hook Loop
+     */
     public function handle(): void
     {
         Log::info("🤖 Bot running");
@@ -67,7 +70,6 @@ class TradingBotService
 
             $lastBuy = Trade::where('side', 'BUY')->latest()->first();
             
-            // If DB trade history was wiped, fallback gracefully using spot price as current baseline
             if (!$lastBuy) {
                 Log::warning('No local BUY trade found; default safety baseline assigned to market rate.');
                 $entry = $currentPrice;
@@ -169,7 +171,7 @@ class TradingBotService
         $lastSellTrade = Trade::where('side', 'SELL')->latest()->first();
         $sellCooldownPassed = !$lastSellTrade || now()->diffInMinutes($lastSellTrade->created_at) >= 15;
 
-        // FIXED: Relaxed standard to run perfectly in harmony along with active standard trends
+        // Relaxed standard to run perfectly in harmony along with active standard trends
         $strongPullback = $currentPrice < ($ma10 * 1.001);
 
         $shouldBuy = ($score >= 4 && $canReenter && $sellCooldownPassed && $strongPullback);
@@ -181,15 +183,6 @@ class TradingBotService
             'canReenter' => $canReenter,
             'sellCooldownPassed' => $sellCooldownPassed,
         ]);
-
-        $this->notify(
-            "🧠 BUY CHECK\n"
-            . "Score: {$score}\n"
-            . "TrendUp: " . ($trendUp ? 'Yes' : 'No') . "\n"
-            . "Pullback: " . ($strongPullback ? 'Yes' : 'No') . "\n"
-            . "CanReenter: " . ($canReenter ? 'Yes' : 'No') . "\n"
-            . "SellCooldownPassed: " . ($sellCooldownPassed ? 'Yes' : 'No')
-        );
 
         if (!$shouldBuy) {
             Log::info('❌ No matching structural buy parameters encountered.');
@@ -207,7 +200,6 @@ class TradingBotService
         $riskPercent = 0.03;
         $tradeValue = max($usdt * $riskPercent, $minBuy);
 
-        // Fixed Parameter Count Signature
         $this->executeTrade('buy', $tradeValue, $currentPrice);
 
         Setting::set('last_buy_price', $currentPrice);
@@ -224,9 +216,6 @@ class TradingBotService
         Setting::set('last_sell_price', $currentPrice);
     }
 
-    /**
-     * FIXED: Score matrix engine method mapping calculation metrics
-     */
     private function getTradeScore(array $prices): int
     {
         if (count($prices) < 50) return 0;
@@ -255,7 +244,6 @@ class TradingBotService
             $attempt++;
             Log::info("Attempt {$attempt}", compact('side', 'amount'));
 
-            // Fixed method parameter structure
             $response = $this->safeApiCall(
                 fn() => $this->bitget->placeOrder('BTCUSDT', $side, $amount)
             );
@@ -266,7 +254,6 @@ class TradingBotService
                 $orderId = $response['data']['orderId'] ?? null;
                 $this->storeTrade($side, $price, $amount, $orderId);
                 
-                // Fixed: Stringified response payload to protect notification integrity
                 $this->notify("✅ {$side} executed\nPrice: {$price}\nAmount: {$amount}\nResponse: " . json_encode($response));
 
                 if ($side === 'buy') {
@@ -286,6 +273,95 @@ class TradingBotService
 
         $this->notify("❌ {$side} FAILED\nPrice: {$price}\nAmount: {$amount}\nResponse: " . json_encode($response));   
         return false;
+    }
+
+    // ==========================================================
+    // 🖥️ BROWSER DASHBOARD MONITORING METHODS (Fixed Missing Data Hub)
+    // ==========================================================
+    
+    /**
+     * Resolves error: Call to undefined method TradingBotService::getMarketSummary()
+     */
+    public function getMarketSummary(): array
+    {
+        $prices = $this->getPrices();
+        $currentPrice = $this->bitget->getPrice();
+
+        if (empty($prices)) {
+            return [
+                'price' => $currentPrice,
+                'rsi' => 50,
+                'ma10' => 0,
+                'ma50' => 0,
+                'trend' => 'Neutral',
+                'decision' => 'wait'
+            ];
+        }
+
+        $rsi = $this->calculateRSI($prices);
+        $ma10 = $this->movingAverage($prices, 10);
+        $ma50 = $this->movingAverage($prices, 50);
+        
+        $trend = ($ma10 > $ma50) ? 'Uptrend' : 'Downtrend';
+
+        return [
+            'price' => $currentPrice,
+            'rsi' => round($rsi, 2),
+            'ma10' => round($ma10, 2),
+            'ma50' => round($ma50, 2),
+            'trend' => $trend,
+            'decision' => $this->getDecision()
+        ];
+    }
+
+    /**
+     * Supplies historical/wallet summary context structures
+     */
+    public function getAccountSummary(): array
+    {
+        return [
+            'btc' => $this->getBtcBalance(),
+            'usdt' => $this->getUsdtBalance(),
+        ];
+    }
+
+    /**
+     * Detailed user readable string diagnostic log output for views
+     */
+    public function getDecisionReason(): string
+    {
+        $prices = $this->getPrices();
+
+        if (empty($prices)) return 'No market data available';
+
+        $rsi = $this->calculateRSI($prices);
+        $ma10 = $this->movingAverage($prices, 10);
+        $ma50 = $this->movingAverage($prices, 50);
+
+        if ($rsi < 40 && $ma10 > $ma50) {
+            return "BUY SIGNAL: RSI is oversold ({$rsi}) and market is in a confirmed MA uptrend.";
+        }
+
+        if ($rsi > 65) {
+            return "SELL SIGNAL: RSI indicates overbought territory ({$rsi}), warning of market cool-off.";
+        }
+
+        return "HOLDING: Market metrics are balanced. Neutral parameters met.";
+    }
+
+    public function getDecision(): string
+    {
+        $prices = $this->getPrices();
+        if (count($prices) < 50) return 'wait';
+        
+        $rsi = $this->calculateRSI($prices);
+        $ma10 = $this->movingAverage($prices, 10);
+        $ma50 = $this->movingAverage($prices, 50);
+
+        if ($rsi < 40 && $ma10 > $ma50) return 'buy';
+        if ($rsi > 65) return 'sell';
+        
+        return 'wait';
     }
 
     // --- Core Analytic Calculations & Metric Helpers ---
@@ -351,18 +427,5 @@ class TradingBotService
         } catch (\Exception $e) {
             Log::error('Telegram delivery failed');
         }
-    }
-
-    public function getDecision(): string
-    {
-        $prices = $this->getPrices();
-        if (count($prices) < 50) return 'wait';
-        $rsi = $this->calculateRSI($prices);
-        $ma10 = $this->movingAverage($prices, 10);
-        $ma50 = $this->movingAverage($prices, 50);
-
-        if ($rsi < 40 && $ma10 > $ma50) return 'buy';
-        if ($rsi > 65) return 'sell';
-        return 'wait';
     }
 }
